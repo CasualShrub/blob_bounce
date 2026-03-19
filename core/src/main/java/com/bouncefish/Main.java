@@ -11,6 +11,7 @@ import com.bouncefish.entities.BounceFish;
 public class Main extends ApplicationAdapter {
     private SpriteBatch batch;
     private Texture image;
+    private Texture image2;
     private BounceGame _bounceGame;
     private BounceFish _currentFish;
 
@@ -18,6 +19,7 @@ public class Main extends ApplicationAdapter {
     public void create() {
         batch = new SpriteBatch();
         image = new Texture("blob1.png");
+        image2 = new Texture("blob2.png");
         _bounceGame = new BounceGame();
 
         OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -36,7 +38,12 @@ public class Main extends ApplicationAdapter {
         _currentFish = _bounceGame.getBounceFish();
 
         batch.begin();
-        batch.draw(image, (float)_currentFish.getX(), (float)_currentFish.getY(), 200, 200);
+        if (_currentFish.isBouncing()){
+            batch.draw(image2, (float)_currentFish.getX(), (float)_currentFish.getY(), 200, 200);
+        }
+        else {
+            batch.draw(image, (float)_currentFish.getX(), (float)_currentFish.getY(), 200, 200);
+        }
         batch.end();
     }
 

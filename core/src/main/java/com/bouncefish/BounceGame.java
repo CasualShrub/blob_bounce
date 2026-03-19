@@ -58,6 +58,18 @@ public class BounceGame {
                 _bounceFish.setYVelocity(0);
             }
         }
+
+        // Bouncing off left wall
+        if (_bounceFish.getX() <= 0) {
+            _bounceFish.setX(0);
+            _bounceFish.setXVelocity(Math.abs(_bounceFish.getXVelocity()) * GameConstants.BOUNCE_DAMPING);
+        }
+
+        // Bouncing off right wall
+        if (_bounceFish.getX() >= Gdx.graphics.getWidth() - 200) {
+            _bounceFish.setX(Gdx.graphics.getWidth() - 200);
+            _bounceFish.setXVelocity(-Math.abs(_bounceFish.getXVelocity()) * GameConstants.BOUNCE_DAMPING);
+        }
     }
 
     public BounceFish getBounceFish() {

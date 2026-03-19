@@ -29,16 +29,10 @@ public class BounceGame {
         }
 
         if (_leftPressed) {
-            _bounceFish.decrementXVelocity(GameConstants.H_ACCEL);
-            if (_bounceFish.getXVelocity() < -GameConstants.MAX_H_SPEED) {
-                _bounceFish.setXVelocity(-GameConstants.MAX_H_SPEED);
-            }
+            _bounceFish.setXVelocity(-GameConstants.H_SPEED);
         }
         else if (_rightPressed) {
-            _bounceFish.incrementXVelocity(GameConstants.H_ACCEL);
-            if (_bounceFish.getXVelocity() > GameConstants.MAX_H_SPEED) {
-                _bounceFish.setXVelocity(GameConstants.MAX_H_SPEED);
-            }
+            _bounceFish.setXVelocity(GameConstants.H_SPEED);
         }
 
         // Force of gravity

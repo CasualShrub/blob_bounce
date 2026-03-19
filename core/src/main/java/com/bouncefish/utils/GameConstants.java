@@ -8,7 +8,8 @@ public final class GameConstants {
     public static final double GRAVITY = 75.2;       // Persistent downward acceleration
     public static final double BOUNCE_DAMPING = 1; // Energy retained on bounce (maybe can make this creature specific?)
     public static final double FRICTION = 0.98;      // Friction when bouncing on a creature (maybe can make this creature specific?)
-    public static final double H_ACCEL = 45;        // How fast bouncefish should speed up when inputting left/right (convert this to immediate velocity?)
+    //public static final double H_ACCEL = 45;        // How fast bouncefish should speed up when inputting left/right (convert this to immediate velocity?)
+    public static final double H_SPEED = 800;
     public static final double MAX_H_SPEED = 700;    // Maximum horizontal speed
     public static final double GROUND_HEIGHT = 0; // Y position of ground level
     public static final double BOUNCEFISH_WIDTH = 200;

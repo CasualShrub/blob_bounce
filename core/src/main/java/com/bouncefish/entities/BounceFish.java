@@ -7,7 +7,7 @@ public class BounceFish extends Creature {
     private boolean isBouncing = false;
 
     public BounceFish() {
-        xPosition = Gdx.graphics.getWidth()* 0.5;
+        xPosition = Gdx.graphics.getWidth()* 0.5f;
         yPosition = 800;
         xVelocity = 0;
         yVelocity = 0;

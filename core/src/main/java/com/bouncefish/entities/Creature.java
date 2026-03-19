@@ -3,31 +3,26 @@ package com.bouncefish.entities;
 import com.badlogic.gdx.Gdx;
 
 public class Creature {
-    protected double xPosition;
-    protected double yPosition;
+    protected float xPosition;
+    protected float yPosition;
     protected double width;
     protected double height;
     protected double xVelocity;
     protected double yVelocity;
 
-    public void updatePosition(){
-        xPosition += xVelocity * Gdx.graphics.getDeltaTime();
-        yPosition += yVelocity * Gdx.graphics.getDeltaTime();
-    }
-
-    public double getX() {
+    public float getX() {
         return xPosition;
     }
 
-    public void setX(double x) {
+    public void setX(float x) {
         xPosition = x;
     }
 
-    public double getY() {
+    public float getY() {
         return yPosition;
     }
 
-    public void setY(double y) {
+    public void setY(float y) {
         yPosition = y;
     }
 
@@ -63,5 +58,11 @@ public class Creature {
 
     public void decrementYVelocity(double yVelocity) {
         this.yVelocity -= yVelocity;
+    }
+
+    // Game loop
+    public void updatePosition(){
+        xPosition += xVelocity * Gdx.graphics.getDeltaTime();
+        yPosition += yVelocity * Gdx.graphics.getDeltaTime();
     }
 }

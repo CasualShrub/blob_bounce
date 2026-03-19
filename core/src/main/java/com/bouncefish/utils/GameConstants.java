@@ -12,7 +12,7 @@ public final class GameConstants {
     //public static final double H_ACCEL = 45;        // How fast bouncefish should speed up when inputting left/right (convert this to immediate velocity?)
     public static final double H_SPEED = 800; // Base value for horizontal 'movement' speed
     public static final double MAX_H_SPEED = 700;    // Maximum horizontal speed
-    public static final double GROUND_HEIGHT = 0; // Y position of ground level
-    public static final double BOUNCEFISH_WIDTH = 200;
-    public static final double BOUNCEFISH_HEIGHT = 200;
+    public static final float GROUND_HEIGHT = 0; // Y position of ground level
+    public static final int BOUNCEFISH_WIDTH = 200;
+    public static final int BOUNCEFISH_HEIGHT = 200;
 }

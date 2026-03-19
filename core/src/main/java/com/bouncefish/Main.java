@@ -25,7 +25,6 @@ public class Main extends ApplicationAdapter {
         _bounceGame = new BounceGame();
 
         OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
     }
 
     @Override
@@ -46,7 +45,7 @@ public class Main extends ApplicationAdapter {
         else {
             _bounceFishSprite = _image;
         }
-        _batch.draw(_bounceFishSprite, (float)_currentFish.getX(), (float)_currentFish.getY(), (int) GameConstants.BOUNCEFISH_WIDTH, (int) GameConstants.BOUNCEFISH_HEIGHT);
+        _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), GameConstants.BOUNCEFISH_WIDTH, GameConstants.BOUNCEFISH_HEIGHT);
         _batch.end();
     }
 

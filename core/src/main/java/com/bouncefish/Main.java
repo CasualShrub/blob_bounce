@@ -7,19 +7,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.bouncefish.entities.BounceFish;
+import com.bouncefish.utils.GameConstants;
 
 public class Main extends ApplicationAdapter {
-    private SpriteBatch batch;
-    private Texture image;
-    private Texture image2;
+    private SpriteBatch _batch;
+    private Texture _image;
+    private Texture _image2;
+    private Texture _bounceFishSprite;
     private BounceGame _bounceGame;
     private BounceFish _currentFish;
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        image = new Texture("blob1.png");
-        image2 = new Texture("blob2.png");
+        _batch = new SpriteBatch();
+        _image = new Texture("blob1.png");
+        _image2 = new Texture("blob2.png");
         _bounceGame = new BounceGame();
 
         OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -37,20 +39,22 @@ public class Main extends ApplicationAdapter {
         _bounceGame.timeStep();
         _currentFish = _bounceGame.getBounceFish();
 
-        batch.begin();
+        _batch.begin();
         if (_currentFish.isBouncing()){
-            batch.draw(image2, (float)_currentFish.getX(), (float)_currentFish.getY(), 200, 200);
+            _bounceFishSprite = _image2;
         }
         else {
-            batch.draw(image, (float)_currentFish.getX(), (float)_currentFish.getY(), 200, 200);
+            _bounceFishSprite = _image;
         }
-        batch.end();
+        _batch.draw(_bounceFishSprite, (float)_currentFish.getX(), (float)_currentFish.getY(), (int) GameConstants.BOUNCEFISH_WIDTH, (int) GameConstants.BOUNCEFISH_HEIGHT);
+        _batch.end();
     }
 
     @Override
     public void dispose() {
-        batch.dispose();
-        image.dispose();
-        image2.dispose();
+        _batch.dispose();
+        _image.dispose();
+        _image2.dispose();
+        _bounceFishSprite.dispose();
     }
 }

@@ -10,14 +10,37 @@ public class BounceGame {
 
     private BounceFish _bounceFish;
     Timer _timer;
-    private boolean _leftPressed = false;
-    private boolean _rightPressed = false;
+    private boolean _leftPressed;
+    private boolean _rightPressed;
 
     public BounceGame() {
         _bounceFish = new BounceFish();
     }
 
     public void timeStep() {
+        if (Gdx.input.isTouched()){ // Let's start simple just to debug: move right if screen is touched is pressed
+            System.out.println("bruh");
+            _leftPressed = false;
+            _rightPressed = true;
+        }
+        else {
+            _leftPressed = true;
+            _rightPressed = false;
+        }
+
+        if (_leftPressed) {
+            _bounceFish.decrementXVelocity(GameConstants.H_ACCEL);
+            if (_bounceFish.getXVelocity() < -GameConstants.MAX_H_SPEED) {
+                _bounceFish.setXVelocity(-GameConstants.MAX_H_SPEED);
+            }
+        }
+        else if (_rightPressed) {
+            _bounceFish.incrementXVelocity(GameConstants.H_ACCEL);
+            if (_bounceFish.getXVelocity() > GameConstants.MAX_H_SPEED) {
+                _bounceFish.setXVelocity(GameConstants.MAX_H_SPEED);
+            }
+        }
+
         // Force of gravity
         _bounceFish.decrementYVelocity(GameConstants.GRAVITY);
 

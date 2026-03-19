@@ -50,9 +50,7 @@ public class BounceGame {
         // Handle bouncing off the ground (TODO: refactor to collision check and bouncing off a creature)
         if (_bounceFish.getY() <= GameConstants.GROUND_HEIGHT) {
             _bounceFish.setY(GameConstants.GROUND_HEIGHT);
-            System.out.println("Velocity Before Bounce: " + _bounceFish.getYVelocity());
             _bounceFish.reverseVelocityForBounce();
-            System.out.println("Velocity After Bounce: " + _bounceFish.getYVelocity());
             _bounceFish.applyFriction();
 
             // Stop tiny bounces

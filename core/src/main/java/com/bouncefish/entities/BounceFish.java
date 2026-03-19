@@ -15,7 +15,8 @@ public class BounceFish extends Creature {
     }
 
     public void reverseVelocityForBounce(){
-        yVelocity = -yVelocity * GameConstants.BOUNCE_DAMPING;
+        //yVelocity = -yVelocity * GameConstants.BOUNCE_DAMPING;
+        yVelocity = GameConstants.BOUNCE_VELOCITY * GameConstants.BOUNCE_DAMPING;
         isBouncing = true;
 
         Timer.schedule(new Timer.Task() {

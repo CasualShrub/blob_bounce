@@ -1,12 +1,14 @@
 package com.bouncefish;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Vector2;
 import com.bouncefish.entities.BounceFish;
 import com.bouncefish.utils.GameConstants;
 
 import javax.swing.Timer;
 
-public class BounceGame {
+public class BounceGame implements GestureDetector.GestureListener {
 
     private BounceFish _bounceFish;
     Timer _timer;
@@ -15,19 +17,10 @@ public class BounceGame {
 
     public BounceGame() {
         _bounceFish = new BounceFish();
+        Gdx.input.setInputProcessor(new GestureDetector(this));
     }
 
     public void timeStep() {
-        if (Gdx.input.isTouched()){ // Let's start simple just to debug: move right if screen is touched is pressed
-            System.out.println("bruh");
-            _leftPressed = false;
-            _rightPressed = true;
-        }
-        else {
-            _leftPressed = true;
-            _rightPressed = false;
-        }
-
         if (_leftPressed) {
             _bounceFish.setXVelocity(-GameConstants.H_SPEED);
         }
@@ -53,6 +46,8 @@ public class BounceGame {
             }
         }
 
+        //TODO: Audit? Might not be necessary if we are just using flat velocity instead of acceleration
+
         // Bouncing off left wall
         if (_bounceFish.getX() <= 0) {
             _bounceFish.setX(0);
@@ -60,16 +55,69 @@ public class BounceGame {
         }
 
         // Bouncing off right wall
-        if (_bounceFish.getX() >= Gdx.graphics.getWidth() - 200) {
-            _bounceFish.setX(Gdx.graphics.getWidth() - 200);
+        if (_bounceFish.getX() >= Gdx.graphics.getWidth() - 250) {
+            _bounceFish.setX(Gdx.graphics.getWidth() - 250);
             _bounceFish.setXVelocity(-Math.abs(_bounceFish.getXVelocity()) * GameConstants.BOUNCE_DAMPING);
         }
     }
 
     public BounceFish getBounceFish() {
-
         return _bounceFish;
     }
 
 
+    @Override
+    public boolean touchDown(float x, float y, int pointer, int button) {
+        if (x > Gdx.graphics.getWidth() - 200) {
+            _leftPressed = false;
+            _rightPressed = true;
+            return true;
+        }
+        else if (x < 200){
+            _leftPressed = true;
+            _rightPressed = false;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean tap(float x, float y, int count, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean longPress(float x, float y) {
+        return false;
+    }
+
+    @Override
+    public boolean fling(float velocityX, float velocityY, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean pan(float x, float y, float deltaX, float deltaY) {
+        return false;
+    }
+
+    @Override
+    public boolean panStop(float x, float y, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean zoom(float initialDistance, float distance) {
+        return false;
+    }
+
+    @Override
+    public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+        return false;
+    }
+
+    @Override
+    public void pinchStop() {
+
+    }
 }

@@ -2,13 +2,14 @@ package com.bouncefish.entities;
 
 import com.badlogic.gdx.Gdx;
 
-public class Creature {
+public abstract class Creature {
     protected float xPosition;
     protected float yPosition;
-    protected double width;
-    protected double height;
+    protected int width;
+    protected int height;
     protected double xVelocity;
     protected double yVelocity;
+    protected float movementSpeed;
 
     public float getX() {
         return xPosition;
@@ -60,9 +61,24 @@ public class Creature {
         this.yVelocity -= yVelocity;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     // Game loop
     public void updatePosition(){
         xPosition += xVelocity * Gdx.graphics.getDeltaTime();
         yPosition += yVelocity * Gdx.graphics.getDeltaTime();
     }
+
+    public void spawn(float x, float y) {
+        xPosition = x;
+        yPosition = y;
+    }
+
+    public abstract void handleTimeStep();
 }

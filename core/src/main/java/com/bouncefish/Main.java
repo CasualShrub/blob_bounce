@@ -7,12 +7,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.bouncefish.entities.BounceFish;
+import com.bouncefish.entities.Creature;
 import com.bouncefish.utils.GameConstants;
 
 public class Main extends ApplicationAdapter {
     private SpriteBatch _batch;
     private Texture _image;
     private Texture _image2;
+    private Texture _crabImagePlaceholder;
     private Texture _bounceFishSprite;
     private BounceGame _bounceGame;
     private BounceFish _currentFish;
@@ -22,6 +24,7 @@ public class Main extends ApplicationAdapter {
         _batch = new SpriteBatch();
         _image = new Texture("blob1.png");
         _image2 = new Texture("blob2.png");
+        _crabImagePlaceholder = new Texture("crab1.png");
         _bounceGame = new BounceGame();
 
         OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -46,6 +49,10 @@ public class Main extends ApplicationAdapter {
             _bounceFishSprite = _image;
         }
         _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), GameConstants.BOUNCEFISH_WIDTH, GameConstants.BOUNCEFISH_HEIGHT);
+
+        for (Creature creature:_bounceGame.getCreatureList()) {
+            _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+        }
         _batch.end();
     }
 
@@ -55,5 +62,6 @@ public class Main extends ApplicationAdapter {
         _image.dispose();
         _image2.dispose();
         _bounceFishSprite.dispose();
+        _crabImagePlaceholder.dispose();;
     }
 }

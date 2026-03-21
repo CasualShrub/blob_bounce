@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.bouncefish.entities.BounceFish;
+import com.bouncefish.entities.*;
 import com.bouncefish.utils.GameConstants;
 
 import javax.swing.Timer;
+import java.util.ArrayList;
 
 public class BounceGame implements GestureDetector.GestureListener {
 
@@ -14,10 +16,20 @@ public class BounceGame implements GestureDetector.GestureListener {
     Timer _timer;
     private boolean _leftPressed;
     private boolean _rightPressed;
+    private ArrayList<Creature> _creatureList;
 
     public BounceGame() {
-        _bounceFish = new BounceFish();
         Gdx.input.setInputProcessor(new GestureDetector(this));
+
+        _bounceFish = new BounceFish();
+        _creatureList = new ArrayList<Creature>();
+        //make this a wave system???
+        int startX = 0;
+        for (int i = 0; i < 100; i++) {
+            Creature crab = new Crab();
+            crab.setX(startX - (300 * i));
+            _creatureList.add(crab);
+        }
     }
 
     public void timeStep() {

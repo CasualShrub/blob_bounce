@@ -34,4 +34,39 @@ public class BounceFish extends Creature {
     public boolean isBouncing() {
         return isBouncing;
     }
+
+    @Override
+    public void handleTimeStep() {
+        // Force of gravity
+        decrementYVelocity(GameConstants.GRAVITY);
+
+        // Update x and y position based on velocity
+        updatePosition();
+
+        // Handle bouncing off the ground (TODO: refactor to collision check and bouncing off a creature)
+        if (getY() <= GameConstants.GROUND_HEIGHT) {
+            setY(GameConstants.GROUND_HEIGHT);
+            reverseVelocityForBounce();
+            applyFriction();
+
+            // Stop tiny bounces
+            if (Math.abs(getYVelocity()) < 1.0) {
+                setYVelocity(0);
+            }
+        }
+
+        //TODO: Audit? Might not be necessary if we are just using flat velocity instead of acceleration
+
+        // Bouncing off left wall
+        if (getX() <= 0) {
+            setX(0);
+            setXVelocity(Math.abs(getXVelocity()) * GameConstants.BOUNCE_DAMPING);
+        }
+
+        // Bouncing off right wall
+        if (getX() >= Gdx.graphics.getWidth() - 250) {
+            setX(Gdx.graphics.getWidth() - 250);
+            setXVelocity(-Math.abs(getXVelocity()) * GameConstants.BOUNCE_DAMPING);
+        }
+    }
 }

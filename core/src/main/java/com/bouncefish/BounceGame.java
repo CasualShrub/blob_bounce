@@ -32,7 +32,14 @@ public class BounceGame implements GestureDetector.GestureListener {
         }
     }
 
+    // What do we do every frame?
     public void timeStep() {
+        if (!Gdx.input.isTouched()){
+            _leftPressed = false;
+            _rightPressed = false;
+            _bounceFish.setXVelocity(0);
+        }
+
         if (_leftPressed) {
             _bounceFish.setXVelocity(-GameConstants.H_SPEED);
         }
@@ -40,36 +47,9 @@ public class BounceGame implements GestureDetector.GestureListener {
             _bounceFish.setXVelocity(GameConstants.H_SPEED);
         }
 
-        // Force of gravity
-        _bounceFish.decrementYVelocity(GameConstants.GRAVITY);
-
-        // Update x and y position based on velocity
-        _bounceFish.updatePosition();
-
-        // Handle bouncing off the ground (TODO: refactor to collision check and bouncing off a creature)
-        if (_bounceFish.getY() <= GameConstants.GROUND_HEIGHT) {
-            _bounceFish.setY(GameConstants.GROUND_HEIGHT);
-            _bounceFish.reverseVelocityForBounce();
-            _bounceFish.applyFriction();
-
-            // Stop tiny bounces
-            if (Math.abs(_bounceFish.getYVelocity()) < 1.0) {
-                _bounceFish.setYVelocity(0);
-            }
-        }
-
-        //TODO: Audit? Might not be necessary if we are just using flat velocity instead of acceleration
-
-        // Bouncing off left wall
-        if (_bounceFish.getX() <= 0) {
-            _bounceFish.setX(0);
-            _bounceFish.setXVelocity(Math.abs(_bounceFish.getXVelocity()) * GameConstants.BOUNCE_DAMPING);
-        }
-
-        // Bouncing off right wall
-        if (_bounceFish.getX() >= Gdx.graphics.getWidth() - 250) {
-            _bounceFish.setX(Gdx.graphics.getWidth() - 250);
-            _bounceFish.setXVelocity(-Math.abs(_bounceFish.getXVelocity()) * GameConstants.BOUNCE_DAMPING);
+        _bounceFish.handleTimeStep();
+        for (Creature creature: _creatureList) {
+            creature.handleTimeStep();
         }
     }
 

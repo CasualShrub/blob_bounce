@@ -15,4 +15,7 @@ public final class GameConstants {
     public static final float GROUND_HEIGHT = 0; // Y position of ground level
     public static final int BOUNCEFISH_WIDTH = 200;
     public static final int BOUNCEFISH_HEIGHT = 200;
+    public static final int RIGHT_CONTROL_BORDER = 400;
+    public static final int LEFT_CONTROL_BORDER = 400;
+
 }

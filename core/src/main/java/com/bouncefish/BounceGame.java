@@ -65,15 +65,19 @@ public class BounceGame implements GestureDetector.GestureListener {
         return _bounceFish;
     }
 
+    public ArrayList<Creature> getCreatureList() {
+        return _creatureList;
+    }
+
 
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
-        if (x > Gdx.graphics.getWidth() - 200) {
+        if (x > Gdx.graphics.getWidth() - GameConstants.RIGHT_CONTROL_BORDER) {
             _leftPressed = false;
             _rightPressed = true;
             return true;
         }
-        else if (x < 200){
+        else if (x < GameConstants.LEFT_CONTROL_BORDER){
             _leftPressed = true;
             _rightPressed = false;
             return true;

@@ -10,6 +10,8 @@ import com.bouncefish.entities.BounceFish;
 import com.bouncefish.entities.Creature;
 import com.bouncefish.utils.GameConstants;
 
+import java.util.ArrayList;
+
 public class Main extends ApplicationAdapter {
     private SpriteBatch _batch;
     private Texture _image;
@@ -48,9 +50,11 @@ public class Main extends ApplicationAdapter {
         else {
             _bounceFishSprite = _image;
         }
-        _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), GameConstants.BOUNCEFISH_WIDTH, GameConstants.BOUNCEFISH_HEIGHT);
+        _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
 
-        for (Creature creature:_bounceGame.getCreatureList()) {
+        ArrayList<Creature> creatureList = _bounceGame.getCreatureList();
+
+        for (Creature creature:creatureList) {
             _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
         }
         _batch.end();

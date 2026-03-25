@@ -1,17 +1,23 @@
 package com.bouncefish.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
+import com.bouncefish.BounceGame;
 import com.bouncefish.utils.GameConstants;
+
+import java.util.ArrayList;
 
 public class BounceFish extends Creature {
     private boolean isBouncing = false;
+    private ArrayList<Creature> creatureList;
 
     public BounceFish() {
         xPosition = Gdx.graphics.getWidth()* 0.5f;
         yPosition = 800;
         xVelocity = 0;
         yVelocity = 0;
-
+        width = 120;
+        height = 120;
+        setBounds();
     }
 
     public void reverseVelocityForBounce(){
@@ -42,9 +48,21 @@ public class BounceFish extends Creature {
 
         // Update x and y position based on velocity
         updatePosition();
+        updateBounds();
 
-        // Handle bouncing off the ground (TODO: refactor to collision check and bouncing off a creature)
+        for (Creature creature : creatureList) {
+            if(this.bounds.overlaps(creature.bounds)){
+                setY(creature.getHeight());
+                reverseVelocityForBounce();
+
+                //TODO: call the getBouncedOn method of creature
+                break;
+            }
+        }
+
+        //Lose Game! Initiate game over
         if (getY() <= GameConstants.GROUND_HEIGHT) {
+            System.out.println("You died!"); //TODO: wire this to the game manager
             setY(GameConstants.GROUND_HEIGHT);
             reverseVelocityForBounce();
             applyFriction();
@@ -68,5 +86,9 @@ public class BounceFish extends Creature {
             setX(Gdx.graphics.getWidth() - 250);
             setXVelocity(-Math.abs(getXVelocity()) * GameConstants.BOUNCE_DAMPING);
         }
+    }
+
+    public void updateCreatureList(ArrayList<Creature> creatureList){
+        this.creatureList = creatureList;
     }
 }

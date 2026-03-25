@@ -1,6 +1,7 @@
 package com.bouncefish.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Rectangle;
 
 public abstract class Creature {
     protected float xPosition;
@@ -10,6 +11,7 @@ public abstract class Creature {
     protected double xVelocity;
     protected double yVelocity;
     protected float movementSpeed;
+    protected Rectangle bounds;
 
     public float getX() {
         return xPosition;
@@ -78,6 +80,16 @@ public abstract class Creature {
     public void spawn(float x, float y) {
         xPosition = x;
         yPosition = y;
+    }
+
+    public void setBounds(){
+        bounds = new Rectangle((int)getX(), (int)getY(),
+            getWidth(), getHeight());
+    }
+
+    public void updateBounds(){
+        bounds.setX((int)getX());
+        bounds.setY((int)getY());
     }
 
     public abstract void handleTimeStep();

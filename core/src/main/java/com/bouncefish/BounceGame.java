@@ -27,7 +27,7 @@ public class BounceGame implements GestureDetector.GestureListener {
         int startX = 0;
         for (int i = 0; i < 100; i++) {
             Creature crab = new Crab();
-            crab.setX(startX - (300 * i));
+            crab.setX(startX - (700 * i));
             _creatureList.add(crab);
         }
     }
@@ -47,6 +47,7 @@ public class BounceGame implements GestureDetector.GestureListener {
             _bounceFish.setXVelocity(GameConstants.H_SPEED);
         }
 
+        _bounceFish.updateCreatureList(_creatureList); //TODO: Look into updating only when spawning new creatures instead of on timestep?
         _bounceFish.handleTimeStep();
         for (Creature creature: _creatureList) {
             creature.handleTimeStep();

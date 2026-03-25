@@ -9,14 +9,16 @@ public class Crab extends Creature {
         yPosition = 0;
         xVelocity = 0;
         yVelocity = 0;
-        width = 200;
-        height = 200;
+        width = 120;
+        height = 120;
         movementSpeed = 12;
+        setBounds();
     }
 
     @Override
     public void handleTimeStep() {
         xPosition += movementSpeed;
+        updateBounds();
     }
 
 }

@@ -2,9 +2,11 @@ package com.bouncefish;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.bouncefish.entities.BounceFish;
 import com.bouncefish.entities.Creature;
@@ -21,9 +23,12 @@ public class Main extends ApplicationAdapter {
     private BounceGame _bounceGame;
     private BounceFish _currentFish;
 
+    private ShapeRenderer _shapeRenderer;
+
     @Override
     public void create() {
         _batch = new SpriteBatch();
+        _shapeRenderer = new ShapeRenderer();
         _image = new Texture("blob1.png");
         _image2 = new Texture("blob2.png");
         _crabImagePlaceholder = new Texture("crab1.png");
@@ -57,7 +62,27 @@ public class Main extends ApplicationAdapter {
         for (Creature creature:creatureList) {
             _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
         }
+
+
         _batch.end();
+
+        if (GameConstants.IS_DEBUG){
+            _shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+            _shapeRenderer.setColor(new Color(0xff000022));
+            for (Creature creature:creatureList) {
+                _shapeRenderer.rect(creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+            }
+            Creature player = _bounceGame.getBounceFish();
+            _shapeRenderer.setColor(new Color(0x00ff0022));
+            _shapeRenderer.rect(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+
+            _shapeRenderer.setColor(new Color(0x0000ff22));
+            _shapeRenderer.line(GameConstants.LEFT_CONTROL_BORDER, Gdx.graphics.getHeight(), GameConstants.LEFT_CONTROL_BORDER, 0);
+            _shapeRenderer.line(Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, Gdx.graphics.getHeight(), Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, 0);
+
+
+            _shapeRenderer.end();
+        }
     }
 
     @Override

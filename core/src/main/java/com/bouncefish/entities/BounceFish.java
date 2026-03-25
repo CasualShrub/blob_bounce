@@ -72,13 +72,24 @@ public class BounceFish extends Creature {
             }
         }
 
-        //Lose Game! Initiate game over
-        if (getY() <= GameConstants.GROUND_HEIGHT) {
-            isDead = true;
-            setY(GameConstants.GROUND_HEIGHT);
-            applyDeathVelocity();
-            xVelocity *= -1.2;
+        // Lose Game! Initiate game over
+        if (!GameConstants.IS_IMMORTAL){
+            if (getY() <= GameConstants.GROUND_HEIGHT) {
+                isDead = true;
+                setY(GameConstants.GROUND_HEIGHT);
+                applyDeathVelocity();
+                xVelocity *= -1.2;
+            }
         }
+        // Keep bouncing if you are immortal.
+        else {
+            if (getY() <= GameConstants.GROUND_HEIGHT) {
+                setY(GameConstants.GROUND_HEIGHT);
+                reverseVelocityForBounce();
+
+            }
+        }
+
 
         //TODO: Audit? Might not be necessary if we are just using flat velocity instead of acceleration
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class BounceFish extends Creature {
     private boolean isBouncing = false;
+    private boolean isDead = false;
     private ArrayList<Creature> creatureList;
 
     public BounceFish() {
@@ -33,12 +34,19 @@ public class BounceFish extends Creature {
         }, 0.5f);
     }
 
+    public void applyDeathVelocity(){
+        yVelocity = GameConstants.BOUNCE_VELOCITY * GameConstants.DEATH_BOUNCE_DAMPING;
+    }
+
     public void applyFriction() {
         xVelocity *= GameConstants.FRICTION;
     }
 
     public boolean isBouncing() {
         return isBouncing;
+    }
+    public boolean isDead() {
+        return isDead;
     }
 
     @Override
@@ -49,6 +57,10 @@ public class BounceFish extends Creature {
         // Update x and y position based on velocity
         updatePosition();
         updateBounds();
+
+        if (isDead){
+            return;
+        }
 
         for (Creature creature : creatureList) {
             if(this.bounds.overlaps(creature.bounds)){
@@ -62,15 +74,10 @@ public class BounceFish extends Creature {
 
         //Lose Game! Initiate game over
         if (getY() <= GameConstants.GROUND_HEIGHT) {
-            System.out.println("You died!"); //TODO: wire this to the game manager
+            isDead = true;
             setY(GameConstants.GROUND_HEIGHT);
-            reverseVelocityForBounce();
-            applyFriction();
-
-            // Stop tiny bounces
-            if (Math.abs(getYVelocity()) < 1.0) {
-                setYVelocity(0);
-            }
+            applyDeathVelocity();
+            xVelocity *= -1.2;
         }
 
         //TODO: Audit? Might not be necessary if we are just using flat velocity instead of acceleration

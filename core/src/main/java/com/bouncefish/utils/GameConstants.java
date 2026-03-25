@@ -8,6 +8,7 @@ public final class GameConstants {
     public static final double GRAVITY = 75.2;       // Persistent downward acceleration
     public static final double BOUNCE_VELOCITY = 2800; // Base value for much speed to gain upon bouncing
     public static final double BOUNCE_DAMPING = 1; // Energy retained on bounce (maybe can make this creature specific?)
+    public static final double DEATH_BOUNCE_DAMPING = 0.3; // Purely visual damping multiplier for when the player dies
     public static final double FRICTION = 0.98;      // Friction when bouncing on a creature (maybe can make this creature specific?)
     //public static final double H_ACCEL = 45;        // How fast bouncefish should speed up when inputting left/right (convert this to immediate velocity?)
     public static final double H_SPEED = 800; // Base value for horizontal 'movement' speed

@@ -18,6 +18,7 @@ public class Main extends ApplicationAdapter {
     private SpriteBatch _batch;
     private Texture _image;
     private Texture _image2;
+    private Texture _image3;
     private Texture _crabImagePlaceholder;
     private Texture _bounceFishSprite;
     private BounceGame _bounceGame;
@@ -31,6 +32,7 @@ public class Main extends ApplicationAdapter {
         _shapeRenderer = new ShapeRenderer();
         _image = new Texture("blob1.png");
         _image2 = new Texture("blob2.png");
+        _image3 = new Texture("blob3.png");
         _crabImagePlaceholder = new Texture("crab1.png");
         _bounceGame = new BounceGame();
 
@@ -49,7 +51,10 @@ public class Main extends ApplicationAdapter {
         _currentFish = _bounceGame.getBounceFish();
 
         _batch.begin();
-        if (_currentFish.isBouncing()){
+        if (_currentFish.isDead()){
+            _bounceFishSprite = _image3;
+        }
+        else if (_currentFish.isBouncing()){
             _bounceFishSprite = _image2;
         }
         else {
@@ -90,7 +95,9 @@ public class Main extends ApplicationAdapter {
         _batch.dispose();
         _image.dispose();
         _image2.dispose();
+        _image3.dispose();
         _bounceFishSprite.dispose();
-        _crabImagePlaceholder.dispose();;
+        _crabImagePlaceholder.dispose();
+        _shapeRenderer.dispose();
     }
 }

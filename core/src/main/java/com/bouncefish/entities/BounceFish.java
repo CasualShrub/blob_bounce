@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class BounceFish extends Creature {
     private boolean isBouncing = false;
     private boolean isDead = false;
-    private ArrayList<Creature> creatureList;
+    private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
 
     public BounceFish() {
         xPosition = Gdx.graphics.getWidth()* 0.5f;
@@ -18,7 +18,7 @@ public class BounceFish extends Creature {
         yVelocity = 0;
         width = 120;
         height = 120;
-        setBounds();
+        setBounds(); //Fish has a physical size needed for collision
     }
 
     public void reverseVelocityForBounce(){
@@ -61,7 +61,8 @@ public class BounceFish extends Creature {
         if (isDead){
             return;
         }
-
+        //If fish touches any creature, Fish gets placed on top of creature and bounces upward.
+        //Like Mario jumping on Enemy
         for (Creature creature : creatureList) {
             if(this.bounds.overlaps(creature.bounds)){
                 setY(creature.getHeight());
@@ -94,9 +95,9 @@ public class BounceFish extends Creature {
         //TODO: Audit? Might not be necessary if we are just using flat velocity instead of acceleration
 
         // Bouncing off left wall
-        if (getX() <= 0) {
-            setX(0);
-            setXVelocity(Math.abs(getXVelocity()) * GameConstants.BOUNCE_DAMPING);
+        if (getX() <= 0) { //Fish reached left Edge
+            setX(0); // Don't let it go outside screen
+            setXVelocity(Math.abs(getXVelocity()) * GameConstants.BOUNCE_DAMPING); // -5 -> +5 After Bounce Should go Right(Positive)
         }
 
         // Bouncing off right wall

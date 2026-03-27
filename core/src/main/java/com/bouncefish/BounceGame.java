@@ -19,7 +19,7 @@ public class BounceGame implements GestureDetector.GestureListener {
     private ArrayList<Creature> _creatureList;
 
     public BounceGame() {
-        Gdx.input.setInputProcessor(new GestureDetector(this));
+        Gdx.input.setInputProcessor(new GestureDetector(this)); // Whenever user touches screen send events to this class.
 
         _bounceFish = new BounceFish();
         _creatureList = new ArrayList<Creature>();
@@ -46,7 +46,7 @@ public class BounceGame implements GestureDetector.GestureListener {
         else if (_rightPressed) {
             _bounceFish.setXVelocity(GameConstants.H_SPEED);
         }
-
+        //Bouncefish now receives here all crabs
         _bounceFish.updateCreatureList(_creatureList); //TODO: Look into updating only when spawning new creatures instead of on timestep?
         _bounceFish.handleTimeStep();
         for (Creature creature: _creatureList) {

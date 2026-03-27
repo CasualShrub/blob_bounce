@@ -64,6 +64,7 @@ public class Main extends ApplicationAdapter {
 
         ArrayList<Creature> creatureList = _bounceGame.getCreatureList();
 
+        //Draw all creatures
         for (Creature creature:creatureList) {
             _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
         }

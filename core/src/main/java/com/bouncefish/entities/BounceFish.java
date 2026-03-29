@@ -1,4 +1,5 @@
 package com.bouncefish.entities;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
 import com.bouncefish.BounceGame;
@@ -21,9 +22,9 @@ public class BounceFish extends Creature {
         setBounds(); //Fish has a physical size needed for collision
     }
 
-    public void reverseVelocityForBounce(){
+    public void reverseVelocityForBounce(double multiplier){
         //yVelocity = -yVelocity * GameConstants.BOUNCE_DAMPING;
-        yVelocity = GameConstants.BOUNCE_VELOCITY * GameConstants.BOUNCE_DAMPING;
+        yVelocity = GameConstants.BOUNCE_VELOCITY * GameConstants.BOUNCE_DAMPING - (GameConstants.BOUNCE_VELOCITY * multiplier);
         isBouncing = true;
 
         Timer.schedule(new Timer.Task() {
@@ -66,7 +67,7 @@ public class BounceFish extends Creature {
         for (Creature creature : creatureList) {
             if(this.bounds.overlaps(creature.bounds)){
                 setY(creature.getHeight());
-                reverseVelocityForBounce();
+                reverseVelocityForBounce(((double) creature.height + creature.getX()) / Gdx.graphics.getHeight());
 
                 //TODO: call the getBouncedOn method of creature
                 break;
@@ -86,8 +87,7 @@ public class BounceFish extends Creature {
         else {
             if (getY() <= GameConstants.GROUND_HEIGHT) {
                 setY(GameConstants.GROUND_HEIGHT);
-                reverseVelocityForBounce();
-
+                reverseVelocityForBounce(0);
             }
         }
 

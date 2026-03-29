@@ -2,11 +2,20 @@ package com.bouncefish;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.bouncefish.entities.BounceFish;
 import com.bouncefish.entities.Creature;
@@ -25,6 +34,7 @@ public class Main extends ApplicationAdapter {
     private BounceFish _currentFish;
 
     private ShapeRenderer _shapeRenderer;
+    private Stage _stage;
 
     @Override
     public void create() {
@@ -36,7 +46,26 @@ public class Main extends ApplicationAdapter {
         _crabImagePlaceholder = new Texture("crab1.png");
         _bounceGame = new BounceGame();
 
-        OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        // UI Elements
+        _stage = new Stage();
+        Gdx.input.setInputProcessor(_stage);
+        Skin skin = new Skin(Gdx.files.internal("clean-crispy-ui.json"));
+        TextButton button = new TextButton("DEBUG", skin);
+        button.setBounds(100, Gdx.graphics.getHeight() * 0.5f, 100, 100);
+        _stage.addActor(button);
+
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                toggleDebug();
+            }
+        });
+
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(_stage);
+        multiplexer.addProcessor(new GestureDetector(_bounceGame));
+        Gdx.input.setInputProcessor(multiplexer);
+        //OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     @Override
@@ -47,8 +76,32 @@ public class Main extends ApplicationAdapter {
             _currentFish = _bounceGame.getBounceFish();
         }
 
+        ArrayList<Creature> creatureList = _bounceGame.getCreatureList();
+
         _bounceGame.timeStep();
         _currentFish = _bounceGame.getBounceFish();
+
+        if (GameConstants.IS_DEBUG){
+            _shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+            _shapeRenderer.setAutoShapeType(true);
+            _shapeRenderer.set(ShapeRenderer.ShapeType.Filled);
+            _shapeRenderer.setColor(new Color(0xff000022));
+            for (Creature creature:creatureList) {
+                _shapeRenderer.rect(creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+            }
+            Creature player = _bounceGame.getBounceFish();
+            _shapeRenderer.setColor(new Color(0x00ff0022));
+            _shapeRenderer.rect(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+
+            _shapeRenderer.setColor(new Color(0x0000ff22));
+
+
+            _shapeRenderer.rectLine(GameConstants.LEFT_CONTROL_BORDER, Gdx.graphics.getHeight(), GameConstants.LEFT_CONTROL_BORDER, 0, 10f);
+            _shapeRenderer.rectLine(Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, Gdx.graphics.getHeight(), Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, 0, 10f);
+
+
+            _shapeRenderer.end();
+        }
 
         _batch.begin();
         if (_currentFish.isDead()){
@@ -62,7 +115,6 @@ public class Main extends ApplicationAdapter {
         }
         _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
 
-        ArrayList<Creature> creatureList = _bounceGame.getCreatureList();
 
         //Draw all creatures
         for (Creature creature:creatureList) {
@@ -72,23 +124,8 @@ public class Main extends ApplicationAdapter {
 
         _batch.end();
 
-        if (GameConstants.IS_DEBUG){
-            _shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            _shapeRenderer.setColor(new Color(0xff000022));
-            for (Creature creature:creatureList) {
-                _shapeRenderer.rect(creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
-            }
-            Creature player = _bounceGame.getBounceFish();
-            _shapeRenderer.setColor(new Color(0x00ff0022));
-            _shapeRenderer.rect(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        _stage.draw();
 
-            _shapeRenderer.setColor(new Color(0x0000ff22));
-            _shapeRenderer.line(GameConstants.LEFT_CONTROL_BORDER, Gdx.graphics.getHeight(), GameConstants.LEFT_CONTROL_BORDER, 0);
-            _shapeRenderer.line(Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, Gdx.graphics.getHeight(), Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, 0);
-
-
-            _shapeRenderer.end();
-        }
     }
 
     @Override
@@ -100,5 +137,9 @@ public class Main extends ApplicationAdapter {
         _bounceFishSprite.dispose();
         _crabImagePlaceholder.dispose();
         _shapeRenderer.dispose();
+    }
+
+    private void toggleDebug(){
+        GameConstants.IS_DEBUG = !GameConstants.IS_DEBUG;
     }
 }

@@ -19,8 +19,6 @@ public class BounceGame implements GestureDetector.GestureListener {
     private ArrayList<Creature> _creatureList;
 
     public BounceGame() {
-        Gdx.input.setInputProcessor(new GestureDetector(this)); // Whenever user touches screen send events to this class.
-
         _bounceFish = new BounceFish();
         _creatureList = new ArrayList<Creature>();
         //make this a wave system???

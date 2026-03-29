@@ -67,7 +67,7 @@ public class BounceFish extends Creature {
         for (Creature creature : creatureList) {
             if(this.bounds.overlaps(creature.bounds)){
                 setY(creature.getHeight());
-                reverseVelocityForBounce(((double) creature.height + creature.getX()) / Gdx.graphics.getHeight());
+                reverseVelocityForBounce(((double) creature.height + creature.getY()) / Gdx.graphics.getHeight());
 
                 //TODO: call the getBouncedOn method of creature
                 break;

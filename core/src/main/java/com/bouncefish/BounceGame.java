@@ -44,7 +44,7 @@ public class BounceGame implements GestureDetector.GestureListener {
         else if (_rightPressed) {
             _bounceFish.setXVelocity(GameConstants.H_SPEED);
         }
-
+        //Bouncefish now receives here all crabs
         _bounceFish.updateCreatureList(_creatureList); //TODO: Look into updating only when spawning new creatures instead of on timestep?
         _bounceFish.handleTimeStep();
         for (Creature creature: _creatureList) {

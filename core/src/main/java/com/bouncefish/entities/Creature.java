@@ -11,7 +11,7 @@ public abstract class Creature {
     protected double xVelocity;
     protected double yVelocity;
     protected float movementSpeed;
-    protected Rectangle bounds;
+    protected Rectangle bounds; // Every object now has hitbox
 
     public float getX() {
         return xPosition;
@@ -75,22 +75,26 @@ public abstract class Creature {
     public void updatePosition(){
         xPosition += xVelocity * Gdx.graphics.getDeltaTime();
         yPosition += yVelocity * Gdx.graphics.getDeltaTime();
+        //Now Movement is Frame-rate independent.
     }
 
     public void spawn(float x, float y) {
         xPosition = x;
         yPosition = y;
     }
-
+    //Created collision box
     public void setBounds(){
         bounds = new Rectangle((int)getX(), (int)getY(),
             getWidth(), getHeight());
     }
 
+    //Keeps box synced with movement
+    //Every entity is rectangle in space
     public void updateBounds(){
         bounds.setX((int)getX());
         bounds.setY((int)getY());
     }
+
 
     public abstract void handleTimeStep();
 }

@@ -116,6 +116,7 @@ public class Main extends ApplicationAdapter {
         _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
 
 
+        //Draw all creatures
         for (Creature creature:creatureList) {
             _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
         }

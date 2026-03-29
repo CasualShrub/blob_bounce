@@ -12,13 +12,13 @@ public class Crab extends Creature {
         width = 120;
         height = 120;
         movementSpeed = 12;
-        setBounds();
+        setBounds(); //Crabs have size and collision box
     }
 
     @Override
     public void handleTimeStep() {
         xPosition += movementSpeed;
-        updateBounds();
+        updateBounds(); // Their collision boxes move with them
     }
 
 }

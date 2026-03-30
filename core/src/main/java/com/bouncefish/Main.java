@@ -26,6 +26,7 @@ public class Main extends ApplicationAdapter {
     private Texture _image;
     private Texture _image2;
     private Texture _image3;
+    private Texture _background;
     private Texture _crabImagePlaceholder;
     private Texture _bounceFishSprite;
     private BounceGame _bounceGame;
@@ -42,6 +43,7 @@ public class Main extends ApplicationAdapter {
         _image2 = new Texture("blob2.png");
         _image3 = new Texture("blob3.png");
         _crabImagePlaceholder = new Texture("crab1.png");
+        _background = new Texture("background_placeholder.jpg");
         _bounceGame = new BounceGame();
 
         // UI Elements
@@ -78,6 +80,10 @@ public class Main extends ApplicationAdapter {
 
         _bounceGame.timeStep();
         _currentFish = _bounceGame.getBounceFish();
+
+        _batch.begin();
+        _batch.draw(_background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        _batch.end();
 
         if (GameConstants.IS_DEBUG){
             _shapeRenderer.begin(ShapeRenderer.ShapeType.Line);

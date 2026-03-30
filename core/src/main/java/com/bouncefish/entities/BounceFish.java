@@ -1,8 +1,6 @@
 package com.bouncefish.entities;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
-import com.bouncefish.BounceGame;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.ArrayList;
@@ -22,9 +20,19 @@ public class BounceFish extends Creature {
         setBounds(); //Fish has a physical size needed for collision
     }
 
-    public void reverseVelocityForBounce(double multiplier){
-        //yVelocity = -yVelocity * GameConstants.BOUNCE_DAMPING;
-        yVelocity = GameConstants.BOUNCE_VELOCITY * GameConstants.BOUNCE_DAMPING - (GameConstants.BOUNCE_VELOCITY * multiplier);
+    public void reverseVelocityForBounce(){
+        double currentY = getY();
+        reverseVelocityForBounce(currentY);
+    }
+
+    public void reverseVelocityForBounce(double currentY){
+        double targetY = Gdx.graphics.getHeight();
+        reverseVelocityForBounce(targetY, currentY);
+    }
+
+    public void reverseVelocityForBounce(double targetY, double currentY){
+        double deltaY = targetY - height - currentY;
+        yVelocity = Math.sqrt(2 * GameConstants.GRAVITY * deltaY);
         isBouncing = true;
 
         Timer.schedule(new Timer.Task() {
@@ -36,7 +44,7 @@ public class BounceFish extends Creature {
     }
 
     public void applyDeathVelocity(){
-        yVelocity = GameConstants.BOUNCE_VELOCITY * GameConstants.DEATH_BOUNCE_DAMPING;
+        reverseVelocityForBounce(getY() + 300, getY());
     }
 
     public void applyFriction() {
@@ -66,8 +74,8 @@ public class BounceFish extends Creature {
         //Like Mario jumping on Enemy
         for (Creature creature : creatureList) {
             if(this.bounds.overlaps(creature.bounds)){
-                setY(creature.getHeight());
-                reverseVelocityForBounce(((double) creature.height + creature.getY()) / Gdx.graphics.getHeight());
+                setY(creature.getHeight() + creature.getY());
+                reverseVelocityForBounce();
 
                 //TODO: call the getBouncedOn method of creature
                 break;

@@ -60,7 +60,7 @@ public abstract class Creature {
     }
 
     public void decrementYVelocity(double yVelocity) {
-        this.yVelocity -= yVelocity;
+        this.yVelocity -= yVelocity * Gdx.graphics.getDeltaTime();
     }
 
     public int getWidth() {

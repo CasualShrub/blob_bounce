@@ -72,13 +72,15 @@ public class BounceFish extends Creature {
         }
         //If fish touches any creature, Fish gets placed on top of creature and bounces upward.
         //Like Mario jumping on Enemy
-        for (Creature creature : creatureList) {
-            if(this.bounds.overlaps(creature.bounds)){
-                setY(creature.getHeight() + creature.getY());
-                reverseVelocityForBounce();
+        if (yVelocity < 0){ // Only need to check if we're moving downadd
+            for (Creature creature : creatureList) {
+                if(this.bounds.overlaps(creature.bounds)){
+                    setY(creature.getHeight() + creature.getY());
+                    reverseVelocityForBounce();
 
-                //TODO: call the getBouncedOn method of creature
-                break;
+                    //TODO: call the getBouncedOn method of creature
+                    break;
+                }
             }
         }
 

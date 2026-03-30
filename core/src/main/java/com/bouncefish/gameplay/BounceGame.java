@@ -1,4 +1,4 @@
-package com.bouncefish;
+package com.bouncefish.gameplay;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.input.GestureDetector;
@@ -16,12 +16,14 @@ public class BounceGame implements GestureDetector.GestureListener {
     Timer _timer;
     private boolean _leftPressed;
     private boolean _rightPressed;
+    private CreatureSpawner _spawnManager;
     private ArrayList<Creature> _creatureList;
 
     public BounceGame() {
         _bounceFish = new BounceFish();
         _creatureList = new ArrayList<Creature>();
-        //make this a wave system???
+
+        _spawnManager = new CreatureSpawner();
         int startX = 0;
         for (int i = 0; i < 100; i++) {
             Creature crab = new Crab();

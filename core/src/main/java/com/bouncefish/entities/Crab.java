@@ -9,8 +9,8 @@ public class Crab extends Creature {
         yPosition = 0;
         xVelocity = 0;
         yVelocity = 0;
-        width = 120;
-        height = 120;
+        width = 130;
+        height = 130;
         movementSpeed = 12;
         setBounds(); //Crabs have size and collision box
     }

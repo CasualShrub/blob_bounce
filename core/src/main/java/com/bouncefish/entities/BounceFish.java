@@ -15,8 +15,8 @@ public class BounceFish extends Creature {
         yPosition = 800;
         xVelocity = 0;
         yVelocity = 0;
-        width = 120;
-        height = 120;
+        width = 130;
+        height = 130;
         setBounds(); //Fish has a physical size needed for collision
     }
 

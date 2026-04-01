@@ -27,7 +27,7 @@ public class BounceGame implements GestureDetector.GestureListener {
 
     // This function is called every frame
     public void timeStep() {
-        if (!Gdx.input.isTouched()){
+        if (!Gdx.input.isTouched() || _bounceFish.isParalyzed()){
             _leftPressed = false;
             _rightPressed = false;
             _bounceFish.setXVelocity(0);

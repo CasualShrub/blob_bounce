@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class BounceFish extends Creature {
     private boolean isBouncing = false;
+    private float paralyzedTime;
+    private boolean isParalyzed = false;
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
 
     public BounceFish() {
@@ -71,11 +73,25 @@ public class BounceFish extends Creature {
         if (isDead){
             return;
         }
+        if(isParalyzed){
+            paralyzedTime += Gdx.graphics.getDeltaTime();
+            if(paralyzedTime > GameConstants.MAX_PARALYZED_TIME){
+                isParalyzed = false;
+                paralyzedTime = 0F;
+            }
+        }
         //If fish touches any creature, Fish gets placed on top of creature and bounces upward.
         //Like Mario jumping on Enemy
-        if (yVelocity < 0){ // Only need to check if we're moving downadd
-            for (Creature creature : creatureList) {
-                if(this.bounds.overlaps(creature.bounds)){
+        for (Creature creature : creatureList) {
+            if(this.bounds.overlaps(creature.bounds) && !isParalyzed && creature.isBouncable()){
+
+                if(creature.getCreatureId() == 2){//touches jellyfish
+                    isParalyzed = true;
+                    break;
+                }
+
+                //should check yVelocity until here since bouncefish could hit jellyfish from below
+                if(yVelocity < 0) {
                     setY(creature.getHeight() + creature.getY());
                     reverseVelocityForBounce();
 
@@ -128,5 +144,9 @@ public class BounceFish extends Creature {
 
     public void updateCreatureList(ArrayList<Creature> creatureList){
         this.creatureList = creatureList;
+    }
+
+    public boolean isParalyzed(){
+        return isParalyzed;
     }
 }

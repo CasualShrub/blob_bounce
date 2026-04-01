@@ -1,6 +1,7 @@
 package com.bouncefish.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Timer;
+import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.ArrayList;
@@ -79,6 +80,7 @@ public class BounceFish extends Creature {
                     reverseVelocityForBounce();
 
                     //TODO: call the getBouncedOn method of creature
+                    SoundManager.playBounceSound();
                     break;
                 }
             }
@@ -98,6 +100,7 @@ public class BounceFish extends Creature {
             if (getY() <= GameConstants.GROUND_HEIGHT) {
                 setY(GameConstants.GROUND_HEIGHT);
                 reverseVelocityForBounce(0);
+                SoundManager.playBounceSound();
             }
         }
 

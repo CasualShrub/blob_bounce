@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.bouncefish.entities.BounceFish;
 import com.bouncefish.entities.Creature;
 import com.bouncefish.gameplay.BounceGame;
+import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class Main extends ApplicationAdapter {
     private Texture _crabImagePlaceholder;
     private Texture _bounceFishSprite;
     private BounceGame _bounceGame;
+    private SoundManager _soundManager;
     private BounceFish _currentFish;
 
     private ShapeRenderer _shapeRenderer;
@@ -44,6 +46,7 @@ public class Main extends ApplicationAdapter {
         _image3 = new Texture("blob3.png");
         _crabImagePlaceholder = new Texture("crab1.png");
         _background = new Texture("background_placeholder.jpg");
+        _soundManager = new SoundManager();
         _bounceGame = new BounceGame();
 
         // UI Elements
@@ -150,6 +153,7 @@ public class Main extends ApplicationAdapter {
         _bounceFishSprite.dispose();
         _crabImagePlaceholder.dispose();
         _shapeRenderer.dispose();
+        _soundManager.disposeSounds();
     }
 
     private void toggleDebug(){

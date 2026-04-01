@@ -50,14 +50,23 @@ public class Main extends ApplicationAdapter {
         _stage = new Stage();
         Gdx.input.setInputProcessor(_stage);
         Skin skin = new Skin(Gdx.files.internal("clean-crispy-ui.json"));
-        TextButton button = new TextButton("DEBUG", skin);
-        button.setBounds(100, Gdx.graphics.getHeight() * 0.5f, 100, 100);
-        _stage.addActor(button);
-
-        button.addListener(new ChangeListener() {
+        TextButton debugToggleButton = new TextButton("DEBUG", skin);
+        debugToggleButton.setBounds(100, Gdx.graphics.getHeight() * 0.5f, 100, 100);
+        _stage.addActor(debugToggleButton);
+        debugToggleButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 toggleDebug();
+            }
+        });
+
+        TextButton godModeToggle = new TextButton("Immortality", skin);
+        godModeToggle.setBounds(100, (Gdx.graphics.getHeight() * 0.5f) - 150, 100, 100);
+        _stage.addActor(godModeToggle);
+        godModeToggle.addListener(new ChangeListener(){
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                toggleImmortality();
             }
         });
 
@@ -145,5 +154,8 @@ public class Main extends ApplicationAdapter {
 
     private void toggleDebug(){
         GameConstants.IS_DEBUG = !GameConstants.IS_DEBUG;
+    }
+    private void toggleImmortality(){
+        GameConstants.IS_IMMORTAL = !GameConstants.IS_IMMORTAL;
     }
 }

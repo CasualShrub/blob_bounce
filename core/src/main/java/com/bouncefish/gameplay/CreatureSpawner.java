@@ -21,7 +21,6 @@ public class CreatureSpawner {
     private ArrayList<Creature> _creatureList;
     private float _timer;
     private int _currentWave;
-
     private float _waveDelay;
 
     public CreatureSpawner(ArrayList<Creature> creatureList) {
@@ -49,11 +48,9 @@ public class CreatureSpawner {
         while (!_spawnQueue.isEmpty() && _timer >= _spawnQueue.peek().getSpawnTime()){
             _creatureList.add(_spawnQueue.poll());
         }
-
-        cleanUpCreatures();
     }
 
-    private void cleanUpCreatures() {
+    public void cleanUpCreatures() {
         for (Creature creature: _creatureList) {
             if (creature.getX() < -400 || creature.getX() > GameConstants.Game_Width){
                 _creatureList.remove(creature);

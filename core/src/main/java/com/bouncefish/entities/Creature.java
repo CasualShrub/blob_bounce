@@ -2,8 +2,11 @@ package com.bouncefish.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import java.util.function.Consumer;
 
 public abstract class Creature {
+
+    protected int creatureId;
     protected float xPosition;
     protected float yPosition;
     protected int width;
@@ -11,7 +14,13 @@ public abstract class Creature {
     protected double xVelocity;
     protected double yVelocity;
     protected float movementSpeed;
+    protected float movementSpeedMultiplier = 1;
+    protected Consumer<Creature> movementFunction;
     protected Rectangle bounds; // Every object now has hitbox
+
+    // Runtime flags
+    protected boolean isDead = false;
+    protected double spawnTime = 0;
 
     public float getX() {
         return xPosition;
@@ -62,6 +71,22 @@ public abstract class Creature {
     public void decrementYVelocity(double yVelocity) {
         this.yVelocity -= yVelocity * Gdx.graphics.getDeltaTime();
     }
+    public void setMovementFunction(Consumer<Creature> movementFunction){
+        this.movementFunction = movementFunction;
+    }
+
+    public void setMovementSpeedMultiplier(float multiplier) {
+        this.movementSpeedMultiplier = multiplier;
+    }
+
+    // Used only by the CreatureSpawner to define time to spawn
+    public void setSpawnTime(double spawnTime){
+        this.spawnTime = spawnTime;
+    }
+
+    public double getSpawnTime(){
+        return this.spawnTime;
+    }
 
     public int getWidth() {
         return width;
@@ -69,6 +94,9 @@ public abstract class Creature {
 
     public int getHeight() {
         return height;
+    }
+    public int getCreatureId() {
+        return creatureId;
     }
 
     // Game loop
@@ -95,6 +123,14 @@ public abstract class Creature {
         bounds.setY((int)getY());
     }
 
+    protected void applyMovement(){
+        movementFunction.accept(this);
+    }
 
-    public abstract void handleTimeStep();
+    public abstract void handleBouncedOn();
+
+    public void handleTimeStep(){
+        applyMovement();
+        updateBounds();
+    }
 }

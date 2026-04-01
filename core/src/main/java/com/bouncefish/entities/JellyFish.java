@@ -3,33 +3,37 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 
+import java.util.function.Consumer;
+
 public class JellyFish extends Creature {
     //y = scale * sin( angularFreq * x), just a reminder
-    private float angularFrequency = 0.1F;
-    private float scale = 500F;
-    public JellyFish(){
-        xPosition = 0;
-        yPosition = 0;
-        xVelocity = 0;
-        yVelocity = 0;
+    private static float angularFrequency = 0.01F;
+    private static float scale = 500F;
+    public JellyFish(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction){
+        creatureId = 2;
         width = 120;
         height = 120;
-        movementSpeed = 0;
-        //Textures= new Texture("crab1.png");
+
+        this.xVelocity = 300;
+        this.yVelocity = 0;
+        this.xPosition = spawnX;
+        this.yPosition = spawnY;
+        this.movementSpeedMultiplier = speedMultiplier;
+        this.movementFunction = movementFunction;
+        this.spawnTime = spawnTime;
+
         setBounds();
     }
 
-    @Override
-    public void updatePosition(){
-        xPosition += xVelocity * Gdx.graphics.getDeltaTime();
-        setYVelocity(scale * MathUtils.cos(angularFrequency * xPosition));
-        yPosition += yVelocity * Gdx.graphics.getDeltaTime();
+    public static void jellyFishLeftToRightMovement(Creature creature){
+        creature.xPosition += creature.xVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+        creature.setYVelocity(scale * MathUtils.cos(angularFrequency * creature.xPosition));
+        creature.yPosition += creature.yVelocity * Gdx.graphics.getDeltaTime();
     }
 
     @Override
-    public void handleTimeStep() {
-        updatePosition();
-        updateBounds();
+    public void handleBouncedOn() {
+
     }
 
     public void setAngularFrequency(float newFre){

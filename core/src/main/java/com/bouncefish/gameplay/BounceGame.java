@@ -16,23 +16,16 @@ public class BounceGame implements GestureDetector.GestureListener {
     Timer _timer;
     private boolean _leftPressed;
     private boolean _rightPressed;
-    private CreatureSpawner _spawnManager;
+    private CreatureSpawner _spawner;
     private ArrayList<Creature> _creatureList;
 
     public BounceGame() {
         _bounceFish = new BounceFish();
-        _creatureList = new ArrayList<Creature>();
-
-        _spawnManager = new CreatureSpawner();
-        int startX = 0;
-        for (int i = 0; i < 100; i++) {
-            Creature crab = new Crab();
-            crab.setX(startX - (700 * i));
-            _creatureList.add(crab);
-        }
+        _creatureList = new ArrayList<>();
+        _spawner = new CreatureSpawner(_creatureList);
     }
 
-    // What do we do every frame?
+    // This function is called every frame
     public void timeStep() {
         if (!Gdx.input.isTouched()){
             _leftPressed = false;
@@ -40,15 +33,22 @@ public class BounceGame implements GestureDetector.GestureListener {
             _bounceFish.setXVelocity(0);
         }
 
+        // Handle user input
         if (_leftPressed) {
             _bounceFish.setXVelocity(-GameConstants.H_SPEED);
         }
         else if (_rightPressed) {
             _bounceFish.setXVelocity(GameConstants.H_SPEED);
         }
-        //Bouncefish now receives here all crabs
+
+        // Spawner update loop.
+        _spawner.handleTimeStep();
+
+        // Bouncefish now receives here all crabs
         _bounceFish.updateCreatureList(_creatureList); //TODO: Look into updating only when spawning new creatures instead of on timestep?
         _bounceFish.handleTimeStep();
+
+        // Inform all creatures to move!
         for (Creature creature: _creatureList) {
             creature.handleTimeStep();
         }

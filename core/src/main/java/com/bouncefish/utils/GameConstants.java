@@ -1,5 +1,7 @@
 package com.bouncefish.utils;
 
+import com.badlogic.gdx.Gdx;
+
 public final class GameConstants {
 
     private GameConstants() { } //We never want to instantiate this -- think like C# static class
@@ -19,5 +21,9 @@ public final class GameConstants {
     public static final int LEFT_CONTROL_BORDER = 400;
     public static boolean IS_DEBUG = true;
     public static final boolean IS_IMMORTAL = true; // Cheatcode: Use this if you want to be able to bounce on the ground just for testing purposes.
+    public static final int MAXIMUM_HARDCODED_WAVES = 1; // Maximum value of waves to do before reaching the endless phase of the game.
 
+    // These are just some wrappers because Gdx.graphics.getWidth feels too long
+    public static float Game_Width = Gdx.graphics.getWidth();
+    public static float Screen_Height = Gdx.graphics.getHeight();
 }

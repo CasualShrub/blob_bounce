@@ -1,24 +1,36 @@
 package com.bouncefish.entities;
 
-import com.badlogic.gdx.Gdx;
+import java.util.function.Consumer;
 
 public class Crab extends Creature {
 
-    public Crab() {
-        xPosition = 0;
-        yPosition = 0;
+    public Crab(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
+        creatureId = 1;
         xVelocity = 0;
         yVelocity = 0;
         width = 130;
         height = 130;
         movementSpeed = 12;
-        setBounds(); //Crabs have size and collision box
+
+        this.xPosition = spawnX;
+        this.yPosition = spawnY;
+        this.movementSpeedMultiplier = speedMultiplier;
+        this.movementFunction = movementFunction;
+        this.spawnTime = spawnTime;
+
+        setBounds();
+    }
+
+    public static void crabMovementLeftToRight(Creature creature){
+        creature.xPosition += creature.movementSpeed;
+    }
+
+    public static void crabMovementRightToLeft(Creature creature){
+        creature.xPosition -= creature.movementSpeed;
     }
 
     @Override
-    public void handleTimeStep() {
-        xPosition += movementSpeed;
-        updateBounds(); // Their collision boxes move with them
+    public void handleBouncedOn() {
+        isDead = true;
     }
-
 }

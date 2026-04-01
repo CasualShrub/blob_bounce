@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class BounceFish extends Creature {
     private boolean isBouncing = false;
-    private boolean isDead = false;
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
 
     public BounceFish() {
+        creatureId = 0;
         xPosition = Gdx.graphics.getWidth()* 0.5f;
         yPosition = 800;
         xVelocity = 0;
@@ -115,6 +115,12 @@ public class BounceFish extends Creature {
             setX(Gdx.graphics.getWidth() - 250);
             setXVelocity(-Math.abs(getXVelocity()) * GameConstants.BOUNCE_DAMPING);
         }
+    }
+
+    @Override
+    public void handleBouncedOn() {
+        // Do nothing
+        System.out.println("This should never happen");
     }
 
     public void updateCreatureList(ArrayList<Creature> creatureList){

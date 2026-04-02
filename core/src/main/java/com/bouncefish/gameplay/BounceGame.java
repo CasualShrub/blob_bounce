@@ -53,7 +53,7 @@ public class BounceGame implements GestureDetector.GestureListener {
             creature.handleTimeStep();
         }
 
-        _spawner.cleanUpCreatures();
+        //_spawner.cleanUpCreatures();
     }
 
     public BounceFish getBounceFish() {

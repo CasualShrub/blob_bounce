@@ -1,5 +1,7 @@
 package com.bouncefish.entities;
 
+import com.badlogic.gdx.Gdx;
+
 import java.util.function.Consumer;
 
 public class Crab extends Creature {
@@ -28,7 +30,7 @@ public class Crab extends Creature {
         yVelocity = 0;
         width = 130;
         height = 130;
-        movementSpeed = 12;
+        movementSpeed = 500;
 
         this.xPosition = spawnX;
         this.yPosition = 0;
@@ -40,11 +42,11 @@ public class Crab extends Creature {
     }
 
     public static void leftToRight(Creature creature){
-        creature.xPosition += creature.movementSpeed;
+        creature.xPosition += creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
     }
 
     public static void rightToLeft(Creature creature){
-        creature.xPosition -= creature.movementSpeed;
+        creature.xPosition -= creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
     }
 
     @Override

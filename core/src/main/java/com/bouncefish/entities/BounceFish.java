@@ -77,6 +77,7 @@ public class BounceFish extends Creature {
             paralyzedTime += Gdx.graphics.getDeltaTime();
             if(paralyzedTime > GameConstants.MAX_PARALYZED_TIME){
                 isParalyzed = false;
+                isDead = false;
                 paralyzedTime = 0F;
             }
         }
@@ -87,6 +88,8 @@ public class BounceFish extends Creature {
 
                 if(creature.getCreatureId() == 2){//touches jellyfish
                     isParalyzed = true;
+                    applyDeathVelocity();
+                    isDead = true;
                     break;
                 }
 

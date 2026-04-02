@@ -17,6 +17,7 @@ public abstract class Creature {
     protected float movementSpeedMultiplier = 1;
     protected Consumer<Creature> movementFunction;
     protected Rectangle bounds; // Every object now has hitbox
+    protected boolean isBouncable = true;
 
     // Runtime flags
     protected boolean isDead = false;
@@ -132,5 +133,8 @@ public abstract class Creature {
     public void handleTimeStep(){
         applyMovement();
         updateBounds();
+    }
+    public boolean isBouncable(){
+        return isBouncable;
     }
 }

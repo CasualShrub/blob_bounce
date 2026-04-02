@@ -20,8 +20,8 @@ public class BounceGame implements GestureDetector.GestureListener {
     private ArrayList<Creature> _creatureList;
 
     public BounceGame() {
-        _bounceFish = new BounceFish();
         _creatureList = new ArrayList<>();
+        _bounceFish = new BounceFish(_creatureList);
         _spawner = new CreatureSpawner(_creatureList);
     }
 
@@ -45,7 +45,6 @@ public class BounceGame implements GestureDetector.GestureListener {
         _spawner.handleTimeStep();
 
         // Bouncefish now receives here all crabs
-        _bounceFish.updateCreatureList(_creatureList); //TODO: Look into updating only when spawning new creatures instead of on timestep?
         _bounceFish.handleTimeStep();
 
         // Inform all creatures to move!

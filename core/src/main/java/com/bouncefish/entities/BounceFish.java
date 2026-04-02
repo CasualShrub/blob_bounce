@@ -12,7 +12,7 @@ public class BounceFish extends Creature {
     private boolean isParalyzed = false;
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
 
-    public BounceFish() {
+    public BounceFish(ArrayList<Creature> creatureList) {
         creatureId = 0;
         xPosition = Gdx.graphics.getWidth()* 0.5f;
         yPosition = 800;
@@ -20,6 +20,7 @@ public class BounceFish extends Creature {
         yVelocity = 0;
         width = 130;
         height = 130;
+        this.creatureList = creatureList;
         setBounds(); //Fish has a physical size needed for collision
     }
 

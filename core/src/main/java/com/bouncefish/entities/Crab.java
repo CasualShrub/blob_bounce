@@ -21,11 +21,29 @@ public class Crab extends Creature {
         setBounds();
     }
 
-    public static void crabMovementLeftToRight(Creature creature){
+    // This constructor is used if we just want a default crab (Default spawn y is 0, speedMultiplier of 1)
+    public Crab(float spawnTime, float spawnX, Consumer<Creature> movementFunction) {
+        creatureId = 1;
+        xVelocity = 0;
+        yVelocity = 0;
+        width = 130;
+        height = 130;
+        movementSpeed = 12;
+
+        this.xPosition = spawnX;
+        this.yPosition = 0;
+        this.movementSpeedMultiplier = 1;
+        this.movementFunction = movementFunction;
+        this.spawnTime = spawnTime;
+
+        setBounds();
+    }
+
+    public static void leftToRight(Creature creature){
         creature.xPosition += creature.movementSpeed;
     }
 
-    public static void crabMovementRightToLeft(Creature creature){
+    public static void rightToLeft(Creature creature){
         creature.xPosition -= creature.movementSpeed;
     }
 

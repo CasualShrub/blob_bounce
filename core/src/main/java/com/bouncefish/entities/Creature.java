@@ -3,6 +3,15 @@ package com.bouncefish.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import java.util.function.Consumer;
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector2;
+import com.bouncefish.utils.GameConstants;
 
 public abstract class Creature {
 
@@ -22,7 +31,8 @@ public abstract class Creature {
     // Runtime flags
     protected boolean isDead = false;
     protected double spawnTime = 0;
-
+    protected float rotationAngle;//used to implement the curvilinear motion of ordinary fish
+    protected float stateTime;
     public float getX() {
         return xPosition;
     }
@@ -131,10 +141,26 @@ public abstract class Creature {
     public abstract void handleBouncedOn();
 
     public void handleTimeStep(){
+        stateTime += Gdx.graphics.getDeltaTime();
         applyMovement();
         updateBounds();
     }
     public boolean isBouncable(){
         return isBouncable;
     }
+    public abstract TextureRegion getAnimeFrame();
+    public  Matrix4 getTextureRotationMatrix(){//used to implement the curvilinear motion of ordinary fish
+        Matrix4 matrix = new Matrix4();
+        float cx = xPosition;
+        float cy = yPosition;
+
+        matrix.translate(cx, cy,0);
+        matrix.rotate(0,0,1,rotationAngle);
+        matrix.translate(-cx, -cy,0);
+        return matrix;
+    }
+    public boolean isRotated(){
+        return rotationAngle != 0F;
+    }
+
 }

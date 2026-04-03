@@ -1,10 +1,16 @@
 package com.bouncefish.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Matrix4;
+import com.bouncefish.utils.GameConstants;
 
 import java.util.function.Consumer;
 
 public class Crab extends Creature {
+    private static Animation<TextureRegion> crabAnimation;
 
     public Crab(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
         creatureId = 1;
@@ -33,7 +39,7 @@ public class Crab extends Creature {
         movementSpeed = 500;
 
         this.xPosition = spawnX;
-        this.yPosition = 0;
+        this.yPosition = GameConstants.WATER_LEVEL + 160;
         this.movementSpeedMultiplier = 1;
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
@@ -41,11 +47,11 @@ public class Crab extends Creature {
         setBounds();
     }
 
-    public static void leftToRight(Creature creature){
+    public static void leftToRight(Creature creature){//TODO implement curly movement
         creature.xPosition += creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
     }
 
-    public static void rightToLeft(Creature creature){
+    public static void rightToLeft(Creature creature){//TODO implement curly movement
         creature.xPosition -= creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
     }
 
@@ -53,4 +59,17 @@ public class Crab extends Creature {
     public void handleBouncedOn() {
         isDead = true;
     }
+    @Override
+    public TextureRegion getAnimeFrame(){
+        return crabAnimation.getKeyFrame(stateTime,true);
+    }
+    public static void initAnime(){
+        Texture texture1 = new Texture("crab1.png");
+        Texture texture2 = new Texture("crab1_5.png");
+        TextureRegion[] frames = new TextureRegion[2];
+        frames[0] = new TextureRegion(texture1);
+        frames[1] = new TextureRegion(texture2);
+        crabAnimation = new Animation<>(0.5F,frames);
+    }
+
 }

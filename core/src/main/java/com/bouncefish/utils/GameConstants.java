@@ -1,6 +1,8 @@
 package com.bouncefish.utils;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public final class GameConstants {
 
@@ -27,5 +29,10 @@ public final class GameConstants {
     // These are just some wrappers because Gdx.graphics.getWidth feels too long
     public static float Game_Width = Gdx.graphics.getWidth();
     public static float Screen_Height = Gdx.graphics.getHeight();
-    public static float MAX_PARALYZED_TIME = 2F;
+    public static float MAX_PARALYZED_TIME = 1F;
+    public static int WATER_LEVEL = 50; //the height of water level in pixel unit
+
+    //public static float jellyFishFrameDuration = 0.5F;
+    //public static float crabFrameDuration = 0.5F;
+
 }

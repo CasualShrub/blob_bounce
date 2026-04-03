@@ -28,15 +28,11 @@ public class MenuScreen {
         float playX = (screenWidth - playWidth) / 2;
         float playY = (screenHeight - playHeight) / 2;
 
-        batch.begin();
-
         // Draw background (full screen)
         batch.draw(background, 0, 0, screenWidth, screenHeight);
 
         // Draw play button (centered)
         batch.draw(playButton, playX, playY, playWidth, playHeight);
-
-        batch.end();
     }
 
     public boolean isPlayPressed() {

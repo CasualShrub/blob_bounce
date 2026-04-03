@@ -133,46 +133,43 @@ public class Main extends ApplicationAdapter {
             _shapeRenderer.end();
         }
 
-        _batch.begin();
-        if (_currentFish.isDead()){
-            _bounceFishSprite = _image3;
-        }
-        else if (_currentFish.isBouncing()){
-            _bounceFishSprite = _image2;
-        }
-        else {
-            _bounceFishSprite = _image;
-        }
-        _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
+        _batch.begin(); // START RENDERING IN-GAME ENTITIES
 
+        if (currentState == GameState.PLAYING){
+            if (_currentFish.isDead()){
+                _bounceFishSprite = _image3;
+            }
+            else if (_currentFish.isBouncing()){
+                _bounceFishSprite = _image2;
+            }
+            else {
+                _bounceFishSprite = _image;
+            }
+            _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
 
-        //Draw all creatures
-        for (Creature creature:creatureList) {
-            _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+            for (Creature creature:creatureList) {
+                _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+            }
+
         }
 
-        if(currentState == GameState.MENU){
+        _batch.end(); // END RENDERING IN-GAME ENTITIES
+
+        _batch.begin(); // START RENDERING UI
+
+        if (currentState == GameState.MENU){
             menuScreen.render(_batch);
             if(menuScreen.isPlayPressed()){
                 currentState = GameState.PLAYING;
             }
-        } else if(currentState == GameState.PLAYING){
-            _bounceGame.timeStep();
-            _batch.begin();
-            _batch.draw(_bounceFishSprite,
-                _currentFish.getX(),
-                _currentFish.getY(),
-                GameConstants.BOUNCEFISH_WIDTH,
-                GameConstants.BOUNCEFISH_HEIGHT);
-            _batch.end();
-
+        }
+        else if (currentState == GameState.PLAYING){
+            // Draw in game UI
         }
 
-
-        _batch.end();
+        _batch.end(); // END RENDERING UI
 
         _stage.draw();
-
     }
 
     @Override

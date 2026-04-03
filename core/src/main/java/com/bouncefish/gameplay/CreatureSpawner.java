@@ -21,6 +21,8 @@ public class CreatureSpawner {
     private ArrayList<Creature> _creatureList;
     private float _timer;
     private int _currentWave;
+
+    private boolean _isActive = false;
     private float _waveDelay;
 
     public CreatureSpawner(ArrayList<Creature> creatureList) {
@@ -34,7 +36,15 @@ public class CreatureSpawner {
         loadWave(_currentWave);
     }
 
+    public void setActive(boolean isActive){
+        _isActive = isActive;
+    }
+
     public void handleTimeStep(){
+        if (!_isActive){
+            return;
+        }
+
         if (_spawnQueue.isEmpty()){
             _currentWave++;
             if (_currentWave <= GameConstants.MAXIMUM_HARDCODED_WAVES){

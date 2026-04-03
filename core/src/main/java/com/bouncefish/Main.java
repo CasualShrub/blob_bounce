@@ -91,7 +91,6 @@ public class Main extends ApplicationAdapter {
         multiplexer.addProcessor(new GestureDetector(_bounceGame));
         Gdx.input.setInputProcessor(multiplexer);
         //OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
     }
 
     @Override
@@ -161,6 +160,7 @@ public class Main extends ApplicationAdapter {
             menuScreen.render(_batch);
             if(menuScreen.isPlayPressed()){
                 currentState = GameState.PLAYING;
+                _bounceGame.startGame();
             }
         }
         else if (currentState == GameState.PLAYING){

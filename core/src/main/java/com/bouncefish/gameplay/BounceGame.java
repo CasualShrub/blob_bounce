@@ -16,6 +16,7 @@ public class BounceGame implements GestureDetector.GestureListener {
     Timer _timer;
     private boolean _leftPressed;
     private boolean _rightPressed;
+    private boolean _isActive;
     private CreatureSpawner _spawner;
     private ArrayList<Creature> _creatureList;
 
@@ -25,8 +26,17 @@ public class BounceGame implements GestureDetector.GestureListener {
         _spawner = new CreatureSpawner(_creatureList);
     }
 
+    public void startGame(){
+        _isActive = true;
+        _spawner.setActive(true);
+    }
+
     // This function is called every frame
     public void timeStep() {
+        if (!_isActive) {
+            return;
+        }
+
         if (!Gdx.input.isTouched() || _bounceFish.isParalyzed()){
             _leftPressed = false;
             _rightPressed = false;

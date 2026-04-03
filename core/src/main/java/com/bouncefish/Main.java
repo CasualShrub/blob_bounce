@@ -19,6 +19,7 @@ import com.bouncefish.entities.Creature;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
+import com.bouncefish.ui.MenuScreen;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,14 @@ public class Main extends ApplicationAdapter {
     private ShapeRenderer _shapeRenderer;
     private Stage _stage;
 
+    private enum GameState{
+        MENU,
+        PLAYING
+    }
+
+    private GameState currentState;
+    private MenuScreen menuScreen;
+
     @Override
     public void create() {
         _batch = new SpriteBatch();
@@ -48,6 +57,8 @@ public class Main extends ApplicationAdapter {
         _background = new Texture("background_placeholder.jpg");
         _soundManager = new SoundManager();
         _bounceGame = new BounceGame();
+        menuScreen = new MenuScreen();
+        currentState = GameState.MENU;
 
         // UI Elements
         _stage = new Stage();
@@ -62,6 +73,8 @@ public class Main extends ApplicationAdapter {
                 toggleDebug();
             }
         });
+
+
 
         TextButton godModeToggle = new TextButton("Immortality", skin);
         godModeToggle.setBounds(100, (Gdx.graphics.getHeight() * 0.5f) - 150, 100, 100);
@@ -78,6 +91,7 @@ public class Main extends ApplicationAdapter {
         multiplexer.addProcessor(new GestureDetector(_bounceGame));
         Gdx.input.setInputProcessor(multiplexer);
         //OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
     }
 
     @Override
@@ -119,29 +133,43 @@ public class Main extends ApplicationAdapter {
             _shapeRenderer.end();
         }
 
-        _batch.begin();
-        if (_currentFish.isDead()){
-            _bounceFishSprite = _image3;
-        }
-        else if (_currentFish.isBouncing()){
-            _bounceFishSprite = _image2;
-        }
-        else {
-            _bounceFishSprite = _image;
-        }
-        _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
+        _batch.begin(); // START RENDERING IN-GAME ENTITIES
 
+        if (currentState == GameState.PLAYING){
+            if (_currentFish.isDead()){
+                _bounceFishSprite = _image3;
+            }
+            else if (_currentFish.isBouncing()){
+                _bounceFishSprite = _image2;
+            }
+            else {
+                _bounceFishSprite = _image;
+            }
+            _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
 
-        //Draw all creatures
-        for (Creature creature:creatureList) {
-            _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+            for (Creature creature:creatureList) {
+                _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+            }
+
         }
 
+        _batch.end(); // END RENDERING IN-GAME ENTITIES
 
-        _batch.end();
+        _batch.begin(); // START RENDERING UI
+
+        if (currentState == GameState.MENU){
+            menuScreen.render(_batch);
+            if(menuScreen.isPlayPressed()){
+                currentState = GameState.PLAYING;
+            }
+        }
+        else if (currentState == GameState.PLAYING){
+            // Draw in game UI
+        }
+
+        _batch.end(); // END RENDERING UI
 
         _stage.draw();
-
     }
 
     @Override
@@ -154,6 +182,7 @@ public class Main extends ApplicationAdapter {
         _crabImagePlaceholder.dispose();
         _shapeRenderer.dispose();
         _soundManager.disposeSounds();
+        menuScreen.dispose();
     }
 
     private void toggleDebug(){

@@ -28,4 +28,5 @@ public final class GameConstants {
     public static float Game_Width = Gdx.graphics.getWidth();
     public static float Screen_Height = Gdx.graphics.getHeight();
     public static float MAX_PARALYZED_TIME = 2F;
+    public final static float SPAWN_STASIS_SECONDS = 3F;
 }

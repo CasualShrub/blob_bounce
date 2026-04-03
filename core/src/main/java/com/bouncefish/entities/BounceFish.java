@@ -10,6 +10,7 @@ public class BounceFish extends Creature {
     private boolean isBouncing = false;
     private float paralyzedTime;
     private boolean isParalyzed = false;
+    private float spawnStasisTimer = 0; // Timer that tracks how long to remain in the air when spawned
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
 
     public BounceFish(ArrayList<Creature> creatureList) {
@@ -64,6 +65,12 @@ public class BounceFish extends Creature {
 
     @Override
     public void handleTimeStep() {
+
+        if (spawnStasisTimer < GameConstants.SPAWN_STASIS_SECONDS){
+            spawnStasisTimer += Gdx.graphics.getDeltaTime();
+            return;
+        }
+
         // Force of gravity
         decrementYVelocity(GameConstants.GRAVITY);
 

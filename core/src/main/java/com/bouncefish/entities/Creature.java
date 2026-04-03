@@ -84,6 +84,9 @@ public abstract class Creature {
     public void setSpawnTime(double spawnTime){
         this.spawnTime = spawnTime;
     }
+    public void setSpeedMultiplier(float multiplier) {
+        this.movementSpeedMultiplier = multiplier;
+    }
 
     public double getSpawnTime(){
         return this.spawnTime;

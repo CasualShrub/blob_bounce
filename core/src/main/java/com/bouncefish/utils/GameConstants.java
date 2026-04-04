@@ -29,7 +29,7 @@ public final class GameConstants {
     // These are just some wrappers because Gdx.graphics.getWidth feels too long
     public static float Game_Width = Gdx.graphics.getWidth();
     public static float Screen_Height = Gdx.graphics.getHeight();
-    public static float MAX_PARALYZED_TIME = 1F;
+    public static final float MAX_PARALYZED_TIME = 1F;
     public static int WATER_LEVEL = 50; //the height of water level in pixel unit
 
     //public static float jellyFishFrameDuration = 0.5F;

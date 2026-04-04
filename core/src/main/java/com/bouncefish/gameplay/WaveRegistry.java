@@ -2,6 +2,8 @@ package com.bouncefish.gameplay;
 
 import com.bouncefish.entities.Crab;
 import com.bouncefish.entities.JellyFish;
+import com.bouncefish.entities.Mackerel;
+import com.bouncefish.entities.OrdinaryFish;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.Dictionary;
@@ -25,18 +27,20 @@ public class WaveRegistry {
         // Java and LibGDX are code-centric, so we can't quite make visual ScriptableObjects like in Unity
         // Which means we manually define all wave data here!
         Wave wave1 = new Wave();
+        wave1.add(new Mackerel(1f,true, OrdinaryFish::leftToRightParabola));
+        wave1.add(new Mackerel(1f,false, OrdinaryFish::rightToLeftParabola));
         wave1.add(new Crab(1f, LEFT_SPAWN_X, Crab::leftToRight));
-        wave1.add(new Crab(2f, LEFT_SPAWN_X, Crab::leftToRight));
+        //wave1.add(new Crab(2f, LEFT_SPAWN_X, Crab::leftToRight));
         wave1.add(new Crab(2.5f, LEFT_SPAWN_X, Crab::leftToRight));
-        wave1.add(new Crab(3f, LEFT_SPAWN_X, Crab::leftToRight));
-        wave1.add(new Crab(3f, RIGHT_SPAWN_X, Crab::rightToLeft));
-        wave1.add(new Crab(4f, LEFT_SPAWN_X, Crab::leftToRight));
+        //wave1.add(new Crab(3f, LEFT_SPAWN_X, Crab::leftToRight));
+        //wave1.add(new Crab(3f, RIGHT_SPAWN_X, Crab::rightToLeft));
+        //wave1.add(new Crab(4f, LEFT_SPAWN_X, Crab::leftToRight));
         wave1.add(new Crab(5f, LEFT_SPAWN_X, Crab::leftToRight));
-        wave1.add(new Crab(6.8f, LEFT_SPAWN_X, Crab::leftToRight));
-        wave1.add(new Crab(8f, RIGHT_SPAWN_X, Crab::rightToLeft));
-        wave1.add(new Crab(9f, LEFT_SPAWN_X, Crab::leftToRight));
-        wave1.add(new Crab(9.2f, RIGHT_SPAWN_X, Crab::rightToLeft));
-        wave1.add(new Crab(10f, RIGHT_SPAWN_X, Crab::rightToLeft));
+        //wave1.add(new Crab(6.8f, LEFT_SPAWN_X, Crab::leftToRight));
+        //wave1.add(new Crab(8f, RIGHT_SPAWN_X, Crab::rightToLeft));
+        //wave1.add(new Crab(9f, LEFT_SPAWN_X, Crab::leftToRight));
+        //wave1.add(new Crab(9.2f, RIGHT_SPAWN_X, Crab::rightToLeft));
+        //wave1.add(new Crab(10f, RIGHT_SPAWN_X, Crab::rightToLeft));
         wave1.add(new JellyFish(3f, LEFT_SPAWN_X, 300, 1, JellyFish::jellyFishLeftToRightMovement));
         _waveList.put(1, wave1);
     }

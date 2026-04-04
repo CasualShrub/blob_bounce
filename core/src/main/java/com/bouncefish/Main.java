@@ -20,6 +20,7 @@ import com.bouncefish.entities.BounceFish;
 import com.bouncefish.entities.Crab;
 import com.bouncefish.entities.Creature;
 import com.bouncefish.entities.JellyFish;
+import com.bouncefish.entities.Mackerel;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
@@ -57,6 +58,7 @@ public class Main extends ApplicationAdapter {
 
         JellyFish.initAnime();
         Crab.initAnime();
+        Mackerel.initAnime();
         // UI Elements
         _stage = new Stage();
         Gdx.input.setInputProcessor(_stage);
@@ -144,11 +146,12 @@ public class Main extends ApplicationAdapter {
         for (Creature creature:creatureList) {
             TextureRegion currentFrame = creature.getAnimeFrame();
             //if (creature.isRotated()){
-            if (false){//just want to focus on animation now
+            if (false){ //optional feature that rotates the texture to face the direction of speed
                 Matrix4 rotationMatrix = creature.getTextureRotationMatrix();
                 _batch.setTransformMatrix(rotationMatrix);
                 _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
                 _batch.setTransformMatrix(new Matrix4());
+            //TODO: should check whether the fish is going right or left and flip the texture if necessary
             }else{
                 _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
             }

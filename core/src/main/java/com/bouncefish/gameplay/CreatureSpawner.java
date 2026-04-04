@@ -30,7 +30,7 @@ public class CreatureSpawner {
         _waveRegistry = new WaveRegistry();
         _spawnQueue = new PriorityQueue<Creature>(Comparator.comparingDouble(Creature::getSpawnTime));
         _timer = 0;
-        _currentWave = 1;
+        _currentWave = 0;
 
         //Populate creatureList with the first wave
         loadWave(_currentWave);
@@ -47,7 +47,7 @@ public class CreatureSpawner {
 
         if (_spawnQueue.isEmpty()){
             _currentWave++;
-            if (_currentWave <= GameConstants.MAXIMUM_HARDCODED_WAVES){
+            if (_currentWave < GameConstants.MAXIMUM_HARDCODED_WAVES){
                 loadWave(_currentWave);
             }
             return;
@@ -68,8 +68,9 @@ public class CreatureSpawner {
         }
     }
 
-    private void loadWave(int waveToLoad){
-        _spawnQueue.addAll(_waveRegistry.getWave(waveToLoad).getCreatures());
+    private void loadWave(int waveIndex){
+        ArrayList<Creature> currentWave = _waveRegistry.getWave(waveIndex).getCreatures();
+        _spawnQueue.addAll(currentWave);
     }
 
     public ArrayList<Creature> spawnWave(int waveId) {

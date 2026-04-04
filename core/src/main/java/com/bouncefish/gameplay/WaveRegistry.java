@@ -51,7 +51,7 @@ public class WaveRegistry {
     private Wave getRandomWaveForRound(int currentRound){
         int difficulty = getDifficultyForRound(currentRound);
         ArrayList<Wave> wavePool = this.waveData.get(difficulty);
-        int waveIndex = MathUtils.random(wavePool.size() - 1); // -1 Because GDX random is right-inclusive
+        int waveIndex = MathUtils.random((wavePool.size() - 1)); // -1 Because GDX random is right-inclusive
         return wavePool.remove(waveIndex);
     }
 
@@ -62,15 +62,11 @@ public class WaveRegistry {
         // Which means we manually define all wave data here!
         // TODO: Make a helper tool and pass a json file instead?
 
-        Wave wave1 = new Wave();
+        Wave wave1 = new Wave(14f);
         wave1.add(new Mackerel(1f,true, OrdinaryFish::leftToRightParabola));
         wave1.add(new Mackerel(1f,false, OrdinaryFish::rightToLeftParabola));
         wave1.add(new Crab(1f, LEFT_SPAWN_X, Crab::leftToRight));
-        //wave1.add(new Crab(2f, LEFT_SPAWN_X, Crab::leftToRight));
         wave1.add(new Crab(2.5f, LEFT_SPAWN_X, Crab::leftToRight));
-        //wave1.add(new Crab(3f, LEFT_SPAWN_X, Crab::leftToRight));
-        //wave1.add(new Crab(3f, RIGHT_SPAWN_X, Crab::rightToLeft));
-        //wave1.add(new Crab(4f, LEFT_SPAWN_X, Crab::leftToRight));
         wave1.add(new Crab(5f, LEFT_SPAWN_X, Crab::leftToRight));
         wave1.add(new Crab(6.8f, LEFT_SPAWN_X, Crab::leftToRight));
         wave1.add(new Crab(8f, RIGHT_SPAWN_X, Crab::rightToLeft));
@@ -81,7 +77,7 @@ public class WaveRegistry {
         wave1.add(new Crab(12f, RIGHT_SPAWN_X, 0, 1.5f, Crab::rightToLeft));
         easyWaves.add(wave1);
 
-        Wave wave2 = new Wave();
+        Wave wave2 = new Wave(7f);
         wave2.add(new Crab(1f, LEFT_SPAWN_X, 0, 1.5f, Crab::leftToRight));
         wave2.add(new Crab(1.3f, RIGHT_SPAWN_X, 0, 1.5f, Crab::rightToLeft));
         wave2.add(new Crab(3f, LEFT_SPAWN_X, 0, 1.5f, Crab::leftToRight));
@@ -91,6 +87,16 @@ public class WaveRegistry {
         wave2.add(new Crab(7f, LEFT_SPAWN_X, 0, 1.2f, Crab::leftToRight));
         wave2.add(new Crab(6f, RIGHT_SPAWN_X, 0, 1.5f, Crab::rightToLeft));
         easyWaves.add(wave2);
+
+        Wave wave3 = new Wave(8f);
+        wave3.add(new Mackerel(1f,true, OrdinaryFish::leftToRightParabola));
+        wave3.add(new Mackerel(2f,false, OrdinaryFish::rightToLeftParabola));
+        wave3.add(new Mackerel(3f,true, OrdinaryFish::leftToRightParabola));
+        wave3.add(new Mackerel(4f,false, OrdinaryFish::rightToLeftParabola));
+        wave3.add(new Mackerel(5f,true, OrdinaryFish::leftToRightParabola));
+        wave3.add(new Mackerel(6f,false, OrdinaryFish::rightToLeftParabola));
+        wave3.add(new Crab(7f, LEFT_SPAWN_X, 0, 1.2f, Crab::leftToRight));
+        easyWaves.add(wave3);
 
         this.waveData.put(0, easyWaves);
     }

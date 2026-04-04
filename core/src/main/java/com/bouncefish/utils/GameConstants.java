@@ -24,7 +24,7 @@ public final class GameConstants {
     public static boolean IS_DEBUG = true;
     public static boolean IS_IMMORTAL = true; // Cheatcode: Use this if you want to be able to bounce on the ground just for testing purposes.
 
-    public static final int MAXIMUM_HARDCODED_WAVES = 2; // Maximum value of waves to do before reaching the endless phase of the game.
+    public static final int MAXIMUM_HARDCODED_WAVES = 3; // Maximum value of waves to do before reaching the endless phase of the game.
 
     // These are just some wrappers because Gdx.graphics.getWidth feels too long
     public static float Game_Width = Gdx.graphics.getWidth();

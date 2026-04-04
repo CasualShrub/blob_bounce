@@ -19,6 +19,7 @@ public class BounceGame implements GestureDetector.GestureListener {
     private boolean _isActive;
     private CreatureSpawner _spawner;
     private ArrayList<Creature> _creatureList;
+    private float cleanUpTimer = 0;
 
     public BounceGame() {
         _creatureList = new ArrayList<>();
@@ -62,7 +63,12 @@ public class BounceGame implements GestureDetector.GestureListener {
             creature.handleTimeStep();
         }
 
-        //_spawner.cleanUpCreatures();
+        // For optimization reasons, let's only try to loop through and deallocate creatures every X seconds
+        this.cleanUpTimer += Gdx.graphics.getDeltaTime();
+        if (cleanUpTimer >= GameConstants.CLEANUP_FREQUENCY){
+            cleanUpTimer = 0;
+            _spawner.cleanUpCreatures();
+        }
     }
 
     public BounceFish getBounceFish() {

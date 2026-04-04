@@ -29,4 +29,5 @@ public final class GameConstants {
     public static float Screen_Height = Gdx.graphics.getHeight();
     public static float MAX_PARALYZED_TIME = 2F;
     public final static float SPAWN_STASIS_SECONDS = 3F;
+    public final static float CLEANUP_FREQUENCY = 3F; // How often in seconds to deallocate creatures out of bounds
 }

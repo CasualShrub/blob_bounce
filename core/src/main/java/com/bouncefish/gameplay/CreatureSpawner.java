@@ -61,9 +61,10 @@ public class CreatureSpawner {
     }
 
     public void cleanUpCreatures() {
-        for (Creature creature: _creatureList) {
+        for (int i = _creatureList.size() - 1; i > 0; i--) {
+            Creature creature = _creatureList.get(i);
             if (creature.getX() < -400 || creature.getX() > GameConstants.Game_Width){
-                _creatureList.remove(creature);
+                _creatureList.remove(i);
             }
         }
     }

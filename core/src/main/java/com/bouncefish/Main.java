@@ -170,7 +170,7 @@ public class Main extends ApplicationAdapter {
                 }
             }
 
-            _batch.draw(_water, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            _batch.draw(_water, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
         _batch.end(); // END RENDERING IN-GAME ENTITIES

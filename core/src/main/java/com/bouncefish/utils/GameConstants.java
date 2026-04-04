@@ -32,7 +32,7 @@ public final class GameConstants {
     public static final float MAX_PARALYZED_TIME = 1F;
     public final static float SPAWN_STASIS_SECONDS = 3F;
     public final static float CLEANUP_FREQUENCY = 3F; // How often in seconds to deallocate creatures out of bounds
-    public static int WATER_LEVEL = 150; //the height of water level in pixel unit
+    public static int WATER_LEVEL = 100; //the height of water level in pixel unit
 
     //public static float jellyFishFrameDuration = 0.5F;
     //public static float crabFrameDuration = 0.5F;

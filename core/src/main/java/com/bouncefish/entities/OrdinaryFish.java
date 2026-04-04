@@ -7,7 +7,7 @@ import com.bouncefish.utils.GameConstants;
 public abstract class OrdinaryFish extends Creature{
     protected static float leftStartX = 50F;
     protected static float rightStartX = GameConstants.Game_Width - 50F;
-    protected static float startY = 50F;
+    protected static float startY = 0F;
     protected static float leftEndX = GameConstants.Game_Width/2 -100;
     protected static float rightEndX = GameConstants.Game_Width/2 + 100;
 

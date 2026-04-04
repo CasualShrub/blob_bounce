@@ -7,20 +7,10 @@ import java.util.function.Consumer;
 public class Crab extends Creature {
 
     public Crab(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
-        creatureId = 1;
-        xVelocity = 0;
-        yVelocity = 0;
-        width = 130;
-        height = 130;
-        movementSpeed = 12;
+        this(spawnTime, spawnX, movementFunction);
 
-        this.xPosition = spawnX;
         this.yPosition = spawnY;
         this.movementSpeedMultiplier = speedMultiplier;
-        this.movementFunction = movementFunction;
-        this.spawnTime = spawnTime;
-
-        setBounds();
     }
 
     // This constructor is used if we just want a default crab (Default spawn y is 0, speedMultiplier of 1)

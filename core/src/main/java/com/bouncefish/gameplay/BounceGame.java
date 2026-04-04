@@ -63,6 +63,8 @@ public class BounceGame implements GestureDetector.GestureListener {
             creature.handleTimeStep();
         }
 
+        Water.handleTimeStep();
+
         // For optimization reasons, let's only try to loop through and deallocate creatures every X seconds
         this.cleanUpTimer += Gdx.graphics.getDeltaTime();
         if (cleanUpTimer >= GameConstants.CLEANUP_FREQUENCY){

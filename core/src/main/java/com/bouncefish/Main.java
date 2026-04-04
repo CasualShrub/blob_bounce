@@ -6,8 +6,10 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -15,7 +17,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.bouncefish.entities.BounceFish;
+import com.bouncefish.entities.Crab;
 import com.bouncefish.entities.Creature;
+import com.bouncefish.entities.JellyFish;
+import com.bouncefish.entities.Mackerel;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
@@ -31,6 +36,7 @@ public class Main extends ApplicationAdapter {
     private Texture _background;
     private Texture _crabImagePlaceholder;
     private Texture _bounceFishSprite;
+    private Texture _water;
     private BounceGame _bounceGame;
     private SoundManager _soundManager;
     private BounceFish _currentFish;
@@ -55,11 +61,15 @@ public class Main extends ApplicationAdapter {
         _image3 = new Texture("blob3.png");
         _crabImagePlaceholder = new Texture("crab1.png");
         _background = new Texture("background_placeholder.jpg");
+        _water = new Texture("water.png");
         _soundManager = new SoundManager();
         _bounceGame = new BounceGame();
         menuScreen = new MenuScreen();
         currentState = GameState.MENU;
 
+        JellyFish.initAnime();
+        Crab.initAnime();
+        Mackerel.initAnime();
         // UI Elements
         _stage = new Stage();
         Gdx.input.setInputProcessor(_stage);
@@ -147,9 +157,20 @@ public class Main extends ApplicationAdapter {
             _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
 
             for (Creature creature:creatureList) {
-                _batch.draw(_crabImagePlaceholder, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+                TextureRegion currentFrame = creature.getAnimeFrame();
+                //if (creature.isRotated()){
+                if (false){ //optional feature that rotates the texture to face the direction of speed
+                    Matrix4 rotationMatrix = creature.getTextureRotationMatrix();
+                    _batch.setTransformMatrix(rotationMatrix);
+                    _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+                    _batch.setTransformMatrix(new Matrix4());
+                    //TODO: should check whether the fish is going right or left and flip the texture if necessary
+                } else {
+                    _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+                }
             }
 
+            _batch.draw(_water, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
         _batch.end(); // END RENDERING IN-GAME ENTITIES

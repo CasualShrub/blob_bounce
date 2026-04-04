@@ -1,5 +1,8 @@
 package com.bouncefish.entities;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.Timer;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
@@ -12,6 +15,7 @@ public class BounceFish extends Creature {
     private boolean isParalyzed = false;
     private float spawnStasisTimer = 0; // Timer that tracks how long to remain in the air when spawned
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
+    private static Animation<TextureRegion> bounceFishAnimation;
 
     public BounceFish(ArrayList<Creature> creatureList) {
         creatureId = 0;
@@ -77,6 +81,7 @@ public class BounceFish extends Creature {
         // Update x and y position based on velocity
         updatePosition();
         updateBounds();
+        stateTime += Gdx.graphics.getDeltaTime();
 
         if (isDead){
             return;
@@ -92,7 +97,7 @@ public class BounceFish extends Creature {
         //If fish touches any creature, Fish gets placed on top of creature and bounces upward.
         //Like Mario jumping on Enemy
         for (Creature creature : creatureList) {
-            if(this.bounds.overlaps(creature.bounds) && !isParalyzed && creature.isBouncable()){
+            if(this.bounds.overlaps(creature.bounds) && creature.isBouncable()){
 
                 if(creature.getCreatureId() == 2){//touches jellyfish
                     isParalyzed = true;
@@ -160,4 +165,9 @@ public class BounceFish extends Creature {
     public boolean isParalyzed(){
         return isParalyzed;
     }
+    @Override
+    public TextureRegion getAnimeFrame(){
+        return bounceFishAnimation.getKeyFrame(stateTime);
+    }
+
 }

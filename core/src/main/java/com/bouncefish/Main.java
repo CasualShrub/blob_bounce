@@ -21,6 +21,7 @@ import com.bouncefish.entities.Crab;
 import com.bouncefish.entities.Creature;
 import com.bouncefish.entities.JellyFish;
 import com.bouncefish.entities.Mackerel;
+import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
@@ -70,6 +71,7 @@ public class Main extends ApplicationAdapter {
         JellyFish.initAnime();
         Crab.initAnime();
         Mackerel.initAnime();
+        Water.initAnime();
         // UI Elements
         _stage = new Stage();
         Gdx.input.setInputProcessor(_stage);
@@ -169,8 +171,8 @@ public class Main extends ApplicationAdapter {
                     _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
                 }
             }
-
-            _batch.draw(_water, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            TextureRegion waterFrame = Water.getAnimeFrame();
+            _batch.draw(waterFrame, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
         _batch.end(); // END RENDERING IN-GAME ENTITIES

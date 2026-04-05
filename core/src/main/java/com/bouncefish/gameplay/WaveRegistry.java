@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.bouncefish.entities.Crab;
 import com.bouncefish.entities.JellyFish;
 import com.bouncefish.entities.Mackerel;
+import com.bouncefish.entities.OceanSunfish;
 import com.bouncefish.entities.OrdinaryFish;
 import com.bouncefish.utils.GameConstants;
 
@@ -63,6 +64,7 @@ public class WaveRegistry {
         // TODO: Make a helper tool and pass a json file instead?
 
         Wave wave1 = new Wave(14f);
+        wave1.add(new OceanSunfish(1f,RIGHT_SPAWN_X,OceanSunfish::OceanSunfishMovementRightToLeft));
         wave1.add(new Mackerel(1f,true, OrdinaryFish::leftToRightParabola));
         wave1.add(new Mackerel(1f,false, OrdinaryFish::rightToLeftParabola));
         wave1.add(new Crab(1f, LEFT_SPAWN_X, Crab::leftToRight));

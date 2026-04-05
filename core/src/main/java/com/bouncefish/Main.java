@@ -21,6 +21,7 @@ import com.bouncefish.entities.Crab;
 import com.bouncefish.entities.Creature;
 import com.bouncefish.entities.JellyFish;
 import com.bouncefish.entities.Mackerel;
+import com.bouncefish.entities.OceanSunfish;
 import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.SoundManager;
@@ -72,6 +73,7 @@ public class Main extends ApplicationAdapter {
         Crab.initAnime();
         Mackerel.initAnime();
         Water.initAnime();
+        OceanSunfish.initAnime();
         // UI Elements
         _stage = new Stage();
         Gdx.input.setInputProcessor(_stage);

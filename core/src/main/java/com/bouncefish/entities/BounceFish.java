@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.Timer;
+import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
 
@@ -16,6 +17,8 @@ public class BounceFish extends Creature {
     private float spawnStasisTimer = 0; // Timer that tracks how long to remain in the air when spawned
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
     private static Animation<TextureRegion> bounceFishAnimation;
+    private ProgressTracker progressTracker;
+
 
     public BounceFish(ArrayList<Creature> creatureList) {
         creatureId = 0;
@@ -51,6 +54,9 @@ public class BounceFish extends Creature {
             }
         }, 0.5f);
     }
+    public void setProgressTracker(ProgressTracker tracker){
+        this.progressTracker = tracker;
+    }
 
     public void applyDeathVelocity(){
         reverseVelocityForBounce(getY() + 300, getY());
@@ -81,7 +87,12 @@ public class BounceFish extends Creature {
         // Update x and y position based on velocity
         updatePosition();
         updateBounds();
+
         stateTime += Gdx.graphics.getDeltaTime();
+
+        if(getY() <= 0){
+            isDead = true;
+        }
 
         if (isDead){
             return;
@@ -114,6 +125,13 @@ public class BounceFish extends Creature {
                     //TODO: call the getBouncedOn method of creature
                     SoundManager.playBounceSound();
                     break;
+                }
+            }
+
+            if(this.bounds.overlaps(creature.bounds)){
+                reverseVelocityForBounce();
+                if(progressTracker != null){
+                    progressTracker.increaseScore();
                 }
             }
         }

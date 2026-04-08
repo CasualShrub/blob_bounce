@@ -10,9 +10,12 @@ public class MenuScreen {
     private Texture background;
     private Texture playButton;
 
+    private Texture leaderboardButton;
+
     public MenuScreen() {
         background = new Texture("menu_bg.png");
         playButton = new Texture("play_button.png");
+        leaderboardButton = new Texture("leaderboard_button.png");
     }
 
     public void render(SpriteBatch batch) {
@@ -20,44 +23,49 @@ public class MenuScreen {
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
 
-        // Button scaling
-        float playWidth = screenWidth * 0.4f;
-        float playHeight = playWidth * 0.4f;
+        float buttonWidth = screenWidth * 0.4f;
+        float buttonHeight = buttonWidth * 0.4f;
 
-        // Center position
-        float playX = (screenWidth - playWidth) / 2;
-        float playY = (screenHeight - playHeight) / 2;
+        float centerX = (screenWidth - buttonWidth) / 2;
+        float playY = screenHeight * 0.55f;
+        float leaderboardY = screenHeight * 0.35f;
 
-        // Draw background (full screen)
+        batch.begin();
         batch.draw(background, 0, 0, screenWidth, screenHeight);
+        batch.draw(playButton, centerX, playY, buttonWidth, buttonHeight);
+        batch.draw(leaderboardButton, centerX, leaderboardY, buttonWidth, buttonHeight);
 
-        // Draw play button (centered)
-        batch.draw(playButton, playX, playY, playWidth, playHeight);
+        batch.end();
     }
 
-    public boolean isPlayPressed() {
+    public int getButtonPressed() {
 
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
 
-        float playWidth = screenWidth * 0.4f;
-        float playHeight = playWidth * 0.4f;
+        float buttonWidth = screenWidth * 0.4f;
+        float buttonHeight = buttonWidth * 0.4f;
 
-        float playX = (screenWidth - playWidth) / 2;
-        float playY = (screenHeight - playHeight) / 2;
+        float centerX = (screenWidth - buttonWidth) / 2;
+        float playY = screenHeight * 0.55f;
+        float leaderboardY = screenHeight * 0.35f;
 
         if (Gdx.input.justTouched()) {
 
-            float touchX = Gdx.input.getX();
-            float touchY = screenHeight - Gdx.input.getY();
-
-            if (touchX >= playX && touchX <= playX + playWidth &&
-                touchY >= playY && touchY <= playY + playHeight) {
-                return true;
+            float x = Gdx.input.getX();
+            float y = screenHeight - Gdx.input.getY();
+            // PLAY
+            if (x >= centerX && x <= centerX + buttonWidth
+                && y >= playY && y <= playY + buttonHeight) {
+                return 1;
+            }
+            // LEADERBOARD
+            if (x >= centerX && x <= centerX + buttonWidth
+                && y >= leaderboardY && y <= leaderboardY + buttonHeight) {
+                return 2;
             }
         }
-
-        return false;
+        return 0;
     }
 
     public void dispose() {

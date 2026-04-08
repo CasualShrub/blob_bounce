@@ -23,9 +23,13 @@ import com.bouncefish.entities.JellyFish;
 import com.bouncefish.entities.Mackerel;
 import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
+import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
+
 import com.bouncefish.utils.GameConstants;
 import com.bouncefish.ui.MenuScreen;
+import com.bouncefish.ui.LeaderboardScreen;
+import com.bouncefish.ui.GameOverScreen;
 
 import java.util.ArrayList;
 
@@ -45,13 +49,23 @@ public class Main extends ApplicationAdapter {
     private ShapeRenderer _shapeRenderer;
     private Stage _stage;
 
+
+
+
     private enum GameState{
         MENU,
-        PLAYING
+        PLAYING,
+        LEADERBOARD,
+        GAME_OVER
     }
 
     private GameState currentState;
     private MenuScreen menuScreen;
+    private LeaderboardScreen leaderboardScreen;
+    private ProgressTracker progressTracker;
+
+    private GameOverScreen gameOverScreen;
+
 
     @Override
     public void create() {
@@ -65,7 +79,12 @@ public class Main extends ApplicationAdapter {
         _water = new Texture("water.png");
         _soundManager = new SoundManager();
         _bounceGame = new BounceGame();
+        progressTracker = new ProgressTracker();
+        _currentFish = _bounceGame.getBounceFish();
+        _currentFish.setProgressTracker(progressTracker);
         menuScreen = new MenuScreen();
+        leaderboardScreen = new LeaderboardScreen();
+        gameOverScreen = new GameOverScreen();
         currentState = GameState.MENU;
 
         JellyFish.initAnime();
@@ -103,6 +122,15 @@ public class Main extends ApplicationAdapter {
         multiplexer.addProcessor(new GestureDetector(_bounceGame));
         Gdx.input.setInputProcessor(multiplexer);
         //OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    }
+
+    private void resetGame(){
+        progressTracker.reset();
+        _bounceGame = new BounceGame();
+
+        _currentFish = _bounceGame.getBounceFish();
+
+        _currentFish.setProgressTracker(progressTracker);
     }
 
     @Override
@@ -144,6 +172,8 @@ public class Main extends ApplicationAdapter {
             _shapeRenderer.end();
         }
 
+
+
         _batch.begin(); // START RENDERING IN-GAME ENTITIES
 
         if (currentState == GameState.PLAYING){
@@ -171,23 +201,48 @@ public class Main extends ApplicationAdapter {
                     _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
                 }
             }
+            if(_currentFish.isDead()){
+                currentState = GameState.GAME_OVER;
+            }
             TextureRegion waterFrame = Water.getAnimeFrame();
             _batch.draw(waterFrame, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
         _batch.end(); // END RENDERING IN-GAME ENTITIES
 
+
+
         _batch.begin(); // START RENDERING UI
 
         if (currentState == GameState.MENU){
             menuScreen.render(_batch);
-            if(menuScreen.isPlayPressed()){
-                currentState = GameState.PLAYING;
-                _bounceGame.startGame();
-            }
+            int button = menuScreen.getButtonPressed();
+
+           if(button == 1){
+               currentState = GameState.PLAYING;
+           } else if(button == 2){
+               currentState = GameState.LEADERBOARD;
+           }
         }
         else if (currentState == GameState.PLAYING){
             // Draw in game UI
+        }
+
+        else if(currentState == GameState.LEADERBOARD){
+            leaderboardScreen.render(_batch, progressTracker.getScore());
+
+            if(leaderboardScreen.isBackPressed()){
+                currentState = GameState.MENU;
+            }
+        }
+
+        else if(currentState == GameState.GAME_OVER){
+            gameOverScreen.render(_batch, progressTracker.getScore());
+
+            if(gameOverScreen.isTouched()){
+                resetGame();
+                currentState = GameState.MENU;
+            }
         }
 
         _batch.end(); // END RENDERING UI

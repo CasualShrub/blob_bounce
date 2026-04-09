@@ -78,7 +78,7 @@ public class Shark extends Creature{
                 (int)(getY() - GameConstants.SHARK_DECTECTION_HEIGHT),
                 GameConstants.SHARK_DECTECTION_WIDTH*2, GameConstants.SHARK_DECTECTION_HEIGHT*2);
         }else if(attacking){ //the shark is jumping up
-            bounds = new Rectangle((int)getX() + width, (int)getY() + height, height, width);
+            bounds = new Rectangle((int)getX(), (int)getY() + height, 42, 42);//the attack range
         }else{//the shark is in the water(and cooling down)
             bounds = new Rectangle((int)getX(), (int)getY(),
                 getWidth(), getHeight());

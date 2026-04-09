@@ -18,8 +18,8 @@ public class OceanSunfish extends Creature {
         creatureId = 3;
         xVelocity = 0;
         yVelocity = 0;
-        width = 130;
-        height = 130;
+        width = 260;
+        height = 260;
         movementSpeed = 12;
 
         this.xPosition = spawnX;
@@ -48,8 +48,14 @@ public class OceanSunfish extends Creature {
     }
     @Override
     public void setBounds(){
-        bounds = new Rectangle((int)getX(), (int)getY(),
-            GameConstants.OCEANSUNFISH_WIDTH, GameConstants.BOUNCEFISH_HEIGHT);
+        if(isBouncable){
+            bounds = new Rectangle((int)getX(), (int)getY(),
+                130, 130);
+        }else{
+            bounds = new Rectangle((int)getX(), (int)getY(),
+                260, 260);
+        }
+
     }
     public static void OceanSunfishMovementLeftToRight(Creature creature){
         creature.xPosition += creature.movementSpeed;
@@ -82,6 +88,7 @@ public class OceanSunfish extends Creature {
             //TODO play flipping animation
             isBouncable = true;
         }
+        setBounds();
         flipCounter = 100;
 
     }

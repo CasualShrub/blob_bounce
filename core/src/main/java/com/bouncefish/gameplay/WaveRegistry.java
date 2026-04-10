@@ -6,6 +6,7 @@ import com.bouncefish.entities.JellyFish;
 import com.bouncefish.entities.Mackerel;
 import com.bouncefish.entities.OceanSunfish;
 import com.bouncefish.entities.OrdinaryFish;
+import com.bouncefish.entities.Shark;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.ArrayList;
@@ -75,7 +76,8 @@ public class WaveRegistry {
         wave1.add(new Crab(9f, LEFT_SPAWN_X, Crab::leftToRight));
         wave1.add(new Crab(9.2f, RIGHT_SPAWN_X, Crab::rightToLeft));
         wave1.add(new Crab(10f, RIGHT_SPAWN_X, Crab::rightToLeft));
-        wave1.add(new JellyFish(3f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));
+        wave1.add(new Shark(1F,RIGHT_SPAWN_X,Shark::rightToLeft));
+        //wave1.add(new JellyFish(3f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));
         wave1.add(new Crab(12f, RIGHT_SPAWN_X, 0, 1.5f, Crab::rightToLeft));
         easyWaves.add(wave1);
 

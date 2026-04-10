@@ -46,17 +46,6 @@ public class OceanSunfish extends Creature {
 
         setBounds();
     }
-    @Override
-    public void setBounds(){
-        if(isBouncable){
-            bounds = new Rectangle((int)getX(), (int)getY(),
-                130, 130);
-        }else{
-            bounds = new Rectangle((int)getX(), (int)getY(),
-                260, 260);
-        }
-
-    }
     public static void OceanSunfishMovementLeftToRight(Creature creature){
         creature.xPosition += creature.movementSpeed;
     }
@@ -88,7 +77,6 @@ public class OceanSunfish extends Creature {
             //TODO play flipping animation
             isBouncable = true;
         }
-        setBounds();
         flipCounter = 100;
 
     }

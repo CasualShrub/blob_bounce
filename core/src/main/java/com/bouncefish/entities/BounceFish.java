@@ -101,6 +101,11 @@ public class BounceFish extends Creature {
                 if(this.bounds.overlaps(creature.bounds)){
                     if(((Shark) creature).isReadyToAttack()){ //I remembered from somewhere that casting is not elegant... But what else can I do?
                         ((Shark) creature).attack();
+                    }else if(((Shark) creature).isAttacking()){
+                        isDead = true;
+                        break;
+                    }else{
+                        //TODO decrease shark's hp
                     }
                 }
             }

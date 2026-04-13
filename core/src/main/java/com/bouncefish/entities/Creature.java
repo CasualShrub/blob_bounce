@@ -102,11 +102,11 @@ public abstract class Creature {
         return this.spawnTime;
     }
 
-    public int getWidth() {
+    public float getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
     public int getCreatureId() {

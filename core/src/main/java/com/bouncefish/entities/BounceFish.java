@@ -1,4 +1,5 @@
 package com.bouncefish.entities;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -69,7 +70,6 @@ public class BounceFish extends Creature {
 
     @Override
     public void handleTimeStep() {
-
         if (spawnStasisTimer < GameConstants.SPAWN_STASIS_SECONDS){
             spawnStasisTimer += Gdx.graphics.getDeltaTime();
             return;
@@ -97,34 +97,27 @@ public class BounceFish extends Creature {
         //If fish touches any creature, Fish gets placed on top of creature and bounces upward.
         //Like Mario jumping on Enemy
         for (Creature creature : creatureList) {
-            if(creature.getCreatureId() == 5){//shark!
-                if(this.bounds.overlaps(creature.bounds)){
-                    if(creature.isReadyToAttack()){ //I remembered from somewhere that casting is not elegant... But what else can I do?
+            if (this.bounds.overlaps(creature.bounds)){
+                int creatureId = creature.getCreatureId();
+                if(creatureId == 5){ // Shark!
+                    if(creature.isReadyToAttack()){
                         creature.attack();
                     }else if(creature.isAttacking()){
-                        isDead = true;
+                        die();
                         break;
                     }else{
+                        bounce(creature);
                         //TODO decrease shark's hp
                     }
                 }
-            }
-            else if(this.bounds.overlaps(creature.bounds) && creature.isBouncable()){
-
-                if(creature.getCreatureId() == 2){//touches jellyfish
+                else if (creatureId == 2){ // Jellyfish!
                     isParalyzed = true;
                     applyDeathVelocity();
-                    isDead = true;
+                    isDead = true; //TODO: Replace this with isStunned instead of isDead? He technically isn't dead yet.
                     break;
                 }
-
-                //should check yVelocity until here since bouncefish could hit jellyfish from below
-                if(yVelocity < 0) {
-                    setY(creature.getHeight() + creature.getY());
-                    reverseVelocityForBounce();
-
-                    //TODO: call the getBouncedOn method of creature
-                    SoundManager.playBounceSound();
+                else if (creature.isBouncable() && this.yVelocity < 0) {
+                    bounce(creature);
                     break;
                 }
             }
@@ -133,21 +126,15 @@ public class BounceFish extends Creature {
         // Lose Game! Initiate game over
         if (!GameConstants.IS_IMMORTAL){
             if (getY() <= GameConstants.GROUND_HEIGHT) {
-                isDead = true;
-                setY(GameConstants.GROUND_HEIGHT);
-                applyDeathVelocity();
-                xVelocity *= -1.2;
+              die();
             }
         }
         // Keep bouncing if you are immortal.
         else {
             if (getY() <= GameConstants.GROUND_HEIGHT) {
-                setY(GameConstants.GROUND_HEIGHT);
-                reverseVelocityForBounce(0);
-                SoundManager.playBounceSound();
+                groundBounce();
             }
         }
-
 
         //TODO: Audit? Might not be necessary if we are just using flat velocity instead of acceleration
 
@@ -164,14 +151,31 @@ public class BounceFish extends Creature {
         }
     }
 
-    @Override
-    public void handleBouncedOn() {
-        // Do nothing
-        System.out.println("This should never happen");
+    private void die(){
+        isDead = true;
+        setY(GameConstants.GROUND_HEIGHT);
+        applyDeathVelocity();
+        xVelocity *= -1.2;
     }
 
-    public void updateCreatureList(ArrayList<Creature> creatureList){
-        this.creatureList = creatureList;
+    // Only used in cheats
+    private void groundBounce(){
+        setY(GameConstants.GROUND_HEIGHT);
+        reverseVelocityForBounce();
+        SoundManager.playBounceSound();
+    }
+
+    private void bounce(Creature creature){
+        setY(creature.getHeight() + creature.getY());
+        reverseVelocityForBounce();
+
+        //TODO: call the getBouncedOn method of creature
+        SoundManager.playBounceSound();
+    }
+
+    @Override
+    public void handleBouncedOn() {
+        System.out.println("This should never happen");
     }
 
     public boolean isParalyzed(){

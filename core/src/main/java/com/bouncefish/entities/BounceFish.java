@@ -31,19 +31,19 @@ public class BounceFish extends Creature {
     }
 
     public void reverseVelocityForBounce(){
-        double currentY = getY();
+        float currentY = getY();
         reverseVelocityForBounce(currentY);
     }
 
-    public void reverseVelocityForBounce(double currentY){
-        double targetY = Gdx.graphics.getHeight();
+    public void reverseVelocityForBounce(float currentY){
+        float targetY = Gdx.graphics.getHeight();
         reverseVelocityForBounce(targetY, currentY);
     }
 
-    public void reverseVelocityForBounce(double targetY, double currentY){
-        double deltaY = targetY - height - currentY;
-        yVelocity = Math.sqrt(2 * GameConstants.GRAVITY * deltaY);
-        isBouncing = true;
+    public void reverseVelocityForBounce(float targetY, float currentY){
+        float deltaY = targetY - height - currentY;
+        this.yVelocity = (float) Math.sqrt(2f * GameConstants.GRAVITY * deltaY);
+        this.isBouncing = true;
 
         Timer.schedule(new Timer.Task() {
             @Override

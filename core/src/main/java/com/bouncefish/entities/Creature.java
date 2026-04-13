@@ -20,8 +20,8 @@ public abstract class Creature {
     protected float yPosition;
     protected int width;
     protected int height;
-    protected double xVelocity;
-    protected double yVelocity;
+    protected float xVelocity;
+    protected float yVelocity;
     protected float movementSpeed;
     protected float movementSpeedMultiplier = 1;
     protected Consumer<Creature> movementFunction;
@@ -51,32 +51,18 @@ public abstract class Creature {
 
     // (Sample reference template for methods with return values)
     /** @return The current horizontal velocity of the creature. */
-    public double getXVelocity(){
+    public float getXVelocity(){
         return xVelocity;
     }
-
-    public void setXVelocity(double xVelocity) {
-        this.xVelocity = xVelocity;
-    }
-
-    public void incrementXVelocity(double xVelocity) {
-        this.xVelocity += xVelocity;
-    }
-
-    public void decrementXVelocity(double xVelocity) {
-        this.xVelocity -= xVelocity;
-    }
-
-    public double getYVelocity(){
+    public float getYVelocity(){
         return yVelocity;
     }
 
-    public void setYVelocity(double yVelocity) {
-        this.yVelocity = yVelocity;
+    public void setXVelocity(float xVelocity) {
+        this.xVelocity = xVelocity;
     }
-
-    public void incrementYVelocity(double yVelocity) {
-        this.yVelocity += yVelocity;
+    public void setYVelocity(float yVelocity) {
+        this.yVelocity = yVelocity;
     }
 
     public void decrementYVelocity(double yVelocity) {
@@ -126,15 +112,15 @@ public abstract class Creature {
     }
     //Created collision box
     public void setBounds(){
-        bounds = new Rectangle((int)getX(), (int)getY(),
+        bounds = new Rectangle(getX(),getY(),
             getWidth(), getHeight());
     }
 
     //Keeps box synced with movement
     //Every entity is rectangle in space
     public void updateBounds(){
-        bounds.setX((int)getX());
-        bounds.setY((int)getY());
+        bounds.setX(getX());
+        bounds.setY(getY());
     }
 
     protected void applyMovement(){

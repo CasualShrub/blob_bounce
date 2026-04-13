@@ -17,8 +17,6 @@ public final class GameConstants {
     public static final double H_SPEED = 800; // Base value for horizontal 'movement' speed
     public static final double MAX_H_SPEED = 700;    // Maximum horizontal speed
     public static final float GROUND_HEIGHT = 0; // Y position of ground level
-    public static final int BOUNCEFISH_WIDTH = 200;
-    public static final int BOUNCEFISH_HEIGHT = 200;
     public static final int RIGHT_CONTROL_BORDER = 400;
     public static final int LEFT_CONTROL_BORDER = 400;
     public static boolean IS_DEBUG = true;
@@ -33,8 +31,6 @@ public final class GameConstants {
     public final static float SPAWN_STASIS_SECONDS = 3F;
     public final static float CLEANUP_FREQUENCY = 3F; // How often in seconds to deallocate creatures out of bounds
     public static int WATER_LEVEL = 100; //the height of water level in pixel unit
-    public static int OCEANSUNFISH_HEIGHT = 42;
-    public static int OCEANSUNFISH_WIDTH = 100;
     public static int SHARK_DECTECTION_WIDTH = 200;//attacks if bouncefish fall into this range
     public static int SHARK_DECTECTION_HEIGHT = 400;
     public static int SHARK_JUMP_HEIGHT = 600;//WATER_LEVEL + SHARK_DECTECTION_HEIGHT;

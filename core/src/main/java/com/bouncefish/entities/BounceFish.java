@@ -97,7 +97,19 @@ public class BounceFish extends Creature {
         //If fish touches any creature, Fish gets placed on top of creature and bounces upward.
         //Like Mario jumping on Enemy
         for (Creature creature : creatureList) {
-            if(this.bounds.overlaps(creature.bounds) && creature.isBouncable()){
+            if(creature.getCreatureId() == 5){//shark!
+                if(this.bounds.overlaps(creature.bounds)){
+                    if(creature.isReadyToAttack()){ //I remembered from somewhere that casting is not elegant... But what else can I do?
+                        creature.attack();
+                    }else if(creature.isAttacking()){
+                        isDead = true;
+                        break;
+                    }else{
+                        //TODO decrease shark's hp
+                    }
+                }
+            }
+            else if(this.bounds.overlaps(creature.bounds) && creature.isBouncable()){
 
                 if(creature.getCreatureId() == 2){//touches jellyfish
                     isParalyzed = true;

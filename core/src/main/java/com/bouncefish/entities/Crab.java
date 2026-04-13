@@ -36,12 +36,12 @@ public class Crab extends Creature {
         setBounds();
     }
 
-    public static void leftToRight(Creature creature){//TODO implement curly movement
+    public static void leftToRight(Creature creature){
         creature.xPosition += creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
     }
 
 
-    public static void rightToLeft(Creature creature){//TODO implement curly movement
+    public static void rightToLeft(Creature creature){
         creature.xPosition -= creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
     }
 

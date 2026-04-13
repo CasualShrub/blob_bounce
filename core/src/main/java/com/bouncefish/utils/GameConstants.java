@@ -33,6 +33,12 @@ public final class GameConstants {
     public final static float SPAWN_STASIS_SECONDS = 3F;
     public final static float CLEANUP_FREQUENCY = 3F; // How often in seconds to deallocate creatures out of bounds
     public static int WATER_LEVEL = 100; //the height of water level in pixel unit
+    public static int OCEANSUNFISH_HEIGHT = 42;
+    public static int OCEANSUNFISH_WIDTH = 100;
+    public static int SHARK_DECTECTION_WIDTH = 200;//attacks if bouncefish fall into this range
+    public static int SHARK_DECTECTION_HEIGHT = 400;
+    public static int SHARK_JUMP_HEIGHT = 600;//WATER_LEVEL + SHARK_DECTECTION_HEIGHT;
+    public static int SHARK_ATK_COOLDOWN = 500;
 
     //public static float jellyFishFrameDuration = 0.5F;
     //public static float crabFrameDuration = 0.5F;

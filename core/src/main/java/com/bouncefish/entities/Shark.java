@@ -57,9 +57,13 @@ public class Shark extends Creature{
         sharkAnimationSwim = new Animation<>(0.5F,frames1);
         sharkAnimationAttack = new Animation<>(0.5F,frames2);
     }
+
+    @Override
     public boolean isReadyToAttack(){
         return readyToAttack;
     }
+
+    @Override
     public boolean isAttacking(){
         return attacking;
     }
@@ -93,6 +97,8 @@ public class Shark extends Creature{
             setBounds();//the shark is looking for the bouncefish
         }
     }
+
+    @Override
     public void attack(){
             attacking = true;
             readyToAttack = false;

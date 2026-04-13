@@ -166,4 +166,21 @@ public abstract class Creature {
         return rotationAngle != 0F;
     }
 
+
+    // Override these if you want your creature to attack!
+    public void attack(){
+        System.out.println("I'm not supposed to be attacking!");
+    }
+
+    public boolean isReadyToAttack(){
+        System.out.println("I'm not supposed to be attacking!");
+        return false;
+    }
+
+    public boolean isAttacking(){
+        System.out.println("I'm not supposed to be attacking!");
+        return false;
+    }
+    //
+
 }

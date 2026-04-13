@@ -99,9 +99,9 @@ public class BounceFish extends Creature {
         for (Creature creature : creatureList) {
             if(creature.getCreatureId() == 5){//shark!
                 if(this.bounds.overlaps(creature.bounds)){
-                    if(((Shark) creature).isReadyToAttack()){ //I remembered from somewhere that casting is not elegant... But what else can I do?
-                        ((Shark) creature).attack();
-                    }else if(((Shark) creature).isAttacking()){
+                    if(creature.isReadyToAttack()){ //I remembered from somewhere that casting is not elegant... But what else can I do?
+                        creature.attack();
+                    }else if(creature.isAttacking()){
                         isDead = true;
                         break;
                     }else{

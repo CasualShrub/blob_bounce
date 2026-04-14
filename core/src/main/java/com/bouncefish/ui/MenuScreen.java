@@ -31,6 +31,7 @@ public class MenuScreen {
         float leaderboardY = screenHeight * 0.35f;
 
         batch.begin();
+
         batch.draw(background, 0, 0, screenWidth, screenHeight);
         batch.draw(playButton, centerX, playY, buttonWidth, buttonHeight);
         batch.draw(leaderboardButton, centerX, leaderboardY, buttonWidth, buttonHeight);

@@ -50,8 +50,6 @@ public class Main extends ApplicationAdapter {
     private Stage _stage;
 
 
-
-
     private enum GameState{
         MENU,
         PLAYING,
@@ -62,8 +60,6 @@ public class Main extends ApplicationAdapter {
     private GameState currentState;
     private MenuScreen menuScreen;
     private LeaderboardScreen leaderboardScreen;
-    private ProgressTracker progressTracker;
-
     private GameOverScreen gameOverScreen;
 
 
@@ -79,9 +75,7 @@ public class Main extends ApplicationAdapter {
         _water = new Texture("water.png");
         _soundManager = new SoundManager();
         _bounceGame = new BounceGame();
-        progressTracker = new ProgressTracker();
         _currentFish = _bounceGame.getBounceFish();
-        _currentFish.setProgressTracker(progressTracker);
         menuScreen = new MenuScreen();
         leaderboardScreen = new LeaderboardScreen();
         gameOverScreen = new GameOverScreen();
@@ -125,12 +119,11 @@ public class Main extends ApplicationAdapter {
     }
 
     private void resetGame(){
-        progressTracker.reset();
-        _bounceGame = new BounceGame();
+        ProgressTracker.reset();
 
-        _currentFish = _bounceGame.getBounceFish();
+        // maybe tell the spawner to stop spawning crabs for now?
 
-        _currentFish.setProgressTracker(progressTracker);
+        // reset fish position to the start, and pause his movement.
     }
 
     @Override
@@ -211,8 +204,7 @@ public class Main extends ApplicationAdapter {
         _batch.end(); // END RENDERING IN-GAME ENTITIES
 
 
-
-        _batch.begin(); // START RENDERING UI
+        // START RENDERING UI
 
         if (currentState == GameState.MENU){
             menuScreen.render(_batch);
@@ -220,6 +212,7 @@ public class Main extends ApplicationAdapter {
 
            if(button == 1){
                currentState = GameState.PLAYING;
+               _bounceGame.startGame();
            } else if(button == 2){
                currentState = GameState.LEADERBOARD;
            }
@@ -229,7 +222,7 @@ public class Main extends ApplicationAdapter {
         }
 
         else if(currentState == GameState.LEADERBOARD){
-            leaderboardScreen.render(_batch, progressTracker.getScore());
+            leaderboardScreen.render(_batch, ProgressTracker.getScore());
 
             if(leaderboardScreen.isBackPressed()){
                 currentState = GameState.MENU;
@@ -237,7 +230,7 @@ public class Main extends ApplicationAdapter {
         }
 
         else if(currentState == GameState.GAME_OVER){
-            gameOverScreen.render(_batch, progressTracker.getScore());
+            gameOverScreen.render(_batch, ProgressTracker.getScore());
 
             if(gameOverScreen.isTouched()){
                 resetGame();
@@ -245,7 +238,7 @@ public class Main extends ApplicationAdapter {
             }
         }
 
-        _batch.end(); // END RENDERING UI
+        // END RENDERING UI
 
         _stage.draw();
     }

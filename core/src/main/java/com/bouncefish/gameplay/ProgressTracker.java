@@ -1,20 +1,17 @@
 package com.bouncefish.gameplay;
 
 public class ProgressTracker {
-    private int score;
+    private static int score = 0;
 
-    public ProgressTracker(){
-        score = 0;
-    }
-    public void increaseScore(){
+    public static void increaseScore(){
         score++;
     }
 
-    public int getScore(){
+    public static int getScore(){
         return score;
     }
 
-    public void reset(){
+    public static void reset(){
         score = 0;
     }
 }

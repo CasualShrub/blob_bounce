@@ -16,15 +16,15 @@ public class Shark extends Creature{
     private boolean readyToAttack = true;
     private boolean attacking;
     private boolean coolDown; //needs to cooldown after attacking
-    private int attackCooldownCounter = GameConstants.SHARK_ATK_COOLDOWN;//ready to attack when the counter is 0
-    private boolean swimLeft; //TODO: choose a random dir instead?
-    public Shark(float spawnTime, float spawnX, Consumer<Creature> movementFunction) {
+    private int attackCooldownCounter = GameConstants.SHARK_ATK_COOLDOWN;//ready to attack when the counter is 0'
+    protected static float defaultSpeed = 800;
+    public Shark(float spawnTime, float spawnX, boolean movingLeft, Consumer<Creature> movementFunction) {
         creatureId = 5;
-        xVelocity = 0;
+        xVelocity = movingLeft? -defaultSpeed:defaultSpeed;
         yVelocity = 0;
         width = 260;
         height = 260;
-        movementSpeed = 500;
+        movementSpeed = 800;
 
         this.xPosition = spawnX;
         this.yPosition = GameConstants.WATER_LEVEL;
@@ -34,10 +34,11 @@ public class Shark extends Creature{
 
         setBounds();
     }
-    private void updateAttackBounds(){
+    @Override
+    public void updateBounds(){
         if(readyToAttack){
             bounds.setX((int)getX() - GameConstants.SHARK_DECTECTION_WIDTH);
-            bounds.setY((int)getY() - GameConstants.SHARK_DECTECTION_HEIGHT);
+            bounds.setY((int)getY());
         } else if(attacking){
             bounds.setX((int)getX());
             bounds.setY((int)getY() + height);
@@ -67,6 +68,10 @@ public class Shark extends Creature{
     public boolean isAttacking(){
         return attacking;
     }
+    @Override
+    public void notAttacking(){
+        attacking = false;
+    }
     public boolean isInCoolDown(){
         return coolDown;
     }
@@ -75,11 +80,10 @@ public class Shark extends Creature{
 
         if(readyToAttack){//the shark is looking for the bouncefish
             bounds = new Rectangle(
-                (int)(getX() - GameConstants.SHARK_DECTECTION_WIDTH),
-                (int)(getY() - GameConstants.SHARK_DECTECTION_HEIGHT),
-                GameConstants.SHARK_DECTECTION_WIDTH*2, GameConstants.SHARK_DECTECTION_HEIGHT*2);
+                (int)(getX() - GameConstants.SHARK_DECTECTION_WIDTH), (int)getY(),
+                GameConstants.SHARK_DECTECTION_WIDTH*2 + width, GameConstants.SHARK_DECTECTION_HEIGHT);
         }else if(attacking){ //the shark is jumping up
-            bounds = new Rectangle((int)getX(), (int)getY() + height, 42, 42);//the hit box
+            bounds = new Rectangle((int)getX(), (int)getY() + height, width, 42);//the hit box, a width X 42 box above the shark
         }else{//the shark is in the water(and cooling down)
             bounds = new Rectangle((int)getX(), (int)getY(),
                 getWidth(), getHeight());
@@ -90,7 +94,6 @@ public class Shark extends Creature{
         stateTime += Gdx.graphics.getDeltaTime();
         applyMovement();
         updateBounds();
-        updateAttackBounds();
         if(coolDown && --attackCooldownCounter <= 0){
             readyToAttack = true;
             coolDown = false;
@@ -103,11 +106,18 @@ public class Shark extends Creature{
             attacking = true;
             readyToAttack = false;
             setBounds(); //the shark is jumping up
-            setXVelocity(0);
-            setYVelocity(800);
+            if(xVelocity > 0){
+                setXVelocity(10);
+            }else{
+                setXVelocity(-10);
+            }
+
+            float height = GameConstants.SHARK_JUMP_HEIGHT - getY(); //v^2 = 2gh; the shark needs to have 0 speed when reach the jump height
+            float initialSpeed = (float) Math.sqrt(2f * GameConstants.GRAVITY * height);
+            setYVelocity(initialSpeed);
             setMovementFunction(Shark::attackMovement);
     }
-    public static void attackMovement(Creature creature){
+    /*public static void attackMovement(Creature creature){
         creature.yPosition += creature.yVelocity * Gdx.graphics.getDeltaTime();
         if(creature.yVelocity > 0){
             if(creature.yPosition >= GameConstants.SHARK_JUMP_HEIGHT){
@@ -120,19 +130,61 @@ public class Shark extends Creature{
                 ((Shark) creature).coolDown = true;
                 ((Shark) creature).attackCooldownCounter = GameConstants.SHARK_ATK_COOLDOWN;
                 creature.setBounds();//the shark is in the water(and cooling down)
-                creature.setMovementFunction(Shark::leftToRight);
-                creature.setMovementSpeedMultiplier(0);//this line is used for testing
+                if(creature.xVelocity<0){
+                    creature.setMovementFunction(Shark::leftToRight);
+                } else {
+                    creature.setMovementFunction(Shark::rightToLeft);
+                }
+
             }
         }
     }
-    public static void leftToRight(Creature creature){
-//TODO: right now the shark appear from one side, attack the player, and then go away. Maybe the shark should turn around once reach the edge
-        creature.xPosition += creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+
+     */
+
+    public static void attackMovement(Creature creature) {
+        float dt = Gdx.graphics.getDeltaTime();
+        creature.yVelocity -= GameConstants.GRAVITY * dt;
+        creature.yPosition += creature.yVelocity * dt;
+        creature.xPosition += creature.xVelocity * dt;
+
+        if (Math.abs(creature.yPosition - GameConstants.SHARK_JUMP_HEIGHT) < 5f && creature.yVelocity > 0) {
+            creature.yVelocity = 0f;
+            creature.yPosition = GameConstants.SHARK_JUMP_HEIGHT;
+        }
+
+        if (creature.yPosition <= GameConstants.WATER_LEVEL) {
+            creature.yPosition = GameConstants.WATER_LEVEL;
+            creature.yVelocity = 0f;
+
+            ((Shark) creature).attacking = false;//cast only once in a while, so maybe it's fine?
+            ((Shark) creature).coolDown = true;
+            ((Shark) creature).attackCooldownCounter = GameConstants.SHARK_ATK_COOLDOWN;
+
+            creature.setBounds();
+            if(creature.xVelocity > 0){
+                creature.setXVelocity(Shark.defaultSpeed);
+            }else{
+                creature.setXVelocity(-Shark.defaultSpeed);
+            }
+            creature.setMovementFunction(Shark::swim);
+
+        }
     }
 
-    public static void rightToLeft(Creature creature){
-        creature.xPosition -= creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+    public static void swim(Creature creature){
+        creature.xPosition += creature.xVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+        if(creature.xVelocity < 0){  //split into two cases so that the shark can move into the scene
+            if(creature.xPosition < 0){
+                creature.xVelocity = -creature.xVelocity;
+            }
+        }else{
+            if(creature.xPosition > GameConstants.Game_Width - creature.width){
+                creature.xVelocity = -creature.xVelocity;
+            }
+        }
     }
+
     @Override
     public void handleBouncedOn() {
 
@@ -146,4 +198,5 @@ public class Shark extends Creature{
             return sharkAnimationAttack.getKeyFrame(stateTime,true);
         }
     }
+
 }

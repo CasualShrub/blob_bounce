@@ -33,6 +33,19 @@ public abstract class Creature {
     protected double spawnTime = 0;
     protected float rotationAngle;//used to implement the curvilinear motion of ordinary fish
     protected float stateTime;
+    protected float boundScaleX = 1F;
+    protected float boundScaleY = 1F;
+    protected float boundOffsetX = 0F;
+    protected float boundOffsetY = 0F;
+    /*protected boolean movingLeft;
+    public void movingLeftToRIghtFlag(){
+        movingLeft = true;
+    }
+    public void movingRightToLeftFlag(){
+        movingLeft = false;
+    }
+
+     */
     public float getX() {
         return xPosition;
     }
@@ -110,17 +123,31 @@ public abstract class Creature {
         xPosition = x;
         yPosition = y;
     }
+    public void setBoundScale(float xScale, float yScale){
+        boundScaleX = xScale;
+        boundScaleY = yScale;
+        boundOffsetX = (1 - boundOffsetX) * width / 2;
+        boundOffsetY = (1 - boundOffsetY) * height / 2;
+    }
     //Created collision box
     public void setBounds(){
-        bounds = new Rectangle(getX(),getY(),
-            getWidth(), getHeight());
+        /*bounds = new Rectangle((int)(getX() + boundOffsetX), (int)(getY() + boundOffsetY),
+            getWidth()*boundScaleX, getHeight()*boundScaleY);*/
+
+        //seems to work well without recentering
+        bounds = new Rectangle((int)(getX()), (int)(getY()),
+            getWidth()*boundScaleX, getHeight()*boundScaleY);
     }
 
     //Keeps box synced with movement
     //Every entity is rectangle in space
     public void updateBounds(){
-        bounds.setX(getX());
-        bounds.setY(getY());
+        /*bounds.setX((int)(getX() + boundOffsetX));
+        bounds.setY((int)(getY() + boundOffsetY));*/
+
+        //seems to work well without recentering
+        bounds.setX((int)getX());
+        bounds.setY((int)getY());
     }
 
     protected void applyMovement(){
@@ -166,6 +193,12 @@ public abstract class Creature {
     public boolean isAttacking(){
         System.out.println("I'm not supposed to be attacking!");
         return false;
+    }
+    public void notAttacking(){
+        System.out.println("I'm not supposed to be attacking!");
+    }
+    public static boolean movingRight(Creature creature){
+        return creature.xVelocity > 0;
     }
     //
 

@@ -85,10 +85,6 @@ public class BounceFish extends Creature {
 
         stateTime += Gdx.graphics.getDeltaTime();
 
-        if(getY() <= 0){
-            isDead = true;
-        }
-
         if (isDead){
             return;
         }
@@ -126,12 +122,6 @@ public class BounceFish extends Creature {
                     bounce(creature);
                     break;
                 }
-            }
-
-            if(this.bounds.overlaps(creature.bounds)){
-                reverseVelocityForBounce();
-
-
             }
         }
 

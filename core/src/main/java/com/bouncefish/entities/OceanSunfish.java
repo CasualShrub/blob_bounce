@@ -20,7 +20,7 @@ public class OceanSunfish extends Creature {
         yVelocity = 0;
         width = 260;
         height = 260;
-        movementSpeed = 12;
+        movementSpeed = 1;
 
         this.xPosition = spawnX;
         this.yPosition = spawnY;
@@ -28,6 +28,7 @@ public class OceanSunfish extends Creature {
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
 
+        setBoundScale(0.95F,0.42F);
         setBounds();
     }
     public OceanSunfish(float spawnTime, float spawnX, Consumer<Creature> movementFunction) {
@@ -36,7 +37,7 @@ public class OceanSunfish extends Creature {
         yVelocity = 0;
         width = 260;
         height = 260;
-        movementSpeed = 5;
+        movementSpeed = 1;
 
         this.xPosition = spawnX;
         this.yPosition = GameConstants.Screen_Height/2;
@@ -44,6 +45,8 @@ public class OceanSunfish extends Creature {
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
 
+        setBoundScale(1F,0.42F);
+        boundScaleY = 0.42F;
         setBounds();
     }
     public static void OceanSunfishMovementLeftToRight(Creature creature){

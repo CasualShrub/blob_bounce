@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.Timer;
+import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
 
@@ -81,7 +82,12 @@ public class BounceFish extends Creature {
         // Update x and y position based on velocity
         updatePosition();
         updateBounds();
+
         stateTime += Gdx.graphics.getDeltaTime();
+
+        if(getY() <= 0){
+            isDead = true;
+        }
 
         if (isDead){
             return;
@@ -120,6 +126,12 @@ public class BounceFish extends Creature {
                     bounce(creature);
                     break;
                 }
+            }
+
+            if(this.bounds.overlaps(creature.bounds)){
+                reverseVelocityForBounce();
+
+
             }
         }
 
@@ -168,6 +180,7 @@ public class BounceFish extends Creature {
     private void bounce(Creature creature){
         setY(creature.getHeight() + creature.getY());
         reverseVelocityForBounce();
+        ProgressTracker.increaseScore();
 
         //TODO: call the getBouncedOn method of creature
         SoundManager.playBounceSound();

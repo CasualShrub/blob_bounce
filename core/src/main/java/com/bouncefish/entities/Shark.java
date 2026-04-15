@@ -31,6 +31,7 @@ public class Shark extends Creature{
         this.movementSpeedMultiplier = 1;
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
+        this.movingLeft = movingLeft;
 
         setBounds();
     }
@@ -117,30 +118,6 @@ public class Shark extends Creature{
             setYVelocity(initialSpeed);
             setMovementFunction(Shark::attackMovement);
     }
-    /*public static void attackMovement(Creature creature){
-        creature.yPosition += creature.yVelocity * Gdx.graphics.getDeltaTime();
-        if(creature.yVelocity > 0){
-            if(creature.yPosition >= GameConstants.SHARK_JUMP_HEIGHT){
-                creature.yVelocity = -500;//TODO: make the transition smooth?
-            }
-        }else {
-            if(creature.yPosition <= GameConstants.WATER_LEVEL){
-                creature.setY(GameConstants.WATER_LEVEL);
-                ((Shark) creature).attacking = false; //the attack ends when the shark is back in water
-                ((Shark) creature).coolDown = true;
-                ((Shark) creature).attackCooldownCounter = GameConstants.SHARK_ATK_COOLDOWN;
-                creature.setBounds();//the shark is in the water(and cooling down)
-                if(creature.xVelocity<0){
-                    creature.setMovementFunction(Shark::leftToRight);
-                } else {
-                    creature.setMovementFunction(Shark::rightToLeft);
-                }
-
-            }
-        }
-    }
-
-     */
 
     public static void attackMovement(Creature creature) {
         float dt = Gdx.graphics.getDeltaTime();
@@ -162,7 +139,7 @@ public class Shark extends Creature{
             ((Shark) creature).attackCooldownCounter = GameConstants.SHARK_ATK_COOLDOWN;
 
             creature.setBounds();
-            if(creature.xVelocity > 0){
+            if(!creature.movingLeft){
                 creature.setXVelocity(Shark.defaultSpeed);
             }else{
                 creature.setXVelocity(-Shark.defaultSpeed);
@@ -174,13 +151,15 @@ public class Shark extends Creature{
 
     public static void swim(Creature creature){
         creature.xPosition += creature.xVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
-        if(creature.xVelocity < 0){  //split into two cases so that the shark can move into the scene
+        if(creature.movingLeft){  //split into two cases so that the shark can move into the scene
             if(creature.xPosition < 0){
                 creature.xVelocity = -creature.xVelocity;
+                creature.movingLeft = false;
             }
         }else{
             if(creature.xPosition > GameConstants.Game_Width - creature.width){
                 creature.xVelocity = -creature.xVelocity;
+                creature.movingLeft = true;
             }
         }
     }

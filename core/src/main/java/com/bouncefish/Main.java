@@ -187,16 +187,12 @@ public class Main extends ApplicationAdapter {
 
             for (Creature creature:creatureList) {
                 TextureRegion currentFrame = creature.getAnimeFrame();
-                //if (creature.isRotated()){
-                if (false){ //optional feature that rotates the texture to face the direction of speed
-                    Matrix4 rotationMatrix = creature.getTextureRotationMatrix();
-                    _batch.setTransformMatrix(rotationMatrix);
+                if(!creature.isMovingLeft()){//assuming all creature textures are facing right
                     _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
-                    _batch.setTransformMatrix(new Matrix4());
-                    //TODO: should check whether the fish is going right or left and flip the texture if necessary
-                } else {
-                    _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+                }else{// negative width flips horizontally
+                    _batch.draw(currentFrame, creature.getX() + creature.getWidth(), creature.getY(), -creature.getWidth(), creature.getHeight());
                 }
+
             }
             if(_currentFish.isDead()){
                 currentState = GameState.GAME_OVER;

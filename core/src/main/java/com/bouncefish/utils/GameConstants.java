@@ -30,7 +30,7 @@ public final class GameConstants {
     public static final float MAX_PARALYZED_TIME = 1F;
     public final static float SPAWN_STASIS_SECONDS = 3F;
     public final static float CLEANUP_FREQUENCY = 3F; // How often in seconds to deallocate creatures out of bounds
-    public static int WATER_LEVEL = 100; //the height of water level in pixel unit
+    public static int WATER_LEVEL = 50; //the height of water level in pixel unit
     public static int SHARK_DECTECTION_WIDTH = 60;//attacks if bouncefish fall into this range
     public static int SHARK_DECTECTION_HEIGHT = 1600;
     public static int SHARK_JUMP_HEIGHT = (int)(Screen_Height * 0.6);

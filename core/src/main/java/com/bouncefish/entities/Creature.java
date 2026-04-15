@@ -37,15 +37,11 @@ public abstract class Creature {
     protected float boundScaleY = 1F;
     protected float boundOffsetX = 0F;
     protected float boundOffsetY = 0F;
-    /*protected boolean movingLeft;
-    public void movingLeftToRIghtFlag(){
-        movingLeft = true;
-    }
-    public void movingRightToLeftFlag(){
-        movingLeft = false;
+    protected boolean movingLeft;
+    public boolean isMovingLeft(){
+        return movingLeft;
     }
 
-     */
     public float getX() {
         return xPosition;
     }
@@ -200,6 +196,16 @@ public abstract class Creature {
     public static boolean movingRight(Creature creature){
         return creature.xVelocity > 0;
     }
-    //
-
+    public float getLeadingCoefficient(){
+        System.out.println("No leading coefficient for this creature");
+        return 0;
+    }
+    public float getLinearCoefficient(){
+        System.out.println("No linear coefficient for this creature");
+        return 0;
+    }
+    public float getStartX(){
+        System.out.println("No start x for this creature");
+        return GameConstants.Game_Width/2;
+    }
 }

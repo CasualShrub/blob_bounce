@@ -13,37 +13,22 @@ public class OceanSunfish extends Creature {
     private int flipCounter = 100;//counter used to decide when to flip. Use delta time to make it consistent
     private static Animation<TextureRegion> oceanSunfishAnimationNormal;
     private static Animation<TextureRegion> oceanSunfishAnimationFlipped;
+    private static float sunfishSpeed = 3;
 
-    public OceanSunfish(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
+    public OceanSunfish(float spawnTime, float spawnX, float spawnY, boolean movingLeft,Consumer<Creature> movementFunction) {
         creatureId = 3;
-        xVelocity = 0;
+        xVelocity = movingLeft? -sunfishSpeed : sunfishSpeed;
         yVelocity = 0;
         width = 260;
         height = 260;
-        movementSpeed = 1;
+        movementSpeed = sunfishSpeed;
 
         this.xPosition = spawnX;
         this.yPosition = spawnY;
-        this.movementSpeedMultiplier = speedMultiplier;
-        this.movementFunction = movementFunction;
-        this.spawnTime = spawnTime;
-
-        setBoundScale(0.95F,0.42F);
-        setBounds();
-    }
-    public OceanSunfish(float spawnTime, float spawnX, Consumer<Creature> movementFunction) {
-        creatureId = 3;
-        xVelocity = 0;
-        yVelocity = 0;
-        width = 260;
-        height = 260;
-        movementSpeed = 1;
-
-        this.xPosition = spawnX;
-        this.yPosition = GameConstants.Screen_Height/2;
         this.movementSpeedMultiplier = 1;
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
+        this.movingLeft = movingLeft;
 
         setBoundScale(1F,0.42F);
         boundScaleY = 0.42F;

@@ -1,9 +1,7 @@
 package com.bouncefish.entities;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.Timer;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
@@ -105,7 +103,7 @@ public class BounceFish extends Creature {
                     if(creature.isReadyToAttack()){
                         creature.attack();
                     }else if(creature.isAttacking()){
-                        die();
+                        die(creature.getY());
                         break;
                     }else{
                         bounce(creature);
@@ -153,11 +151,15 @@ public class BounceFish extends Creature {
         }
     }
 
-    private void die(){
+    private void die(float heightOfDeath) {
         isDead = true;
-        setY(GameConstants.GROUND_HEIGHT);
+        setY(heightOfDeath);
         applyDeathVelocity();
         xVelocity *= -1.2;
+    }
+
+    private void die(){
+        die(GameConstants.GROUND_HEIGHT);
     }
 
     // Only used in cheats

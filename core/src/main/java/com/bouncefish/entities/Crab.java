@@ -4,47 +4,54 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.bouncefish.entities.spawndata.CrabSpawnData;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.function.Consumer;
 
 public class Crab extends Creature {
     private static Animation<TextureRegion> crabAnimation;
+    private static final float BASE_SPEED = 500;
 
+    public Crab(CrabSpawnData spawnData){
+        this(spawnData.getSpawnTime(),
+            spawnData.getSpawnX(), spawnData.getSpawnY(),
+            spawnData.getSpeedMultiplier(),
+            spawnData.getMovementFunction()
+        );
+    }
 
     public Crab(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
         this(spawnTime, spawnX, movementFunction);
         this.yPosition = GameConstants.WATER_LEVEL + spawnY;
         this.movementSpeedMultiplier = speedMultiplier;
+        this.movementSpeed = BASE_SPEED * movementSpeedMultiplier;
+        this.movementSpeed = shouldMoveLeft(spawnX) ? -movementSpeed : movementSpeed;
     }
 
     // This constructor is used if we just want a default crab (Default spawn y is 0, speedMultiplier of 1)
     public Crab(float spawnTime, float spawnX, Consumer<Creature> movementFunction) {
-        creatureId = 1;
-        xVelocity = 700;
-        yVelocity = 0;
-        width = 130;
-        height = 130;
-        movementSpeed = 500;
+        this.creatureId = 1;
+        this.xVelocity = 700;
+        this.yVelocity = 0;
+        this.width = 130;
+        this.height = 130;
+        this.movementSpeedMultiplier = 1;
+        this.movementSpeed = BASE_SPEED * movementSpeedMultiplier;
+        this.movementSpeed = shouldMoveLeft(spawnX) ? -movementSpeed : movementSpeed;
 
         this.xPosition = spawnX;
         this.yPosition = GameConstants.WATER_LEVEL;
-        this.movementSpeedMultiplier = 1;
+
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
 
         setBounds();
     }
 
-    public static void leftToRight(Creature creature){
-        creature.xPosition += creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+    public static void normalMovement(Creature creature){
+        creature.xPosition += creature.movementSpeed * Gdx.graphics.getDeltaTime();
     }
-
-
-    public static void rightToLeft(Creature creature){
-        creature.xPosition -= creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
-    }
-
 
     @Override
     public void handleBouncedOn() {

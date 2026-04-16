@@ -27,6 +27,7 @@ public final class GameConstants {
     // These are just some wrappers because Gdx.graphics.getWidth feels too long
     public static float Game_Width = Gdx.graphics.getWidth();
     public static float Screen_Height = Gdx.graphics.getHeight();
+    public static float Game_HalfWidth = Game_Width / 2;
     public static final float MAX_PARALYZED_TIME = 1F;
     public final static float SPAWN_STASIS_SECONDS = 3F;
     public final static float CLEANUP_FREQUENCY = 3F; // How often in seconds to deallocate creatures out of bounds

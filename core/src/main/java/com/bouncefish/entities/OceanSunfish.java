@@ -13,33 +13,32 @@ public class OceanSunfish extends Creature {
     private int flipCounter = 100;//counter used to decide when to flip. Use delta time to make it consistent
     private static Animation<TextureRegion> oceanSunfishAnimationNormal;
     private static Animation<TextureRegion> oceanSunfishAnimationFlipped;
-    private static float sunfishSpeed = 3;
+    private static float baseSunfishSpeed = 3;
 
-    public OceanSunfish(float spawnTime, float spawnX, float spawnY, boolean movingLeft,Consumer<Creature> movementFunction) {
-        creatureId = 3;
-        xVelocity = movingLeft? -sunfishSpeed : sunfishSpeed;
-        yVelocity = 0;
-        width = 260;
-        height = 260;
-        movementSpeed = sunfishSpeed;
+    public OceanSunfish(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
+        this.creatureId = 3;
+        this.width = 260;
+        this.height = 260;
 
         this.xPosition = spawnX;
         this.yPosition = spawnY;
-        this.movementSpeedMultiplier = 1;
+
+        this.movementSpeedMultiplier = speedMultiplier;
+        this.movementSpeed = baseSunfishSpeed * movementSpeedMultiplier;
+        this.movementSpeed = shouldMoveLeft(spawnX) ? -movementSpeed : movementSpeed;
+        this.yVelocity = 0;
+
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
         this.movingLeft = movingLeft;
 
         setBoundScale(1F,0.42F);
-        boundScaleY = 0.42F;
+        this.boundScaleY = 0.42F;
         setBounds();
     }
-    public static void OceanSunfishMovementLeftToRight(Creature creature){
-        creature.xPosition += creature.movementSpeed;
-    }
 
-    public static void OceanSunfishMovementRightToLeft(Creature creature){
-        creature.xPosition -= creature.movementSpeed;
+    public static void normalMovement(Creature creature){
+        creature.xPosition += creature.movementSpeed;
     }
 
     @Override

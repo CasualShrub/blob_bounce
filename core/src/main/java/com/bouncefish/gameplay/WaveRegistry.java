@@ -65,9 +65,9 @@ public class WaveRegistry {
         // TODO: Make a helper tool and pass a json file instead?
 
         Wave wave1 = new Wave(14f);
-        wave1.add(new OceanSunfish(1f,RIGHT_SPAWN_X,GameConstants.Screen_Height/2,true,OceanSunfish::OceanSunfishMovementRightToLeft));
         wave1.add(new Mackerel(1f,GameConstants.Game_Width - 50F,GameConstants.Game_Width/2 -100, OrdinaryFish::leftToRightParabola));
         wave1.add(new Mackerel(1f,50F,GameConstants.Game_Width/2 + 100, OrdinaryFish::rightToLeftParabola));
+        wave1.add(new OceanSunfish(1f,RIGHT_SPAWN_X,GameConstants.Screen_Height/2,1 ,OceanSunfish::normalMovement));
         wave1.add(new Crab(1f, LEFT_SPAWN_X, Crab::leftToRight));
         wave1.add(new Crab(2.5f, LEFT_SPAWN_X, Crab::leftToRight));
         wave1.add(new Crab(5f, LEFT_SPAWN_X, Crab::leftToRight));

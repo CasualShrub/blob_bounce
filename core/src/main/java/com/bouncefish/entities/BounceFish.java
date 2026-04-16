@@ -103,7 +103,7 @@ public class BounceFish extends Creature {
                     if(creature.isReadyToAttack()){
                         creature.attack();
                     }else if(creature.isAttacking()){
-                        die(creature.getY());
+                        die(this.getY());
                         break;
                     }else{
                         bounce(creature);

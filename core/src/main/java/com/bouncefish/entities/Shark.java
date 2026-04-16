@@ -35,17 +35,18 @@ public class Shark extends Creature{
 
         setBounds();
     }
+
     @Override
     public void updateBounds(){
         if(readyToAttack){
-            bounds.setX((int)getX() - GameConstants.SHARK_DECTECTION_WIDTH);
-            bounds.setY((int)getY());
+            bounds.setX(getX() - GameConstants.SHARK_DECTECTION_WIDTH);
+            bounds.setY(getY());
         } else if(attacking){
-            bounds.setX((int)getX());
-            bounds.setY((int)getY() + height);
+            bounds.setX(getX());
+            bounds.setY(getY() + height);
         }else{
-            bounds.setX((int)getX());
-            bounds.setY((int)getY());
+            bounds.setX(getX());
+            bounds.setY(getY());
         }
 
     }
@@ -81,12 +82,12 @@ public class Shark extends Creature{
 
         if(readyToAttack){//the shark is looking for the bouncefish
             bounds = new Rectangle(
-                (int)(getX() - GameConstants.SHARK_DECTECTION_WIDTH), (int)getY(),
+                (getX() - GameConstants.SHARK_DECTECTION_WIDTH), getY(),
                 GameConstants.SHARK_DECTECTION_WIDTH*2 + width, GameConstants.SHARK_DECTECTION_HEIGHT);
         }else if(attacking){ //the shark is jumping up
-            bounds = new Rectangle((int)getX(), (int)getY() + height, width, 42);//the hit box, a width X 42 box above the shark
+            bounds = new Rectangle(getX(), getY() + height, width, 42);//the hit box, a width X 42 box above the shark
         }else{//the shark is in the water(and cooling down)
-            bounds = new Rectangle((int)getX(), (int)getY(),
+            bounds = new Rectangle(getX(), getY(),
                 getWidth(), getHeight());
         }
     }

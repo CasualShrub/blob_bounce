@@ -65,8 +65,6 @@ public class WaveRegistry {
         // TODO: Make a helper tool and pass a json file instead?
 
         Wave wave1 = new Wave(14f);
-        wave1.add(new Mackerel(1f,GameConstants.Game_Width - 50F,GameConstants.Game_Width/2 -100, OrdinaryFish::leftToRightParabola));
-        wave1.add(new Mackerel(1f,50F,GameConstants.Game_Width/2 + 100, OrdinaryFish::rightToLeftParabola));
         wave1.add(new OceanSunfish(1f,RIGHT_SPAWN_X,GameConstants.Screen_Height/2,1 ,OceanSunfish::normalMovement));
         wave1.add(new Mackerel(1f,GameConstants.Game_Width - 50F,GameConstants.Game_Width/2 -100, 1, OrdinaryFish::leftToRightParabola));
         wave1.add(new Mackerel(1f,50F,GameConstants.Game_Width/2 + 100, 1, OrdinaryFish::rightToLeftParabola));
@@ -95,13 +93,12 @@ public class WaveRegistry {
         easyWaves.add(wave2);
 
         Wave wave3 = new Wave(8f);
-        //wave3.add(new Mackerel(1f,true, OrdinaryFish::leftToRightParabola));
-        //wave3.add(new Mackerel(2f,false, OrdinaryFish::rightToLeftParabola));
-        //wave3.add(new Mackerel(3f,true, OrdinaryFish::leftToRightParabola));
-        //wave3.add(new Mackerel(4f,false, OrdinaryFish::rightToLeftParabola));
-        //wave3.add(new Mackerel(5f,true, OrdinaryFish::leftToRightParabola));
-       //wave3.add(new Mackerel(6f,false, OrdinaryFish::rightToLeftParabola));
-        wave3.add(new Crab(7f, LEFT_SPAWN_X, 0, 1.2f, Crab::leftToRight));
+        wave3.add(new Mackerel(1f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
+        wave3.add(new Mackerel(2f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
+        wave3.add(new Mackerel(3f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
+        wave3.add(new Mackerel(4f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
+        wave3.add(new Mackerel(5f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
+       wave3.add(new Mackerel(6f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
         wave3.add(new Crab(7f, LEFT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
         easyWaves.add(wave3);
 

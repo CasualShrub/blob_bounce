@@ -26,8 +26,8 @@ public class Mackerel extends OrdinaryFish{
         setBounds();
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("アジ.png");
-        Texture texture2 = new Texture("アジ2.png");
+        Texture texture1 = new Texture("creatures/fish/アジ.png");
+        Texture texture2 = new Texture("creatures/fish/アジ2.png");
         TextureRegion[] frames = new TextureRegion[2];
         frames[0] = new TextureRegion(texture1);
         frames[1] = new TextureRegion(texture2);

@@ -50,8 +50,8 @@ public class Shark extends Creature{
 
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("s1.png");
-        Texture texture2 = new Texture("s2.png");
+        Texture texture1 = new Texture("creatures/shark/s1.png");
+        Texture texture2 = new Texture("creatures/shark/s2.png");
         TextureRegion[] frames1 = new TextureRegion[1];
         TextureRegion[] frames2 = new TextureRegion[1];
         frames1[0] = new TextureRegion(texture1);

@@ -69,10 +69,10 @@ public class Main extends ApplicationAdapter {
     public void create() {
         _batch = new SpriteBatch();
         _shapeRenderer = new ShapeRenderer();
-        _image = new Texture("blob1.png");
-        _image2 = new Texture("blob2.png");
-        _image3 = new Texture("blob3.png");
-        _crabImagePlaceholder = new Texture("crab1.png");
+        _image = new Texture("player/blob1.png");
+        _image2 = new Texture("player/blob2.png");
+        _image3 = new Texture("player/blob3.png");
+        _crabImagePlaceholder = new Texture("creatures/crab/crab1.png");
         _background = new Texture("background_placeholder.jpg");
         _water = new Texture("water.png");
         _soundManager = new SoundManager();
@@ -161,15 +161,12 @@ public class Main extends ApplicationAdapter {
 
             _shapeRenderer.setColor(new Color(0x0000ff22));
 
-
             _shapeRenderer.rectLine(GameConstants.LEFT_CONTROL_BORDER, Gdx.graphics.getHeight(), GameConstants.LEFT_CONTROL_BORDER, 0, 10f);
             _shapeRenderer.rectLine(Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, Gdx.graphics.getHeight(), Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, 0, 10f);
 
 
             _shapeRenderer.end();
         }
-
-
 
         _batch.begin(); // START RENDERING IN-GAME ENTITIES
 

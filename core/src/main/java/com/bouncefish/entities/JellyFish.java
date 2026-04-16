@@ -62,8 +62,8 @@ public class JellyFish extends Creature {
 
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("j1.png");
-        Texture texture2 = new Texture("j2.png");
+        Texture texture1 = new Texture("creatures/jellyfish/j1.png");
+        Texture texture2 = new Texture("creatures/jellyfish/j2.png");
         TextureRegion[] frames = new TextureRegion[2];
         frames[0] = new TextureRegion(texture1);
         frames[1] = new TextureRegion(texture2);

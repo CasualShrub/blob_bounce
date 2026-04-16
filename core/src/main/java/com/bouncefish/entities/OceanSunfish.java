@@ -30,7 +30,6 @@ public class OceanSunfish extends Creature {
 
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
-        this.movingLeft = movingLeft;
 
         setBoundScale(1F,0.42F);
         this.boundScaleY = 0.42F;
@@ -77,8 +76,8 @@ public class OceanSunfish extends Creature {
 
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("o2.png");
-        Texture texture2 = new Texture("o1.png");
+        Texture texture1 = new Texture("creatures/sunfish/o2.png");
+        Texture texture2 = new Texture("creatures/sunfish/o1.png");
         TextureRegion[] frames1 = new TextureRegion[1];
         TextureRegion[] frames2 = new TextureRegion[1];
         frames1[0] = new TextureRegion(texture1);

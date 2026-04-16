@@ -54,8 +54,8 @@ public class Crab extends Creature {
         return crabAnimation.getKeyFrame(stateTime,true);
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("crab1.png");
-        Texture texture2 = new Texture("crab1_5.png");
+        Texture texture1 = new Texture("creatures/crab/crab1.png");
+        Texture texture2 = new Texture("creatures/crab/crab1_5.png");
         TextureRegion[] frames = new TextureRegion[2];
         frames[0] = new TextureRegion(texture1);
         frames[1] = new TextureRegion(texture2);

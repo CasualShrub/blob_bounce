@@ -53,8 +53,8 @@ public class WaveRegistry {
 
         Wave wave1 = new Wave(14f);
         wave1.add(new OceanSunfishSpawnData(1f,RIGHT_SPAWN_X,GameConstants.Screen_Height/2,1 ,OceanSunfish::normalMovement));
-        wave1.add(new MackerelSpawnData(1f,GameConstants.Game_Width - 50F,GameConstants.Game_Width/2 -100, 1, OrdinaryFish::leftToRightParabola));
-        wave1.add(new MackerelSpawnData(1f,50F,GameConstants.Game_Width/2 + 100, 1, OrdinaryFish::rightToLeftParabola));
+        wave1.add(new MackerelSpawnData(1f,GameConstants.Game_Width - 50F,GameConstants.Game_Width/2 -100, 1, OrdinaryFish::parabolicMotion));
+        wave1.add(new MackerelSpawnData(1f,50F,GameConstants.Game_Width/2 + 100, 1, OrdinaryFish::parabolicMotion));
         wave1.add(new CrabSpawnData(1f, LEFT_SPAWN_X, Crab::normalMovement));
         wave1.add(new CrabSpawnData(2.5f, LEFT_SPAWN_X, Crab::normalMovement));
         wave1.add(new CrabSpawnData(5f, LEFT_SPAWN_X, Crab::normalMovement));
@@ -80,12 +80,12 @@ public class WaveRegistry {
         easyWaves.add(wave2);
 
         Wave wave3 = new Wave(8f);
-        wave3.add(new MackerelSpawnData(1f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
-        wave3.add(new MackerelSpawnData(2f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
-        wave3.add(new MackerelSpawnData(3f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
-        wave3.add(new MackerelSpawnData(4f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
-        wave3.add(new MackerelSpawnData(5f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
-        wave3.add(new MackerelSpawnData(6f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::leftToRightParabola));
+        wave3.add(new MackerelSpawnData(1f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
+        wave3.add(new MackerelSpawnData(2f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
+        wave3.add(new MackerelSpawnData(3f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
+        wave3.add(new MackerelSpawnData(4f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
+        wave3.add(new MackerelSpawnData(5f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
+        wave3.add(new MackerelSpawnData(6f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
         wave3.add(new CrabSpawnData(7f, LEFT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
         easyWaves.add(wave3);
 

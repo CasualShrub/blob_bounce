@@ -17,7 +17,7 @@ public abstract class OrdinaryFish extends Creature{
     protected float a;
     protected float b;
     protected static final float c = 0F;
-    protected static float apexY = GameConstants.Screen_Height/6; // maximum height of the parabola
+    protected static float apexY = GameConstants.Screen_Height/5; // maximum height of the parabola
 
     OrdinaryFish(float start_X, float end_X){
         if(start_X < end_X){
@@ -29,8 +29,10 @@ public abstract class OrdinaryFish extends Creature{
         this.xPosition = start_X;
         this.yPosition = c;
         this.end_X = end_X;
-        b = 4 * (apexY - c) / (end_X - start_X);
-        a = -b / (2 * (end_X - start_X));
+
+        float totalWidth = Math.abs(end_X - start_X);
+        b = (4 * apexY) / totalWidth;
+        a = (-4 * apexY) / (totalWidth * totalWidth);
     }
     @Override
     public float getStartX(){
@@ -48,20 +50,14 @@ public abstract class OrdinaryFish extends Creature{
     public void handleBouncedOn() { //ordinary fish all behave the same; so put this here
 
     }
-    public static void leftToRightParabola(Creature creature){
-        parabolicMotion(creature);
-    }
-    public static void rightToLeftParabola(Creature creature){
-        parabolicMotion(creature);
-    }
 
-    private static void parabolicMotion(Creature creature){
+    public static void parabolicMotion(Creature creature){
         float deltaTime = Gdx.graphics.getDeltaTime();
 
-        creature.xPosition += creature.xVelocity * deltaTime;
-        float dx = creature.xPosition - creature.getStartX();
+        creature.xPosition += creature.getXVelocity() * deltaTime;
+        float dx = Math.abs(creature.getX() - creature.getStartX());
 
-        creature.yPosition = creature.getLeadingCoefficient() * dx * dx + creature.getLinearCoefficient() * dx + c;
+        creature.yPosition = (creature.getLeadingCoefficient() * dx * dx) + (creature.getLinearCoefficient() * dx) + c;
     }
     //TODO: add methods to change the parameters of the parabolic motion?
 

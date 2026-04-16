@@ -17,10 +17,10 @@ public class Shark extends Creature{
     private boolean attacking;
     private boolean coolDown; //needs to cooldown after attacking
     private int attackCooldownCounter = GameConstants.SHARK_ATK_COOLDOWN;//ready to attack when the counter is 0'
-    protected static float defaultSpeed = 800;
+    protected static final float BASE_SPEED = 800;
     public Shark(float spawnTime, float spawnX, boolean movingLeft, Consumer<Creature> movementFunction) {
         creatureId = 5;
-        xVelocity = movingLeft? -defaultSpeed:defaultSpeed;
+        xVelocity = movingLeft? -BASE_SPEED:BASE_SPEED;
         yVelocity = 0;
         width = 260;
         height = 260;
@@ -140,9 +140,9 @@ public class Shark extends Creature{
 
             creature.setBounds();
             if(!creature.movingLeft){
-                creature.setXVelocity(Shark.defaultSpeed);
+                creature.setXVelocity(Shark.BASE_SPEED);
             }else{
-                creature.setXVelocity(-Shark.defaultSpeed);
+                creature.setXVelocity(-Shark.BASE_SPEED);
             }
             creature.setMovementFunction(Shark::swim);
 

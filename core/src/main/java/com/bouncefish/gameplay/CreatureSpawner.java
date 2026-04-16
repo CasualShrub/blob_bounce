@@ -2,6 +2,7 @@ package com.bouncefish.gameplay;
 
 import com.badlogic.gdx.Gdx;
 import com.bouncefish.entities.Creature;
+import com.bouncefish.entities.spawndata.CreatureSpawnData;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.ArrayList;
@@ -10,9 +11,6 @@ import java.util.PriorityQueue;
 
 // This class is responsible for handling the spawn timing and types of creatures based on game time / points
 public class CreatureSpawner {
-
-    // This objects holds all the wave data in the game.
-    private WaveRegistry waveRegistry;
 
     // This is the queue of creatures that will be spawned but haven't spawned yet
     private PriorityQueue<Creature> spawnQueue;
@@ -26,8 +24,10 @@ public class CreatureSpawner {
     private boolean isActive = false;
 
     public CreatureSpawner(ArrayList<Creature> creatureList) {
+        WaveRegistry.generateWaves();
+        WaveRegistry.populateWaveRegistry();
+
         this.creatureList = creatureList;
-        this.waveRegistry = new WaveRegistry();
         this.spawnQueue = new PriorityQueue<Creature>(Comparator.comparingDouble(Creature::getSpawnTime));
         this.spawnTimer = 0;
         this.currentWaveIndex = 0;
@@ -73,8 +73,10 @@ public class CreatureSpawner {
     }
 
     private void loadWave(int waveIndex){
-        this.currentWave = this.waveRegistry.getWave(waveIndex);
-        this.spawnQueue.addAll(this.currentWave.getCreatures());
+        this.currentWave = WaveRegistry.getWave(waveIndex);
+        for (CreatureSpawnData<?> spawnData : this.currentWave.getCreaturesToSpawn()) {
+            this.spawnQueue.add(spawnData.createInstance());
+        }
     }
 
     public ArrayList<Creature> spawnWave(int waveId) {

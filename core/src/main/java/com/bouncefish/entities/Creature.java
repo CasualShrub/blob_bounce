@@ -175,7 +175,6 @@ public abstract class Creature {
         return rotationAngle != 0F;
     }
 
-
     // Override these if you want your creature to attack!
     public void attack(){
         System.out.println("I'm not supposed to be attacking!");
@@ -207,5 +206,10 @@ public abstract class Creature {
     public float getStartX(){
         System.out.println("No start x for this creature");
         return GameConstants.Game_Width/2;
+    }
+
+    // Use this if you need to infer whether or not the creature should move left based purely off of spawnX
+    protected boolean shouldMoveLeft(float currentPosition){
+        return currentPosition >= GameConstants.Game_HalfWidth;
     }
 }

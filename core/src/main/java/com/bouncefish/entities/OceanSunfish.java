@@ -13,7 +13,7 @@ public class OceanSunfish extends Creature {
     private int flipCounter = 100;//counter used to decide when to flip. Use delta time to make it consistent
     private static Animation<TextureRegion> oceanSunfishAnimationNormal;
     private static Animation<TextureRegion> oceanSunfishAnimationFlipped;
-    private static float baseSunfishSpeed = 3;
+    private static final float BASE_SPEED = 200;
 
     public OceanSunfish(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
         this.creatureId = 3;
@@ -24,7 +24,7 @@ public class OceanSunfish extends Creature {
         this.yPosition = spawnY;
 
         this.movementSpeedMultiplier = speedMultiplier;
-        this.movementSpeed = baseSunfishSpeed * movementSpeedMultiplier;
+        this.movementSpeed = BASE_SPEED * movementSpeedMultiplier;
         this.movementSpeed = shouldMoveLeft(spawnX) ? -movementSpeed : movementSpeed;
         this.yVelocity = 0;
 
@@ -38,7 +38,7 @@ public class OceanSunfish extends Creature {
     }
 
     public static void normalMovement(Creature creature){
-        creature.xPosition += creature.movementSpeed;
+        creature.xPosition += creature.movementSpeed * Gdx.graphics.getDeltaTime();
     }
 
     @Override

@@ -36,10 +36,12 @@ public class OceanSunfish extends Creature {
     }
     public static void OceanSunfishMovementLeftToRight(Creature creature){
         creature.xPosition += creature.movementSpeed;
+        if(creature.xPosition > GameConstants.RIGHT_DEALLOCATE_X) creature.deactivate();
     }
 
     public static void OceanSunfishMovementRightToLeft(Creature creature){
         creature.xPosition -= creature.movementSpeed;
+        if(creature.xPosition < GameConstants.LEFT_DEALLOCATE_X) creature.deactivate();
     }
 
     @Override

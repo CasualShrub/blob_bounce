@@ -20,6 +20,7 @@ public class BounceGame implements GestureDetector.GestureListener {
     private CreatureSpawner _spawner;
     private ArrayList<Creature> _creatureList;
     private float cleanUpTimer = 0;
+    private static int debugCounter = 0;
 
     public BounceGame() {
         _creatureList = new ArrayList<>();
@@ -60,7 +61,18 @@ public class BounceGame implements GestureDetector.GestureListener {
 
         // Inform all creatures to move!
         for (Creature creature: _creatureList) {
-            creature.handleTimeStep();
+            if(creature.isActive()){
+                creature.handleTimeStep();
+            }
+            else if(!creature.tempDebugFlag){
+                //deallocate creature
+                //_creatureList.remove(creature);
+                //System.out.println(creature.getCreatureId() +"is now not active");
+                creature.setX((100 + debugCounter) % GameConstants.Game_Width);
+                creature.setY(GameConstants.Screen_Height/2);
+                debugCounter += 50;
+                creature.tempDebugFlag = true;
+            }
         }
 
         Water.handleTimeStep();

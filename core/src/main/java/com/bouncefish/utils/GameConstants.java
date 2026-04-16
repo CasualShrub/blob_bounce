@@ -33,9 +33,9 @@ public final class GameConstants {
     public static int WATER_LEVEL = 50; //the height of water level in pixel unit
     public static int SHARK_DECTECTION_WIDTH = 60;//attacks if bouncefish fall into this range
     public static int SHARK_DECTECTION_HEIGHT = 1600;
-    public static int SHARK_JUMP_HEIGHT = (int)(Screen_Height * 0.6);
+    public static int SHARK_JUMP_HEIGHT = (int)(Screen_Height * 0.42);
     public static int SHARK_ATK_COOLDOWN = 200;
-
-    //public static float jellyFishFrameDuration = 0.5F;
-    //public static float crabFrameDuration = 0.5F;
+    public static float LEFT_DEALLOCATE_X = -300;
+    public static float RIGHT_DEALLOCATE_X = Game_Width + 300;
+    public static float BELOW_DEALLOCATE_Y = WATER_LEVEL - 300;
 }

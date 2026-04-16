@@ -1,5 +1,6 @@
 package com.bouncefish.entities;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -38,11 +39,13 @@ public class Crab extends Creature {
 
     public static void leftToRight(Creature creature){
         creature.xPosition += creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+        if(creature.xPosition > GameConstants.RIGHT_DEALLOCATE_X) creature.deactivate();
     }
 
 
     public static void rightToLeft(Creature creature){
         creature.xPosition -= creature.movementSpeed * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+        if(creature.xPosition < GameConstants.LEFT_DEALLOCATE_X) creature.deactivate();
     }
 
 

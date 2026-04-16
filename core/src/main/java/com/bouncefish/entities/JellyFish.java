@@ -35,12 +35,14 @@ public class JellyFish extends Creature {
         creature.xPosition += creature.xVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
         creature.setYVelocity(scale * MathUtils.cos(angularFrequency * creature.xPosition));
         creature.yPosition += creature.yVelocity * Gdx.graphics.getDeltaTime();
+        if(creature.xPosition > GameConstants.RIGHT_DEALLOCATE_X) creature.deactivate();
     }
 
     public static void jellyFishRightToLeftMovement(Creature creature){
         creature.xPosition -= creature.xVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
         creature.setYVelocity(scale * MathUtils.cos(angularFrequency * creature.xPosition));
         creature.yPosition += creature.yVelocity * Gdx.graphics.getDeltaTime();
+        if(creature.xPosition < GameConstants.LEFT_DEALLOCATE_X) creature.deactivate();
     }
 
     @Override

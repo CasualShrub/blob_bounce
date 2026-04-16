@@ -38,6 +38,8 @@ public abstract class Creature {
     protected float boundOffsetX = 0F;
     protected float boundOffsetY = 0F;
     protected boolean movingLeft;
+    protected boolean active = true;
+    public boolean tempDebugFlag;
     public boolean isMovingLeft(){
         return movingLeft;
     }
@@ -207,5 +209,23 @@ public abstract class Creature {
     public float getStartX(){
         System.out.println("No start x for this creature");
         return GameConstants.Game_Width/2;
+    }
+    public float getParabolicMovementMaxHeight(){
+        System.out.println("No parabola for this creature");
+        return 0;
+    }
+    public float getParabolicMovementLeftEnd(){
+        System.out.println("No parabola for this creature");
+        return 0;
+    }
+    public float getParabolicMovementRightEnd(){
+        System.out.println("No parabola for this creature");
+        return 0;
+    }
+    public boolean isActive(){
+        return active;
+    }
+    public void deactivate(){
+        active = false;
     }
 }

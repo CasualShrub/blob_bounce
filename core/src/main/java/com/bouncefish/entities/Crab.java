@@ -13,14 +13,6 @@ public class Crab extends Creature {
     private static Animation<TextureRegion> crabAnimation;
     private static final float BASE_SPEED = 500;
 
-    public Crab(CrabSpawnData spawnData){
-        this(spawnData.getSpawnTime(),
-            spawnData.getSpawnX(), spawnData.getSpawnY(),
-            spawnData.getSpeedMultiplier(),
-            spawnData.getMovementFunction()
-        );
-    }
-
     public Crab(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
         this(spawnTime, spawnX, movementFunction);
         this.yPosition = GameConstants.WATER_LEVEL + spawnY;

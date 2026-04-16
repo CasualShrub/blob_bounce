@@ -118,6 +118,7 @@ public class BounceFish extends Creature {
                 }
                 else if (creature.isBouncable() && this.yVelocity < 0) {
                     bounce(creature);
+                    creature.handleBouncedOn();
                     break;
                 }
             }

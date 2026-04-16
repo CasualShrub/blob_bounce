@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "572741457789",
+    "project_id": "bouncefish-82bc8",
+    "storage_bucket": "bouncefish-82bc8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572741457789:android:de856ea526c72a9f435e14",
+        "android_client_info": {
+          "package_name": "com.bouncefish"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbatpL8zswQ5R3Y4ZpiIazaC6vXzoUVF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

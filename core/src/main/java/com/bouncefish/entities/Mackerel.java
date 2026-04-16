@@ -8,16 +8,18 @@ import java.util.function.Consumer;
 
 public class Mackerel extends OrdinaryFish{
     private static Animation<TextureRegion> mackerelAnimation;
-    public Mackerel(float spawnTime, float startX, float endX, Consumer<Creature> movementFunction) {
+    public Mackerel(float spawnTime, float startX, float endX, float speedMultiplier, Consumer<Creature> movementFunction) {
         super(startX,endX);
         creatureId = 4;
+
+        this.movementSpeedMultiplier = speedMultiplier;
         xVelocity = movingLeft ? -700 : 700;
+        this.xVelocity *= movementSpeedMultiplier;
         yVelocity = 0;
         width = 130;
         height = 130;
         movementSpeed = 0;
 
-        this.movementSpeedMultiplier = 1;
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
 

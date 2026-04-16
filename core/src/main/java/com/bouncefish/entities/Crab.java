@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 
 public class Crab extends Creature {
     private static Animation<TextureRegion> crabAnimation;
+    private static Animation<TextureRegion> deadCrabAnimation;
     private static final float BASE_SPEED = 500;
 
     public Crab(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
@@ -51,6 +52,9 @@ public class Crab extends Creature {
     }
     @Override
     public TextureRegion getAnimeFrame(){
+        if (isDead){
+            return deadCrabAnimation.getKeyFrame(stateTime,true);
+        }
         return crabAnimation.getKeyFrame(stateTime,true);
     }
     public static void initAnime(){
@@ -60,6 +64,11 @@ public class Crab extends Creature {
         frames[0] = new TextureRegion(texture1);
         frames[1] = new TextureRegion(texture2);
         crabAnimation = new Animation<>(0.5F,frames);
+
+        Texture texture3 = new Texture("creatures/crab/crab2.png");
+        TextureRegion[] frames2 = new TextureRegion[1];
+        frames2[0] = new TextureRegion(texture3);
+        deadCrabAnimation = new Animation<>(1F, frames2);
     }
 
 }

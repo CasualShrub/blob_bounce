@@ -28,6 +28,7 @@ import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 
+import com.bouncefish.leaderboard.LeaderboardService;
 import com.bouncefish.utils.GameConstants;
 import com.bouncefish.ui.MenuScreen;
 import com.bouncefish.ui.LeaderboardScreen;
@@ -64,6 +65,12 @@ public class Main extends ApplicationAdapter {
     private LeaderboardScreen leaderboardScreen;
     private GameOverScreen gameOverScreen;
 
+    private LeaderboardService leaderboardService;
+
+    public Main(LeaderboardService leaderboardService){
+        this.leaderboardService = leaderboardService;
+    }
+
 
     @Override
     public void create() {
@@ -79,7 +86,7 @@ public class Main extends ApplicationAdapter {
         _bounceGame = new BounceGame();
         _currentFish = _bounceGame.getBounceFish();
         menuScreen = new MenuScreen();
-        leaderboardScreen = new LeaderboardScreen();
+        leaderboardScreen = new LeaderboardScreen(this.leaderboardService);
         gameOverScreen = new GameOverScreen();
         currentState = GameState.MENU;
 

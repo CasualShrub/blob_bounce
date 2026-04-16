@@ -1,20 +1,63 @@
 package com.bouncefish.ui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.bouncefish.leaderboard.LeaderboardData;
+import com.bouncefish.leaderboard.LeaderboardService;
 
-public class LeaderboardScreen {
+import java.util.List;
 
+public class LeaderboardScreen extends ScreenAdapter {
+
+    private LeaderboardService service;
     private Texture background;
     private Texture backButton;
     private BitmapFont font;
 
-    public LeaderboardScreen() {
+    private Table table;
+    private Label statusLabel;
+
+    public LeaderboardScreen(LeaderboardService service) {
         background = new Texture("leaderboard_bg.png");
         backButton = new Texture("back_button.png");
         font = new BitmapFont();
+
+        Stage stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+
+        table = new Table();
+        table.setFillParent(true);
+        stage.addActor(table);
+
+        statusLabel = new Label("Loading Scores...", new Skin());
+        this.service = service;
+        fetchScores(service);
+    }
+
+    private void fetchScores(LeaderboardService service){
+        service.fetchTopScores(new LeaderboardService.Callback() {
+            @Override
+            public void onDataRetrieved(List<LeaderboardData> scores) {
+                //updateUI(scores);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                System.out.println("BRUH!");
+            }
+        });
+    }
+
+    private void updateUI(){
+
     }
 
     public void render(SpriteBatch batch, int score) {

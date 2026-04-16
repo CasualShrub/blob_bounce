@@ -37,7 +37,7 @@ public class LeaderboardScreen extends ScreenAdapter {
         table.setFillParent(true);
         stage.addActor(table);
 
-        statusLabel = new Label("Loading Scores...", new Skin());
+        //statusLabel = new Label("Loading Scores...", new Skin());
         this.service = service;
         fetchScores(service);
     }
@@ -87,7 +87,6 @@ public class LeaderboardScreen extends ScreenAdapter {
     }
 
     public boolean isBackPressed() {
-
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
 

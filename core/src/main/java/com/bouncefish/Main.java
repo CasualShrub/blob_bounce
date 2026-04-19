@@ -25,6 +25,7 @@ import com.bouncefish.entities.OceanSunfish;
 import com.bouncefish.entities.Shark;
 import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
+import com.bouncefish.gameplay.LeaderboardService;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 
@@ -50,6 +51,16 @@ public class Main extends ApplicationAdapter {
 
     private ShapeRenderer _shapeRenderer;
     private Stage _stage;
+
+    private static LeaderboardService leaderboardService;
+
+    public static void setLeaderboardService(LeaderboardService service) {
+        leaderboardService = service;
+    }
+
+    public static LeaderboardService getLeaderboardService() {
+        return leaderboardService;
+    }
 
 
     private enum GameState{
@@ -162,7 +173,7 @@ public class Main extends ApplicationAdapter {
             _shapeRenderer.setColor(new Color(0x0000ff22));
 
             _shapeRenderer.rectLine(GameConstants.LEFT_CONTROL_BORDER, Gdx.graphics.getHeight(), GameConstants.LEFT_CONTROL_BORDER, 0, 10f);
-            _shapeRenderer.rectLine(Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, Gdx.graphics.getHeight(), Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, 0, 10f);
+            _shapeRenderer.rectLine(Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, Gdx.graphics.getHeight(), GameConstants.RIGHT_CONTROL_BORDER, 0, 10f);
 
 
             _shapeRenderer.end();
@@ -192,7 +203,12 @@ public class Main extends ApplicationAdapter {
 
             }
             if(_currentFish.isDead()){
-                currentState = GameState.GAME_OVER;
+                if (currentState != GameState.GAME_OVER) {
+                    currentState = GameState.GAME_OVER;
+                    if (leaderboardService != null) {
+                        leaderboardService.submitScore("Player", ProgressTracker.getScore());
+                    }
+                }
             }
             TextureRegion waterFrame = Water.getAnimeFrame();
             _batch.draw(waterFrame, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

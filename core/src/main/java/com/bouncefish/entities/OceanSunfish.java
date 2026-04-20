@@ -42,7 +42,7 @@ public class OceanSunfish extends Creature {
 
     @Override
     public void handleBouncedOn() {
-        isDead = true;
+        isBouncedOn = true;
     }
     @Override
     public void handleTimeStep(){

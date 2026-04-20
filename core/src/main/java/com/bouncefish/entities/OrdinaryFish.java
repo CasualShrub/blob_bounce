@@ -48,7 +48,17 @@ public abstract class OrdinaryFish extends Creature{
     }
     @Override
     public void handleBouncedOn() { //ordinary fish all behave the same; so put this here
+        isBouncedOn = true;
+        isBouncable = false;
+        float newXVelocity = movingLeft? -50:50;
+        setXVelocity(newXVelocity);
+        setYVelocity(-500);
+        setMovementFunction(OrdinaryFish::bouncedOnMovement);
+    }
 
+    public static void bouncedOnMovement(Creature creature){
+        creature.xPosition += creature.xVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+        creature.yPosition += creature.yVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
     }
 
     public static void parabolicMotion(Creature creature){

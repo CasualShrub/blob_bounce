@@ -64,7 +64,7 @@ public class BounceFish extends Creature {
         return isBouncing;
     }
     public boolean isDead() {
-        return isDead;
+        return isBouncedOn;
     }
 
     @Override
@@ -83,14 +83,14 @@ public class BounceFish extends Creature {
 
         stateTime += Gdx.graphics.getDeltaTime();
 
-        if (isDead){
+        if (isBouncedOn){
             return;
         }
         if(isParalyzed){
             paralyzedTime += Gdx.graphics.getDeltaTime();
             if(paralyzedTime > GameConstants.MAX_PARALYZED_TIME){
                 isParalyzed = false;
-                isDead = false;
+                isBouncedOn = false;
                 paralyzedTime = 0F;
             }
         }
@@ -113,7 +113,7 @@ public class BounceFish extends Creature {
                 else if (creatureId == 2){ // Jellyfish!
                     isParalyzed = true;
                     applyDeathVelocity();
-                    isDead = true; //TODO: Replace this with isStunned instead of isDead? He technically isn't dead yet.
+                    isBouncedOn = true; //TODO: Replace this with isStunned instead of isDead? He technically isn't dead yet.
                     break;
                 }
                 else if (creature.isBouncable() && this.yVelocity < 0) {
@@ -126,13 +126,13 @@ public class BounceFish extends Creature {
 
         // Lose Game! Initiate game over
         if (!GameConstants.IS_IMMORTAL){
-            if (getY() <= GameConstants.GROUND_HEIGHT) {
+            if (getY() <= GameConstants.WATER_LEVEL) {
               die();
             }
         }
         // Keep bouncing if you are immortal.
         else {
-            if (getY() <= GameConstants.GROUND_HEIGHT) {
+            if (getY() <= GameConstants.WATER_LEVEL) {
                 groundBounce();
             }
         }
@@ -153,19 +153,19 @@ public class BounceFish extends Creature {
     }
 
     private void die(float heightOfDeath) {
-        isDead = true;
+        isBouncedOn = true;
         setY(heightOfDeath);
         applyDeathVelocity();
         xVelocity *= -1.2;
     }
 
     private void die(){
-        die(GameConstants.GROUND_HEIGHT);
+        die(GameConstants.WATER_LEVEL);
     }
 
     // Only used in cheats
     private void groundBounce(){
-        setY(GameConstants.GROUND_HEIGHT);
+        setY(GameConstants.WATER_LEVEL);
         reverseVelocityForBounce();
         SoundManager.playBounceSound();
     }

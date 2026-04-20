@@ -171,7 +171,7 @@ public class Main extends ApplicationAdapter {
         _batch.begin(); // START RENDERING IN-GAME ENTITIES
 
         if (currentState == GameState.PLAYING || currentState == GameState.GAME_OVER){
-            if (_currentFish.isDead()){
+            if (_currentFish.isDead() || _currentFish.isParalyzed()){
                 _bounceFishSprite = _image3;
             }
             else if (_currentFish.isBouncing()){

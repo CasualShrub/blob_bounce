@@ -64,15 +64,6 @@ public class BounceGame implements GestureDetector.GestureListener {
             if(creature.isActive()){
                 creature.handleTimeStep();
             }
-            else if(!creature.tempDebugFlag){
-                //deallocate creature
-                //_creatureList.remove(creature);
-                //System.out.println(creature.getCreatureId() +"is now not active");
-                creature.setX((100 + debugCounter) % GameConstants.Game_Width);
-                creature.setY(GameConstants.Screen_Height/2);
-                debugCounter += 50;
-                creature.tempDebugFlag = true;
-            }
         }
 
         Water.handleTimeStep();

@@ -1,8 +1,6 @@
 package com.bouncefish.utils;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public final class GameConstants {
 
@@ -16,7 +14,7 @@ public final class GameConstants {
     //public static final double H_ACCEL = 45;        // How fast bouncefish should speed up when inputting left/right (convert this to immediate velocity?)
     public static final float H_SPEED = 800; // Base value for horizontal 'movement' speed
     public static final double MAX_H_SPEED = 700;    // Maximum horizontal speed
-    public static final float GROUND_HEIGHT = 0; // Y position of ground level
+    public static final float WATER_LEVEL = 50; // Y position of ground level
     public static final int RIGHT_CONTROL_BORDER = 400;
     public static final int LEFT_CONTROL_BORDER = 400;
     public static boolean IS_DEBUG = true;
@@ -30,7 +28,7 @@ public final class GameConstants {
     public static final float MAX_PARALYZED_TIME = 1F;
     public final static float SPAWN_STASIS_SECONDS = 3F;
     public final static float CLEANUP_FREQUENCY = 3F; // How often in seconds to deallocate creatures out of bounds
-    public static int WATER_LEVEL = 50; //the height of water level in pixel unit
+    //public static int WATER_LEVEL = 50; //the height of water level in pixel unit
     public static int SHARK_DECTECTION_WIDTH = 60;//attacks if bouncefish fall into this range
     public static int SHARK_DECTECTION_HEIGHT = 1600;
     public static int SHARK_JUMP_HEIGHT = (int)(Screen_Height * 0.42);

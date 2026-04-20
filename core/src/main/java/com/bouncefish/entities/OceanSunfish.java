@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.function.Consumer;
@@ -46,7 +45,7 @@ public class OceanSunfish extends Creature {
 
     @Override
     public void handleBouncedOn() {
-        isDead = true;
+        isBouncedOn = true;
     }
     @Override
     public void handleTimeStep(){

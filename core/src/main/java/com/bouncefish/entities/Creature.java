@@ -3,14 +3,9 @@ package com.bouncefish.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import java.util.function.Consumer;
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Vector2;
 import com.bouncefish.utils.GameConstants;
 
 public abstract class Creature {
@@ -29,7 +24,7 @@ public abstract class Creature {
     protected boolean isBouncable = true;
 
     // Runtime flags
-    protected boolean isDead = false;
+    protected boolean isBouncedOn = false; //bouncefish doesn't kill
     protected double spawnTime = 0;
     protected float rotationAngle;//used to implement the curvilinear motion of ordinary fish
     protected float stateTime;
@@ -39,7 +34,6 @@ public abstract class Creature {
     protected float boundOffsetY = 0F;
     protected boolean movingLeft;
     protected boolean active = true;
-    public boolean tempDebugFlag;
     public boolean isMovingLeft(){
         return movingLeft;
     }

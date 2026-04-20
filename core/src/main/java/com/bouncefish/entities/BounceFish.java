@@ -1,9 +1,7 @@
 package com.bouncefish.entities;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.Timer;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
@@ -65,7 +63,7 @@ public class BounceFish extends Creature {
         return isBouncing;
     }
     public boolean isDead() {
-        return isDead;
+        return isBouncedOn;
     }
 
     @Override
@@ -83,14 +81,14 @@ public class BounceFish extends Creature {
         updateBounds();
         stateTime += Gdx.graphics.getDeltaTime();
 
-        if (isDead){
+        if (isBouncedOn){
             return;
         }
         if(isParalyzed){
             paralyzedTime += Gdx.graphics.getDeltaTime();
             if(paralyzedTime > GameConstants.MAX_PARALYZED_TIME){
                 isParalyzed = false;
-                isDead = false;
+                isBouncedOn = false;
                 paralyzedTime = 0F;
             }
         }
@@ -113,11 +111,12 @@ public class BounceFish extends Creature {
                 else if (creatureId == 2){ // Jellyfish!
                     isParalyzed = true;
                     applyDeathVelocity();
-                    isDead = true; //TODO: Replace this with isStunned instead of isDead? He technically isn't dead yet.
+                    //isBouncedOn = true; //TODO: Replace this with isStunned instead of isDead? He technically isn't dead yet.
                     break;
                 }
                 else if (creature.isBouncable() && this.yVelocity < 0) {
                     bounce(creature);
+                    creature.handleBouncedOn();
                     break;
                 }
             }
@@ -125,13 +124,13 @@ public class BounceFish extends Creature {
 
         // Lose Game! Initiate game over
         if (!GameConstants.IS_IMMORTAL){
-            if (getY() <= GameConstants.GROUND_HEIGHT) {
+            if (getY() <= GameConstants.WATER_LEVEL) {
               die();
             }
         }
         // Keep bouncing if you are immortal.
         else {
-            if (getY() <= GameConstants.GROUND_HEIGHT) {
+            if (getY() <= GameConstants.WATER_LEVEL) {
                 groundBounce();
             }
         }
@@ -152,15 +151,15 @@ public class BounceFish extends Creature {
     }
 
     private void die(){
-        isDead = true;
-        setY(GameConstants.GROUND_HEIGHT);
+        isBouncedOn = true; //it's not truly bounced on
+        setY(GameConstants.WATER_LEVEL);
         applyDeathVelocity();
         xVelocity *= -1.2;
     }
 
     // Only used in cheats
     private void groundBounce(){
-        setY(GameConstants.GROUND_HEIGHT);
+        setY(GameConstants.WATER_LEVEL);
         reverseVelocityForBounce();
         SoundManager.playBounceSound();
     }

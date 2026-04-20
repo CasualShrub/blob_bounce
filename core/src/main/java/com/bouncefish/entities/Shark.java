@@ -17,10 +17,10 @@ public class Shark extends Creature{
     private boolean attacking;
     private boolean coolDown; //needs to cooldown after attacking
     private int attackCooldownCounter = GameConstants.SHARK_ATK_COOLDOWN;//ready to attack when the counter is 0'
-    protected static float defaultSpeed = 800;
+    protected static final float BASE_SPEED = 800;
     public Shark(float spawnTime, float spawnX, boolean movingLeft, Consumer<Creature> movementFunction) {
         creatureId = 5;
-        xVelocity = movingLeft? -defaultSpeed:defaultSpeed;
+        xVelocity = movingLeft? -BASE_SPEED:BASE_SPEED;
         yVelocity = 0;
         width = 260;
         height = 260;
@@ -35,23 +35,24 @@ public class Shark extends Creature{
 
         setBounds();
     }
+
     @Override
     public void updateBounds(){
         if(readyToAttack){
-            bounds.setX((int)getX() - GameConstants.SHARK_DECTECTION_WIDTH);
-            bounds.setY((int)getY());
+            bounds.setX(getX() - GameConstants.SHARK_DECTECTION_WIDTH);
+            bounds.setY(getY());
         } else if(attacking){
-            bounds.setX((int)getX());
-            bounds.setY((int)getY() + height);
+            bounds.setX(getX());
+            bounds.setY(getY() + height);
         }else{
-            bounds.setX((int)getX());
-            bounds.setY((int)getY());
+            bounds.setX(getX());
+            bounds.setY(getY());
         }
 
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("s1.png");
-        Texture texture2 = new Texture("s2.png");
+        Texture texture1 = new Texture("creatures/shark/s1.png");
+        Texture texture2 = new Texture("creatures/shark/s2.png");
         TextureRegion[] frames1 = new TextureRegion[1];
         TextureRegion[] frames2 = new TextureRegion[1];
         frames1[0] = new TextureRegion(texture1);
@@ -81,12 +82,12 @@ public class Shark extends Creature{
 
         if(readyToAttack){//the shark is looking for the bouncefish
             bounds = new Rectangle(
-                (int)(getX() - GameConstants.SHARK_DECTECTION_WIDTH), (int)getY(),
+                (getX() - GameConstants.SHARK_DECTECTION_WIDTH), getY(),
                 GameConstants.SHARK_DECTECTION_WIDTH*2 + width, GameConstants.SHARK_DECTECTION_HEIGHT);
         }else if(attacking){ //the shark is jumping up
-            bounds = new Rectangle((int)getX(), (int)getY() + height, width, 42);//the hit box, a width X 42 box above the shark
+            bounds = new Rectangle(getX(), getY() + height, width, 42);//the hit box, a width X 42 box above the shark
         }else{//the shark is in the water(and cooling down)
-            bounds = new Rectangle((int)getX(), (int)getY(),
+            bounds = new Rectangle(getX(), getY(),
                 getWidth(), getHeight());
         }
     }
@@ -140,9 +141,9 @@ public class Shark extends Creature{
 
             creature.setBounds();
             if(!creature.movingLeft){
-                creature.setXVelocity(Shark.defaultSpeed);
+                creature.setXVelocity(Shark.BASE_SPEED);
             }else{
-                creature.setXVelocity(-Shark.defaultSpeed);
+                creature.setXVelocity(-Shark.BASE_SPEED);
             }
             creature.setMovementFunction(Shark::swim);
 

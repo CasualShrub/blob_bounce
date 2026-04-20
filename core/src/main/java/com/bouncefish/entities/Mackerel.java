@@ -9,24 +9,25 @@ import java.util.function.Consumer;
 
 public class Mackerel extends OrdinaryFish{
     private static Animation<TextureRegion> mackerelAnimation;
-    public Mackerel(float spawnTime, float startX, float endX, Consumer<Creature> movementFunction) {
-        super(startX,endX, GameConstants.Screen_Height/4);
+    private final int BASE_SPEED = 700;
+    public Mackerel(float spawnTime, float startX, float endX, float speedMultiplier, Consumer<Creature> movementFunction) {
+        super(startX,endX);
         creatureId = 4;
-        xVelocity = movingLeft ? -500 : 500;
-        yVelocity = 0;
         width = 130;
         height = 130;
-        movementSpeed = 0;
 
-        this.movementSpeedMultiplier = 1;
+        this.movementSpeedMultiplier = speedMultiplier;
+        xVelocity = movingLeft ? -BASE_SPEED : BASE_SPEED;
+        this.xVelocity *= movementSpeedMultiplier;
+
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
 
         setBounds();
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("アジ.png");
-        Texture texture2 = new Texture("アジ2.png");
+        Texture texture1 = new Texture("creatures/fish/アジ.png");
+        Texture texture2 = new Texture("creatures/fish/アジ2.png");
         TextureRegion[] frames = new TextureRegion[2];
         frames[0] = new TextureRegion(texture1);
         frames[1] = new TextureRegion(texture2);

@@ -25,9 +25,13 @@ import com.bouncefish.entities.OceanSunfish;
 import com.bouncefish.entities.Shark;
 import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
+import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
+
 import com.bouncefish.utils.GameConstants;
 import com.bouncefish.ui.MenuScreen;
+import com.bouncefish.ui.LeaderboardScreen;
+import com.bouncefish.ui.GameOverScreen;
 
 import java.util.ArrayList;
 
@@ -47,27 +51,36 @@ public class Main extends ApplicationAdapter {
     private ShapeRenderer _shapeRenderer;
     private Stage _stage;
 
+
     private enum GameState{
         MENU,
-        PLAYING
+        PLAYING,
+        LEADERBOARD,
+        GAME_OVER
     }
 
     private GameState currentState;
     private MenuScreen menuScreen;
+    private LeaderboardScreen leaderboardScreen;
+    private GameOverScreen gameOverScreen;
+
 
     @Override
     public void create() {
         _batch = new SpriteBatch();
         _shapeRenderer = new ShapeRenderer();
-        _image = new Texture("blob1.png");
-        _image2 = new Texture("blob2.png");
-        _image3 = new Texture("blob3.png");
-        _crabImagePlaceholder = new Texture("crab1.png");
+        _image = new Texture("player/blob1.png");
+        _image2 = new Texture("player/blob2.png");
+        _image3 = new Texture("player/blob3.png");
+        _crabImagePlaceholder = new Texture("creatures/crab/crab1.png");
         _background = new Texture("background_placeholder.jpg");
         _water = new Texture("water.png");
         _soundManager = new SoundManager();
         _bounceGame = new BounceGame();
+        _currentFish = _bounceGame.getBounceFish();
         menuScreen = new MenuScreen();
+        leaderboardScreen = new LeaderboardScreen();
+        gameOverScreen = new GameOverScreen();
         currentState = GameState.MENU;
 
         JellyFish.initAnime();
@@ -109,6 +122,14 @@ public class Main extends ApplicationAdapter {
         //OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
+    private void resetGame(){
+        ProgressTracker.reset();
+
+        // maybe tell the spawner to stop spawning crabs for now?
+
+        // reset fish position to the start, and pause his movement.
+    }
+
     @Override
     public void render() {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
@@ -140,7 +161,6 @@ public class Main extends ApplicationAdapter {
 
             _shapeRenderer.setColor(new Color(0x0000ff22));
 
-
             _shapeRenderer.rectLine(GameConstants.LEFT_CONTROL_BORDER, Gdx.graphics.getHeight(), GameConstants.LEFT_CONTROL_BORDER, 0, 10f);
             _shapeRenderer.rectLine(Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, Gdx.graphics.getHeight(), Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, 0, 10f);
 
@@ -150,7 +170,7 @@ public class Main extends ApplicationAdapter {
 
         _batch.begin(); // START RENDERING IN-GAME ENTITIES
 
-        if (currentState == GameState.PLAYING){
+        if (currentState == GameState.PLAYING || currentState == GameState.GAME_OVER){
             if (_currentFish.isDead() || _currentFish.isParalyzed()){
                 _bounceFishSprite = _image3;
             }
@@ -171,26 +191,51 @@ public class Main extends ApplicationAdapter {
                 }
 
             }
+            if(_currentFish.isDead()){
+                currentState = GameState.GAME_OVER;
+            }
             TextureRegion waterFrame = Water.getAnimeFrame();
             _batch.draw(waterFrame, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
         _batch.end(); // END RENDERING IN-GAME ENTITIES
 
-        _batch.begin(); // START RENDERING UI
+
+        // START RENDERING UI
 
         if (currentState == GameState.MENU){
             menuScreen.render(_batch);
-            if(menuScreen.isPlayPressed()){
-                currentState = GameState.PLAYING;
-                _bounceGame.startGame();
-            }
+            int button = menuScreen.getButtonPressed();
+
+           if(button == 1){
+               currentState = GameState.PLAYING;
+               _bounceGame.startGame();
+           } else if(button == 2){
+               currentState = GameState.LEADERBOARD;
+           }
         }
         else if (currentState == GameState.PLAYING){
             // Draw in game UI
         }
 
-        _batch.end(); // END RENDERING UI
+        else if(currentState == GameState.LEADERBOARD){
+            leaderboardScreen.render(_batch, ProgressTracker.getScore());
+
+            if(leaderboardScreen.isBackPressed()){
+                currentState = GameState.MENU;
+            }
+        }
+
+        else if(currentState == GameState.GAME_OVER){
+            gameOverScreen.render(_batch, ProgressTracker.getScore());
+
+            if(gameOverScreen.isTouched()){
+                resetGame();
+                currentState = GameState.MENU;
+            }
+        }
+
+        // END RENDERING UI
 
         _stage.draw();
     }

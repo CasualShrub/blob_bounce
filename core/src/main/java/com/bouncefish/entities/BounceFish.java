@@ -3,6 +3,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Timer;
+import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
 
@@ -79,6 +80,7 @@ public class BounceFish extends Creature {
         // Update x and y position based on velocity
         updatePosition();
         updateBounds();
+
         stateTime += Gdx.graphics.getDeltaTime();
 
         if (isBouncedOn){
@@ -101,7 +103,7 @@ public class BounceFish extends Creature {
                     if(creature.isReadyToAttack()){
                         creature.attack();
                     }else if(creature.isAttacking()){
-                        die();
+                        die(this.getY());
                         break;
                     }else{
                         bounce(creature);
@@ -111,7 +113,7 @@ public class BounceFish extends Creature {
                 else if (creatureId == 2){ // Jellyfish!
                     isParalyzed = true;
                     applyDeathVelocity();
-                    //isBouncedOn = true; //TODO: Replace this with isStunned instead of isDead? He technically isn't dead yet.
+                    isBouncedOn = true; //TODO: Replace this with isStunned instead of isDead? He technically isn't dead yet.
                     break;
                 }
                 else if (creature.isBouncable() && this.yVelocity < 0) {
@@ -150,11 +152,15 @@ public class BounceFish extends Creature {
         }
     }
 
-    private void die(){
-        isBouncedOn = true; //it's not truly bounced on
-        setY(GameConstants.WATER_LEVEL);
+    private void die(float heightOfDeath) {
+        isBouncedOn = true;
+        setY(heightOfDeath);
         applyDeathVelocity();
         xVelocity *= -1.2;
+    }
+
+    private void die(){
+        die(GameConstants.WATER_LEVEL);
     }
 
     // Only used in cheats
@@ -167,6 +173,7 @@ public class BounceFish extends Creature {
     private void bounce(Creature creature){
         setY(creature.getHeight() + creature.getY());
         reverseVelocityForBounce();
+        ProgressTracker.increaseScore();
 
         //TODO: call the getBouncedOn method of creature
         SoundManager.playBounceSound();

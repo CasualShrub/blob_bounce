@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Matrix4;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.function.Consumer;
@@ -64,12 +63,12 @@ public class JellyFish extends Creature {
 
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("creatures/jellyfish/j1.png");
-        Texture texture2 = new Texture("creatures/jellyfish/j2.png");
-        TextureRegion[] frames = new TextureRegion[2];
-        frames[0] = new TextureRegion(texture1);
-        frames[1] = new TextureRegion(texture2);
-        jellyFishAnimation = new Animation<>(0.5f, frames);
+        TextureRegion[] frames = new TextureRegion[15];
+        for(int i=0;i<15;i++){
+            frames[i] = new TextureRegion(new Texture("creatures/jellyfish/f"+i+".png"));
+        }
+
+        jellyFishAnimation = new Animation<>(0.08f, frames);
     }
 
 }

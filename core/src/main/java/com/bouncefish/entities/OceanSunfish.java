@@ -26,6 +26,7 @@ public class OceanSunfish extends Creature {
         this.movementSpeedMultiplier = speedMultiplier;
         this.movementSpeed = BASE_SPEED * movementSpeedMultiplier;
         this.movementSpeed = shouldMoveLeft(spawnX) ? -movementSpeed : movementSpeed;
+        this.movingLeft = shouldMoveLeft(spawnX) ? true : false;
         this.yVelocity = 0;
 
         this.movementFunction = movementFunction;

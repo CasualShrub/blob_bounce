@@ -64,7 +64,10 @@ public class WaveRegistry {
         wave1.add(new CrabSpawnData(9.2f, RIGHT_SPAWN_X, Crab::normalMovement));
         wave1.add(new CrabSpawnData(10f, RIGHT_SPAWN_X, Crab::normalMovement));
         wave1.add(new SharkSpawnData(1F,RIGHT_SPAWN_X,true, 1, Shark::swim));
-        wave1.add(new JellyfishSpawnData(3f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));
+        wave1.add(new JellyfishSpawnData(1f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));
+        wave1.add(new JellyfishSpawnData(1.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
+        wave1.add(new JellyfishSpawnData(2f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
+        wave1.add(new JellyfishSpawnData(2.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
         wave1.add(new CrabSpawnData(12f, RIGHT_SPAWN_X, 0, 1.5f, Crab::normalMovement));
         easyWaves.add(wave1);
 
@@ -77,6 +80,10 @@ public class WaveRegistry {
         wave2.add(new CrabSpawnData(5f, RIGHT_SPAWN_X, 0, 1.3f, Crab::normalMovement));
         wave2.add(new CrabSpawnData(7f, LEFT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
         wave2.add(new CrabSpawnData(6f, RIGHT_SPAWN_X, 0, 1.5f, Crab::normalMovement));
+        wave2.add(new JellyfishSpawnData(1f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));
+        wave2.add(new JellyfishSpawnData(1.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
+        wave2.add(new JellyfishSpawnData(2f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
+        wave2.add(new JellyfishSpawnData(2.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
         easyWaves.add(wave2);
 
         Wave wave3 = new Wave(8f);
@@ -86,6 +93,10 @@ public class WaveRegistry {
         wave3.add(new MackerelSpawnData(4f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
         wave3.add(new MackerelSpawnData(5f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
         wave3.add(new MackerelSpawnData(6f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
+        wave3.add(new JellyfishSpawnData(1f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));
+        wave3.add(new JellyfishSpawnData(1.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
+        wave3.add(new JellyfishSpawnData(2f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
+        wave3.add(new JellyfishSpawnData(2.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
         wave3.add(new CrabSpawnData(7f, LEFT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
         easyWaves.add(wave3);
 

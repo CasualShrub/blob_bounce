@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -51,6 +52,7 @@ public class Main extends ApplicationAdapter {
 
     private ShapeRenderer _shapeRenderer;
     private Stage _stage;
+    private BitmapFont _scoreFont;
 
     private static LeaderboardService leaderboardService;
 
@@ -93,6 +95,10 @@ public class Main extends ApplicationAdapter {
         leaderboardScreen = new LeaderboardScreen();
         gameOverScreen = new GameOverScreen();
         currentState = GameState.MENU;
+
+        _scoreFont = new BitmapFont();
+        _scoreFont.getData().setScale(4f);
+        _scoreFont.setColor(Color.WHITE);
 
         JellyFish.initAnime();
         Crab.initAnime();
@@ -151,7 +157,10 @@ public class Main extends ApplicationAdapter {
 
         ArrayList<Creature> creatureList = _bounceGame.getCreatureList();
 
-        _bounceGame.timeStep();
+        // Only update logic if NOT in Game Over state
+        if (currentState != GameState.GAME_OVER) {
+            _bounceGame.timeStep();
+        }
         _currentFish = _bounceGame.getBounceFish();
 
         _batch.begin();
@@ -212,6 +221,11 @@ public class Main extends ApplicationAdapter {
             }
             TextureRegion waterFrame = Water.getAnimeFrame();
             _batch.draw(waterFrame, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+            // DRAW LIVE SCORE (Top Middle)
+            if (currentState == GameState.PLAYING) {
+                _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), Gdx.graphics.getWidth() / 2f - 20, Gdx.graphics.getHeight() - 100);
+            }
         }
 
         _batch.end(); // END RENDERING IN-GAME ENTITIES
@@ -243,7 +257,10 @@ public class Main extends ApplicationAdapter {
         }
 
         else if(currentState == GameState.GAME_OVER){
+            // WE DON'T END BATCH HERE. We let the game render below, then overlay the UI.
+            _batch.begin();
             gameOverScreen.render(_batch, ProgressTracker.getScore());
+            _batch.end();
 
             if(gameOverScreen.isTouched()){
                 resetGame();
@@ -267,6 +284,7 @@ public class Main extends ApplicationAdapter {
         _shapeRenderer.dispose();
         _soundManager.disposeSounds();
         menuScreen.dispose();
+        _scoreFont.dispose();
     }
 
     private void toggleDebug(){

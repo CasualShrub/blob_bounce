@@ -37,9 +37,6 @@ import java.util.ArrayList;
 
 public class Main extends ApplicationAdapter {
     private SpriteBatch _batch;
-    private Texture _image;
-    private Texture _image2;
-    private Texture _image3;
     private Texture _background;
     private Texture _crabImagePlaceholder;
     private Texture _bounceFishSprite;
@@ -69,9 +66,6 @@ public class Main extends ApplicationAdapter {
     public void create() {
         _batch = new SpriteBatch();
         _shapeRenderer = new ShapeRenderer();
-        _image = new Texture("player/blob1.png");
-        _image2 = new Texture("player/blob2.png");
-        _image3 = new Texture("player/blob3.png");
         _crabImagePlaceholder = new Texture("creatures/crab/crab1.png");
         _background = new Texture("background_placeholder.jpg");
         _water = new Texture("water.png");
@@ -135,13 +129,12 @@ public class Main extends ApplicationAdapter {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
 
         if (_currentFish == null){
-            _currentFish = _bounceGame.getBounceFish();
+            return;
         }
 
         ArrayList<Creature> creatureList = _bounceGame.getCreatureList();
 
         _bounceGame.timeStep();
-        _currentFish = _bounceGame.getBounceFish();
 
         _batch.begin();
         _batch.draw(_background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -171,16 +164,7 @@ public class Main extends ApplicationAdapter {
         _batch.begin(); // START RENDERING IN-GAME ENTITIES
 
         if (currentState == GameState.PLAYING || currentState == GameState.GAME_OVER){
-            if (_currentFish.isDead() || _currentFish.isParalyzed()){
-                _bounceFishSprite = _image3;
-            }
-            else if (_currentFish.isBouncing()){
-                _bounceFishSprite = _image2;
-            }
-            else {
-                _bounceFishSprite = _image;
-            }
-            _batch.draw(_bounceFishSprite, _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
+            _batch.draw(_currentFish.getAnimeFrame(), _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
 
             for (Creature creature:creatureList) {
                 TextureRegion currentFrame = creature.getAnimeFrame();
@@ -243,9 +227,6 @@ public class Main extends ApplicationAdapter {
     @Override
     public void dispose() {
         _batch.dispose();
-        _image.dispose();
-        _image2.dispose();
-        _image3.dispose();
         _bounceFishSprite.dispose();
         _crabImagePlaceholder.dispose();
         _shapeRenderer.dispose();

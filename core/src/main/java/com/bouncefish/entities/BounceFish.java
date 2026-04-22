@@ -1,5 +1,6 @@
 package com.bouncefish.entities;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Timer;
@@ -15,7 +16,8 @@ public class BounceFish extends Creature {
     private boolean isParalyzed = false;
     private float spawnStasisTimer = 0; // Timer that tracks how long to remain in the air when spawned
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
-    private static Animation<TextureRegion> bounceFishAnimation;
+    private static Animation<TextureRegion> downAnimation;
+    private static Animation<TextureRegion> upAnimation;
 
     public BounceFish(ArrayList<Creature> creatureList) {
         creatureId = 0;
@@ -27,6 +29,8 @@ public class BounceFish extends Creature {
         height = 130;
         this.creatureList = creatureList;
         setBounds(); //Fish has a physical size needed for collision
+        initAnime();
+
     }
 
     public void reverseVelocityForBounce(){
@@ -69,13 +73,19 @@ public class BounceFish extends Creature {
 
     @Override
     public void handleTimeStep() {
+        System.out.println("Y Velocity: " + yVelocity);
+
         if (spawnStasisTimer < GameConstants.SPAWN_STASIS_SECONDS){
             spawnStasisTimer += Gdx.graphics.getDeltaTime();
             return;
         }
 
         // Force of gravity
+        boolean wasGoingUp = yVelocity > 0;
         decrementYVelocity(GameConstants.GRAVITY);
+        if (wasGoingUp && yVelocity <= 0){
+            stateTime = 0;
+        }
 
         // Update x and y position based on velocity
         updatePosition();
@@ -98,6 +108,7 @@ public class BounceFish extends Creature {
         //Like Mario jumping on Enemy
         for (Creature creature : creatureList) {
             if (this.bounds.overlaps(creature.bounds)){
+                stateTime = 0;
                 int creatureId = creature.getCreatureId();
                 if(creatureId == 5){ // Shark!
                     if(creature.isReadyToAttack()){
@@ -189,7 +200,66 @@ public class BounceFish extends Creature {
     }
     @Override
     public TextureRegion getAnimeFrame(){
-        return bounceFishAnimation.getKeyFrame(stateTime);
+//        if (this.isDead() || this.isParalyzed()){
+//            return
+//        }
+        // going up
+        if (yVelocity >= 0){
+            return upAnimation.getKeyFrame(getKeyFrameForCurrentSpeed(), false);
+        }
+        else {
+            return downAnimation.getKeyFrame(getKeyFrameForCurrentSpeed(), false);
+        }
+    }
+
+    private int getKeyFrameForCurrentSpeed(){
+        if (yVelocity < -1200){
+            return 2;
+        }
+        else if (yVelocity < -500){
+            return 1;
+        }
+        else if (yVelocity < 0){
+            return 0;
+        }
+        else if (yVelocity < 300){
+            return 3;
+        }
+        else if (yVelocity < 800){
+            return 2;
+        }
+        else if (yVelocity < 1200){
+            return 1;
+        }
+        else if (yVelocity < 3000){
+            return 0;
+        }
+        else {
+            System.out.println("ALEX: INVALID SPEED!");
+            return 0;
+        }
+    }
+
+    public static void initAnime(){
+        Texture down1 = new Texture("player/blob/down1.PNG");
+        Texture down2 = new Texture("player/blob/down2.PNG");
+        Texture down3 = new Texture("player/blob/down3.PNG");
+        Texture down4 = new Texture("player/blob/down4.PNG");
+        TextureRegion[] downFrames = new TextureRegion[4];
+        downFrames[0] = new TextureRegion(down1);
+        downFrames[1] = new TextureRegion(down2);
+        downFrames[2] = new TextureRegion(down3);
+        downFrames[3] = new TextureRegion(down4);
+        downAnimation = new Animation<>(1F,downFrames);
+
+        Texture up1 = new Texture("player/blob/up1.PNG");
+        Texture up2 = new Texture("player/blob/up2.PNG");
+        Texture up3 = new Texture("player/blob/up3.PNG");
+        TextureRegion[] upFrames = new TextureRegion[3];
+        upFrames[0] = new TextureRegion(up1);
+        upFrames[1] = new TextureRegion(up2);
+        upFrames[2] = new TextureRegion(up3);
+        upAnimation = new Animation<>(1F,upFrames);
     }
 
 }

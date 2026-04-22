@@ -26,12 +26,11 @@ public class Mackerel extends OrdinaryFish{
         setBounds();
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("creatures/fish/アジ.png");
-        Texture texture2 = new Texture("creatures/fish/アジ2.png");
-        TextureRegion[] frames = new TextureRegion[2];
-        frames[0] = new TextureRegion(texture1);
-        frames[1] = new TextureRegion(texture2);
-        mackerelAnimation = new Animation<>(0.5F,frames);
+        TextureRegion[] frames = new TextureRegion[6];
+        for(int i=0;i<6;i++){
+            frames[i] = new TextureRegion(new Texture("creatures/fish/f"+i+".png"));
+        }
+        mackerelAnimation = new Animation<>(0.15F,frames); // my God, it looks so ugly
     }
     @Override
     public TextureRegion getAnimeFrame() {

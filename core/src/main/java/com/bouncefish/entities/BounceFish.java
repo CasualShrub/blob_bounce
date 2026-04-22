@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Timer;
+import com.bouncefish.gameplay.GameState;
+import com.bouncefish.gameplay.GameStateHandler;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
@@ -168,6 +170,8 @@ public class BounceFish extends Creature {
         setY(heightOfDeath);
         applyDeathVelocity();
         xVelocity *= -1.2;
+
+        GameStateHandler.setCurrentState(GameState.GAME_OVER);
     }
 
     private void die(){

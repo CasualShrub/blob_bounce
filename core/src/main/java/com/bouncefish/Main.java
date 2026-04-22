@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -26,6 +25,8 @@ import com.bouncefish.entities.OceanSunfish;
 import com.bouncefish.entities.Shark;
 import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
+import com.bouncefish.gameplay.GameState;
+import com.bouncefish.gameplay.GameStateHandler;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 
@@ -49,16 +50,6 @@ public class Main extends ApplicationAdapter {
     private ShapeRenderer _shapeRenderer;
     private Stage _stage;
     private BitmapFont _scoreFont;
-
-
-    private enum GameState{
-        MENU,
-        PLAYING,
-        LEADERBOARD,
-        GAME_OVER
-    }
-
-    private GameState currentState;
     private MenuScreen menuScreen;
     private LeaderboardScreen leaderboardScreen;
     private GameOverScreen gameOverScreen;
@@ -77,7 +68,7 @@ public class Main extends ApplicationAdapter {
         menuScreen = new MenuScreen();
         leaderboardScreen = new LeaderboardScreen();
         gameOverScreen = new GameOverScreen();
-        currentState = GameState.MENU;
+        GameStateHandler.setCurrentState(GameState.MENU);
 
         _scoreFont = new BitmapFont();
         _scoreFont.getData().setScale(4f);
@@ -136,9 +127,7 @@ public class Main extends ApplicationAdapter {
             return;
         }
 
-        if(_currentFish.isDead()){
-            currentState = GameState.GAME_OVER;
-        }
+        GameState currentState = GameStateHandler.getCurrentState();
 
         ArrayList<Creature> creatureList = _bounceGame.getCreatureList();
 
@@ -203,10 +192,10 @@ public class Main extends ApplicationAdapter {
             int button = menuScreen.getButtonPressed();
 
            if(button == 1){
-               currentState = GameState.PLAYING;
+               GameStateHandler.setCurrentState(GameState.PLAYING);
                _bounceGame.startGame();
            } else if(button == 2){
-               currentState = GameState.LEADERBOARD;
+               GameStateHandler.setCurrentState(GameState.LEADERBOARD);
            }
         }
         else if (currentState == GameState.PLAYING){
@@ -217,7 +206,7 @@ public class Main extends ApplicationAdapter {
             leaderboardScreen.render(_batch, ProgressTracker.getScore());
 
             if(leaderboardScreen.isBackPressed()){
-                currentState = GameState.MENU;
+                GameStateHandler.setCurrentState(GameState.MENU);
             }
         }
 
@@ -229,7 +218,7 @@ public class Main extends ApplicationAdapter {
 
             if(gameOverScreen.isTouched()){
                 resetGame();
-                currentState = GameState.MENU;
+                GameStateHandler.setCurrentState(GameState.MENU);
             }
         }
 

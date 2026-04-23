@@ -31,6 +31,8 @@ public class Mackerel extends OrdinaryFish{
             frames[i] = new TextureRegion(new Texture("creatures/fish/f"+i+".png"));
         }
         mackerelAnimation = new Animation<>(0.15F,frames); // my God, it looks so ugly
+
+        //TODO: add dead animation animation
     }
     @Override
     public TextureRegion getAnimeFrame() {

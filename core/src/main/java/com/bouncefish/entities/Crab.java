@@ -11,8 +11,8 @@ import java.util.function.Consumer;
 
 public class Crab extends Creature {
     private static Animation<TextureRegion> crabAnimation;
-    private static Animation<TextureRegion> crabBouncedAnimation;
     private static final float BASE_SPEED = 500;
+    private float lastStateTime;
 
     public Crab(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
         this(spawnTime, spawnX, movementFunction);
@@ -54,6 +54,7 @@ public class Crab extends Creature {
         setXVelocity(newXVelocity);
         setYVelocity(-500);
         setMovementFunction(Crab::bouncedOnMovement);
+        lastStateTime = stateTime;
     }
 
     public static void bouncedOnMovement(Creature creature){
@@ -63,23 +64,19 @@ public class Crab extends Creature {
 
     @Override
     public TextureRegion getAnimeFrame(){
+        /// I don't think dead animation is needed since the crab fall into the sea almost immediately
         if (isBouncedOn){
-            return crabBouncedAnimation.getKeyFrame(stateTime,true);
+            return crabAnimation.getKeyFrame(lastStateTime,false); //lastStateTime won't increase; this just show the last frame when the crab is hit
         }
+
         return crabAnimation.getKeyFrame(stateTime,true);
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("creatures/crab/crab1.png");
-        Texture texture2 = new Texture("creatures/crab/crab1_5.png");
-        Texture texture3 = new Texture("creatures/crab/crab2.png");
-        TextureRegion[] frames = new TextureRegion[2];
-        TextureRegion[] frames2 = new TextureRegion[1];
-        frames[0] = new TextureRegion(texture1);
-        frames[1] = new TextureRegion(texture2);
-        frames2[0] = new TextureRegion(texture3);
-        crabAnimation = new Animation<>(0.5F,frames);
-        frames2[0] = new TextureRegion(texture3);
-        crabBouncedAnimation = new Animation<>(0.5F, frames2);
+        TextureRegion[] frames = new TextureRegion[9];
+        for(int i=0;i<9;i++){
+            frames[i] = new TextureRegion(new Texture("creatures/crab/f"+i+".png"));
+        }
+        crabAnimation = new Animation<>(0.2F,frames);
     }
 
 }

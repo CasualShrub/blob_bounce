@@ -24,13 +24,14 @@ public class BounceGame implements GestureDetector.GestureListener {
 
     public BounceGame() {
         _creatureList = new ArrayList<>();
-        _bounceFish = new BounceFish(_creatureList);
+        _bounceFish = new BounceFish(_creatureList, this::onPlayerDeath);
         _spawner = new CreatureSpawner(_creatureList);
     }
 
     public void startGame(){
         _isActive = true;
         _spawner.setActive(true);
+        _bounceFish.respawn();
     }
 
     // This function is called every frame
@@ -99,6 +100,18 @@ public class BounceGame implements GestureDetector.GestureListener {
         }
         return false;
     }
+
+    // Game Event Handlers
+    public void onPlayerDeath(){
+        this._spawner.setActive(false);
+        GameStateHandler.setCurrentState(GameState.GAME_OVER);
+    }
+
+    public void onMainMenu(){
+        this._creatureList.clear();
+    }
+
+    // END Game Event Handlers
 
     @Override
     public boolean tap(float x, float y, int count, int button) {

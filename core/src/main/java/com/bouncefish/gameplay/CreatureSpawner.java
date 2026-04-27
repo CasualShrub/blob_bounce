@@ -23,19 +23,32 @@ public class CreatureSpawner {
     private boolean isActive = false;
 
     public CreatureSpawner(ArrayList<Creature> creatureList) {
-        WaveRegistry.generateWaves();
-        WaveRegistry.populateWaveRegistry();
-
         this.creatureList = creatureList;
         this.spawnQueue = new PriorityQueue<Creature>(Comparator.comparingDouble(Creature::getSpawnTime));
         this.spawnTimer = 0;
         this.currentWaveIndex = 0;
+    }
 
-        //Populate creatureList with the first wave
-        loadWave(this.currentWaveIndex);
+    public void clearSpawnQueue(){
+        this.spawnQueue.clear();
+        this.currentWaveIndex = 0;
+        this.spawnTimer = 0;
+        this.currentWave = null;
+        WaveRegistry.resetWaveRegistry();
     }
 
     public void setActive(boolean isActive){
+        // Clear queue whenever we disable the spawner (Ex. game over)
+        if (!isActive){
+            clearSpawnQueue();
+        }
+        else{
+            //Populate creatureList with the first wave
+            WaveRegistry.generateWaves();
+            WaveRegistry.prepareInitialWaves();
+            loadWave(this.currentWaveIndex);
+        }
+
         this.isActive = isActive;
     }
 

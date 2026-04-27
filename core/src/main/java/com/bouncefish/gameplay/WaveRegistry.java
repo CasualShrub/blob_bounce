@@ -11,8 +11,8 @@ import com.bouncefish.entities.spawndata.*;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 // This class holds all the data of enemies that will spawn in the game
 public class WaveRegistry {
@@ -21,14 +21,14 @@ public class WaveRegistry {
 
     // Key: Round to spawn waves. 0 based
     // Value: Wave Data
-    private static Dictionary<Integer, Wave> activeWaveList = new Hashtable<>();
+    private static Map<Integer, Wave> activeWaveList = new HashMap<>();
 
     // Key: Wave Difficulty (Scales with points/time). 0 based
     // Values: ArrayList of wave data that the spawner can randomly choose from
-    private static Dictionary<Integer, ArrayList<Wave>> waveData = new Hashtable<>();
+    private static Map<Integer, ArrayList<Wave>> waveData = new HashMap<>();
 
     // This is where we define all wave data
-    public static void populateWaveRegistry(){
+    public static void prepareInitialWaves(){
         // Generate all waves??
         // TODO: consider batching them
         for (int i = 0; i < GameConstants.MAXIMUM_HARDCODED_WAVES; i++){
@@ -42,6 +42,11 @@ public class WaveRegistry {
         ArrayList<Wave> wavePool = waveData.get(difficulty);
         int waveIndex = MathUtils.random((wavePool.size() - 1)); // -1 Because GDX random is right-inclusive
         return wavePool.remove(waveIndex);
+    }
+
+    public static void resetWaveRegistry(){
+        activeWaveList.clear();
+        waveData.clear();
     }
 
     public static void generateWaves(){

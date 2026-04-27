@@ -114,6 +114,7 @@ public class Main extends ApplicationAdapter {
 
     private void resetGame(){
         ProgressTracker.reset();
+        this._bounceGame.onMainMenu();
 
         // maybe tell the spawner to stop spawning crabs for now?
 
@@ -132,10 +133,7 @@ public class Main extends ApplicationAdapter {
 
         ArrayList<Creature> creatureList = _bounceGame.getCreatureList();
 
-        // Only update logic if NOT in Game Over state
-        if (currentState != GameState.GAME_OVER) {
-            _bounceGame.timeStep();
-        }
+        _bounceGame.timeStep();
 
         _batch.begin();
         _batch.draw(_background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

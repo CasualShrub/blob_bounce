@@ -21,8 +21,9 @@ public class BounceFish extends Creature {
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
     private static Animation<TextureRegion> downAnimation;
     private static Animation<TextureRegion> upAnimation;
+    private Runnable deathEvent;
 
-    public BounceFish(ArrayList<Creature> creatureList) {
+    public BounceFish(ArrayList<Creature> creatureList, Runnable deathEvent) {
         this.creatureId = 0;
         this.xPosition = Gdx.graphics.getWidth()* 0.5f;
         this.yPosition = 800;
@@ -34,8 +35,22 @@ public class BounceFish extends Creature {
         this.xVelocity = 0;
         this.yVelocity = 0;
         this.creatureList = creatureList;
+
+        this.deathEvent = deathEvent;
+
         setBounds(); //Fish has a physical size needed for collision
         initAnime();
+    }
+
+    public void respawn(){
+        //TODO: replace with animation of fish jumping out of water?
+        this.xPosition = Gdx.graphics.getWidth() * 0.5f;
+        this.yPosition = 800;
+        this.spawnStasisTimer = 0;
+        this.xVelocity = 0;
+        this.yVelocity = 0;
+        this.isBouncedOn = false;
+        this.isParalyzed = false;
     }
 
     @Override
@@ -84,6 +99,10 @@ public class BounceFish extends Creature {
     @Override
     public void handleTimeStep() {
         System.out.println("Y Velocity: " + yVelocity);
+
+        if (this.yPosition <= -300){
+            return;
+        }
 
         if (spawnStasisTimer < GameConstants.SPAWN_STASIS_SECONDS){
             spawnStasisTimer += Gdx.graphics.getDeltaTime();
@@ -179,7 +198,7 @@ public class BounceFish extends Creature {
         applyDeathVelocity();
         xVelocity *= -1.2;
 
-        GameStateHandler.setCurrentState(GameState.GAME_OVER);
+        deathEvent.run();
     }
 
     private void die(){

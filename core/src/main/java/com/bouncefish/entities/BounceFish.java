@@ -51,6 +51,7 @@ public class BounceFish extends Creature {
         this.yVelocity = 0;
         this.isBouncedOn = false;
         this.isParalyzed = false;
+        this.paralyzedTime = 0;
     }
 
     @Override
@@ -153,7 +154,6 @@ public class BounceFish extends Creature {
                 else if (creatureId == 2){ // Jellyfish!
                     isParalyzed = true;
                     applyDeathVelocity();
-                    isBouncedOn = true; //TODO: Replace this with isStunned instead of isDead? He technically isn't dead yet.
                     break;
                 }
                 else if (creature.isBouncable() && this.yVelocity < 0) {
@@ -167,13 +167,15 @@ public class BounceFish extends Creature {
         // Lose Game! Initiate game over
         if (!GameConstants.IS_IMMORTAL){
             if (getY() <= GameConstants.WATER_LEVEL) {
-              die();
+                die();
+                return;
             }
         }
-        // Keep bouncing if you are immortal.
+        // If you are immortal, Keep bouncing
         else {
             if (getY() <= GameConstants.WATER_LEVEL) {
                 groundBounce();
+                return;
             }
         }
 

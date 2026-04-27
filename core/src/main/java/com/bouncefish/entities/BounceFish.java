@@ -3,6 +3,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Timer;
 import com.bouncefish.gameplay.GameState;
 import com.bouncefish.gameplay.GameStateHandler;
@@ -22,17 +23,24 @@ public class BounceFish extends Creature {
     private static Animation<TextureRegion> upAnimation;
 
     public BounceFish(ArrayList<Creature> creatureList) {
-        creatureId = 0;
-        xPosition = Gdx.graphics.getWidth()* 0.5f;
-        yPosition = 800;
-        xVelocity = 0;
-        yVelocity = 0;
-        width = 130;
-        height = 130;
+        this.creatureId = 0;
+        this.xPosition = Gdx.graphics.getWidth()* 0.5f;
+        this.yPosition = 800;
+        this.width = 150;
+        this.height = 150;
+        this.boundOffsetX = getWidth() * 0.15f;
+        this.boundOffsetY = getHeight() * 0.15f;
+
+        this.xVelocity = 0;
+        this.yVelocity = 0;
         this.creatureList = creatureList;
         setBounds(); //Fish has a physical size needed for collision
         initAnime();
+    }
 
+    @Override
+    protected void setBounds(){
+        this.bounds = new Rectangle(getX() + this.boundOffsetY, getY() + this.boundOffsetY, getWidth() * 0.7f, getHeight() * 0.7f);
     }
 
     public void reverseVelocityForBounce(){
@@ -187,6 +195,7 @@ public class BounceFish extends Creature {
 
     private void bounce(Creature creature){
         setY(creature.getHeight() + creature.getY());
+        updateBounds();
         reverseVelocityForBounce();
         ProgressTracker.increaseScore();
 

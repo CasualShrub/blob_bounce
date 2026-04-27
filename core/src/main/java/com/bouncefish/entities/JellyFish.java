@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.function.Consumer;
@@ -15,9 +16,10 @@ public class JellyFish extends Creature {
     private static Animation<TextureRegion> jellyFishAnimation;
 
     public JellyFish(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction){
-        creatureId = 2;
-        width = 120;
-        height = 120;
+        this.creatureId = 2;
+        this.width = 150;
+        this.height = 150;
+        this.boundOffsetX = getWidth() * 0.25f;
 
         this.xVelocity = 300;
         this.yVelocity = 0;
@@ -28,6 +30,11 @@ public class JellyFish extends Creature {
         this.spawnTime = spawnTime;
 
         setBounds();
+    }
+
+    @Override
+    protected void setBounds(){
+        this.bounds = new Rectangle(getX() + this.boundOffsetX, getY(), getWidth() * 0.5f, getHeight());
     }
 
     public static void jellyFishLeftToRightMovement(Creature creature){

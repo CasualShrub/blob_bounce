@@ -3,6 +3,7 @@ package com.bouncefish.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.function.Consumer;
@@ -12,18 +13,24 @@ public class Mackerel extends OrdinaryFish{
     private final int BASE_SPEED = 700;
     public Mackerel(float spawnTime, float startX, float endX, float speedMultiplier, Consumer<Creature> movementFunction) {
         super(startX,endX);
-        creatureId = 4;
-        width = 130;
-        height = 130;
+        this.creatureId = 4;
+        this.width = 170;
+        this.height = 170;
+        this.boundOffsetY = this.getHeight() * 0.25f;
 
         this.movementSpeedMultiplier = speedMultiplier;
-        xVelocity = movingLeft ? -BASE_SPEED : BASE_SPEED;
+        this.xVelocity = movingLeft ? -BASE_SPEED : BASE_SPEED;
         this.xVelocity *= movementSpeedMultiplier;
 
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
 
         setBounds();
+    }
+
+    @Override
+    protected void setBounds(){
+        this.bounds = new Rectangle(getX(), getY() + this.boundOffsetY, getWidth(), getHeight() * 0.5f);
     }
     public static void initAnime(){
         TextureRegion[] frames = new TextureRegion[6];

@@ -10,7 +10,10 @@ import com.bouncefish.utils.GameConstants;
 
 public abstract class Creature {
 
+    // Creature Type Unique Identifier
     protected int creatureId;
+
+
     protected float xPosition;
     protected float yPosition;
     protected int width;
@@ -103,6 +106,9 @@ public abstract class Creature {
     public int getCreatureId() {
         return creatureId;
     }
+    public Rectangle getBounds(){
+        return this.bounds;
+    }
 
     // Game loop
     public void updatePosition(){
@@ -115,6 +121,7 @@ public abstract class Creature {
         xPosition = x;
         yPosition = y;
     }
+
     public void setBoundScale(float xScale, float yScale){
         boundScaleX = xScale;
         boundScaleY = yScale;
@@ -122,24 +129,17 @@ public abstract class Creature {
         boundOffsetY = (1 - boundOffsetY) * height / 2;
     }
     //Created collision box
-    public void setBounds(){
-        /*bounds = new Rectangle((int)(getX() + boundOffsetX), (int)(getY() + boundOffsetY),
-            getWidth()*boundScaleX, getHeight()*boundScaleY);*/
-
+    protected void setBounds(){
         //seems to work well without recentering
-        bounds = new Rectangle((int)(getX()), (int)(getY()),
+        bounds = new Rectangle(getX(), getY(),
             getWidth()*boundScaleX, getHeight()*boundScaleY);
     }
 
-    //Keeps box synced with movement
-    //Every entity is rectangle in space
+    // Update hitbox position
     public void updateBounds(){
-        /*bounds.setX((int)(getX() + boundOffsetX));
-        bounds.setY((int)(getY() + boundOffsetY));*/
-
         //seems to work well without recentering
-        bounds.setX((int)getX());
-        bounds.setY((int)getY());
+        bounds.setX(getX() + boundOffsetX);
+        bounds.setY(getY() + boundOffsetY);
     }
 
     protected void applyMovement(){

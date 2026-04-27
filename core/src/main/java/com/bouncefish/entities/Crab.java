@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 //import com.bouncefish.entities.spawndata.CrabSpawnData;
+import com.badlogic.gdx.math.Rectangle;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.function.Consumer;
@@ -25,21 +26,26 @@ public class Crab extends Creature {
     // This constructor is used if we just want a default crab (Default spawn y is 0, speedMultiplier of 1)
     public Crab(float spawnTime, float spawnX, Consumer<Creature> movementFunction) {
         this.creatureId = 1;
-        this.xVelocity = 700;
-        this.yVelocity = 0;
-        this.width = 130;
-        this.height = 130;
-        this.movementSpeedMultiplier = 1;
-        this.movementSpeed = BASE_SPEED * movementSpeedMultiplier;
-        this.movementSpeed = shouldMoveLeft(spawnX) ? -movementSpeed : movementSpeed;
-
+        this.width = 200;
+        this.height = 200;
+        this.boundOffsetY = getHeight() * 0.25f;
         this.xPosition = spawnX;
         this.yPosition = GameConstants.WATER_LEVEL;
 
+        this.xVelocity = 700;
+        this.yVelocity = 0;
+        this.movementSpeedMultiplier = 1;
+        this.movementSpeed = BASE_SPEED * movementSpeedMultiplier;
+        this.movementSpeed = shouldMoveLeft(spawnX) ? -movementSpeed : movementSpeed;
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
 
         setBounds();
+    }
+
+    @Override
+    protected void setBounds(){
+        this.bounds = new Rectangle(getX(), getY() + this.boundOffsetY, getWidth(), getHeight() * 0.5f);
     }
 
     public static void normalMovement(Creature creature){

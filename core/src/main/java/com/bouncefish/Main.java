@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -146,17 +147,18 @@ public class Main extends ApplicationAdapter {
             _shapeRenderer.set(ShapeRenderer.ShapeType.Filled);
             _shapeRenderer.setColor(new Color(0xff000022));
             for (Creature creature:creatureList) {
-                _shapeRenderer.rect(creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
+                Rectangle bounds = creature.getBounds();
+                _shapeRenderer.rect(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
             }
             Creature player = _bounceGame.getBounceFish();
+            Rectangle hitbox = player.getBounds();
             _shapeRenderer.setColor(new Color(0x00ff0022));
-            _shapeRenderer.rect(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+            _shapeRenderer.rect(hitbox.getX(), hitbox.getY(), hitbox.getWidth(), hitbox.getHeight());
 
             _shapeRenderer.setColor(new Color(0x0000ff22));
 
             _shapeRenderer.rectLine(GameConstants.LEFT_CONTROL_BORDER, Gdx.graphics.getHeight(), GameConstants.LEFT_CONTROL_BORDER, 0, 10f);
             _shapeRenderer.rectLine(Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, Gdx.graphics.getHeight(), Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, 0, 10f);
-
 
             _shapeRenderer.end();
         }
@@ -209,7 +211,6 @@ public class Main extends ApplicationAdapter {
                 GameStateHandler.setCurrentState(GameState.MENU);
             }
         }
-
         else if(currentState == GameState.GAME_OVER){
             // WE DON'T END BATCH HERE. We let the game render below, then overlay the UI.
             _batch.begin();

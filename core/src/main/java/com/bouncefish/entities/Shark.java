@@ -78,8 +78,7 @@ public class Shark extends Creature{
         return coolDown;
     }
     @Override
-    public void setBounds(){
-
+    protected void setBounds(){
         if(readyToAttack){//the shark is looking for the bouncefish
             bounds = new Rectangle(
                 (getX() - GameConstants.SHARK_DECTECTION_WIDTH), getY(),
@@ -91,6 +90,7 @@ public class Shark extends Creature{
                 getWidth(), getHeight());
         }
     }
+
     @Override
     public void handleTimeStep(){
         stateTime += Gdx.graphics.getDeltaTime();

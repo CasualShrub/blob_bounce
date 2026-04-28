@@ -22,6 +22,15 @@ public class ProgressTracker {
         }
     }
 
+    public static void increaseScore(int points){
+        score += points;
+        if (score > highScore) {
+            highScore = score;
+            prefs.putInteger("highScore", highScore);
+            prefs.flush();
+        }
+    }
+
     public static int getScore(){
         return score;
     }

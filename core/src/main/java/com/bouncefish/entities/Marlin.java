@@ -53,7 +53,7 @@ public class Marlin extends Creature {
         isBouncable = false;
         float newXVelocity = movingLeft? -10:10;
         setXVelocity(newXVelocity);
-        setYVelocity(-500);
+        setYVelocity(-800);
         setMovementFunction(com.bouncefish.entities.Crab::bouncedOnMovement);
 
         ProgressTracker.increaseScore(100);

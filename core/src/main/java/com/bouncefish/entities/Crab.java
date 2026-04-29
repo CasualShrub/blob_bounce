@@ -15,6 +15,7 @@ public class Crab extends Creature {
     private static final float BASE_SPEED = 500;
     private float lastStateTime;
 
+
     public Crab(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
         this(spawnTime, spawnX, movementFunction);
         this.yPosition = GameConstants.WATER_LEVEL + spawnY;
@@ -58,7 +59,7 @@ public class Crab extends Creature {
         isBouncable = false;
         float newXVelocity = movingLeft? -10:10;
         setXVelocity(newXVelocity);
-        setYVelocity(-500);
+        setYVelocity(-800);
         setMovementFunction(Crab::bouncedOnMovement);
         lastStateTime = stateTime;
     }
@@ -66,6 +67,10 @@ public class Crab extends Creature {
     public static void bouncedOnMovement(Creature creature){
         creature.xPosition += creature.xVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
         creature.yPosition += creature.yVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+        if(!creature.inWater && creature.yPosition<=GameConstants.WATER_LEVEL){
+            creature.inWater = true;
+            Water.playSplash(creature.xPosition);
+        }
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.bouncefish.entities.Crab;
 import com.bouncefish.entities.JellyFish;
 import com.bouncefish.entities.Mackerel;
+import com.bouncefish.entities.Marlin;
 import com.bouncefish.entities.OceanSunfish;
 import com.bouncefish.entities.OrdinaryFish;
 import com.bouncefish.entities.Shark;
@@ -74,6 +75,7 @@ public class WaveRegistry {
         wave1.add(new JellyfishSpawnData(2f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
         wave1.add(new JellyfishSpawnData(2.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
         wave1.add(new CrabSpawnData(12f, RIGHT_SPAWN_X, 0, 1.5f, Crab::normalMovement));
+        wave1.add(new MarlinSpawnData(1f, LEFT_SPAWN_X, Marlin::normalMovement));
         easyWaves.add(wave1);
 
         Wave wave2 = new Wave(7f);

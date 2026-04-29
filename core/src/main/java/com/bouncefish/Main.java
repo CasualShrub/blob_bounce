@@ -6,22 +6,26 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.bouncefish.entities.BounceFish;
 import com.bouncefish.entities.Crab;
 import com.bouncefish.entities.Creature;
 import com.bouncefish.entities.JellyFish;
 import com.bouncefish.entities.Mackerel;
+import com.bouncefish.entities.Marlin;
 import com.bouncefish.entities.OceanSunfish;
 import com.bouncefish.entities.Shark;
 import com.bouncefish.entities.Water;
@@ -81,6 +85,7 @@ public class Main extends ApplicationAdapter {
         Water.initAnime();
         OceanSunfish.initAnime();
         Shark.initAnime();
+        Marlin.initAnime();
         // UI Elements
         _stage = new Stage();
         Gdx.input.setInputProcessor(_stage);
@@ -174,6 +179,13 @@ public class Main extends ApplicationAdapter {
                     _batch.draw(currentFrame, creature.getX() + creature.getWidth(), creature.getY(), -creature.getWidth(), creature.getHeight());
                 }
 
+            }
+
+
+            Array<Sprite> splashSprites = Water.getSplashFrames();
+
+            for (Sprite splash : splashSprites) {
+                splash.draw(_batch);
             }
 
             TextureRegion waterFrame = Water.getAnimeFrame();

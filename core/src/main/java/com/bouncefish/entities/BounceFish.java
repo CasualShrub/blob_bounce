@@ -21,6 +21,9 @@ public class BounceFish extends Creature {
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
     private static Animation<TextureRegion> downAnimation;
     private static Animation<TextureRegion> upAnimation;
+    private static Animation<TextureRegion> downAnimation_paralyzed;
+    private static Animation<TextureRegion> upAnimation_paralyzed;
+    private static Animation<TextureRegion> deathAnimation;
     private Runnable deathEvent;
 
     public BounceFish(ArrayList<Creature> creatureList, Runnable deathEvent) {
@@ -234,14 +237,20 @@ public class BounceFish extends Creature {
     }
     @Override
     public TextureRegion getAnimeFrame(){
-//        if (this.isDead() || this.isParalyzed()){
-//            return
-//        }
+        if (this.isDead()){
+            return deathAnimation.getKeyFrame(0);
+        }
         // going up
         if (yVelocity >= 0){
+            if(isParalyzed){
+                return upAnimation_paralyzed.getKeyFrame(getKeyFrameForCurrentSpeed(), false);
+            }
             return upAnimation.getKeyFrame(getKeyFrameForCurrentSpeed(), false);
         }
         else {
+            if(isParalyzed){
+                return downAnimation_paralyzed.getKeyFrame(getKeyFrameForCurrentSpeed(), false);
+            }
             return downAnimation.getKeyFrame(getKeyFrameForCurrentSpeed(), false);
         }
     }
@@ -294,6 +303,31 @@ public class BounceFish extends Creature {
         upFrames[1] = new TextureRegion(up2);
         upFrames[2] = new TextureRegion(up3);
         upAnimation = new Animation<>(1F,upFrames);
+
+        down1 = new Texture("player/blob/down1_.PNG");
+        down2 = new Texture("player/blob/down2_.PNG");
+        down3 = new Texture("player/blob/down3_.PNG");
+        down4 = new Texture("player/blob/down4_.PNG");
+        downFrames = new TextureRegion[4];
+        downFrames[0] = new TextureRegion(down1);
+        downFrames[1] = new TextureRegion(down2);
+        downFrames[2] = new TextureRegion(down3);
+        downFrames[3] = new TextureRegion(down4);
+        downAnimation_paralyzed = new Animation<>(1F,downFrames);
+
+        up1 = new Texture("player/blob/up1_.PNG");
+        up2 = new Texture("player/blob/up2_.PNG");
+        up3 = new Texture("player/blob/up3_.PNG");
+        upFrames = new TextureRegion[3];
+        upFrames[0] = new TextureRegion(up1);
+        upFrames[1] = new TextureRegion(up2);
+        upFrames[2] = new TextureRegion(up3);
+        upAnimation_paralyzed = new Animation<>(1F,upFrames);
+
+        Texture ko = new Texture("player/blob/ko.PNG");
+        TextureRegion[] frame = new TextureRegion[1];
+        frame[0] = new TextureRegion(ko);
+        deathAnimation = new Animation<>(1F,frame);
     }
 
 }

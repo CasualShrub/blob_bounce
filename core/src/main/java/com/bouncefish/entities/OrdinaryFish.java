@@ -1,5 +1,6 @@
 package com.bouncefish.entities;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.bouncefish.utils.GameConstants;
 
@@ -50,15 +51,20 @@ public abstract class OrdinaryFish extends Creature{
     public void handleBouncedOn() { //ordinary fish all behave the same; so put this here
         isBouncedOn = true;
         isBouncable = false;
+        inWater = false;
         float newXVelocity = movingLeft? -50:50;
         setXVelocity(newXVelocity);
-        setYVelocity(-500);
+        setYVelocity(-800);
         setMovementFunction(OrdinaryFish::bouncedOnMovement);
     }
 
     public static void bouncedOnMovement(Creature creature){
         creature.xPosition += creature.xVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
         creature.yPosition += creature.yVelocity * creature.movementSpeedMultiplier * Gdx.graphics.getDeltaTime();
+        if(!creature.inWater && creature.yPosition<=GameConstants.WATER_LEVEL){
+            creature.inWater = true;
+            Water.playSplash(creature.xPosition);
+        }
     }
 
     public static void parabolicMotion(Creature creature){
@@ -67,10 +73,17 @@ public abstract class OrdinaryFish extends Creature{
         creature.xPosition += creature.getXVelocity() * deltaTime;
         float dx = Math.abs(creature.getX() - creature.getStartX());
 
+        float lastYPosition = creature.yPosition;
         creature.yPosition = (creature.getLeadingCoefficient() * dx * dx) + (creature.getLinearCoefficient() * dx) + c;
+        float dy = creature.yPosition - lastYPosition;
+        if(!creature.jumpedOutOfWater && creature.yPosition - GameConstants.WATER_LEVEL <= 0.1F){ //play the splash near the position where the fish jumps out of the water
+            creature.jumpedOutOfWater = true;
+            Water.playSplash(creature.xPosition);
+        }else if(dy < 0 && !creature.inWater && creature.yPosition<=GameConstants.WATER_LEVEL){
+            creature.inWater = true;
+            int xOffset = creature.movingLeft? -100:100; //magic number to fix the position of the splash
+            Water.playSplash(creature.xPosition+xOffset);
+        }
+
     }
-    //TODO: add methods to change the parameters of the parabolic motion?
-
-
-
 }

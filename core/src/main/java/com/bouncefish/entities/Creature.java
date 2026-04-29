@@ -37,6 +37,10 @@ public abstract class Creature {
     protected float boundOffsetY = 0F;
     protected boolean movingLeft;
     protected boolean active = true;
+    protected boolean inWater;//added this because it seems that the creature never deallocates,
+    // and keeps calling Water.playSplash() after falling into the water. haven't got time to figure
+    // this out, though; just a simple fix, so no data protection mechanisms yet
+    protected boolean jumpedOutOfWater; //another hack, specifically for ordinary fish parabolic motion. Ordinary fish is already in the water at first(y<water level)
     public boolean isMovingLeft(){
         return movingLeft;
     }

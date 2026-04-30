@@ -1,28 +1,34 @@
 package com.bouncefish.ui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.bouncefish.gameplay.ProgressTracker;
 
 public class GameOverScreen {
 
+    private Texture background;
+    private Texture playAgainButton;
+    private Texture menuButton;
     private BitmapFont font;
-    private Texture overlay;
+
+    private Rectangle playAgainBounds;
+    private Rectangle menuBounds;
+
+    private int actionPressed = 0; // 0: none, 1: play again, 2: menu
 
     public GameOverScreen() {
-        font = new BitmapFont();
-        font.getData().setScale(3f);
+        background = new Texture("GameoverScreen/GameoverScreen.png");
+        playAgainButton = new Texture("GameoverScreen/playagain_button.png");
+        menuButton = new Texture("GameoverScreen/Gameover_Menu button.png");
 
-        // Create a semi-transparent black overlay
-        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-        pixmap.setColor(0, 0, 0, 0.6f);
-        pixmap.fill();
-        overlay = new Texture(pixmap);
-        pixmap.dispose();
+        font = new BitmapFont();
+        font.getData().setScale(2f);
+
+        playAgainBounds = new Rectangle();
+        menuBounds = new Rectangle();
     }
 
     public void render(SpriteBatch batch, int score) {
@@ -30,32 +36,61 @@ public class GameOverScreen {
         float screenHeight = Gdx.graphics.getHeight();
         int highScore = ProgressTracker.getHighScore();
 
-        // Note: We don't call batch.begin() here anymore because we want to draw
-        // this on top of the already drawing game batch in Main.java
+        // 1. Draw the main Game Over panel (The one with the coral/underwater theme)
+        // Center it or scale it to fit.
+        float panelWidth = screenWidth * 0.8f;
+        float panelHeight = panelWidth * (background.getHeight() / (float)background.getWidth());
+        float panelX = (screenWidth - panelWidth) / 2;
+        float panelY = (screenHeight - panelHeight) / 2;
 
-        // 1. Draw the semi-transparent overlay over the game
-        batch.draw(overlay, 0, 0, screenWidth, screenHeight);
+        batch.draw(background, panelX, panelY, panelWidth, panelHeight);
 
-        // 2. Draw "GAME OVER" title
-        font.setColor(Color.ORANGE);
-        font.draw(batch, "GAME OVER", screenWidth * 0.5f - 180, screenHeight * 0.75f);
+        // 2. Draw Scores
+        // need to adjust these coordinates based on the transparent areas of your PNG
+        font.draw(batch, String.valueOf(score), screenWidth * 0.5f - 20, panelY + panelHeight * 0.65f);
+        font.draw(batch, String.valueOf(highScore), panelX + panelWidth * 0.35f, panelY + panelHeight * 0.45f);
 
-        // 3. Draw Scores
-        font.setColor(Color.WHITE);
-        font.getData().setScale(2f);
-        font.draw(batch, "SCORE: " + score, screenWidth * 0.5f - 100, screenHeight * 0.55f);
-        font.draw(batch, "BEST: " + highScore, screenWidth * 0.5f - 100, screenHeight * 0.45f);
+        // 3. Draw Buttons
+        float btnWidth = panelWidth * 0.7f;
+        float btnHeight = btnWidth * (playAgainButton.getHeight() / (float)playAgainButton.getWidth());
+        float btnX = (screenWidth - btnWidth) / 2;
 
-        font.getData().setScale(1.5f);
-        font.draw(batch, "TAP TO RESTART", screenWidth * 0.5f - 140, screenHeight * 0.25f);
+        float playY = panelY + panelHeight * 0.25f;
+        float menuY = panelY + panelHeight * 0.1f;
+
+        batch.draw(playAgainButton, btnX, playY, btnWidth, btnHeight);
+        batch.draw(menuButton, btnX, menuY, btnWidth, btnHeight);
+
+        // Update click bounds
+        playAgainBounds.set(btnX, playY, btnWidth, btnHeight);
+        menuBounds.set(btnX, menuY, btnWidth, btnHeight);
+
+        handleInput();
     }
 
-    public boolean isTouched() {
-        return Gdx.input.justTouched();
+    private void handleInput() {
+        if (Gdx.input.justTouched()) {
+            float x = Gdx.input.getX();
+            float y = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+            if (playAgainBounds.contains(x, y)) {
+                actionPressed = 1;
+            } else if (menuBounds.contains(x, y)) {
+                actionPressed = 2;
+            }
+        }
+    }
+
+    public int getActionPressed() {
+        int action = actionPressed;
+        actionPressed = 0; // Reset after reading
+        return action;
     }
 
     public void dispose() {
+        background.dispose();
+        playAgainButton.dispose();
+        menuButton.dispose();
         font.dispose();
-        overlay.dispose();
     }
 }

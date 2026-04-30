@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -32,6 +31,7 @@ import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.GameState;
 import com.bouncefish.gameplay.GameStateHandler;
+import com.bouncefish.gameplay.LeaderboardService;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 
@@ -46,7 +46,6 @@ public class Main extends ApplicationAdapter {
     private SpriteBatch _batch;
     private Texture _background;
     private Texture _crabImagePlaceholder;
-    private Texture _bounceFishSprite;
     private Texture _water;
     private BounceGame _bounceGame;
     private SoundManager _soundManager;
@@ -59,6 +58,15 @@ public class Main extends ApplicationAdapter {
     private LeaderboardScreen leaderboardScreen;
     private GameOverScreen gameOverScreen;
 
+    private static LeaderboardService leaderboardService;
+
+    public static void setLeaderboardService(LeaderboardService service) {
+        leaderboardService = service;
+    }
+
+    public static LeaderboardService getLeaderboardService() {
+        return leaderboardService;
+    }
 
     @Override
     public void create() {
@@ -86,6 +94,7 @@ public class Main extends ApplicationAdapter {
         OceanSunfish.initAnime();
         Shark.initAnime();
         Marlin.initAnime();
+
         // UI Elements
         _stage = new Stage();
         Gdx.input.setInputProcessor(_stage);
@@ -114,16 +123,17 @@ public class Main extends ApplicationAdapter {
         multiplexer.addProcessor(_stage);
         multiplexer.addProcessor(new GestureDetector(_bounceGame));
         Gdx.input.setInputProcessor(multiplexer);
-        //OrthographicCamera camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     private void resetGame(){
         ProgressTracker.reset();
-        this._bounceGame.onMainMenu();
+        _bounceGame.onMainMenu();
+        _currentFish = _bounceGame.getBounceFish();
 
-        // maybe tell the spawner to stop spawning crabs for now?
-
-        // reset fish position to the start, and pause his movement.
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(_stage);
+        multiplexer.addProcessor(new GestureDetector(_bounceGame));
+        Gdx.input.setInputProcessor(multiplexer);
     }
 
     @Override
@@ -135,10 +145,13 @@ public class Main extends ApplicationAdapter {
         }
 
         GameState currentState = GameStateHandler.getCurrentState();
-
         ArrayList<Creature> creatureList = _bounceGame.getCreatureList();
 
-        _bounceGame.timeStep();
+        // Update logic in both PLAYING and GAME_OVER states to keep background active
+        if (currentState == GameState.PLAYING || currentState == GameState.GAME_OVER) {
+            _bounceGame.timeStep();
+        }
+        _currentFish = _bounceGame.getBounceFish();
 
         _batch.begin();
         _batch.draw(_background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -159,31 +172,26 @@ public class Main extends ApplicationAdapter {
             _shapeRenderer.rect(hitbox.getX(), hitbox.getY(), hitbox.getWidth(), hitbox.getHeight());
 
             _shapeRenderer.setColor(new Color(0x0000ff22));
-
             _shapeRenderer.rectLine(GameConstants.LEFT_CONTROL_BORDER, Gdx.graphics.getHeight(), GameConstants.LEFT_CONTROL_BORDER, 0, 10f);
             _shapeRenderer.rectLine(Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, Gdx.graphics.getHeight(), Gdx.graphics.getWidth()-GameConstants.RIGHT_CONTROL_BORDER, 0, 10f);
-
             _shapeRenderer.end();
         }
 
-        _batch.begin(); // START RENDERING IN-GAME ENTITIES
+        _batch.begin();
 
         if (currentState == GameState.PLAYING || currentState == GameState.GAME_OVER){
             _batch.draw(_currentFish.getAnimeFrame(), _currentFish.getX(), _currentFish.getY(), _currentFish.getWidth(), _currentFish.getHeight());
 
             for (Creature creature:creatureList) {
                 TextureRegion currentFrame = creature.getAnimeFrame();
-                if(!creature.isMovingLeft()){//assuming all creature textures are facing right
+                if(!creature.isMovingLeft()){
                     _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
-                }else{// negative width flips horizontally
+                }else{
                     _batch.draw(currentFrame, creature.getX() + creature.getWidth(), creature.getY(), -creature.getWidth(), creature.getHeight());
                 }
-
             }
 
-
             Array<Sprite> splashSprites = Water.getSplashFrames();
-
             for (Sprite splash : splashSprites) {
                 splash.draw(_batch);
             }
@@ -191,49 +199,44 @@ public class Main extends ApplicationAdapter {
             TextureRegion waterFrame = Water.getAnimeFrame();
             _batch.draw(waterFrame, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-            _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), Gdx.graphics.getWidth() / 2f - 20, Gdx.graphics.getHeight() - 100);
+            if (currentState == GameState.PLAYING) {
+                _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), Gdx.graphics.getWidth() / 2f - 20, Gdx.graphics.getHeight() - 100);
+            }
         }
-
-        _batch.end(); // END RENDERING IN-GAME ENTITIES
-
-
-        // START RENDERING UI
+        _batch.end();
 
         if (currentState == GameState.MENU){
             menuScreen.render(_batch);
             int button = menuScreen.getButtonPressed();
-
-           if(button == 1){
-               GameStateHandler.setCurrentState(GameState.PLAYING);
-               _bounceGame.startGame();
-           } else if(button == 2){
-               GameStateHandler.setCurrentState(GameState.LEADERBOARD);
-           }
+            if(button == 1){
+                resetGame();
+                GameStateHandler.setCurrentState(GameState.PLAYING);
+                _bounceGame.startGame();
+            } else if(button == 2){
+                GameStateHandler.setCurrentState(GameState.LEADERBOARD);
+            }
         }
-        else if (currentState == GameState.PLAYING){
-            // Draw in game UI
-        }
-
         else if(currentState == GameState.LEADERBOARD){
             leaderboardScreen.render(_batch, ProgressTracker.getScore());
-
             if(leaderboardScreen.isBackPressed()){
                 GameStateHandler.setCurrentState(GameState.MENU);
             }
         }
         else if(currentState == GameState.GAME_OVER){
-            // WE DON'T END BATCH HERE. We let the game render below, then overlay the UI.
             _batch.begin();
             gameOverScreen.render(_batch, ProgressTracker.getScore());
             _batch.end();
 
-            if(gameOverScreen.isTouched()){
+            int action = gameOverScreen.getActionPressed();
+            if(action == 1){
+                resetGame();
+                GameStateHandler.setCurrentState(GameState.PLAYING);
+                _bounceGame.startGame();
+            } else if(action == 2){
                 resetGame();
                 GameStateHandler.setCurrentState(GameState.MENU);
             }
         }
-
-        // END RENDERING UI
 
         _stage.draw();
     }
@@ -241,12 +244,12 @@ public class Main extends ApplicationAdapter {
     @Override
     public void dispose() {
         _batch.dispose();
-        _bounceFishSprite.dispose();
         _crabImagePlaceholder.dispose();
         _shapeRenderer.dispose();
         _soundManager.disposeSounds();
         menuScreen.dispose();
         _scoreFont.dispose();
+        gameOverScreen.dispose();
     }
 
     private void toggleDebug(){

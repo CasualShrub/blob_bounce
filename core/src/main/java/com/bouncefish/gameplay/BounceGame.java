@@ -40,18 +40,25 @@ public class BounceGame implements GestureDetector.GestureListener {
             return;
         }
 
-        if (!Gdx.input.isTouched() || _bounceFish.isParalyzed()){
-            _leftPressed = false;
-            _rightPressed = false;
-            _bounceFish.setXVelocity(0);
-        }
+        // Logic updates regardless of whether the player is alive or not
+        // However, we only take input if the game is in PLAYING state
+        if (GameStateHandler.getCurrentState() == GameState.PLAYING) {
+            if (!Gdx.input.isTouched() || _bounceFish.isParalyzed()){
+                _leftPressed = false;
+                _rightPressed = false;
+                _bounceFish.setXVelocity(0);
+            }
 
-        // Handle user input
-        if (_leftPressed) {
-            _bounceFish.setXVelocity(-GameConstants.H_SPEED);
-        }
-        else if (_rightPressed) {
-            _bounceFish.setXVelocity(GameConstants.H_SPEED);
+            // Handle user input
+            if (_leftPressed) {
+                _bounceFish.setXVelocity(-GameConstants.H_SPEED);
+            }
+            else if (_rightPressed) {
+                _bounceFish.setXVelocity(GameConstants.H_SPEED);
+            }
+        } else {
+            // Stop player movement during Game Over
+            _bounceFish.setXVelocity(0);
         }
 
         // Spawner update loop.
@@ -88,6 +95,8 @@ public class BounceGame implements GestureDetector.GestureListener {
 
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
+        if (GameStateHandler.getCurrentState() != GameState.PLAYING) return false;
+
         if (x > Gdx.graphics.getWidth() - GameConstants.RIGHT_CONTROL_BORDER) {
             _leftPressed = false;
             _rightPressed = true;
@@ -103,7 +112,7 @@ public class BounceGame implements GestureDetector.GestureListener {
 
     // Game Event Handlers
     public void onPlayerDeath(){
-        this._spawner.setActive(false);
+        // We no longer stop the spawner here so background keeps moving
         GameStateHandler.setCurrentState(GameState.GAME_OVER);
     }
 

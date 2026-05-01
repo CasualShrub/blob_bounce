@@ -224,7 +224,7 @@ public class Main extends ApplicationAdapter {
         }
         else if(currentState == GameState.GAME_OVER){
             _batch.begin();
-            gameOverScreen.render(_batch, ProgressTracker.getScore());
+            gameOverScreen.render(_batch, ProgressTracker.getScore(), ProgressTracker.getCreaturesHit());
             _batch.end();
 
             int action = gameOverScreen.getActionPressed();

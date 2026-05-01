@@ -33,32 +33,44 @@ public class MenuScreen {
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
 
+        // 1. Calculating base sizes relative to screen height
+        float titleHeight = screenHeight * 0.22f;
+        float titleWidth = titleHeight * (title.getWidth() / (float)title.getHeight());
+        if (titleWidth > screenWidth * 0.8f) {
+            titleWidth = screenWidth * 0.8f;
+            titleHeight = titleWidth * (title.getHeight() / (float)title.getWidth());
+        }
+
+        float btnHeight = screenHeight * 0.11f;
+        float btnWidth = btnHeight * (playButton.getWidth() / (float)playButton.getHeight());
+
+        // 2. Calculateing Vertical Stack (Title + Buttons)
+        float spacing = btnHeight * 0.25f;
+        float totalHeight = titleHeight + (btnHeight * 3) + (spacing * 4);
+        float startY = (screenHeight + totalHeight) / 2f;
+
         batch.begin();
-        // 1. Draw Background
+        // Draw Background
         batch.draw(background, 0, 0, screenWidth, screenHeight);
 
-        // 2. Draw Title
-        float titleWidth = screenWidth * 0.8f;
-        float titleHeight = titleWidth * (title.getHeight() / (float)title.getWidth());
-        batch.draw(title, (screenWidth - titleWidth) / 2, screenHeight * 0.7f, titleWidth, titleHeight);
+        // Draw Title (Top of stack)
+        float currentY = startY - titleHeight;
+        batch.draw(title, (screenWidth - titleWidth) / 2f, currentY, titleWidth, titleHeight);
 
-        // 3. Draw Buttons
-        float btnWidth = screenWidth * 0.5f;
-        float btnHeight = btnWidth * (playButton.getHeight() / (float)playButton.getWidth());
-        float btnX = (screenWidth - btnWidth) / 2;
+        // Draw Buttons below Title
+        float btnX = (screenWidth - btnWidth) / 2f;
 
-        float playY = screenHeight * 0.45f;
-        float leaderboardY = screenHeight * 0.32f;
-        float settingsY = screenHeight * 0.19f;
+        currentY -= (btnHeight + spacing * 1.5f);
+        batch.draw(playButton, btnX, currentY, btnWidth, btnHeight);
+        playBounds.set(btnX, currentY, btnWidth, btnHeight);
 
-        batch.draw(playButton, btnX, playY, btnWidth, btnHeight);
-        batch.draw(leaderboardButton, btnX, leaderboardY, btnWidth, btnHeight);
-        batch.draw(settingsButton, btnX, settingsY, btnWidth, btnHeight);
+        currentY -= (btnHeight + spacing);
+        batch.draw(leaderboardButton, btnX, currentY, btnWidth, btnHeight);
+        leaderboardBounds.set(btnX, currentY, btnWidth, btnHeight);
 
-        // Update bounds for input
-        playBounds.set(btnX, playY, btnWidth, btnHeight);
-        leaderboardBounds.set(btnX, leaderboardY, btnWidth, btnHeight);
-        settingsBounds.set(btnX, settingsY, btnWidth, btnHeight);
+        currentY -= (btnHeight + spacing);
+        batch.draw(settingsButton, btnX, currentY, btnWidth, btnHeight);
+        settingsBounds.set(btnX, currentY, btnWidth, btnHeight);
 
         batch.end();
     }

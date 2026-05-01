@@ -6,24 +6,24 @@ import com.badlogic.gdx.Preferences;
 public class ProgressTracker {
     private static int score = 0;
     private static int highScore = 0;
+    private static int creaturesHit = 0;
     private static Preferences prefs;
 
-    static {
-        prefs = Gdx.app.getPreferences("BounceFishPrefs");
-        highScore = prefs.getInteger("highScore", 0);
-    }
-
-    public static void increaseScore(){
-        score++;
-        if (score > highScore) {
-            highScore = score;
-            prefs.putInteger("highScore", highScore);
-            prefs.flush();
+    private static void ensureInit() {
+        if (prefs == null) {
+            prefs = Gdx.app.getPreferences("BounceFishPrefs");
+            highScore = prefs.getInteger("highScore", 0);
         }
     }
 
-    public static void increaseScore(int points){
-        score += points;
+    public static void increaseScore(){
+        increaseScore(1);
+    }
+
+    public static void increaseScore(int amount){
+        ensureInit();
+        score += amount;
+        creaturesHit++;
         if (score > highScore) {
             highScore = score;
             prefs.putInteger("highScore", highScore);
@@ -36,10 +36,16 @@ public class ProgressTracker {
     }
 
     public static int getHighScore() {
+        ensureInit();
         return highScore;
+    }
+
+    public static int getCreaturesHit() {
+        return creaturesHit;
     }
 
     public static void reset(){
         score = 0;
+        creaturesHit = 0;
     }
 }

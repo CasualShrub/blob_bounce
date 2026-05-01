@@ -73,7 +73,7 @@ public class Main extends ApplicationAdapter {
         _batch = new SpriteBatch();
         _shapeRenderer = new ShapeRenderer();
         _crabImagePlaceholder = new Texture("creatures/crab/crab1.png");
-        _background = new Texture("background_placeholder.jpg");
+        _background = new Texture("background_placeholder1.jpg");
         _water = new Texture("water.png");
         _soundManager = new SoundManager();
         _bounceGame = new BounceGame();
@@ -224,7 +224,7 @@ public class Main extends ApplicationAdapter {
         }
         else if(currentState == GameState.GAME_OVER){
             _batch.begin();
-            gameOverScreen.render(_batch, ProgressTracker.getScore());
+            gameOverScreen.render(_batch, ProgressTracker.getScore(), ProgressTracker.getCreaturesHit());
             _batch.end();
 
             int action = gameOverScreen.getActionPressed();

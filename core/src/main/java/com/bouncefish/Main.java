@@ -157,7 +157,7 @@ public class Main extends ApplicationAdapter {
         _batch.draw(_background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         _batch.end();
 
-        if (GameConstants.IS_DEBUG){
+        if (GameConstants.IS_DEBUG && GameStateHandler.getCurrentState() == GameState.PLAYING){
             _shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             _shapeRenderer.setAutoShapeType(true);
             _shapeRenderer.set(ShapeRenderer.ShapeType.Filled);

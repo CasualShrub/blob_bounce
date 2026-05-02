@@ -28,10 +28,10 @@ public class BounceFish extends Creature {
 
     public BounceFish(ArrayList<Creature> creatureList, Runnable deathEvent) {
         this.creatureId = 0;
-        this.xPosition = Gdx.graphics.getWidth()* 0.5f;
         this.yPosition = 800;
         this.width = 150;
         this.height = 150;
+        this.xPosition = Gdx.graphics.getWidth() * 0.5f - (this.getWidth() * 0.5f);
         this.boundOffsetX = getWidth() * 0.15f;
         this.boundOffsetY = getHeight() * 0.15f;
 
@@ -47,7 +47,7 @@ public class BounceFish extends Creature {
 
     public void respawn(){
         //TODO: replace with animation of fish jumping out of water?
-        this.xPosition = Gdx.graphics.getWidth() * 0.5f;
+        this.xPosition = Gdx.graphics.getWidth() * 0.5f - (this.getWidth() * 0.5f);
         this.yPosition = 800;
         this.spawnStasisTimer = 0;
         this.xVelocity = 0;

@@ -51,7 +51,7 @@ public class MenuScreen {
 
         batch.begin();
         // Draw Background
-        batch.draw(background, 0, 0, screenWidth, screenHeight);
+        //batch.draw(background, 0, 0, screenWidth, screenHeight);
 
         // Draw Title (Top of stack)
         float currentY = startY - titleHeight;

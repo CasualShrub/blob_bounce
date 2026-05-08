@@ -112,8 +112,10 @@ public class Shark extends Creature{
             setBounds(); //the shark is jumping up
             if(xVelocity > 0){
                 setXVelocity(10);
+                setX(getX() - width/2); //ugly fix!
             }else{
                 setXVelocity(-10);
+                setX(getX() - width/4); //ugly fix again!
             }
             Water.playSplash(xPosition);
 

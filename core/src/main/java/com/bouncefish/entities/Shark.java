@@ -18,12 +18,17 @@ public class Shark extends Creature{
     private boolean coolDown; //needs to cooldown after attacking
     private int attackCooldownCounter = GameConstants.SHARK_ATK_COOLDOWN;//ready to attack when the counter is 0'
     protected static final float BASE_SPEED = 800;
+    protected static int bodyWidth = 500;
+    protected static int bodyHeight = 500;
+    protected static int finWidth = 100;
+    protected static int finHeight = 100;
+    private int hp =  100;
     public Shark(float spawnTime, float spawnX, boolean movingLeft, Consumer<Creature> movementFunction) {
         creatureId = 5;
         xVelocity = movingLeft? -BASE_SPEED:BASE_SPEED;
         yVelocity = 0;
-        width = 260;
-        height = 260;
+        width = bodyWidth;
+        height = bodyHeight;
         movementSpeed = 800;
 
         this.xPosition = spawnX;
@@ -38,11 +43,8 @@ public class Shark extends Creature{
 
     @Override
     public void updateBounds(){
-        if(readyToAttack){
-            bounds.setX(getX() - GameConstants.SHARK_DECTECTION_WIDTH);
-            bounds.setY(getY());
-        } else if(attacking){
-            bounds.setX(getX());
+        if(attacking){
+            bounds.setX(getX()+width/3); //+width/3 to shift the box so that it's right on top of the shark
             bounds.setY(getY() + height);
         }else{
             bounds.setX(getX());
@@ -81,10 +83,10 @@ public class Shark extends Creature{
     protected void setBounds(){
         if(readyToAttack){//the shark is looking for the bouncefish
             bounds = new Rectangle(
-                (getX() - GameConstants.SHARK_DECTECTION_WIDTH), getY(),
-                GameConstants.SHARK_DECTECTION_WIDTH*2 + width, GameConstants.SHARK_DECTECTION_HEIGHT);
+                getX(), getY(),
+                finWidth, GameConstants.SHARK_DECTECTION_HEIGHT);
         }else if(attacking){ //the shark is jumping up
-            bounds = new Rectangle(getX(), getY() + height, width, 42);//the hit box, a width X 42 box above the shark
+            bounds = new Rectangle(getX()+width/3, getY() + height, width/3, 42);//the hit box, a width/3 X 42 box above the shark. width is that of the texture, so need to divide by 3
         }else{//the shark is in the water(and cooling down)
             bounds = new Rectangle(getX(), getY(),
                 getWidth(), getHeight());
@@ -113,11 +115,37 @@ public class Shark extends Creature{
             }else{
                 setXVelocity(-10);
             }
+            Water.playSplash(xPosition);
 
             float height = GameConstants.SHARK_JUMP_HEIGHT - getY(); //v^2 = 2gh; the shark needs to have 0 speed when reach the jump height
             float initialSpeed = (float) Math.sqrt(2f * GameConstants.GRAVITY * height);
             setYVelocity(initialSpeed);
             setMovementFunction(Shark::attackMovement);
+    }
+    @Override
+    public void takeDamage(){
+        if(--hp<0){
+            hp = 0;
+            //TODO: make the shark disappear
+        }
+    }
+
+    @Override
+    public float getWidth(){
+        if(attacking){
+            return bodyWidth;
+        }else{
+            return finWidth;
+        }
+    }
+
+    @Override
+    public float getHeight(){
+        if(attacking){
+            return bodyHeight;
+        }else{
+            return finHeight;
+        }
     }
 
     public static void attackMovement(Creature creature) {
@@ -131,7 +159,8 @@ public class Shark extends Creature{
             creature.yPosition = GameConstants.SHARK_JUMP_HEIGHT;
         }
 
-        if (creature.yPosition <= GameConstants.WATER_LEVEL) {
+        if (creature.yPosition <= GameConstants.WATER_LEVEL - 150) {
+            Water.playSplash(creature.xPosition);
             creature.yPosition = GameConstants.WATER_LEVEL;
             creature.yVelocity = 0f;
 
@@ -158,7 +187,7 @@ public class Shark extends Creature{
                 creature.movingLeft = false;
             }
         }else{
-            if(creature.xPosition > GameConstants.Game_Width - creature.width){
+            if(creature.xPosition > GameConstants.Game_Width - Shark.finWidth){
                 creature.xVelocity = -creature.xVelocity;
                 creature.movingLeft = true;
             }

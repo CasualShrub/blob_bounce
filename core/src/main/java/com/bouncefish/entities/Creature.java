@@ -231,4 +231,7 @@ public abstract class Creature {
     public void deactivate(){
         active = false;
     }
+    public void takeDamage(){
+        System.out.println("No damage for this creature(You can't kill me!)");
+    }
 }

@@ -41,12 +41,12 @@ public class MenuScreen {
             titleHeight = titleWidth * (title.getHeight() / (float)title.getWidth());
         }
 
-        float btnHeight = screenHeight * 0.11f;
+        float btnHeight = screenHeight * 0.2f;
         float btnWidth = btnHeight * (playButton.getWidth() / (float)playButton.getHeight());
 
         // 2. Calculateing Vertical Stack (Title + Buttons)
-        float spacing = btnHeight * 0.25f;
-        float totalHeight = titleHeight + (btnHeight * 3) + (spacing * 4);
+        float titleSpacing = btnHeight * 0.10f;
+        float totalHeight = titleHeight + (btnHeight * 3) + titleSpacing;
         float startY = (screenHeight + totalHeight) / 2f;
 
         batch.begin();
@@ -60,15 +60,15 @@ public class MenuScreen {
         // Draw Buttons below Title
         float btnX = (screenWidth - btnWidth) / 2f;
 
-        currentY -= (btnHeight + spacing * 1.5f);
+        currentY -= (btnHeight + titleSpacing);
         batch.draw(playButton, btnX, currentY, btnWidth, btnHeight);
         playBounds.set(btnX, currentY, btnWidth, btnHeight);
 
-        currentY -= (btnHeight + spacing);
+        currentY -= (btnHeight);
         batch.draw(leaderboardButton, btnX, currentY, btnWidth, btnHeight);
         leaderboardBounds.set(btnX, currentY, btnWidth, btnHeight);
 
-        currentY -= (btnHeight + spacing);
+        currentY -= (btnHeight);
         batch.draw(settingsButton, btnX, currentY, btnWidth, btnHeight);
         settingsBounds.set(btnX, currentY, btnWidth, btnHeight);
 

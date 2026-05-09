@@ -16,8 +16,8 @@ public class Water {
     private static Animation<TextureRegion> splashAnimation;
     private static Array<Float> splashX = new Array<>();
     private static Array<Float> splashTime = new Array<>();
-    private static float splashWidth = 128f;
-    private static float splashHeight = 128f;
+    private static float splashWidth = 256f;
+    private static float splashHeight = 256f;
 
 
     public static void initAnime() {
@@ -26,12 +26,12 @@ public class Water {
 
         waterRegion = new TextureRegion(waterTexture);
 
-        TextureRegion[] frames = new TextureRegion[] {
-            new TextureRegion(new Texture("splash1.png")),
-            new TextureRegion(new Texture("splash2.png"))
-        };
+        TextureRegion[] frames = new TextureRegion[6];
+        for(int i=0;i<6;i++){
+            frames[i] = new TextureRegion(new Texture("splash/splash"+i+".png"));
+        }
 
-        splashAnimation = new Animation<>(0.5f, frames);
+        splashAnimation = new Animation<>(0.1f, frames);
         splashAnimation.setPlayMode(Animation.PlayMode.NORMAL);
     }
 

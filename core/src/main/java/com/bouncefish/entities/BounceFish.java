@@ -147,11 +147,11 @@ public class BounceFish extends Creature {
                     if(creature.isReadyToAttack()){
                         creature.attack();
                     }else if(creature.isAttacking()){
-                        die(this.getY());
+                        //die(this.getY());
                         break;
                     }else{
                         bounce(creature);
-                        //TODO decrease shark's hp
+                        creature.takeDamage();
                     }
                 }
                 else if (creatureId == 2){ // Jellyfish!

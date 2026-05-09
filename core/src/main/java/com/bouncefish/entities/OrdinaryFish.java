@@ -81,7 +81,7 @@ public abstract class OrdinaryFish extends Creature{
             Water.playSplash(creature.xPosition);
         }else if(dy < 0 && !creature.inWater && creature.yPosition<=GameConstants.WATER_LEVEL){
             creature.inWater = true;
-            int xOffset = creature.movingLeft? -100:100; //magic number to fix the position of the splash
+            int xOffset = creature.movingLeft? -75:75; //magic number to fix the position of the splash
             Water.playSplash(creature.xPosition+xOffset);
         }
 

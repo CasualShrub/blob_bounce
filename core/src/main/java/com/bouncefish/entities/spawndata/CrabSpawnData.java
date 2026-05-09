@@ -8,6 +8,14 @@ import java.util.function.Consumer;
 
 public class CrabSpawnData extends CreatureSpawnData<Crab> {
 
+    public CrabSpawnData(float spawnTime, float spawnX){
+        super(spawnTime, spawnX, GameConstants.WATER_LEVEL, 1, Crab::normalMovement);
+    }
+
+    public CrabSpawnData(float spawnTime, float spawnX, float speedMultiplier){
+        super(spawnTime, spawnX, GameConstants.WATER_LEVEL, speedMultiplier, Crab::normalMovement);
+    }
+
     public CrabSpawnData(float spawnTime, float spawnX, Consumer<Creature> movementFunction){
         super(spawnTime, spawnX, GameConstants.WATER_LEVEL, 1, movementFunction);
     }

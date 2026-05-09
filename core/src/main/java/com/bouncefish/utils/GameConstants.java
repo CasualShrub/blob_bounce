@@ -37,4 +37,8 @@ public final class GameConstants {
     public static float LEFT_DEALLOCATE_X = -300;
     public static float RIGHT_DEALLOCATE_X = Game_Width + 300;
     public static float BELOW_DEALLOCATE_Y = WATER_LEVEL - 300;
+
+    // for Persistence
+    public static final String PREFS_NAME = "BlobFishPrefs";
+    public static final String PREF_PLAYER_NAME = "defaultName";
 }

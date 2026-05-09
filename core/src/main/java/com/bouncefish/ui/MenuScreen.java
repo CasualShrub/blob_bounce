@@ -55,7 +55,12 @@ public class MenuScreen {
 
         // Draw Title (Top of stack)
         float currentY = startY - titleHeight;
-        batch.draw(title, (screenWidth - titleWidth) / 2f, currentY, titleWidth, titleHeight);
+        float titleX = (screenWidth - titleWidth) / 2f;
+        float shadowOffset = titleHeight * 0.04f;
+        batch.setColor(0, 0, 0, 0.4f);
+        batch.draw(title, titleX + shadowOffset, currentY - shadowOffset, titleWidth, titleHeight);
+        batch.setColor(1, 1, 1, 1f);
+        batch.draw(title, titleX, currentY, titleWidth, titleHeight);
 
         // Draw Buttons below Title
         float btnX = (screenWidth - btnWidth) / 2f;

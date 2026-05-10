@@ -51,7 +51,7 @@ public class LeaderboardScreen {
         service.fetchTopScores(new LeaderboardService.Callback() {
             @Override
             public void onDataRetrieved(List<LeaderboardData> scores) {
-                if (scores == null) {
+                if (scores != null){
                     leaderboardScoreList = scores;
                 }
                 else {

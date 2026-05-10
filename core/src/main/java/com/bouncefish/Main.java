@@ -213,11 +213,12 @@ public class Main extends ApplicationAdapter {
                 GameStateHandler.setCurrentState(GameState.PLAYING);
                 _bounceGame.startGame();
             } else if(button == 2){
+                leaderboardScreen.refresh(leaderboardService); // update the leaderboardscreen TODO: maybe move this inside render?
                 GameStateHandler.setCurrentState(GameState.LEADERBOARD);
             }
         }
         else if(currentState == GameState.LEADERBOARD){
-            leaderboardScreen.render(_batch, ProgressTracker.getScore());
+            leaderboardScreen.render(_batch);
             if(leaderboardScreen.isBackPressed()){
                 GameStateHandler.setCurrentState(GameState.MENU);
             }
@@ -248,6 +249,7 @@ public class Main extends ApplicationAdapter {
         _shapeRenderer.dispose();
         _soundManager.disposeSounds();
         menuScreen.dispose();
+        leaderboardScreen.dispose();
         _scoreFont.dispose();
         gameOverScreen.dispose();
     }

@@ -1,76 +1,187 @@
 package com.bouncefish.ui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+import com.bouncefish.gameplay.LeaderboardService;
+import com.bouncefish.utils.ColorHelper;
+import com.bouncefish.utils.GameConstants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LeaderboardScreen {
 
-    private Texture background;
-    private Texture backButton;
-    private BitmapFont font;
+    private static final int MAX_ROWS = 10;
+
+    private Texture defaultPixmapTexture;
+    private BitmapFont titleFont;
+    private BitmapFont rowFont;
+    private GlyphLayout glyphLayout; // we need to use to measure string width bc we can't rly know how long the string is without also font information
+    private Rectangle backButtonBounds;
+
+    private List<LeaderboardService.ScoreEntry> scores;
+    private boolean isLoading;
 
     public LeaderboardScreen() {
-        background = new Texture("leaderboard_bg.png");
-        backButton = new Texture("back_button.png");
-        font = new BitmapFont();
+        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888); // this is a default pixmap for drawing basic shapes
+        pixmap.setColor(1, 1, 1, 1);
+        pixmap.fill();
+        this.defaultPixmapTexture = new Texture(pixmap);
+        pixmap.dispose(); // we can dispose the pixmap now that it's been loaded into a texture
+
+        this.titleFont = new BitmapFont();
+        this.rowFont = new BitmapFont();
+        this.glyphLayout = new GlyphLayout();
+        this.backButtonBounds = new Rectangle();
+        this.scores = new ArrayList<>();
     }
 
-    public void render(SpriteBatch batch, int score) {
+    public void refresh(LeaderboardService service) {
+        if (service == null) {
+            return;
+        }
+        this.isLoading = true;
+        this.scores.clear();
+        service.fetchTopScores(new LeaderboardService.ScoreCallback() {
+            @Override
+            public void onScoresLoaded(List<LeaderboardService.ScoreEntry> result) {
+                scores = result != null ? result : new ArrayList<>();
+                isLoading = false;
+            }
+            @Override
+            public void onError(Exception e) {
+                isLoading = false;
+            }
+        });
+    }
 
-        float screenWidth = Gdx.graphics.getWidth();
-        float screenHeight = Gdx.graphics.getHeight();
+    public void render(SpriteBatch batch) {
+        float screenWidth = GameConstants.Game_Width;
+        float screenHeight = GameConstants.Screen_Height;
+
+        float panelWidth = screenWidth * 0.6f;
+        float rowHeight = screenHeight * 0.07f;
+        float titleAreaHeight = screenHeight * 0.1f;
+        float backBtnHeight = rowHeight * 0.85f;
+        float backBtnWidth = panelWidth * 0.3f;
+        float padding = screenHeight * 0.03f;
+
+        float panelHeight = padding + titleAreaHeight + (rowHeight * MAX_ROWS) + padding + backBtnHeight + padding;
+        float panelX = (screenWidth - panelWidth) / 2f;
+        float panelY = (screenHeight - panelHeight) / 2f;
+
+        this.titleFont.getData().setScale(titleAreaHeight * 0.6f / 15f);
+        this.rowFont.getData().setScale(rowHeight * 0.55f / 15f);
 
         batch.begin();
 
-        batch.draw(background, 0, 0, screenWidth, screenHeight);
+        // First render background
+        batch.setColor(ColorHelper.LEADERBOARD_BACKGROUND);
+        batch.draw(defaultPixmapTexture, panelX, panelY, panelWidth, panelHeight);
+
+        // then use the pixmap to draw the border
+        float border = 2f;
+        batch.setColor(ColorHelper.LEADERBOARD_BORDER);
+        batch.draw(defaultPixmapTexture, panelX - border, panelY - border, panelWidth + border * 2, border);
+        batch.draw(defaultPixmapTexture, panelX - border, panelY + panelHeight, panelWidth + border * 2, border);
+        batch.draw(defaultPixmapTexture, panelX - border, panelY - border, border, panelHeight + border * 2);
+        batch.draw(defaultPixmapTexture, panelX + panelWidth, panelY - border, border, panelHeight + border * 2);
 
         // Title
-        font.draw(batch, "LEADERBOARD", screenWidth / 2f - 60, screenHeight - 50);
+        this.glyphLayout.setText(titleFont, "LEADERBOARD");
+        this.titleFont.setColor(0.4f, 0.8f, 1f, 1f);
+        this.titleFont.draw(batch, "LEADERBOARD",
+            panelX + (panelWidth - glyphLayout.width) / 2f,
+            panelY + panelHeight - padding);
 
-        // Score display
-        font.draw(batch, "Score: " + score, screenWidth / 2f - 40, screenHeight - 120);
+        // Rows
+        float rowsStartY = panelY + panelHeight - padding - titleAreaHeight;
+        float rowPadX = panelX + padding;
+        float rowContentWidth = panelWidth - padding * 2;
+
+        for (int i = 0; i < MAX_ROWS; i++) {
+            float rowTop = rowsStartY - i * rowHeight;
+
+            // Alternating row background
+            batch.setColor(0.1f, i % 2 == 0 ? 0.18f : 0.12f, i % 2 == 0 ? 0.35f : 0.25f, 0.55f);
+            batch.draw(defaultPixmapTexture, rowPadX, rowTop - rowHeight, rowContentWidth, rowHeight);
+
+            // Gold / silver / bronze for top 3, plain white otherwise
+            if (i == 0) {
+                rowFont.setColor(ColorHelper.RANK_GOLD);
+            }
+            else if (i == 1) {
+                rowFont.setColor(ColorHelper.RANK_SILVER);
+            }
+            else if (i == 2) {
+                rowFont.setColor(ColorHelper.RANK_BRONZE);
+            }
+            else {
+                rowFont.setColor(ColorHelper.DEFAULT_TEXT_OFFWHITE);
+            }
+
+            float textY = rowTop - (rowHeight - rowFont.getCapHeight()) / 2f;
+
+            String rankIndex = (i + 1) + ".";
+            String name;
+            String score;
+
+            // Render loading if still fetching from firebase
+            if (isLoading) {
+                name = i == 0 ? "Loading..." : "";
+                score = "";
+            } else if (i < scores.size()) {
+                name = scores.get(i).name;
+                score = String.valueOf(scores.get(i).score);
+            } else {
+                name = "---";
+                score = "---";
+            }
+
+            glyphLayout.setText(rowFont, rankIndex);
+            rowFont.draw(batch, rankIndex, rowPadX, textY);
+
+            float nameX = rowPadX + glyphLayout.width + padding * 0.5f;
+            rowFont.draw(batch, name, nameX, textY);
+
+            glyphLayout.setText(rowFont, score);
+            rowFont.draw(batch, score, rowPadX + rowContentWidth - glyphLayout.width, textY);
+        }
 
         // Back button
-        float btnWidth = screenWidth * 0.3f;
-        float btnHeight = btnWidth * 0.4f;
-        float btnX = (screenWidth - btnWidth) / 2;
-        float btnY = 50;
+        float backBtnX = panelX + (panelWidth - backBtnWidth) / 2f;
+        float backBtnY = panelY + padding;
+        batch.setColor(0.15f, 0.35f, 0.6f, 0.9f);
+        batch.draw(defaultPixmapTexture, backBtnX, backBtnY, backBtnWidth, backBtnHeight);
 
-        batch.draw(backButton, btnX, btnY, btnWidth, btnHeight);
+        batch.setColor(1f, 1f, 1f, 1f);
+        this.glyphLayout.setText(rowFont, "BACK");
+        this.rowFont.draw(batch, "BACK",
+            backBtnX + (backBtnWidth - this.glyphLayout.width) / 2f,
+            backBtnY + (backBtnHeight + this.rowFont.getCapHeight()) / 2f);
+
+        this.backButtonBounds.set(backBtnX, backBtnY, backBtnWidth, backBtnHeight);
 
         batch.end();
     }
 
     public boolean isBackPressed() {
-
-        float screenWidth = Gdx.graphics.getWidth();
-        float screenHeight = Gdx.graphics.getHeight();
-
-        float btnWidth = screenWidth * 0.3f;
-        float btnHeight = btnWidth * 0.4f;
-        float btnX = (screenWidth - btnWidth) / 2;
-        float btnY = 50;
-
         if (Gdx.input.justTouched()) {
-
             float x = Gdx.input.getX();
-            float y = screenHeight - Gdx.input.getY();
-
-            if (x >= btnX && x <= btnX + btnWidth &&
-                y >= btnY && y <= btnY + btnHeight) {
-                return true;
-            }
+            float y = Gdx.graphics.getHeight() - Gdx.input.getY();
+            return backButtonBounds.contains(x, y);
         }
-
         return false;
     }
 
     public void dispose() {
-        background.dispose();
-        backButton.dispose();
-        font.dispose();
+        defaultPixmapTexture.dispose();
+        titleFont.dispose();
+        rowFont.dispose();
     }
-
 }

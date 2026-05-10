@@ -7,7 +7,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.bouncefish.gameplay.LeaderboardService;
+import com.bouncefish.leaderboard.LeaderboardData;
+import com.bouncefish.leaderboard.LeaderboardService;
 import com.bouncefish.utils.ColorHelper;
 import com.bouncefish.utils.GameConstants;
 
@@ -24,7 +25,7 @@ public class LeaderboardScreen {
     private GlyphLayout glyphLayout; // we need to use to measure string width bc we can't rly know how long the string is without also font information
     private Rectangle backButtonBounds;
 
-    private List<LeaderboardService.ScoreEntry> scores;
+    private List<LeaderboardData> leaderboardScoreList;
     private boolean isLoading;
 
     public LeaderboardScreen() {
@@ -38,7 +39,7 @@ public class LeaderboardScreen {
         this.rowFont = new BitmapFont();
         this.glyphLayout = new GlyphLayout();
         this.backButtonBounds = new Rectangle();
-        this.scores = new ArrayList<>();
+        this.leaderboardScoreList = new ArrayList<>();
     }
 
     public void refresh(LeaderboardService service) {
@@ -46,13 +47,20 @@ public class LeaderboardScreen {
             return;
         }
         this.isLoading = true;
-        this.scores.clear();
-        service.fetchTopScores(new LeaderboardService.ScoreCallback() {
+        this.leaderboardScoreList.clear();
+        service.fetchTopScores(new LeaderboardService.Callback() {
             @Override
-            public void onScoresLoaded(List<LeaderboardService.ScoreEntry> result) {
-                scores = result != null ? result : new ArrayList<>();
+            public void onDataRetrieved(List<LeaderboardData> scores) {
+                if (scores != null){
+                    leaderboardScoreList = scores;
+                }
+                else {
+                    leaderboardScoreList = new ArrayList<>();
+                }
+
                 isLoading = false;
             }
+
             @Override
             public void onError(Exception e) {
                 isLoading = false;
@@ -108,7 +116,12 @@ public class LeaderboardScreen {
             float rowTop = rowsStartY - i * rowHeight;
 
             // Alternating row background
-            batch.setColor(0.1f, i % 2 == 0 ? 0.18f : 0.12f, i % 2 == 0 ? 0.35f : 0.25f, 0.55f);
+            if (i % 2 == 0){
+                batch.setColor(ColorHelper.LEADERBOARD_ROW_EVEN);
+            }
+            else {
+                batch.setColor(ColorHelper.LEADERBOARD_ROW_ODD);
+            }
             batch.draw(defaultPixmapTexture, rowPadX, rowTop - rowHeight, rowContentWidth, rowHeight);
 
             // Gold / silver / bronze for top 3, plain white otherwise
@@ -135,9 +148,9 @@ public class LeaderboardScreen {
             if (isLoading) {
                 name = i == 0 ? "Loading..." : "";
                 score = "";
-            } else if (i < scores.size()) {
-                name = scores.get(i).name;
-                score = String.valueOf(scores.get(i).score);
+            } else if (i < leaderboardScoreList.size()) {
+                name = leaderboardScoreList.get(i).name;
+                score = String.valueOf(leaderboardScoreList.get(i).score);
             } else {
                 name = "---";
                 score = "---";

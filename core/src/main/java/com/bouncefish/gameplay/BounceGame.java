@@ -1,10 +1,12 @@
 package com.bouncefish.gameplay;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.bouncefish.entities.BounceFish;
 import com.bouncefish.entities.*;
+import com.bouncefish.leaderboard.LeaderboardService;
 import com.bouncefish.utils.GameConstants;
 
 import javax.swing.Timer;
@@ -22,10 +24,14 @@ public class BounceGame implements GestureDetector.GestureListener {
     private float cleanUpTimer = 0;
     private static int debugCounter = 0;
 
-    public BounceGame() {
+    private LeaderboardService leaderboardService;
+
+    public BounceGame(LeaderboardService service) {
         _creatureList = new ArrayList<>();
         _bounceFish = new BounceFish(_creatureList, this::onPlayerDeath);
         _spawner = new CreatureSpawner(_creatureList);
+
+        this.leaderboardService = service;
     }
 
     public void startGame(){
@@ -114,6 +120,9 @@ public class BounceGame implements GestureDetector.GestureListener {
     public void onPlayerDeath(){
         // We no longer stop the spawner here so background keeps moving
         GameStateHandler.setCurrentState(GameState.GAME_OVER);
+        Preferences prefs = Gdx.app.getPreferences(GameConstants.PREFS_NAME); // TODO: maybe make a helper function for this?
+        String name = prefs.getString(GameConstants.PREF_PLAYER_NAME, "");
+        this.leaderboardService.submitScore(name, ProgressTracker.getScore());
     }
 
     public void onMainMenu(){

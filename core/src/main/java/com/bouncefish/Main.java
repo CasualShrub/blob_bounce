@@ -31,10 +31,10 @@ import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.GameState;
 import com.bouncefish.gameplay.GameStateHandler;
-import com.bouncefish.gameplay.LeaderboardService;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 
+import com.bouncefish.leaderboard.LeaderboardService;
 import com.bouncefish.utils.GameConstants;
 import com.bouncefish.ui.MenuScreen;
 import com.bouncefish.ui.LeaderboardScreen;
@@ -58,14 +58,10 @@ public class Main extends ApplicationAdapter {
     private LeaderboardScreen leaderboardScreen;
     private GameOverScreen gameOverScreen;
 
-    private static LeaderboardService leaderboardService;
+    private LeaderboardService leaderboardService;
 
-    public static void setLeaderboardService(LeaderboardService service) {
-        leaderboardService = service;
-    }
-
-    public static LeaderboardService getLeaderboardService() {
-        return leaderboardService;
+    public Main(LeaderboardService service){
+        this.leaderboardService = service;
     }
 
     @Override
@@ -76,7 +72,7 @@ public class Main extends ApplicationAdapter {
         _background = new Texture("background_placeholder1.jpg");
         _water = new Texture("water.png");
         _soundManager = new SoundManager();
-        _bounceGame = new BounceGame();
+        _bounceGame = new BounceGame(leaderboardService);
         _currentFish = _bounceGame.getBounceFish();
         menuScreen = new MenuScreen();
         leaderboardScreen = new LeaderboardScreen();

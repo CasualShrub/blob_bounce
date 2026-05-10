@@ -1,9 +1,16 @@
 package com.bouncefish.android.leaderboard;
 
+import android.util.Log;
+
 import com.bouncefish.leaderboard.LeaderboardData;
 import com.bouncefish.leaderboard.LeaderboardService;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
@@ -12,8 +19,36 @@ public class FirebaseLeaderboardService implements LeaderboardService {
 
     @Override
     public void submitScore(String name, int score) {
-        LeaderboardData data = new LeaderboardData(name, score);
-        database.collection("leaderboard").add(data);
+        // Document reference is a good way to refer to a location to read and write from
+        DocumentReference docRef = database.collection("leaderboard").document(name);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot snapshot) {
+                    if (!snapshot.exists() || snapshot.getLong("score") < score) {
+                        docRef.set(new LeaderboardData(name, score))
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d("Leaderboard", "Score updated: " + name + " - " + score);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(Exception e) {
+                                    Log.e("Leaderboard", "Submit failed! " + e.getMessage());
+                                }
+                            });
+                    } else {
+                        Log.d("Leaderboard", "Score not updated! Existing score is higher");
+                    }
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    Log.e("Leaderboard", "Failed to fetch leaderboard: " + e.getMessage());
+                }
+            });
     }
 
     @Override
@@ -22,9 +57,12 @@ public class FirebaseLeaderboardService implements LeaderboardService {
             .orderBy("score", Query.Direction.DESCENDING)
             .limit(10)
             .get()
-            .addOnSuccessListener(queryDocumentSnapshots -> {
-                List<LeaderboardData> scores = queryDocumentSnapshots.toObjects(LeaderboardData.class);
-                callback.onDataRetrieved(scores);
+            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    List<LeaderboardData> scores = queryDocumentSnapshots.toObjects(LeaderboardData.class);
+                    callback.onDataRetrieved(scores);
+                }
             })
             .addOnFailureListener(callback::onError);
     }

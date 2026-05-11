@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.bouncefish.entities.BounceFish;
@@ -215,7 +216,7 @@ public class Main extends ApplicationAdapter {
                 _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), Gdx.graphics.getWidth() / 2f - 20, Gdx.graphics.getHeight() - 100);
 
                 float powerUpWidth = GameConstants.RIGHT_CONTROL_BORDER;
-                float powerUpHeight = Gdx.graphics.getHeight() * 0.12f;
+                float powerUpHeight = Gdx.graphics.getHeight() * 0.16f;
                 float powerUpMargin = Gdx.graphics.getHeight() * 0.03f;
                 float powerUPX = Gdx.graphics.getWidth() - powerUpWidth;
                 float powerUpY = powerUpMargin;
@@ -238,7 +239,7 @@ public class Main extends ApplicationAdapter {
 
                 _batch.setColor(1f, 1f, 1f, 1f);
                 _powerUpFont.getData().setScale(powerUpHeight / 55f);
-                _powerUpFont.draw(_batch, _currentFish.getPowerUpLabel(), powerUPX + powerUpWidth * 0.35f, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f);
+                _powerUpFont.draw(_batch, _currentFish.getPowerUpLabel(), powerUPX, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f, powerUpWidth, Align.center, false);
             }
         }
         _batch.end();

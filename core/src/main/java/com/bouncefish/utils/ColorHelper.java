@@ -11,4 +11,6 @@ public class ColorHelper {
     public static final Color LEADERBOARD_ROW_ODD = new Color(0.1f, 0.12f, 0.25f, 0.55f);
     public static final Color LEADERBOARD_BACKGROUND = new Color(0f, 0.05f, 0.15f, 0.92f);
     public static final Color LEADERBOARD_BORDER = new Color(0.4f, 0.7f, 1f, 0.6f);
+    public static final Color POWERUP_GRAY = new Color(0.3f,  0.3f,  0.3f,  0.55f);
+    public static final Color POWERUP_GROUND_POUND = new Color(0.85f, 0.35f, 0.05f, 1f);
 }

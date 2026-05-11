@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Timer;
 import com.bouncefish.gameplay.GameState;
 import com.bouncefish.gameplay.GameStateHandler;
+import com.bouncefish.gameplay.PowerUpType;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 import com.bouncefish.utils.GameConstants;
@@ -17,7 +18,11 @@ public class BounceFish extends Creature {
     private boolean isBouncing = false;
     private float paralyzedTime;
     private boolean isParalyzed = false;
-    private float spawnStasisTimer = 0; // Timer that tracks how long to remain in the air when spawned
+    private float spawnStasisTimer = 0;
+    private boolean hasPowerUp = false;
+    private PowerUpType powerUpType = PowerUpType.NONE;
+    private boolean isFloating = false;
+    private float floatTimer = 0;
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
     private static Animation<TextureRegion> downAnimation;
     private static Animation<TextureRegion> upAnimation;
@@ -55,6 +60,10 @@ public class BounceFish extends Creature {
         this.isBouncedOn = false;
         this.isParalyzed = false;
         this.paralyzedTime = 0;
+        this.hasPowerUp = false;
+        this.powerUpType = PowerUpType.NONE;
+        this.isFloating = false;
+        this.floatTimer = 0;
     }
 
     @Override
@@ -113,11 +122,20 @@ public class BounceFish extends Creature {
             return;
         }
 
-        // Force of gravity
-        boolean wasGoingUp = yVelocity > 0;
-        decrementYVelocity(GameConstants.GRAVITY);
-        if (wasGoingUp && yVelocity <= 0){
-            stateTime = 0;
+        // Force of gravity - skipped while power-up float is active
+        if (isFloating) {
+            floatTimer += Gdx.graphics.getDeltaTime();
+            yVelocity = 0;
+            if (floatTimer >= GameConstants.FLOAT_DURATION) {
+                isFloating = false;
+                floatTimer = 0;
+            }
+        } else {
+            boolean wasGoingUp = yVelocity > 0;
+            decrementYVelocity(GameConstants.GRAVITY);
+            if (wasGoingUp && yVelocity <= 0) {
+                stateTime = 0;
+            }
         }
 
         // Update x and y position based on velocity
@@ -162,6 +180,13 @@ public class BounceFish extends Creature {
                 else if (creature.isBouncable() && this.yVelocity < 0) {
                     bounce(creature);
                     creature.handleBouncedOn();
+                    if (creature.getCreatureId() == 1) { // Crab = float power up!
+                        hasPowerUp = true;
+                        powerUpType = PowerUpType.GROUND_POUND;
+                    } else if (creature.getCreatureId() == 4) { // Mackerel = ground pound!
+                        hasPowerUp = true;
+                        powerUpType = PowerUpType.FLOAT;
+                    }
                     break;
                 }
             }
@@ -230,6 +255,48 @@ public class BounceFish extends Creature {
     @Override
     public void handleBouncedOn() {
         System.out.println("This should never happen");
+    }
+
+    public void activatePowerUp() {
+        if (!hasPowerUp) return;
+        hasPowerUp = false;
+        if (powerUpType == PowerUpType.FLOAT) {
+            isFloating = true;
+            floatTimer = 0;
+            yVelocity = 0;
+        } else if (powerUpType == PowerUpType.GROUND_POUND) {
+            isFloating = false;
+            yVelocity = GameConstants.GROUND_POUND_VELOCITY;
+        }
+        powerUpType = PowerUpType.NONE;
+    }
+
+    public boolean hasPowerUp() {
+        return hasPowerUp;
+    }
+
+    public PowerUpType getPowerUpType() {
+        return powerUpType;
+    }
+
+    public String getPowerUpLabel() {
+        switch (powerUpType) {
+            case FLOAT:
+                return "FLOATING FISH";
+            case GROUND_POUND:
+                return "CRABSH DOWN";
+            default:
+                return "";
+        }
+    }
+
+    public boolean isFloating() {
+        return isFloating;
+    }
+
+    // Returns 1 when float just started, 0 when it has expired
+    public float getFloatProgress() {
+        return 1f - (floatTimer / GameConstants.FLOAT_DURATION);
     }
 
     public boolean isParalyzed(){

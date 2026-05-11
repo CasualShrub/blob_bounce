@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.bouncefish.entities.BounceFish;
@@ -31,10 +33,12 @@ import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.GameState;
 import com.bouncefish.gameplay.GameStateHandler;
+import com.bouncefish.gameplay.PowerUpType;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 
 import com.bouncefish.leaderboard.LeaderboardService;
+import com.bouncefish.utils.ColorHelper;
 import com.bouncefish.utils.GameConstants;
 import com.bouncefish.ui.MenuScreen;
 import com.bouncefish.ui.LeaderboardScreen;
@@ -57,6 +61,10 @@ public class Main extends ApplicationAdapter {
     private MenuScreen menuScreen;
     private LeaderboardScreen leaderboardScreen;
     private GameOverScreen gameOverScreen;
+
+    private Texture _pixel;
+    private BitmapFont _powerUpFont;
+    private Rectangle _powerUpBounds;
 
     private LeaderboardService leaderboardService;
 
@@ -82,6 +90,15 @@ public class Main extends ApplicationAdapter {
         _scoreFont = new BitmapFont();
         _scoreFont.getData().setScale(4f);
         _scoreFont.setColor(Color.WHITE);
+
+        Pixmap pixmap = new Pixmap(1, 1, com.badlogic.gdx.graphics.Pixmap.Format.RGBA8888);
+        pixmap.setColor(1, 1, 1, 1);
+        pixmap.fill();
+        _pixel = new Texture(pixmap);
+        pixmap.dispose();
+
+        _powerUpFont = new BitmapFont();
+        _powerUpBounds = new Rectangle();
 
         JellyFish.initAnime();
         Crab.initAnime();
@@ -197,9 +214,45 @@ public class Main extends ApplicationAdapter {
 
             if (currentState == GameState.PLAYING) {
                 _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), Gdx.graphics.getWidth() / 2f - 20, Gdx.graphics.getHeight() - 100);
+
+                float powerUpWidth = GameConstants.RIGHT_CONTROL_BORDER;
+                float powerUpHeight = Gdx.graphics.getHeight() * 0.16f;
+                float powerUpMargin = Gdx.graphics.getHeight() * 0.03f;
+                float powerUPX = Gdx.graphics.getWidth() - powerUpWidth;
+                float powerUpY = powerUpMargin;
+                _powerUpBounds.set(powerUPX, powerUpY, powerUpWidth, powerUpHeight);
+
+                _batch.setColor(ColorHelper.POWERUP_GRAY);
+                _batch.draw(_pixel, powerUPX, powerUpY, powerUpWidth, powerUpHeight);
+
+                if (_currentFish.hasPowerUp()) {
+                    Color chargedColor = _currentFish.getPowerUpType() == PowerUpType.GROUND_POUND
+                            ? ColorHelper.POWERUP_GROUND_POUND
+                            : ColorHelper.RANK_GOLD;
+                    _batch.setColor(chargedColor);
+                    _batch.draw(_pixel, powerUPX, powerUpY, powerUpWidth, powerUpHeight);
+                } else if (_currentFish.isFloating()) {
+                    float fillWidth = powerUpWidth * _currentFish.getFloatProgress();
+                    _batch.setColor(ColorHelper.RANK_GOLD);
+                    _batch.draw(_pixel, powerUPX, powerUpY, fillWidth, powerUpHeight);
+                }
+
+                _batch.setColor(1f, 1f, 1f, 1f);
+                _powerUpFont.getData().setScale(powerUpHeight / 55f);
+                _powerUpFont.draw(_batch, _currentFish.getPowerUpLabel(), powerUPX, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f, powerUpWidth, Align.center, false);
             }
         }
         _batch.end();
+
+        if (currentState == GameState.PLAYING) {
+            if (Gdx.input.justTouched()) {
+                float tx = Gdx.input.getX();
+                float ty = Gdx.graphics.getHeight() - Gdx.input.getY();
+                if (_powerUpBounds.contains(tx, ty)) {
+                    _currentFish.activatePowerUp();
+                }
+            }
+        }
 
         if (currentState == GameState.MENU){
             menuScreen.render(_batch);
@@ -246,6 +299,8 @@ public class Main extends ApplicationAdapter {
         _soundManager.disposeSounds();
         menuScreen.dispose();
         leaderboardScreen.dispose();
+        _pixel.dispose();
+        _powerUpFont.dispose();
         _scoreFont.dispose();
         gameOverScreen.dispose();
     }

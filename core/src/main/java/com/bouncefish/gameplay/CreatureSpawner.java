@@ -38,11 +38,8 @@ public class CreatureSpawner {
     }
 
     public void setActive(boolean isActive){
-        // Clear queue whenever we disable the spawner (Ex. game over)
-        if (!isActive){
-            clearSpawnQueue();
-        }
-        else{
+        clearSpawnQueue();
+        if (isActive){
             //Populate creatureList with the first wave
             WaveRegistry.generateWaves();
             WaveRegistry.prepareInitialWaves();

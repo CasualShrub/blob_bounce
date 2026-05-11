@@ -263,6 +263,15 @@ public class BounceFish extends Creature {
         return hasPowerUp;
     }
 
+    public boolean isFloating() {
+        return isFloating;
+    }
+
+    // Returns 1 when float just started, 0 when it has expired
+    public float getFloatProgress() {
+        return 1f - (floatTimer / GameConstants.FLOAT_DURATION);
+    }
+
     public boolean isParalyzed(){
         return isParalyzed;
     }

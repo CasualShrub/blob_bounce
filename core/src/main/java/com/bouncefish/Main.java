@@ -221,13 +221,19 @@ public class Main extends ApplicationAdapter {
                 float powerUpY = powerUpMargin;
                 _powerUpBounds.set(powerUPX, powerUpY, powerUpWidth, powerUpHeight);
 
-                boolean hasPowerUp = _currentFish.hasPowerUp();
-                if (hasPowerUp) {
-                    _batch.setColor(ColorHelper.RANK_GOLD);
-                } else {
-                    _batch.setColor(ColorHelper.POWERUP_GRAY);
-                }
+                // Gray background always drawn first
+                _batch.setColor(ColorHelper.POWERUP_GRAY);
                 _batch.draw(_pixel, powerUPX, powerUpY, powerUpWidth, powerUpHeight);
+
+                // Gold fill: full when charged, shrinks left-to-right while floating
+                if (_currentFish.hasPowerUp()) {
+                    _batch.setColor(ColorHelper.RANK_GOLD);
+                    _batch.draw(_pixel, powerUPX, powerUpY, powerUpWidth, powerUpHeight);
+                } else if (_currentFish.isFloating()) {
+                    float fillWidth = powerUpWidth * _currentFish.getFloatProgress();
+                    _batch.setColor(ColorHelper.RANK_GOLD);
+                    _batch.draw(_pixel, powerUPX, powerUpY, fillWidth, powerUpHeight);
+                }
 
                 _batch.setColor(1f, 1f, 1f, 1f);
                 _powerUpFont.getData().setScale(powerUpHeight / 55f);

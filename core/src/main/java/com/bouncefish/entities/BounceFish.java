@@ -17,7 +17,10 @@ public class BounceFish extends Creature {
     private boolean isBouncing = false;
     private float paralyzedTime;
     private boolean isParalyzed = false;
-    private float spawnStasisTimer = 0; // Timer that tracks how long to remain in the air when spawned
+    private float spawnStasisTimer = 0;
+    private boolean hasPowerUp = false;
+    private boolean isFloating = false;
+    private float floatTimer = 0; // Timer that tracks how long to remain in the air when spawned
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
     private static Animation<TextureRegion> downAnimation;
     private static Animation<TextureRegion> upAnimation;
@@ -55,6 +58,9 @@ public class BounceFish extends Creature {
         this.isBouncedOn = false;
         this.isParalyzed = false;
         this.paralyzedTime = 0;
+        this.hasPowerUp = false;
+        this.isFloating = false;
+        this.floatTimer = 0;
     }
 
     @Override
@@ -113,11 +119,20 @@ public class BounceFish extends Creature {
             return;
         }
 
-        // Force of gravity
-        boolean wasGoingUp = yVelocity > 0;
-        decrementYVelocity(GameConstants.GRAVITY);
-        if (wasGoingUp && yVelocity <= 0){
-            stateTime = 0;
+        // Force of gravity - skipped while power-up float is active
+        if (isFloating) {
+            floatTimer += Gdx.graphics.getDeltaTime();
+            yVelocity = 0;
+            if (floatTimer >= GameConstants.FLOAT_DURATION) {
+                isFloating = false;
+                floatTimer = 0;
+            }
+        } else {
+            boolean wasGoingUp = yVelocity > 0;
+            decrementYVelocity(GameConstants.GRAVITY);
+            if (wasGoingUp && yVelocity <= 0) {
+                stateTime = 0;
+            }
         }
 
         // Update x and y position based on velocity
@@ -162,6 +177,9 @@ public class BounceFish extends Creature {
                 else if (creature.isBouncable() && this.yVelocity < 0) {
                     bounce(creature);
                     creature.handleBouncedOn();
+                    if (creature.getCreatureId() == 1) { // Crab grants a power-up
+                        hasPowerUp = true;
+                    }
                     break;
                 }
             }
@@ -230,6 +248,19 @@ public class BounceFish extends Creature {
     @Override
     public void handleBouncedOn() {
         System.out.println("This should never happen");
+    }
+
+    public void activatePowerUp() {
+        if (hasPowerUp && !isFloating) {
+            hasPowerUp = false;
+            isFloating = true;
+            floatTimer = 0;
+            yVelocity = 0;
+        }
+    }
+
+    public boolean hasPowerUp() {
+        return hasPowerUp;
     }
 
     public boolean isParalyzed(){

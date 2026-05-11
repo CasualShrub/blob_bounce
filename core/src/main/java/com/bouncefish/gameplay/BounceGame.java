@@ -104,6 +104,13 @@ public class BounceGame implements GestureDetector.GestureListener {
         if (GameStateHandler.getCurrentState() != GameState.PLAYING) return false;
 
         if (x > Gdx.graphics.getWidth() - GameConstants.RIGHT_CONTROL_BORDER) {
+            // Have to ignore the power up button
+            float powerUpButtonHeight = Gdx.graphics.getHeight() * 0.12f;
+            float powerUpButtonMargin = Gdx.graphics.getHeight() * 0.03f;
+            float powerUpButtonTopScreenY = Gdx.graphics.getHeight() - powerUpButtonMargin - powerUpButtonHeight;
+            if (y >= powerUpButtonTopScreenY) {
+                return false;
+            }
             _leftPressed = false;
             _rightPressed = true;
             return true;

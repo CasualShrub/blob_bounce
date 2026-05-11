@@ -32,6 +32,7 @@ import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.GameState;
 import com.bouncefish.gameplay.GameStateHandler;
+import com.bouncefish.gameplay.PowerUpType;
 import com.bouncefish.gameplay.ProgressTracker;
 import com.bouncefish.gameplay.SoundManager;
 
@@ -61,7 +62,7 @@ public class Main extends ApplicationAdapter {
     private GameOverScreen gameOverScreen;
 
     private Texture _pixel;
-    private BitmapFont _powerUpFont; // basic font
+    private BitmapFont _powerUpFont;
     private Rectangle _powerUpBounds;
 
     private LeaderboardService leaderboardService;
@@ -213,7 +214,6 @@ public class Main extends ApplicationAdapter {
             if (currentState == GameState.PLAYING) {
                 _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), Gdx.graphics.getWidth() / 2f - 20, Gdx.graphics.getHeight() - 100);
 
-                // Power-up button — matches the width of the right control area, sits at the bottom
                 float powerUpWidth = GameConstants.RIGHT_CONTROL_BORDER;
                 float powerUpHeight = Gdx.graphics.getHeight() * 0.12f;
                 float powerUpMargin = Gdx.graphics.getHeight() * 0.03f;
@@ -221,13 +221,14 @@ public class Main extends ApplicationAdapter {
                 float powerUpY = powerUpMargin;
                 _powerUpBounds.set(powerUPX, powerUpY, powerUpWidth, powerUpHeight);
 
-                // Gray background always drawn first
                 _batch.setColor(ColorHelper.POWERUP_GRAY);
                 _batch.draw(_pixel, powerUPX, powerUpY, powerUpWidth, powerUpHeight);
 
-                // Gold fill: full when charged, shrinks left-to-right while floating
                 if (_currentFish.hasPowerUp()) {
-                    _batch.setColor(ColorHelper.RANK_GOLD);
+                    Color chargedColor = _currentFish.getPowerUpType() == PowerUpType.GROUND_POUND
+                            ? ColorHelper.POWERUP_GROUND_POUND
+                            : ColorHelper.RANK_GOLD;
+                    _batch.setColor(chargedColor);
                     _batch.draw(_pixel, powerUPX, powerUpY, powerUpWidth, powerUpHeight);
                 } else if (_currentFish.isFloating()) {
                     float fillWidth = powerUpWidth * _currentFish.getFloatProgress();
@@ -237,7 +238,7 @@ public class Main extends ApplicationAdapter {
 
                 _batch.setColor(1f, 1f, 1f, 1f);
                 _powerUpFont.getData().setScale(powerUpHeight / 55f);
-                _powerUpFont.draw(_batch, "FLOAT", powerUPX + powerUpWidth * 0.35f, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f);
+                _powerUpFont.draw(_batch, _currentFish.getPowerUpLabel(), powerUPX + powerUpWidth * 0.35f, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f);
             }
         }
         _batch.end();

@@ -4,16 +4,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.bouncefish.utils.GameConstants;
 
 import java.util.function.Consumer;
 
 public class OceanSunfish extends Creature {
-    private int flipCounter = 100;//counter used to decide when to flip. Use delta time to make it consistent
+    protected static int defaultFlipCounter = 250;
+    private int flipCounter = defaultFlipCounter;//counter used to decide when to flip. Use delta time to make it consistent
     private static Animation<TextureRegion> oceanSunfishAnimationNormal;
     private static Animation<TextureRegion> oceanSunfishAnimationFlipped;
-    private static final float BASE_SPEED = 200;
+    private static final float BASE_SPEED = 100;
+    private boolean isShaking = false;
+    private float shakeTimer = 0f;
+
+    private static final float SHAKE_DURATION = 0.5f;
+    private static final float SHAKE_INTENSITY = 6f;
+    private float originalX;
 
     public OceanSunfish(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
         this.creatureId = 3;
@@ -31,10 +39,13 @@ public class OceanSunfish extends Creature {
 
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;
+        this.isBouncable = false;
 
-        setBoundScale(1F,0.42F);
-        this.boundScaleY = 0.42F;
         setBounds();
+    }
+    @Override
+    protected void setBounds(){
+        this.bounds = new Rectangle(getX(), getY() + this.boundOffsetY, getWidth(), getHeight() * 0.5f);
     }
 
     public static void normalMovement(Creature creature){
@@ -48,24 +59,44 @@ public class OceanSunfish extends Creature {
     }
     @Override
     public void handleTimeStep(){
-        stateTime += Gdx.graphics.getDeltaTime();
+        float delta = Gdx.graphics.getDeltaTime();
+
+        stateTime += delta;
+
         applyMovement();
+
+        // START SHAKE BEFORE FLIP
+        if (!isShaking && --flipCounter < 30) {
+            isShaking = true;
+            shakeTimer = SHAKE_DURATION;
+            originalX = xPosition;
+        }
+
+        // HANDLE SHAKE
+        if (isShaking) {
+
+            shakeTimer -= delta;
+
+            // jitter left/right
+            xPosition = originalX + MathUtils.random(-SHAKE_INTENSITY, SHAKE_INTENSITY);
+
+            if (shakeTimer <= 0f) {
+
+                // restore exact position
+                xPosition = originalX;
+
+                isShaking = false;
+
+                flip();
+            }
+        }
+
         updateBounds();
-
-        if(--flipCounter < 0){
-            flip();
-        }
     }
-    private void flip(){ //flips itself. So
-
-        if(isBouncable){
-            //TODO play flipping animation
-            isBouncable = false;
-        }else{
-            //TODO play flipping animation
-            isBouncable = true;
-        }
-        flipCounter = 100;
+    
+    private void flip(){
+        isBouncable = !isBouncable;
+        flipCounter = defaultFlipCounter;
 
     }
     @Override
@@ -78,14 +109,16 @@ public class OceanSunfish extends Creature {
 
     }
     public static void initAnime(){
-        Texture texture1 = new Texture("creatures/sunfish/o2.png");
-        Texture texture2 = new Texture("creatures/sunfish/o1.png");
-        TextureRegion[] frames1 = new TextureRegion[1];
-        TextureRegion[] frames2 = new TextureRegion[1];
-        frames1[0] = new TextureRegion(texture1);
-        frames2[0] = new TextureRegion(texture2);
-        oceanSunfishAnimationNormal = new Animation<>(0.5f, frames1);
-        oceanSunfishAnimationFlipped = new Animation<>(0.5f, frames2);
+        TextureRegion[] frames = new TextureRegion[4];
+        for(int i=0;i<4;i++){
+            frames[i] = new TextureRegion(new Texture("creatures/sunfish/f"+i+".png"));
+        }
+        Texture texture = new Texture("creatures/sunfish/f_.png");
+        TextureRegion[] frames_ = new TextureRegion[1];
+        frames_[0] = new TextureRegion(texture);
+
+        oceanSunfishAnimationNormal = new Animation<>(0.5f, frames_);
+        oceanSunfishAnimationFlipped = new Animation<>(0.3f, frames);
     }
 
 }

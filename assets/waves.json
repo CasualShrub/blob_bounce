@@ -1,0 +1,532 @@
+{
+  "waves": [
+    {
+      "duration": 9.0,
+      "spawns": [
+        {
+          "type": "OceanSunfish",
+          "time": 0.0,
+          "x": "RIGHT_SPAWN_X",
+          "y": "SCREEN_HEIGHT_HALF",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "OceanSunfish",
+          "time": 0.0,
+          "x": "LEFT_SPAWN_X",
+          "y": "SCREEN_HEIGHT_HALF",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Mackerel",
+          "time": 0.0,
+          "startX": "GAME_WIDTH_MINUS_50",
+          "targetX": "GAME_WIDTH_HALF_MINUS_100",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 0.0,
+          "startX": "50",
+          "targetX": "GAME_WIDTH_HALF_PLUS_100",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Crab",
+          "time": 1.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 2.5,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 4.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 5.8,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 7.0,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 8.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 8.2,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 9.0,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        }
+      ]
+    },
+    {
+      "duration": 6.0,
+      "spawns": [
+        {
+          "type": "Crab",
+          "time": 0.0,
+          "x": "LEFT_SPAWN_X",
+          "y": 0,
+          "speed": 1.5,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 1.3,
+          "x": "RIGHT_SPAWN_X",
+          "y": 0,
+          "speed": 1.5,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 3.0,
+          "x": "LEFT_SPAWN_X",
+          "y": 0,
+          "speed": 1.5,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 3.3,
+          "x": "RIGHT_SPAWN_X",
+          "y": 0,
+          "speed": 1.7,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 5.7,
+          "x": "LEFT_SPAWN_X",
+          "y": 0,
+          "speed": 1.5,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 5.0,
+          "x": "RIGHT_SPAWN_X",
+          "y": 0,
+          "speed": 1.3,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 7.0,
+          "x": "LEFT_SPAWN_X",
+          "y": 0,
+          "speed": 1.2,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 6.0,
+          "x": "RIGHT_SPAWN_X",
+          "y": 0,
+          "speed": 1.5,
+          "movement": "normalMovement"
+        }
+      ]
+    },
+    {
+      "duration": 6.0,
+      "spawns": [
+        {
+          "type": "Mackerel",
+          "time": 0.0,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 1.0,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 2.0,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 3.0,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 4.0,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 5.0,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Crab",
+          "time": 6.0,
+          "x": "LEFT_SPAWN_X",
+          "y": 0,
+          "speed": 1.2,
+          "movement": "normalMovement"
+        }
+      ]
+    },
+    {
+      "duration": 8.5,
+      "spawns": [
+        {
+          "type": "Crab",
+          "time": 0.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 2.5,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 4.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 5.5,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 7.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 8.5,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        }
+      ]
+    },
+    {
+      "duration": 7.0,
+      "spawns": [
+        {
+          "type": "Mackerel",
+          "time": 0.0,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 1.3,
+          "startX": "RIGHT_SPAWN_X",
+          "targetX": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 3.0,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 4.2,
+          "startX": "RIGHT_SPAWN_X",
+          "targetX": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 5.3,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.1,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 7.0,
+          "startX": "RIGHT_SPAWN_X",
+          "targetX": "LEFT_SPAWN_X",
+          "speed": 1.1,
+          "movement": "parabolicMotion"
+        }
+      ]
+    },
+    {
+      "duration": 8.5,
+      "spawns": [
+        {
+          "type": "Crab",
+          "time": 0.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Mackerel",
+          "time": 1.0,
+          "startX": "RIGHT_SPAWN_X",
+          "targetX": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Crab",
+          "time": 2.0,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Mackerel",
+          "time": 3.5,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Crab",
+          "time": 5.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Mackerel",
+          "time": 6.0,
+          "startX": "RIGHT_SPAWN_X",
+          "targetX": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Crab",
+          "time": 8.5,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        }
+      ]
+    },
+    {
+      "duration": 6.2,
+      "spawns": [
+        {
+          "type": "Crab",
+          "time": 0.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 1.0,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 1.7,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 2.4,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 2.6,
+          "x": "RIGHT_SPAWN_X",
+          "y": 0,
+          "speed": 1.3,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 3.5,
+          "x": "LEFT_SPAWN_X",
+          "y": 0,
+          "speed": 1.2,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 4.5,
+          "x": "RIGHT_SPAWN_X",
+          "y": 0,
+          "speed": 1.2,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 6.0,
+          "x": "LEFT_SPAWN_X",
+          "y": 0,
+          "speed": 1.4,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 6.2,
+          "x": "RIGHT_SPAWN_X",
+          "y": 0,
+          "speed": 1.4,
+          "movement": "normalMovement"
+        }
+      ]
+    },
+    {
+      "duration": 8.5,
+      "spawns": [
+        {
+          "type": "Mackerel",
+          "time": 0.0,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 1.3,
+          "startX": "RIGHT_SPAWN_X",
+          "targetX": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 2.7,
+          "startX": "LEFT_SPAWN_X",
+          "targetX": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Mackerel",
+          "time": 4.0,
+          "startX": "RIGHT_SPAWN_X",
+          "targetX": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "parabolicMotion"
+        },
+        {
+          "type": "Crab",
+          "time": 4.0,
+          "x": "LEFT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 5.5,
+          "x": "RIGHT_SPAWN_X",
+          "speed": 1.0,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 6.5,
+          "x": "LEFT_SPAWN_X",
+          "y": 0,
+          "speed": 1.2,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 8.0,
+          "x": "RIGHT_SPAWN_X",
+          "y": 0,
+          "speed": 1.2,
+          "movement": "normalMovement"
+        },
+        {
+          "type": "Crab",
+          "time": 8.5,
+          "x": "LEFT_SPAWN_X",
+          "y": 0,
+          "speed": 1.3,
+          "movement": "normalMovement"
+        }
+      ]
+    }
+  ]
+}

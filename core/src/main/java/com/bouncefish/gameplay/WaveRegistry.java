@@ -2,6 +2,7 @@ package com.bouncefish.gameplay;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.JsonReader;
 import com.bouncefish.entities.Crab;
 import com.bouncefish.entities.JellyFish;
 import com.bouncefish.entities.Mackerel;
@@ -167,41 +168,22 @@ public class WaveRegistry {
 //        waveData.put(0, easyWaves);
 //    }
 
-    public static void generateWaves() {
+public static void generateWaves() {
 
         ArrayList<Wave> easyWaves = new ArrayList<>();
 
-        FileHandle file = Gdx.files.internal("waves_test.json");
+        FileHandle file = Gdx.files.internal("waves_.json");
 
-//        if (!file.exists()) {
-//            System.out.println("ERRRRORR: waves.json not found!");
-//            return;
-//        }
-
-        Json json = new Json();
-        JsonValue root = json.fromJson(null, file);
-
-//        if (root == null) {
-//            System.out.println("ERRRRORR: Failed to parse waves.json!");
-//            return;
-//        }
-
-        JsonValue waves = root.get("waves");
-
-        if (waves == null) {
-            System.out.println("ERRRRORR: No waves array found!");
-            return;
-        }
+        JsonReader reader = new JsonReader();
+        JsonValue waves = reader.parse(file);
 
         for (JsonValue waveJson : waves) {
+
             float duration = waveJson.getFloat("duration");
             Wave wave = new Wave(duration);
+
             JsonValue spawns = waveJson.get("spawns");
 
-//            if (spawns == null) {
-//                System.out.println("ERRRRORR: Wave missing spawns!");
-//                continue;
-//            }
             for (JsonValue spawn : spawns) {
 
                 String type = spawn.getString("type");
@@ -211,17 +193,15 @@ public class WaveRegistry {
                 switch (type) {
                     case "Crab":
                         float crabX = resolveConstant(spawn.getString("x"));
-                        float crabY = spawn.getFloat("yOffset", 0f);
+                        float crabY = spawn.getFloat("y", GameConstants.WATER_LEVEL);
 
                         wave.add(new CrabSpawnData(time, crabX, crabY, speedMultiplier, Crab::normalMovement));
-
                         break;
 
                     case "Mackerel":
-                        float startX = resolveConstant(spawn.getString("startX"));
+                        float startX = resolveConstant(spawn.getString("startX")); //assuming the startX(and targetX) is one of the constants in resolveConstant
                         startX /= spawn.getFloat("startXDivide", 1f);
                         startX += spawn.getFloat("startXOffset", 0f);
-
                         float targetX = resolveConstant(spawn.getString("targetX"));
                         targetX /= spawn.getFloat("targetXDivide", 1f);
                         targetX += spawn.getFloat("targetXOffset", 0f);
@@ -230,28 +210,34 @@ public class WaveRegistry {
                         break;
 
                     case "OceanSunfish":
-                        float sunfishX = resolveConstant(spawn.getString("x"));
+                        float sunfishX = resolveConstant(spawn.getString("x"));//assuming x and y are constants in resolveConstant
                         float sunfishY = resolveConstant(spawn.getString("y"));
-
                         sunfishY /= spawn.getFloat("yDivide", 1f);
                         sunfishY += spawn.getFloat("yOffset", 0f);
 
                         wave.add(new OceanSunfishSpawnData(time, sunfishX, sunfishY, speedMultiplier, OceanSunfish::normalMovement));
                         break;
 
+                    case "Shark": //the following 3 creatures shouldn't be in easy waves
+                    case "Jellyfish":
+                    case "Marlin":
+                        break;
+
                     default:
-                        System.out.println(
-                            "ERRRRORR: Unknown spawn type: " + type
-                        );
+
+                        System.out.println("ERRRRORR: Unknown spawn type: " + type);
+
                         break;
                 }
             }
+
             easyWaves.add(wave);
         }
+
         waveData.put(0, easyWaves);
+
         GameConstants.MAXIMUM_HARDCODED_WAVES = waveData.size();
     }
-
     private static float resolveConstant(String value) {
 
         switch (value) {
@@ -277,8 +263,10 @@ public class WaveRegistry {
 //        }
         if (currentWave <= 10){
             return 0;
+        }else if (currentWave <= 30 ){
+            return 1;
         }
-        return 0;
+        return 2;
     }
 
     // Generate 5 endless waves at a time once the player reaches difficulty cap

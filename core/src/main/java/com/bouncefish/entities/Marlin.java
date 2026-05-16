@@ -13,14 +13,14 @@ public class Marlin extends Creature {
     private static Animation<TextureRegion> marlinBouncedAnimation;
 
     public Marlin(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
-        this(spawnTime, spawnX, movementFunction);
+        this(spawnTime, spawnX,spawnY, movementFunction);
         this.yPosition = GameConstants.WATER_LEVEL + spawnY;
         this.movementSpeedMultiplier = speedMultiplier;
         this.movementSpeed = 500 * movementSpeedMultiplier;
         this.movementSpeed = shouldMoveLeft(spawnX) ? -movementSpeed : movementSpeed;
     }
 
-    public Marlin(float spawnTime, float spawnX, Consumer<Creature> movementFunction) {
+    public Marlin(float spawnTime, float spawnX, float spawnY, Consumer<Creature> movementFunction) {
         this.creatureId = 6;
         this.xVelocity = 1400;
         this.yVelocity = 0;
@@ -28,6 +28,7 @@ public class Marlin extends Creature {
         this.height = 260;
         this.movementSpeedMultiplier = 1;
         this.xPosition = spawnX;
+        this.yPosition = spawnY;
 
         this.movementFunction = movementFunction;
         this.spawnTime = spawnTime;

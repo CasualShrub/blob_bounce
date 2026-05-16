@@ -1,5 +1,6 @@
 package com.bouncefish.gameplay;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.JsonReader;
@@ -169,7 +170,7 @@ public class WaveRegistry {
 //    }
 
 public static void generateWaves() {
-
+//TODO: make every coordinate value explicit floats?
         ArrayList<Wave> easyWaves = new ArrayList<>();
 
         FileHandle file = Gdx.files.internal("waves_.json");
@@ -218,9 +219,26 @@ public static void generateWaves() {
                         wave.add(new OceanSunfishSpawnData(time, sunfishX, sunfishY, speedMultiplier, OceanSunfish::normalMovement));
                         break;
 
-                    case "Shark": //the following 3 creatures shouldn't be in easy waves
+                    //the following 3 creatures shouldn't be in easy waves
+                    case "Shark":
+                        String value = spawn.getString("movingLeft");
+                        boolean flag = Boolean.parseBoolean(value);
+                        float sharkX = resolveConstant(spawn.getString("x"));
+
+                        wave.add(new SharkSpawnData(time,sharkX,flag,speedMultiplier,Shark::swim));
+                        break;
+
                     case "Jellyfish":
+                        float jellyX = resolveConstant(spawn.getString("x"));
+                        float jellyY = spawn.getFloat("y"); //TODO: inconsistent convention. Fixed it?
+
+                        wave.add(new JellyfishSpawnData(time, jellyX, jellyY, speedMultiplier, JellyFish::jellyFishLeftToRightMovement));
+                        break;
+
                     case "Marlin":
+                        float marlinX = spawn.getFloat("x");
+                        float marlinY = spawn.getFloat("y", GameConstants.WATER_LEVEL);
+                        wave.add(new MarlinSpawnData(time, marlinX,marlinY,speedMultiplier, Marlin::normalMovement));
                         break;
 
                     default:

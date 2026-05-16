@@ -235,8 +235,8 @@ public static void generateWaves() {
         }
 
         waveData.put(0, easyWaves);
+        GameConstants.MAXIMUM_HARDCODED_WAVES = easyWaves.size();
 
-        GameConstants.MAXIMUM_HARDCODED_WAVES = waveData.size();
     }
     private static float resolveConstant(String value) {
 

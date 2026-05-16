@@ -170,10 +170,10 @@ public class WaveRegistry {
 //    }
 
 public static void generateWaves() {
-//TODO: make every coordinate value explicit floats?
+//TODO: make every coordinate value explicit floats? Or use offsets only?
         ArrayList<Wave> easyWaves = new ArrayList<>();
 
-        FileHandle file = Gdx.files.internal("waves_.json");
+        FileHandle file = Gdx.files.internal("waves_easy.json");
 
         JsonReader reader = new JsonReader();
         JsonValue waves = reader.parse(file);
@@ -236,7 +236,7 @@ public static void generateWaves() {
                         break;
 
                     case "Marlin":
-                        float marlinX = spawn.getFloat("x");
+                        float marlinX = resolveConstant(spawn.getString("x"));
                         float marlinY = spawn.getFloat("y", GameConstants.WATER_LEVEL);
                         wave.add(new MarlinSpawnData(time, marlinX,marlinY,speedMultiplier, Marlin::normalMovement));
                         break;

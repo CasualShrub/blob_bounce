@@ -15,34 +15,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-// This class holds all the data of enemies that will spawn in the game
 public class WaveRegistry {
-    private static final float LEFT_SPAWN_X = -200;
-    private static float RIGHT_SPAWN_X = GameConstants.Game_Width;
+    private static final float LEFT_SPAWN_X = -300;
+    private static float RIGHT_SPAWN_X = GameConstants.Game_Width + 100;
 
-    // Key: Round to spawn waves. 0 based
-    // Value: Wave Data
     private static Map<Integer, Wave> activeWaveList = new HashMap<>();
-
-    // Key: Wave Difficulty (Scales with points/time). 0 based
-    // Values: ArrayList of wave data that the spawner can randomly choose from
     private static Map<Integer, ArrayList<Wave>> waveData = new HashMap<>();
 
-    // This is where we define all wave data
     public static void prepareInitialWaves(){
-        // Generate all waves??
-        // TODO: consider batching them
         for (int i = 0; i < GameConstants.MAXIMUM_HARDCODED_WAVES; i++){
             activeWaveList.put(i, getRandomWaveForRound(i));
         }
     }
 
-    // It is important to know the round before choosing from the pool
     private static Wave getRandomWaveForRound(int currentRound){
         int difficulty = getDifficultyForRound(currentRound);
-        ArrayList<Wave> wavePool = waveData.get(difficulty); // Get the current difficulty waves
-        int waveIndex = MathUtils.random((wavePool.size() - 1)); // -1 Because GDX random is right-inclusive
-        return wavePool.remove(waveIndex);
+        ArrayList<Wave> wavePool = waveData.get(difficulty);
+        int waveIndex = MathUtils.random((wavePool.size() - 1));
+        return wavePool.get(waveIndex);
     }
 
     public static void resetWaveRegistry(){
@@ -53,138 +43,37 @@ public class WaveRegistry {
     public static void generateWaves(){
         ArrayList<Wave> easyWaves = new ArrayList<>();
 
-        // Java and LibGDX are code-centric, so we can't quite make visual ScriptableObjects like in Unity
-        // Which means we manually define all wave data here!
-        // TODO: Make a helper tool and pass a json file instead?
-
+        // Wave 1: Introduction to Marlin (The fast fish)
         Wave wave1 = new Wave(9f);
-        //wave1.add(new OceanSunfishSpawnData(1f,RIGHT_SPAWN_X,GameConstants.Screen_Height/2,1 ,OceanSunfish::normalMovement));
-        wave1.add(new MackerelSpawnData(0f,GameConstants.Game_Width - 50F,GameConstants.Game_Width/2 -100, 1, OrdinaryFish::parabolicMotion));
-        wave1.add(new MackerelSpawnData(0f,50F,GameConstants.Game_Width/2 + 100, 1, OrdinaryFish::parabolicMotion));
-        wave1.add(new CrabSpawnData(1f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave1.add(new CrabSpawnData(2.5f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave1.add(new CrabSpawnData(4f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave1.add(new CrabSpawnData(5.8f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave1.add(new CrabSpawnData(7f, RIGHT_SPAWN_X, Crab::normalMovement));
-        wave1.add(new CrabSpawnData(8f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave1.add(new CrabSpawnData(8.2f, RIGHT_SPAWN_X, Crab::normalMovement));
-        wave1.add(new CrabSpawnData(9f, RIGHT_SPAWN_X, Crab::normalMovement));
-        //wave1.add(new SharkSpawnData(1F,RIGHT_SPAWN_X,true, 1, Shark::swim));
-//        wave1.add(new JellyfishSpawnData(1f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));
-//        wave1.add(new JellyfishSpawnData(1.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
-//        wave1.add(new JellyfishSpawnData(2f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
-//        wave1.add(new JellyfishSpawnData(2.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
-        //wave1.add(new CrabSpawnData(12f, RIGHT_SPAWN_X, 0, 1.5f, Crab::normalMovement));
-        //wave1.add(new MarlinSpawnData(1f, LEFT_SPAWN_X, Marlin::normalMovement));
+        wave1.add(new MarlinSpawnData(2f, LEFT_SPAWN_X, Marlin::normalMovement)); // Fast Marlin early on
+        wave1.add(new CrabSpawnData(4f, RIGHT_SPAWN_X, Crab::normalMovement));
+        wave1.add(new MackerelSpawnData(6f, LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
+        wave1.add(new MarlinSpawnData(8f, RIGHT_SPAWN_X, Marlin::normalMovement));
         easyWaves.add(wave1);
 
-        Wave wave2 = new Wave(6f);
-        wave2.add(new CrabSpawnData(0f, LEFT_SPAWN_X, 0, 1.5f, Crab::normalMovement));
-        wave2.add(new CrabSpawnData(1.3f, RIGHT_SPAWN_X, 0, 1.5f, Crab::normalMovement));
-        wave2.add(new CrabSpawnData(3f, LEFT_SPAWN_X, 0, 1.5f, Crab::normalMovement));
-        wave2.add(new CrabSpawnData(3.3f, RIGHT_SPAWN_X, 0, 1.7f, Crab::normalMovement));
-        wave2.add(new CrabSpawnData(5.7f, LEFT_SPAWN_X, 0, 1.5f, Crab::normalMovement));
-        wave2.add(new CrabSpawnData(5f, RIGHT_SPAWN_X, 0, 1.3f, Crab::normalMovement));
-        wave2.add(new CrabSpawnData(7f, LEFT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
-        wave2.add(new CrabSpawnData(6f, RIGHT_SPAWN_X, 0, 1.5f, Crab::normalMovement));
-//        wave2.add(new JellyfishSpawnData(1f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));
-//        wave2.add(new JellyfishSpawnData(1.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
-//        wave2.add(new JellyfishSpawnData(2f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
-//        wave2.add(new JellyfishSpawnData(2.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
+        // Wave 2: Mixed challenge
+        Wave wave2 = new Wave(10f);
+        wave2.add(new CrabSpawnData(0f, LEFT_SPAWN_X, Crab::normalMovement));
+        wave2.add(new MarlinSpawnData(3f, RIGHT_SPAWN_X, Marlin::normalMovement));
+        wave2.add(new JellyfishSpawnData(5f, LEFT_SPAWN_X, 400, 1.2f, JellyFish::jellyFishLeftToRightMovement));
+        wave2.add(new CrabSpawnData(7f, RIGHT_SPAWN_X, Crab::normalMovement));
         easyWaves.add(wave2);
 
-        Wave wave3 = new Wave(6f);
-        wave3.add(new MackerelSpawnData(0f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
-        wave3.add(new MackerelSpawnData(1f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
-        wave3.add(new MackerelSpawnData(2f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
-        wave3.add(new MackerelSpawnData(3f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
-        wave3.add(new MackerelSpawnData(4f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
-        wave3.add(new MackerelSpawnData(5f,LEFT_SPAWN_X, RIGHT_SPAWN_X, 1, OrdinaryFish::parabolicMotion));
-        //wave3.add(new JellyfishSpawnData(1f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));
-        //wave3.add(new JellyfishSpawnData(1.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
-        //wave3.add(new JellyfishSpawnData(2f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
-        //wave3.add(new JellyfishSpawnData(2.5f, LEFT_SPAWN_X, 300, 1.2f, JellyFish::jellyFishLeftToRightMovement));//for testing
-        wave3.add(new CrabSpawnData(6f, LEFT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
+        // Wave 3: High speed wave
+        Wave wave3 = new Wave(8f);
+        wave3.add(new MarlinSpawnData(1f, LEFT_SPAWN_X, Marlin::normalMovement));
+        wave3.add(new MarlinSpawnData(3f, RIGHT_SPAWN_X, Marlin::normalMovement));
+        wave3.add(new MarlinSpawnData(5f, LEFT_SPAWN_X, Marlin::normalMovement));
         easyWaves.add(wave3);
-
-        // Crab parade: crabs march in from alternating sides at a steady 1.5s cadence
-        Wave wave4 = new Wave(8.5f);
-        wave4.add(new CrabSpawnData(0f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave4.add(new CrabSpawnData(2.5f, RIGHT_SPAWN_X, Crab::normalMovement));
-        wave4.add(new CrabSpawnData(4f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave4.add(new CrabSpawnData(5.5f, RIGHT_SPAWN_X, Crab::normalMovement));
-        wave4.add(new CrabSpawnData(7f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave4.add(new CrabSpawnData(8.5f, RIGHT_SPAWN_X, Crab::normalMovement));
-        easyWaves.add(wave4);
-
-        Wave wave5 = new Wave(7f);
-        wave5.add(new MackerelSpawnData(0f, LEFT_SPAWN_X, RIGHT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave5.add(new MackerelSpawnData(1.3f, RIGHT_SPAWN_X, LEFT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave5.add(new MackerelSpawnData(3f, LEFT_SPAWN_X, RIGHT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave5.add(new MackerelSpawnData(4.2f, RIGHT_SPAWN_X, LEFT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave5.add(new MackerelSpawnData(5.3f, LEFT_SPAWN_X, RIGHT_SPAWN_X, 1.1f, OrdinaryFish::parabolicMotion));
-        wave5.add(new MackerelSpawnData(7f, RIGHT_SPAWN_X, LEFT_SPAWN_X, 1.1f, OrdinaryFish::parabolicMotion));
-        easyWaves.add(wave5);
-
-        Wave wave6 = new Wave(8.5f);
-        wave6.add(new CrabSpawnData(0f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave6.add(new MackerelSpawnData(1.0f, RIGHT_SPAWN_X, LEFT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave6.add(new CrabSpawnData(2f, RIGHT_SPAWN_X, Crab::normalMovement));
-        wave6.add(new MackerelSpawnData(3.5f, LEFT_SPAWN_X, RIGHT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave6.add(new CrabSpawnData(5f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave6.add(new MackerelSpawnData(6f, RIGHT_SPAWN_X, LEFT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave6.add(new CrabSpawnData(8.5f, RIGHT_SPAWN_X, Crab::normalMovement));
-        easyWaves.add(wave6);
-
-        Wave wave7 = new Wave(6.2f);
-        wave7.add(new CrabSpawnData(0f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave7.add(new CrabSpawnData(1f, RIGHT_SPAWN_X, Crab::normalMovement));
-        wave7.add(new CrabSpawnData(1.7f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave7.add(new CrabSpawnData(2.4f, RIGHT_SPAWN_X, Crab::normalMovement));
-        wave7.add(new CrabSpawnData(2.6f, RIGHT_SPAWN_X, 0, 1.3f, Crab::normalMovement));
-        wave7.add(new CrabSpawnData(3.5f, LEFT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
-        wave7.add(new CrabSpawnData(4.5f, RIGHT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
-        wave7.add(new CrabSpawnData(6f, LEFT_SPAWN_X, 0, 1.4f, Crab::normalMovement));
-        wave7.add(new CrabSpawnData(6.2f, RIGHT_SPAWN_X, 0, 1.4f, Crab::normalMovement));
-        easyWaves.add(wave7);
-
-        Wave wave8 = new Wave(8.5f);
-        wave8.add(new MackerelSpawnData(0f, LEFT_SPAWN_X, RIGHT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave8.add(new MackerelSpawnData(1.3f, RIGHT_SPAWN_X, LEFT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave8.add(new MackerelSpawnData(2.7f, LEFT_SPAWN_X, RIGHT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave8.add(new MackerelSpawnData(4f, RIGHT_SPAWN_X, LEFT_SPAWN_X, 1f, OrdinaryFish::parabolicMotion));
-        wave8.add(new CrabSpawnData(4f, LEFT_SPAWN_X, Crab::normalMovement));
-        wave8.add(new CrabSpawnData(5.5f, RIGHT_SPAWN_X, Crab::normalMovement));
-        wave8.add(new CrabSpawnData(6.5f, LEFT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
-        wave8.add(new CrabSpawnData(8f, RIGHT_SPAWN_X, 0, 1.2f, Crab::normalMovement));
-        wave8.add(new CrabSpawnData(8.5f, LEFT_SPAWN_X, 0, 1.3f, Crab::normalMovement));
-        easyWaves.add(wave8);
 
         waveData.put(0, easyWaves);
     }
 
-    // Converts current round to difficulty
-    // TODO: Consider moving to a static helper class?
     private static int getDifficultyForRound(int currentWave){
-        // If current wave is 5 or less, then it is an easy wave.
-        if (currentWave <= 5) {
-            return 0;
-        }
-
         return 0;
     }
 
-    // Generate 5 endless waves at a time once the player reaches difficulty cap
-    private void generateEndlessWaves(){
-
-    }
-
-    // Used exclusively by the CreatureSpawner to generate the current wave
     public static Wave getWave(int waveId){
         return activeWaveList.get(waveId);
-    }
-
-    public void populateEasyWaves(){
-
     }
 }

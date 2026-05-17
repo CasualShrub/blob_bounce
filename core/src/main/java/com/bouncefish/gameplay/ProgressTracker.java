@@ -23,7 +23,7 @@ public class ProgressTracker {
     public static void increaseScore(int amount){
         ensureInit();
         score += amount;
-        creaturesHit++;
+        creaturesHit++; // Only increment by 1 as requested
         if (score > highScore) {
             highScore = score;
             prefs.putInteger("highScore", highScore);

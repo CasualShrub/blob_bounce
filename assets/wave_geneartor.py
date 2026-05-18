@@ -12,7 +12,7 @@ import random
 CONFIG = {
 
     # Number of waves to generate
-    "NUM_WAVES": 10,
+    "NUM_WAVES": 25, 
 
     # Minimum and maximum wave duration
     "MIN_WAVE_DURATION": 6.5,
@@ -25,16 +25,16 @@ CONFIG = {
     # Creature spawn percentages
     # Must add up to 100
     "CREATURE_PERCENTAGES": {
-        "Crab": 35,
-        "Mackerel": 35,
-        "OceanSunfish": 20,
-        "Jellyfish": 5,
-        "Shark": 3,
-        "Marlin": 2
+        "Crab": 49,
+        "Mackerel": 45,
+        "OceanSunfish": 5,
+        "Jellyfish": 1,
+        "Shark": 0,
+        "Marlin": 0
     },
 
     # Output json filename
-    "OUTPUT_FILE": "generated_waves.json"
+    "OUTPUT_FILE": "waves_easy_1.json"
 }
 
 # ============================================================

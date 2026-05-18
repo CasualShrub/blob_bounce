@@ -173,7 +173,7 @@ public static void generateWaves() {
 //TODO: make every coordinate value explicit floats? Or use offsets only?
         ArrayList<Wave> easyWaves = new ArrayList<>();
 
-        FileHandle file = Gdx.files.internal("waves_easy.json");
+        FileHandle file = Gdx.files.internal("waves_easy_ver2.json");
 
         JsonReader reader = new JsonReader();
         JsonValue waves = reader.parse(file);
@@ -279,9 +279,9 @@ public static void generateWaves() {
 //        if (currentWave <= 5) {
 //            return 0;
 //        }
-        if (currentWave <= 10){
+        if (currentWave <= 25){
             return 0;
-        }else if (currentWave <= 30 ){
+        }else if (currentWave <= 42 ){
             return 1;
         }
         return 2;

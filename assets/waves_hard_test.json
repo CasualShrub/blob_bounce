@@ -1,0 +1,4581 @@
+[
+  {
+    "duration": 7.9,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.25,
+        "x": "LEFT_SPAWN_X",
+        "y": 342,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Shark",
+        "time": 1.37,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.11
+      },
+      {
+        "type": "Shark",
+        "time": 2.07,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Shark",
+        "time": 2.88,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.28
+      },
+      {
+        "type": "Shark",
+        "time": 3.94,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.93,
+        "x": "RIGHT_SPAWN_X",
+        "y": 336,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.6,
+        "x": "LEFT_SPAWN_X",
+        "y": 357,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.16,
+        "x": "RIGHT_SPAWN_X",
+        "y": 304,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.57,
+        "x": "RIGHT_SPAWN_X",
+        "y": 540,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Shark",
+        "time": 7.3,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.37
+      }
+    ]
+  },
+  {
+    "duration": 8.8,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.54,
+        "x": "RIGHT_SPAWN_X",
+        "y": 529,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Shark",
+        "time": 1.02,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.38
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.05,
+        "x": "LEFT_SPAWN_X",
+        "y": 314,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 2.92,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.15
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.71,
+        "x": "RIGHT_SPAWN_X",
+        "y": 435,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.76,
+        "x": "RIGHT_SPAWN_X",
+        "y": 487,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Shark",
+        "time": 5.43,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Shark",
+        "time": 5.95,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.31
+      },
+      {
+        "type": "Shark",
+        "time": 7.02,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.27
+      },
+      {
+        "type": "Jellyfish",
+        "time": 8.05,
+        "x": "LEFT_SPAWN_X",
+        "y": 398,
+        "speedMultiplier": 1.0
+      }
+    ]
+  },
+  {
+    "duration": 7.6,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.0,
+        "x": "RIGHT_SPAWN_X",
+        "y": 512,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 0.82,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.14
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.83,
+        "x": "LEFT_SPAWN_X",
+        "y": 358,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.64,
+        "x": "LEFT_SPAWN_X",
+        "y": 359,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Shark",
+        "time": 3.42,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.34
+      },
+      {
+        "type": "Shark",
+        "time": 3.93,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Shark",
+        "time": 4.53,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.35
+      },
+      {
+        "type": "Shark",
+        "time": 5.0,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.11
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.63,
+        "x": "LEFT_SPAWN_X",
+        "y": 459,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.04,
+        "x": "LEFT_SPAWN_X",
+        "y": 281,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.55,
+        "x": "LEFT_SPAWN_X",
+        "y": 467,
+        "speedMultiplier": 1.06
+      }
+    ]
+  },
+  {
+    "duration": 8.5,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.0,
+        "x": "LEFT_SPAWN_X",
+        "y": 357,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.34,
+        "x": "LEFT_SPAWN_X",
+        "y": 399,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Shark",
+        "time": 0.71,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 1.7,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Shark",
+        "time": 2.29,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.37
+      },
+      {
+        "type": "Shark",
+        "time": 2.86,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.31
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.63,
+        "x": "LEFT_SPAWN_X",
+        "y": 456,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 4.55,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.2
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.38,
+        "x": "LEFT_SPAWN_X",
+        "y": 507,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.91,
+        "x": "LEFT_SPAWN_X",
+        "y": 354,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.44,
+        "x": "LEFT_SPAWN_X",
+        "y": 308,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.21,
+        "x": "LEFT_SPAWN_X",
+        "y": 527,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.65,
+        "x": "RIGHT_SPAWN_X",
+        "y": 266,
+        "speedMultiplier": 1.0
+      }
+    ]
+  },
+  {
+    "duration": 7.2,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.43,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.17,
+        "x": "LEFT_SPAWN_X",
+        "y": 378,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.77,
+        "x": "RIGHT_SPAWN_X",
+        "y": 475,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.13,
+        "x": "RIGHT_SPAWN_X",
+        "y": 328,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.43,
+        "x": "LEFT_SPAWN_X",
+        "y": 367,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 3.11,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Shark",
+        "time": 3.47,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.21,
+        "x": "RIGHT_SPAWN_X",
+        "y": 414,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.0,
+        "x": "LEFT_SPAWN_X",
+        "y": 526,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.64,
+        "x": "RIGHT_SPAWN_X",
+        "y": 502,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 6.43,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.32
+      }
+    ]
+  },
+  {
+    "duration": 8.2,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.13,
+        "x": "LEFT_SPAWN_X",
+        "y": 306,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.88,
+        "x": "RIGHT_SPAWN_X",
+        "y": 371,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 1.58,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 1.87,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.55,
+        "x": "LEFT_SPAWN_X",
+        "y": 330,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Shark",
+        "time": 3.01,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.57,
+        "x": "LEFT_SPAWN_X",
+        "y": 470,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.11,
+        "x": "LEFT_SPAWN_X",
+        "y": 396,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.75,
+        "x": "LEFT_SPAWN_X",
+        "y": 505,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Shark",
+        "time": 5.03,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.81,
+        "x": "LEFT_SPAWN_X",
+        "y": 388,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Shark",
+        "time": 6.51,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.22
+      },
+      {
+        "type": "Shark",
+        "time": 7.18,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.28
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.45,
+        "x": "RIGHT_SPAWN_X",
+        "y": 523,
+        "speedMultiplier": 0.91
+      }
+    ]
+  },
+  {
+    "duration": 8.7,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.06,
+        "x": "LEFT_SPAWN_X",
+        "y": 399,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.38,
+        "x": "RIGHT_SPAWN_X",
+        "y": 364,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.24,
+        "x": "LEFT_SPAWN_X",
+        "y": 443,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Shark",
+        "time": 2.77,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.36,
+        "x": "RIGHT_SPAWN_X",
+        "y": 258,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 4.32,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.38
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.04,
+        "x": "LEFT_SPAWN_X",
+        "y": 465,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.94,
+        "x": "RIGHT_SPAWN_X",
+        "y": 319,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 6.9,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.35
+      },
+      {
+        "type": "Shark",
+        "time": 7.71,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.19
+      }
+    ]
+  },
+  {
+    "duration": 6.9,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.45,
+        "x": "LEFT_SPAWN_X",
+        "y": 469,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Shark",
+        "time": 0.72,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Shark",
+        "time": 1.02,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.37,
+        "x": "LEFT_SPAWN_X",
+        "y": 299,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Shark",
+        "time": 2.07,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.15
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.72,
+        "x": "RIGHT_SPAWN_X",
+        "y": 533,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 3.43,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.92,
+        "x": "LEFT_SPAWN_X",
+        "y": 251,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.28,
+        "x": "RIGHT_SPAWN_X",
+        "y": 315,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.81,
+        "x": "LEFT_SPAWN_X",
+        "y": 536,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.32,
+        "x": "LEFT_SPAWN_X",
+        "y": 306,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.83,
+        "x": "RIGHT_SPAWN_X",
+        "y": 482,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.12,
+        "x": "LEFT_SPAWN_X",
+        "y": 494,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 6.46,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.2
+      }
+    ]
+  },
+  {
+    "duration": 7.9,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.0,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.3
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.81,
+        "x": "LEFT_SPAWN_X",
+        "y": 367,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Shark",
+        "time": 1.52,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.32
+      },
+      {
+        "type": "Shark",
+        "time": 2.04,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.36
+      },
+      {
+        "type": "Shark",
+        "time": 2.59,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Shark",
+        "time": 3.29,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.39
+      },
+      {
+        "type": "Shark",
+        "time": 3.86,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.22
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.3,
+        "x": "RIGHT_SPAWN_X",
+        "y": 527,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Shark",
+        "time": 4.83,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.21
+      },
+      {
+        "type": "Shark",
+        "time": 5.51,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.26
+      },
+      {
+        "type": "Shark",
+        "time": 6.27,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.81,
+        "x": "RIGHT_SPAWN_X",
+        "y": 481,
+        "speedMultiplier": 0.93
+      }
+    ]
+  },
+  {
+    "duration": 8.9,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.61,
+        "x": "LEFT_SPAWN_X",
+        "y": 251,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 1.22,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.26
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.97,
+        "x": "LEFT_SPAWN_X",
+        "y": 528,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.29,
+        "x": "LEFT_SPAWN_X",
+        "y": 404,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.04,
+        "x": "LEFT_SPAWN_X",
+        "y": 420,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.78,
+        "x": "LEFT_SPAWN_X",
+        "y": 471,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Shark",
+        "time": 4.28,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Shark",
+        "time": 5.01,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.36
+      },
+      {
+        "type": "Shark",
+        "time": 5.87,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.2
+      },
+      {
+        "type": "Shark",
+        "time": 6.37,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 6.89,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.35
+      },
+      {
+        "type": "Shark",
+        "time": 7.61,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.38
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.96,
+        "x": "LEFT_SPAWN_X",
+        "y": 482,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 8.4,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.03
+      }
+    ]
+  },
+  {
+    "duration": 8.6,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.6,
+        "x": "RIGHT_SPAWN_X",
+        "y": 253,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 1.75,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.16
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.26,
+        "x": "RIGHT_SPAWN_X",
+        "y": 508,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.84,
+        "x": "LEFT_SPAWN_X",
+        "y": 542,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 3.36,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.26
+      },
+      {
+        "type": "Shark",
+        "time": 4.35,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.38
+      },
+      {
+        "type": "Shark",
+        "time": 5.34,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.25
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.11,
+        "x": "LEFT_SPAWN_X",
+        "y": 271,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Shark",
+        "time": 7.22,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.15
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.74,
+        "x": "LEFT_SPAWN_X",
+        "y": 403,
+        "speedMultiplier": 1.05
+      }
+    ]
+  },
+  {
+    "duration": 8.5,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.11,
+        "x": "RIGHT_SPAWN_X",
+        "y": 418,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.13,
+        "x": "RIGHT_SPAWN_X",
+        "y": 348,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.01,
+        "x": "RIGHT_SPAWN_X",
+        "y": 540,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.59,
+        "x": "LEFT_SPAWN_X",
+        "y": 267,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 3.35,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.25
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.86,
+        "x": "RIGHT_SPAWN_X",
+        "y": 349,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 4.98,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.37
+      },
+      {
+        "type": "Shark",
+        "time": 6.15,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.28
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.59,
+        "x": "RIGHT_SPAWN_X",
+        "y": 440,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Shark",
+        "time": 7.52,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.32
+      }
+    ]
+  },
+  {
+    "duration": 6.8,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.41,
+        "x": "LEFT_SPAWN_X",
+        "y": 275,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 1.19,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.5,
+        "x": "LEFT_SPAWN_X",
+        "y": 449,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.06,
+        "x": "LEFT_SPAWN_X",
+        "y": 291,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Shark",
+        "time": 2.44,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Shark",
+        "time": 2.88,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.37,
+        "x": "LEFT_SPAWN_X",
+        "y": 420,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 4.13,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.18
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.79,
+        "x": "LEFT_SPAWN_X",
+        "y": 318,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.52,
+        "x": "RIGHT_SPAWN_X",
+        "y": 529,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.82,
+        "x": "RIGHT_SPAWN_X",
+        "y": 509,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 6.22,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.38
+      }
+    ]
+  },
+  {
+    "duration": 7.5,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.58,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.18
+      },
+      {
+        "type": "Shark",
+        "time": 1.17,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.29
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.88,
+        "x": "RIGHT_SPAWN_X",
+        "y": 380,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Shark",
+        "time": 2.4,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.31
+      },
+      {
+        "type": "Shark",
+        "time": 2.74,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.27
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.2,
+        "x": "LEFT_SPAWN_X",
+        "y": 441,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.51,
+        "x": "LEFT_SPAWN_X",
+        "y": 460,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.02,
+        "x": "LEFT_SPAWN_X",
+        "y": 478,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.67,
+        "x": "LEFT_SPAWN_X",
+        "y": 388,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 5.43,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.87,
+        "x": "LEFT_SPAWN_X",
+        "y": 463,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.33,
+        "x": "LEFT_SPAWN_X",
+        "y": 517,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Shark",
+        "time": 6.95,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.1
+      }
+    ]
+  },
+  {
+    "duration": 8.9,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.06,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 0.94,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.79,
+        "x": "LEFT_SPAWN_X",
+        "y": 335,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Shark",
+        "time": 2.23,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.21
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.83,
+        "x": "RIGHT_SPAWN_X",
+        "y": 472,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Shark",
+        "time": 3.38,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Shark",
+        "time": 3.9,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.18
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.53,
+        "x": "LEFT_SPAWN_X",
+        "y": 479,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.14,
+        "x": "RIGHT_SPAWN_X",
+        "y": 298,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.55,
+        "x": "RIGHT_SPAWN_X",
+        "y": 451,
+        "speedMultiplier": 0.97
+      },
+      {
+        "type": "Shark",
+        "time": 6.28,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.67,
+        "x": "RIGHT_SPAWN_X",
+        "y": 435,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.11,
+        "x": "LEFT_SPAWN_X",
+        "y": 400,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 8.0,
+        "x": "RIGHT_SPAWN_X",
+        "y": 342,
+        "speedMultiplier": 0.97
+      }
+    ]
+  },
+  {
+    "duration": 8.4,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.22,
+        "x": "LEFT_SPAWN_X",
+        "y": 381,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.05,
+        "x": "RIGHT_SPAWN_X",
+        "y": 406,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Shark",
+        "time": 1.81,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Shark",
+        "time": 2.72,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.27
+      },
+      {
+        "type": "Shark",
+        "time": 3.44,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.8,
+        "x": "LEFT_SPAWN_X",
+        "y": 252,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.45,
+        "x": "LEFT_SPAWN_X",
+        "y": 478,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.31,
+        "x": "LEFT_SPAWN_X",
+        "y": 395,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.93,
+        "x": "RIGHT_SPAWN_X",
+        "y": 499,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.84,
+        "x": "RIGHT_SPAWN_X",
+        "y": 503,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.42,
+        "x": "LEFT_SPAWN_X",
+        "y": 275,
+        "speedMultiplier": 1.02
+      }
+    ]
+  },
+  {
+    "duration": 8.9,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.33,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.18
+      },
+      {
+        "type": "Shark",
+        "time": 1.23,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 2.13,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Shark",
+        "time": 3.18,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.28
+      },
+      {
+        "type": "Shark",
+        "time": 3.63,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.42,
+        "x": "LEFT_SPAWN_X",
+        "y": 374,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.92,
+        "x": "RIGHT_SPAWN_X",
+        "y": 344,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.92,
+        "x": "RIGHT_SPAWN_X",
+        "y": 545,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 6.75,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.13
+      },
+      {
+        "type": "Shark",
+        "time": 7.86,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 8.25,
+        "x": "RIGHT_SPAWN_X",
+        "y": 273,
+        "speedMultiplier": 0.93
+      }
+    ]
+  },
+  {
+    "duration": 7.1,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.38,
+        "x": "LEFT_SPAWN_X",
+        "y": 488,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.17,
+        "x": "LEFT_SPAWN_X",
+        "y": 544,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.91,
+        "x": "LEFT_SPAWN_X",
+        "y": 382,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 2.27,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.23,
+        "x": "LEFT_SPAWN_X",
+        "y": 542,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.88,
+        "x": "LEFT_SPAWN_X",
+        "y": 349,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Shark",
+        "time": 4.45,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Shark",
+        "time": 4.8,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.35
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.62,
+        "x": "LEFT_SPAWN_X",
+        "y": 416,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Shark",
+        "time": 6.15,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.1
+      }
+    ]
+  },
+  {
+    "duration": 8.9,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.59,
+        "x": "RIGHT_SPAWN_X",
+        "y": 267,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Shark",
+        "time": 1.0,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Shark",
+        "time": 1.59,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.36,
+        "x": "RIGHT_SPAWN_X",
+        "y": 435,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.21,
+        "x": "LEFT_SPAWN_X",
+        "y": 548,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 4.1,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Shark",
+        "time": 4.44,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.18
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.3,
+        "x": "LEFT_SPAWN_X",
+        "y": 427,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Shark",
+        "time": 5.65,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 6.06,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.15
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.6,
+        "x": "RIGHT_SPAWN_X",
+        "y": 348,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Shark",
+        "time": 6.95,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.26
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.75,
+        "x": "LEFT_SPAWN_X",
+        "y": 264,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Shark",
+        "time": 8.31,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.19
+      }
+    ]
+  },
+  {
+    "duration": 8.8,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.69,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.27,
+        "x": "RIGHT_SPAWN_X",
+        "y": 389,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 1.8,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.4
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.81,
+        "x": "LEFT_SPAWN_X",
+        "y": 361,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Shark",
+        "time": 3.51,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Shark",
+        "time": 4.22,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.37
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.85,
+        "x": "RIGHT_SPAWN_X",
+        "y": 334,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.82,
+        "x": "LEFT_SPAWN_X",
+        "y": 477,
+        "speedMultiplier": 0.97
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.51,
+        "x": "LEFT_SPAWN_X",
+        "y": 546,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.94,
+        "x": "LEFT_SPAWN_X",
+        "y": 380,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.79,
+        "x": "LEFT_SPAWN_X",
+        "y": 476,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Shark",
+        "time": 8.34,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.17
+      }
+    ]
+  },
+  {
+    "duration": 8.8,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.58,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Shark",
+        "time": 1.38,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Shark",
+        "time": 1.93,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.21
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.47,
+        "x": "RIGHT_SPAWN_X",
+        "y": 504,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 3.51,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.24,
+        "x": "LEFT_SPAWN_X",
+        "y": 251,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Shark",
+        "time": 4.77,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.77,
+        "x": "LEFT_SPAWN_X",
+        "y": 441,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.33,
+        "x": "LEFT_SPAWN_X",
+        "y": 543,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 7.04,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.27
+      },
+      {
+        "type": "Shark",
+        "time": 7.5,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 7.91,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.09
+      }
+    ]
+  },
+  {
+    "duration": 8.1,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.0,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.73,
+        "x": "RIGHT_SPAWN_X",
+        "y": 527,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.21,
+        "x": "RIGHT_SPAWN_X",
+        "y": 278,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Shark",
+        "time": 1.92,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.28
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.34,
+        "x": "LEFT_SPAWN_X",
+        "y": 343,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.68,
+        "x": "RIGHT_SPAWN_X",
+        "y": 535,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 3.19,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 3.68,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.25
+      },
+      {
+        "type": "Shark",
+        "time": 4.25,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.85,
+        "x": "LEFT_SPAWN_X",
+        "y": 422,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 5.27,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.18
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.6,
+        "x": "LEFT_SPAWN_X",
+        "y": 455,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.23,
+        "x": "LEFT_SPAWN_X",
+        "y": 278,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Shark",
+        "time": 6.93,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.29
+      }
+    ]
+  },
+  {
+    "duration": 9.4,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.18,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.7,
+        "x": "LEFT_SPAWN_X",
+        "y": 492,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Shark",
+        "time": 1.35,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Shark",
+        "time": 2.37,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.23,
+        "x": "RIGHT_SPAWN_X",
+        "y": 317,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.97,
+        "x": "LEFT_SPAWN_X",
+        "y": 431,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 4.83,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Shark",
+        "time": 5.77,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.15
+      },
+      {
+        "type": "Shark",
+        "time": 6.26,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.2
+      },
+      {
+        "type": "Shark",
+        "time": 7.21,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Shark",
+        "time": 8.49,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.34
+      }
+    ]
+  },
+  {
+    "duration": 8.4,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.0,
+        "x": "RIGHT_SPAWN_X",
+        "y": 493,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.71,
+        "x": "RIGHT_SPAWN_X",
+        "y": 294,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.47,
+        "x": "RIGHT_SPAWN_X",
+        "y": 336,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.46,
+        "x": "LEFT_SPAWN_X",
+        "y": 274,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.4,
+        "x": "LEFT_SPAWN_X",
+        "y": 491,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Shark",
+        "time": 4.27,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.01,
+        "x": "LEFT_SPAWN_X",
+        "y": 463,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.67,
+        "x": "LEFT_SPAWN_X",
+        "y": 361,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.43,
+        "x": "RIGHT_SPAWN_X",
+        "y": 253,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.39,
+        "x": "RIGHT_SPAWN_X",
+        "y": 408,
+        "speedMultiplier": 0.98
+      }
+    ]
+  },
+  {
+    "duration": 7.9,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.0,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.33,
+        "x": "LEFT_SPAWN_X",
+        "y": 534,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.9,
+        "x": "RIGHT_SPAWN_X",
+        "y": 272,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.55,
+        "x": "LEFT_SPAWN_X",
+        "y": 275,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 1.98,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.33
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.78,
+        "x": "RIGHT_SPAWN_X",
+        "y": 422,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 3.5,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.3,
+        "x": "LEFT_SPAWN_X",
+        "y": 331,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.94,
+        "x": "LEFT_SPAWN_X",
+        "y": 544,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.45,
+        "x": "LEFT_SPAWN_X",
+        "y": 429,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 5.93,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 6.48,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.79,
+        "x": "RIGHT_SPAWN_X",
+        "y": 393,
+        "speedMultiplier": 0.96
+      }
+    ]
+  },
+  {
+    "duration": 7.4,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.23,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.34
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.59,
+        "x": "RIGHT_SPAWN_X",
+        "y": 549,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Shark",
+        "time": 1.25,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.29
+      },
+      {
+        "type": "Shark",
+        "time": 1.65,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.35,
+        "x": "RIGHT_SPAWN_X",
+        "y": 433,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.65,
+        "x": "LEFT_SPAWN_X",
+        "y": 300,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Shark",
+        "time": 3.14,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.29
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.59,
+        "x": "RIGHT_SPAWN_X",
+        "y": 447,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Shark",
+        "time": 4.28,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.06,
+        "x": "RIGHT_SPAWN_X",
+        "y": 401,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Shark",
+        "time": 5.87,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.6,
+        "x": "RIGHT_SPAWN_X",
+        "y": 504,
+        "speedMultiplier": 1.04
+      }
+    ]
+  },
+  {
+    "duration": 6.9,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.0,
+        "x": "LEFT_SPAWN_X",
+        "y": 492,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Shark",
+        "time": 0.13,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.18
+      },
+      {
+        "type": "Shark",
+        "time": 0.78,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.32
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.34,
+        "x": "LEFT_SPAWN_X",
+        "y": 251,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Shark",
+        "time": 1.65,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.18
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.99,
+        "x": "LEFT_SPAWN_X",
+        "y": 301,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.34,
+        "x": "RIGHT_SPAWN_X",
+        "y": 424,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Shark",
+        "time": 2.76,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.19,
+        "x": "LEFT_SPAWN_X",
+        "y": 424,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.73,
+        "x": "RIGHT_SPAWN_X",
+        "y": 333,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Shark",
+        "time": 4.19,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.32
+      },
+      {
+        "type": "Shark",
+        "time": 4.81,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Shark",
+        "time": 5.48,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.32
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.76,
+        "x": "RIGHT_SPAWN_X",
+        "y": 539,
+        "speedMultiplier": 0.91
+      }
+    ]
+  },
+  {
+    "duration": 7.6,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.0,
+        "x": "LEFT_SPAWN_X",
+        "y": 463,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.74,
+        "x": "LEFT_SPAWN_X",
+        "y": 287,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 1.32,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.2
+      },
+      {
+        "type": "Shark",
+        "time": 2.15,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.2
+      },
+      {
+        "type": "Shark",
+        "time": 3.04,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.85,
+        "x": "RIGHT_SPAWN_X",
+        "y": 412,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Shark",
+        "time": 4.67,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Shark",
+        "time": 5.55,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.26
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.25,
+        "x": "RIGHT_SPAWN_X",
+        "y": 313,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Shark",
+        "time": 6.8,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.39
+      }
+    ]
+  },
+  {
+    "duration": 7.2,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.63,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.36
+      },
+      {
+        "type": "Shark",
+        "time": 1.22,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.38
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.78,
+        "x": "RIGHT_SPAWN_X",
+        "y": 298,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.08,
+        "x": "RIGHT_SPAWN_X",
+        "y": 274,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Shark",
+        "time": 2.71,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.3
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.37,
+        "x": "LEFT_SPAWN_X",
+        "y": 276,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.01,
+        "x": "LEFT_SPAWN_X",
+        "y": 484,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.72,
+        "x": "LEFT_SPAWN_X",
+        "y": 305,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Shark",
+        "time": 5.44,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.21,
+        "x": "LEFT_SPAWN_X",
+        "y": 519,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Shark",
+        "time": 6.77,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.17
+      }
+    ]
+  },
+  {
+    "duration": 7.7,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.05,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.31
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.68,
+        "x": "LEFT_SPAWN_X",
+        "y": 545,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Shark",
+        "time": 1.15,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Shark",
+        "time": 1.45,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Shark",
+        "time": 1.79,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.29
+      },
+      {
+        "type": "Shark",
+        "time": 2.15,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.28
+      },
+      {
+        "type": "Shark",
+        "time": 2.43,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.11
+      },
+      {
+        "type": "Shark",
+        "time": 3.18,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.32
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.63,
+        "x": "RIGHT_SPAWN_X",
+        "y": 446,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 4.15,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Shark",
+        "time": 4.75,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.4,
+        "x": "RIGHT_SPAWN_X",
+        "y": 276,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 5.91,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.67,
+        "x": "RIGHT_SPAWN_X",
+        "y": 370,
+        "speedMultiplier": 1.02
+      }
+    ]
+  },
+  {
+    "duration": 7.3,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.0,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Shark",
+        "time": 0.68,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Shark",
+        "time": 1.61,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.22
+      },
+      {
+        "type": "Shark",
+        "time": 2.4,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.13
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.22,
+        "x": "LEFT_SPAWN_X",
+        "y": 484,
+        "speedMultiplier": 0.97
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.04,
+        "x": "LEFT_SPAWN_X",
+        "y": 543,
+        "speedMultiplier": 0.97
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.54,
+        "x": "RIGHT_SPAWN_X",
+        "y": 270,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 5.33,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.12,
+        "x": "RIGHT_SPAWN_X",
+        "y": 347,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.45,
+        "x": "RIGHT_SPAWN_X",
+        "y": 436,
+        "speedMultiplier": 1.02
+      }
+    ]
+  },
+  {
+    "duration": 9.2,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.03,
+        "x": "RIGHT_SPAWN_X",
+        "y": 321,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.74,
+        "x": "RIGHT_SPAWN_X",
+        "y": 440,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Shark",
+        "time": 1.36,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.35
+      },
+      {
+        "type": "Shark",
+        "time": 2.06,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.25
+      },
+      {
+        "type": "Shark",
+        "time": 2.96,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.8,
+        "x": "LEFT_SPAWN_X",
+        "y": 276,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Shark",
+        "time": 4.37,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.22,
+        "x": "RIGHT_SPAWN_X",
+        "y": 303,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.72,
+        "x": "RIGHT_SPAWN_X",
+        "y": 250,
+        "speedMultiplier": 0.97
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.68,
+        "x": "RIGHT_SPAWN_X",
+        "y": 306,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.58,
+        "x": "LEFT_SPAWN_X",
+        "y": 333,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 8.34,
+        "x": "LEFT_SPAWN_X",
+        "y": 510,
+        "speedMultiplier": 1.07
+      }
+    ]
+  },
+  {
+    "duration": 7.5,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.0,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.21
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.34,
+        "x": "RIGHT_SPAWN_X",
+        "y": 302,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Shark",
+        "time": 0.9,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 1.36,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.22
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.12,
+        "x": "LEFT_SPAWN_X",
+        "y": 369,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.59,
+        "x": "LEFT_SPAWN_X",
+        "y": 277,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.88,
+        "x": "LEFT_SPAWN_X",
+        "y": 537,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.41,
+        "x": "LEFT_SPAWN_X",
+        "y": 502,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.06,
+        "x": "RIGHT_SPAWN_X",
+        "y": 498,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.74,
+        "x": "RIGHT_SPAWN_X",
+        "y": 535,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.19,
+        "x": "LEFT_SPAWN_X",
+        "y": 489,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.79,
+        "x": "RIGHT_SPAWN_X",
+        "y": 370,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.32,
+        "x": "RIGHT_SPAWN_X",
+        "y": 429,
+        "speedMultiplier": 0.93
+      }
+    ]
+  },
+  {
+    "duration": 8.1,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.93,
+        "x": "LEFT_SPAWN_X",
+        "y": 301,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.81,
+        "x": "RIGHT_SPAWN_X",
+        "y": 305,
+        "speedMultiplier": 0.97
+      },
+      {
+        "type": "Shark",
+        "time": 2.44,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.63,
+        "x": "RIGHT_SPAWN_X",
+        "y": 308,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.18,
+        "x": "LEFT_SPAWN_X",
+        "y": 308,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Shark",
+        "time": 5.03,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.55,
+        "x": "LEFT_SPAWN_X",
+        "y": 501,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 6.02,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.13
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.88,
+        "x": "LEFT_SPAWN_X",
+        "y": 527,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.42,
+        "x": "RIGHT_SPAWN_X",
+        "y": 414,
+        "speedMultiplier": 1.04
+      }
+    ]
+  },
+  {
+    "duration": 6.6,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.36,
+        "x": "LEFT_SPAWN_X",
+        "y": 295,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.88,
+        "x": "RIGHT_SPAWN_X",
+        "y": 519,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Shark",
+        "time": 1.69,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.15
+      },
+      {
+        "type": "Shark",
+        "time": 2.28,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.21
+      },
+      {
+        "type": "Shark",
+        "time": 2.88,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.33
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.62,
+        "x": "LEFT_SPAWN_X",
+        "y": 521,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.92,
+        "x": "RIGHT_SPAWN_X",
+        "y": 345,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.29,
+        "x": "LEFT_SPAWN_X",
+        "y": 366,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.95,
+        "x": "RIGHT_SPAWN_X",
+        "y": 273,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 5.26,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.77,
+        "x": "LEFT_SPAWN_X",
+        "y": 458,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.16,
+        "x": "LEFT_SPAWN_X",
+        "y": 345,
+        "speedMultiplier": 0.99
+      }
+    ]
+  },
+  {
+    "duration": 8.9,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.52,
+        "x": "RIGHT_SPAWN_X",
+        "y": 292,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 1.16,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.08,
+        "x": "RIGHT_SPAWN_X",
+        "y": 515,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 2.76,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.25
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.54,
+        "x": "RIGHT_SPAWN_X",
+        "y": 418,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Shark",
+        "time": 4.23,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.39
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.07,
+        "x": "LEFT_SPAWN_X",
+        "y": 457,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.72,
+        "x": "LEFT_SPAWN_X",
+        "y": 355,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Shark",
+        "time": 6.37,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Shark",
+        "time": 7.28,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 8.2,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.15
+      }
+    ]
+  },
+  {
+    "duration": 9.1,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 1.01,
+        "x": "RIGHT_SPAWN_X",
+        "y": 395,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.78,
+        "x": "RIGHT_SPAWN_X",
+        "y": 507,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 2.31,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.14,
+        "x": "RIGHT_SPAWN_X",
+        "y": 310,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 4.51,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.39
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.29,
+        "x": "LEFT_SPAWN_X",
+        "y": 457,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Shark",
+        "time": 6.12,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.72,
+        "x": "LEFT_SPAWN_X",
+        "y": 550,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.37,
+        "x": "RIGHT_SPAWN_X",
+        "y": 431,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Shark",
+        "time": 8.42,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.3
+      }
+    ]
+  },
+  {
+    "duration": 8.4,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.04,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.2
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.78,
+        "x": "RIGHT_SPAWN_X",
+        "y": 474,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.48,
+        "x": "LEFT_SPAWN_X",
+        "y": 392,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.1,
+        "x": "RIGHT_SPAWN_X",
+        "y": 348,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.52,
+        "x": "LEFT_SPAWN_X",
+        "y": 455,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 3.21,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.14
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.66,
+        "x": "RIGHT_SPAWN_X",
+        "y": 446,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.17,
+        "x": "LEFT_SPAWN_X",
+        "y": 400,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.74,
+        "x": "RIGHT_SPAWN_X",
+        "y": 382,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 5.41,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.27
+      },
+      {
+        "type": "Shark",
+        "time": 6.14,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.16
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.89,
+        "x": "RIGHT_SPAWN_X",
+        "y": 401,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.29,
+        "x": "RIGHT_SPAWN_X",
+        "y": 459,
+        "speedMultiplier": 1.1
+      }
+    ]
+  },
+  {
+    "duration": 7.4,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.19,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.39
+      },
+      {
+        "type": "Shark",
+        "time": 0.48,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.38
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.8,
+        "x": "LEFT_SPAWN_X",
+        "y": 478,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 1.59,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 2.08,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.39
+      },
+      {
+        "type": "Shark",
+        "time": 2.63,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Shark",
+        "time": 3.14,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.25
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.5,
+        "x": "RIGHT_SPAWN_X",
+        "y": 283,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.35,
+        "x": "LEFT_SPAWN_X",
+        "y": 378,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.12,
+        "x": "LEFT_SPAWN_X",
+        "y": 267,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Shark",
+        "time": 5.8,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.32
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.56,
+        "x": "LEFT_SPAWN_X",
+        "y": 482,
+        "speedMultiplier": 0.94
+      }
+    ]
+  },
+  {
+    "duration": 7.6,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.4,
+        "x": "LEFT_SPAWN_X",
+        "y": 406,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.04,
+        "x": "LEFT_SPAWN_X",
+        "y": 444,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.6,
+        "x": "RIGHT_SPAWN_X",
+        "y": 401,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 1.92,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.58,
+        "x": "LEFT_SPAWN_X",
+        "y": 378,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Shark",
+        "time": 3.05,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.35
+      },
+      {
+        "type": "Shark",
+        "time": 3.74,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.38,
+        "x": "RIGHT_SPAWN_X",
+        "y": 489,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Shark",
+        "time": 5.12,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 5.39,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.15
+      },
+      {
+        "type": "Shark",
+        "time": 5.73,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.2
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.24,
+        "x": "RIGHT_SPAWN_X",
+        "y": 545,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 6.86,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.37
+      }
+    ]
+  },
+  {
+    "duration": 7.1,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.14,
+        "x": "LEFT_SPAWN_X",
+        "y": 297,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Shark",
+        "time": 0.78,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.4
+      },
+      {
+        "type": "Shark",
+        "time": 1.31,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.69,
+        "x": "RIGHT_SPAWN_X",
+        "y": 399,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.15,
+        "x": "RIGHT_SPAWN_X",
+        "y": 257,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Shark",
+        "time": 2.68,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.18
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.31,
+        "x": "LEFT_SPAWN_X",
+        "y": 509,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 3.66,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.24,
+        "x": "RIGHT_SPAWN_X",
+        "y": 386,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.88,
+        "x": "LEFT_SPAWN_X",
+        "y": 267,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.22,
+        "x": "LEFT_SPAWN_X",
+        "y": 547,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.57,
+        "x": "LEFT_SPAWN_X",
+        "y": 310,
+        "speedMultiplier": 0.97
+      },
+      {
+        "type": "Shark",
+        "time": 5.93,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.29
+      },
+      {
+        "type": "Shark",
+        "time": 6.45,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.06
+      }
+    ]
+  },
+  {
+    "duration": 7.1,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.39,
+        "x": "RIGHT_SPAWN_X",
+        "y": 482,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.71,
+        "x": "LEFT_SPAWN_X",
+        "y": 328,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Shark",
+        "time": 1.48,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.2,
+        "x": "LEFT_SPAWN_X",
+        "y": 507,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Shark",
+        "time": 2.62,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Shark",
+        "time": 3.32,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 4.13,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.97,
+        "x": "LEFT_SPAWN_X",
+        "y": 259,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Shark",
+        "time": 5.89,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Shark",
+        "time": 6.29,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.61,
+        "x": "RIGHT_SPAWN_X",
+        "y": 362,
+        "speedMultiplier": 0.96
+      }
+    ]
+  },
+  {
+    "duration": 9.4,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.07,
+        "x": "RIGHT_SPAWN_X",
+        "y": 290,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.81,
+        "x": "RIGHT_SPAWN_X",
+        "y": 471,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Shark",
+        "time": 1.48,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 2.2,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.21
+      },
+      {
+        "type": "Shark",
+        "time": 2.58,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.28
+      },
+      {
+        "type": "Shark",
+        "time": 3.1,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Shark",
+        "time": 3.8,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.48,
+        "x": "RIGHT_SPAWN_X",
+        "y": 396,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.14,
+        "x": "RIGHT_SPAWN_X",
+        "y": 546,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.74,
+        "x": "RIGHT_SPAWN_X",
+        "y": 365,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.28,
+        "x": "LEFT_SPAWN_X",
+        "y": 536,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 6.71,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.2
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.38,
+        "x": "RIGHT_SPAWN_X",
+        "y": 417,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Shark",
+        "time": 8.25,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.19
+      }
+    ]
+  },
+  {
+    "duration": 6.7,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.13,
+        "x": "LEFT_SPAWN_X",
+        "y": 339,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.6,
+        "x": "LEFT_SPAWN_X",
+        "y": 397,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Shark",
+        "time": 1.13,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.25
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.57,
+        "x": "LEFT_SPAWN_X",
+        "y": 319,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.13,
+        "x": "RIGHT_SPAWN_X",
+        "y": 334,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 2.43,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.38
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.78,
+        "x": "LEFT_SPAWN_X",
+        "y": 274,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.6,
+        "x": "RIGHT_SPAWN_X",
+        "y": 259,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Shark",
+        "time": 4.29,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.29
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.1,
+        "x": "RIGHT_SPAWN_X",
+        "y": 435,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Shark",
+        "time": 5.73,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.05
+      }
+    ]
+  },
+  {
+    "duration": 8.7,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.37,
+        "x": "LEFT_SPAWN_X",
+        "y": 359,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.46,
+        "x": "RIGHT_SPAWN_X",
+        "y": 251,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.19,
+        "x": "RIGHT_SPAWN_X",
+        "y": 366,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.91,
+        "x": "RIGHT_SPAWN_X",
+        "y": 485,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 3.32,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.27
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.36,
+        "x": "RIGHT_SPAWN_X",
+        "y": 297,
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.89,
+        "x": "LEFT_SPAWN_X",
+        "y": 338,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 5.8,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.74,
+        "x": "RIGHT_SPAWN_X",
+        "y": 304,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.76,
+        "x": "RIGHT_SPAWN_X",
+        "y": 345,
+        "speedMultiplier": 0.9
+      }
+    ]
+  },
+  {
+    "duration": 8.7,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.21,
+        "x": "LEFT_SPAWN_X",
+        "y": 286,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Shark",
+        "time": 0.59,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.16
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.26,
+        "x": "RIGHT_SPAWN_X",
+        "y": 316,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 2.14,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.11
+      },
+      {
+        "type": "Shark",
+        "time": 2.65,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.4
+      },
+      {
+        "type": "Shark",
+        "time": 3.31,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.88,
+        "x": "RIGHT_SPAWN_X",
+        "y": 396,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Shark",
+        "time": 4.62,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.27
+      },
+      {
+        "type": "Shark",
+        "time": 5.34,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 5.78,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.78,
+        "x": "LEFT_SPAWN_X",
+        "y": 427,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Shark",
+        "time": 7.54,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.38
+      }
+    ]
+  },
+  {
+    "duration": 8.5,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.27,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.27,
+        "x": "LEFT_SPAWN_X",
+        "y": 467,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.8,
+        "x": "LEFT_SPAWN_X",
+        "y": 282,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.66,
+        "x": "RIGHT_SPAWN_X",
+        "y": 492,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.37,
+        "x": "RIGHT_SPAWN_X",
+        "y": 415,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 4.02,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.14
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.8,
+        "x": "LEFT_SPAWN_X",
+        "y": 462,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 5.42,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.37
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.17,
+        "x": "LEFT_SPAWN_X",
+        "y": 364,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 6.9,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Shark",
+        "time": 7.59,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.19
+      }
+    ]
+  },
+  {
+    "duration": 8.5,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.41,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.01,
+        "x": "RIGHT_SPAWN_X",
+        "y": 517,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.41,
+        "x": "RIGHT_SPAWN_X",
+        "y": 486,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.75,
+        "x": "LEFT_SPAWN_X",
+        "y": 374,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.16,
+        "x": "LEFT_SPAWN_X",
+        "y": 256,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 2.83,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.32
+      },
+      {
+        "type": "Shark",
+        "time": 3.76,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.36,
+        "x": "RIGHT_SPAWN_X",
+        "y": 530,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.19,
+        "x": "LEFT_SPAWN_X",
+        "y": 306,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Shark",
+        "time": 5.54,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.27
+      },
+      {
+        "type": "Shark",
+        "time": 6.36,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.36
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.89,
+        "x": "RIGHT_SPAWN_X",
+        "y": 399,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.8,
+        "x": "LEFT_SPAWN_X",
+        "y": 455,
+        "speedMultiplier": 1.01
+      }
+    ]
+  },
+  {
+    "duration": 8.3,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.0,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Shark",
+        "time": 0.35,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.95,
+        "x": "LEFT_SPAWN_X",
+        "y": 293,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.72,
+        "x": "LEFT_SPAWN_X",
+        "y": 455,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Shark",
+        "time": 2.18,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.32
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.71,
+        "x": "LEFT_SPAWN_X",
+        "y": 466,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 3.12,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.37
+      },
+      {
+        "type": "Shark",
+        "time": 3.7,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Shark",
+        "time": 4.34,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.33
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.98,
+        "x": "LEFT_SPAWN_X",
+        "y": 355,
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.44,
+        "x": "RIGHT_SPAWN_X",
+        "y": 490,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.95,
+        "x": "LEFT_SPAWN_X",
+        "y": 316,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Shark",
+        "time": 6.66,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.36
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.4,
+        "x": "LEFT_SPAWN_X",
+        "y": 428,
+        "speedMultiplier": 0.9
+      }
+    ]
+  },
+  {
+    "duration": 8.2,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.0,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.31
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.38,
+        "x": "LEFT_SPAWN_X",
+        "y": 489,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Jellyfish",
+        "time": 1.15,
+        "x": "LEFT_SPAWN_X",
+        "y": 349,
+        "speedMultiplier": 0.94
+      },
+      {
+        "type": "Shark",
+        "time": 1.71,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.59,
+        "x": "RIGHT_SPAWN_X",
+        "y": 527,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.24,
+        "x": "RIGHT_SPAWN_X",
+        "y": 362,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "Shark",
+        "time": 3.77,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Shark",
+        "time": 4.43,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.21
+      },
+      {
+        "type": "Shark",
+        "time": 4.85,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.29
+      },
+      {
+        "type": "Shark",
+        "time": 5.64,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.34
+      },
+      {
+        "type": "Shark",
+        "time": 6.25,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.38
+      },
+      {
+        "type": "Jellyfish",
+        "time": 7.05,
+        "x": "RIGHT_SPAWN_X",
+        "y": 324,
+        "speedMultiplier": 0.9
+      }
+    ]
+  },
+  {
+    "duration": 7.3,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.02,
+        "x": "RIGHT_SPAWN_X",
+        "y": 512,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Shark",
+        "time": 0.83,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.11
+      },
+      {
+        "type": "Shark",
+        "time": 1.74,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.31
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.13,
+        "x": "LEFT_SPAWN_X",
+        "y": 416,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Shark",
+        "time": 2.55,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Shark",
+        "time": 3.57,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.31
+      },
+      {
+        "type": "Jellyfish",
+        "time": 4.03,
+        "x": "LEFT_SPAWN_X",
+        "y": 388,
+        "speedMultiplier": 1.1
+      },
+      {
+        "type": "Shark",
+        "time": 5.03,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.21
+      },
+      {
+        "type": "Jellyfish",
+        "time": 5.67,
+        "x": "RIGHT_SPAWN_X",
+        "y": 419,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.14,
+        "x": "LEFT_SPAWN_X",
+        "y": 349,
+        "speedMultiplier": 1.01
+      }
+    ]
+  },
+  {
+    "duration": 6.9,
+    "spawns": [
+      {
+        "type": "Jellyfish",
+        "time": 0.72,
+        "x": "RIGHT_SPAWN_X",
+        "y": 513,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Shark",
+        "time": 1.08,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Shark",
+        "time": 1.49,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.39
+      },
+      {
+        "type": "Shark",
+        "time": 1.82,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Shark",
+        "time": 2.17,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.02,
+        "x": "LEFT_SPAWN_X",
+        "y": 278,
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.55,
+        "x": "RIGHT_SPAWN_X",
+        "y": 485,
+        "speedMultiplier": 0.9
+      },
+      {
+        "type": "Shark",
+        "time": 3.91,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.13
+      },
+      {
+        "type": "Shark",
+        "time": 4.26,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Shark",
+        "time": 5.06,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Shark",
+        "time": 5.58,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.39,
+        "x": "RIGHT_SPAWN_X",
+        "y": 467,
+        "speedMultiplier": 0.92
+      }
+    ]
+  }
+]

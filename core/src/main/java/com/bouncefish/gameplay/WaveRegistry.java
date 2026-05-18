@@ -35,10 +35,17 @@ public class WaveRegistry {
     private static Map<Integer, ArrayList<Wave>> waveData = new HashMap<>();
 
     // This is where we define all wave data
+//    public static void prepareInitialWaves(){
+//        // Generate all waves??
+//        // TODO: consider batching them
+//        for (int i = 0; i < GameConstants.MAXIMUM_HARDCODED_WAVES; i++){
+//            activeWaveList.put(i, getRandomWaveForRound(i));
+//        }
+//    }
     public static void prepareInitialWaves(){
         // Generate all waves??
         // TODO: consider batching them
-        for (int i = 0; i < GameConstants.MAXIMUM_HARDCODED_WAVES; i++){
+        for (int i = 0; i < GameConstants.NUMBER_OF_EASY_WAVES + GameConstants.NUMBER_OF_MEDIUM_WAVES + GameConstants.NUMBER_OF_HARD_WAVES; i++){
             activeWaveList.put(i, getRandomWaveForRound(i));
         }
     }
@@ -171,9 +178,25 @@ public class WaveRegistry {
 
 public static void generateWaves() {
 //TODO: make every coordinate value explicit floats? Or use offsets only?
-        ArrayList<Wave> easyWaves = new ArrayList<>();
 
-        FileHandle file = Gdx.files.internal("waves_easy_ver2.json");
+/*    ArrayList<Wave> easyWaves = loadWavesFromFile("waves_easy_ver2.json");*/
+    ArrayList<Wave> easyWaves = loadWavesFromFile("waves_easy_test.json"); //this is only a small test file
+    waveData.put(0, easyWaves);
+
+    //ArrayList<Wave> mediumWaves = loadWavesFromFile("waves_medium.json");
+    ArrayList<Wave> mediumWaves = loadWavesFromFile("waves_medium_test.json"); //this is only a small test file
+    waveData.put(1, mediumWaves);
+
+    //ArrayList<Wave> hardWaves = loadWavesFromFile("waves_hard.json");
+    ArrayList<Wave> hardWaves = loadWavesFromFile("waves_hard_test.json"); //this is a test file filled with sharks and jellyfish
+    waveData.put(2, hardWaves);
+
+    }
+
+    private static ArrayList<Wave> loadWavesFromFile(String filePath) {
+        ArrayList<Wave> wavesList = new ArrayList<>();
+
+        FileHandle file = Gdx.files.internal(filePath);
 
         JsonReader reader = new JsonReader();
         JsonValue waves = reader.parse(file);
@@ -200,62 +223,90 @@ public static void generateWaves() {
                         break;
 
                     case "Mackerel":
-                        float startX = resolveConstant(spawn.getString("startX")); //assuming the startX(and targetX) is one of the constants in resolveConstant
+                        float startX = resolveConstant(spawn.getString("startX"));
                         startX /= spawn.getFloat("startXDivide", 1f);
                         startX += spawn.getFloat("startXOffset", 0f);
+
                         float targetX = resolveConstant(spawn.getString("targetX"));
                         targetX /= spawn.getFloat("targetXDivide", 1f);
                         targetX += spawn.getFloat("targetXOffset", 0f);
 
-                        wave.add(new MackerelSpawnData(time, startX, targetX, speedMultiplier, OrdinaryFish::parabolicMotion));
+                        wave.add(new MackerelSpawnData(
+                            time,
+                            startX,
+                            targetX,
+                            speedMultiplier,
+                            OrdinaryFish::parabolicMotion
+                        ));
                         break;
 
                     case "OceanSunfish":
-                        float sunfishX = resolveConstant(spawn.getString("x"));//assuming x and y are constants in resolveConstant
+                        float sunfishX = resolveConstant(spawn.getString("x"));
                         float sunfishY = resolveConstant(spawn.getString("y"));
                         sunfishY /= spawn.getFloat("yDivide", 1f);
                         sunfishY += spawn.getFloat("yOffset", 0f);
 
-                        wave.add(new OceanSunfishSpawnData(time, sunfishX, sunfishY, speedMultiplier, OceanSunfish::normalMovement));
+                        wave.add(new OceanSunfishSpawnData(
+                            time,
+                            sunfishX,
+                            sunfishY,
+                            speedMultiplier,
+                            OceanSunfish::normalMovement
+                        ));
                         break;
 
-                    //the following 3 creatures shouldn't be in easy waves
                     case "Shark":
                         String value = spawn.getString("movingLeft");
                         boolean flag = Boolean.parseBoolean(value);
                         float sharkX = resolveConstant(spawn.getString("x"));
 
-                        wave.add(new SharkSpawnData(time,sharkX,flag,speedMultiplier,Shark::swim));
+                        wave.add(new SharkSpawnData(
+                            time,
+                            sharkX,
+                            flag,
+                            speedMultiplier,
+                            Shark::swim
+                        ));
                         break;
 
                     case "Jellyfish":
                         float jellyX = resolveConstant(spawn.getString("x"));
-                        float jellyY = spawn.getFloat("y"); //TODO: inconsistent convention. Fixed it?
+                        float jellyY = spawn.getFloat("y");
 
-                        wave.add(new JellyfishSpawnData(time, jellyX, jellyY, speedMultiplier, JellyFish::jellyFishLeftToRightMovement));
+                        wave.add(new JellyfishSpawnData(
+                            time,
+                            jellyX,
+                            jellyY,
+                            speedMultiplier,
+                            JellyFish::jellyFishLeftToRightMovement
+                        ));
                         break;
 
                     case "Marlin":
                         float marlinX = resolveConstant(spawn.getString("x"));
                         float marlinY = spawn.getFloat("y", GameConstants.WATER_LEVEL);
-                        wave.add(new MarlinSpawnData(time, marlinX,marlinY,speedMultiplier, Marlin::normalMovement));
+
+                        wave.add(new MarlinSpawnData(
+                            time,
+                            marlinX,
+                            marlinY,
+                            speedMultiplier,
+                            Marlin::normalMovement
+                        ));
                         break;
 
                     default:
-
                         System.out.println("ERRRRORR: Unknown spawn type: " + type);
-
                         break;
                 }
             }
 
-            easyWaves.add(wave);
+            wavesList.add(wave);
         }
 
-        waveData.put(0, easyWaves);
-        GameConstants.MAXIMUM_HARDCODED_WAVES = easyWaves.size();
-
+        return wavesList;
     }
+
     private static float resolveConstant(String value) {
 
         switch (value) {
@@ -279,9 +330,9 @@ public static void generateWaves() {
 //        if (currentWave <= 5) {
 //            return 0;
 //        }
-        if (currentWave <= 25){
+        if (currentWave < GameConstants.NUMBER_OF_EASY_WAVES){
             return 0;
-        }else if (currentWave <= 42 ){
+        }else if (currentWave < GameConstants.NUMBER_OF_EASY_WAVES + GameConstants.NUMBER_OF_MEDIUM_WAVES ){
             return 1;
         }
         return 2;

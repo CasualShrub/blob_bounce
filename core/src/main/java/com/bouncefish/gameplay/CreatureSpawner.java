@@ -57,13 +57,27 @@ public class CreatureSpawner {
 
         // If the queue is empty and the wave is over, load the next wave
         if (this.spawnQueue.isEmpty() && spawnTimer >= currentWave.getWaveDuration()){
-            if (this.currentWaveIndex < GameConstants.MAXIMUM_HARDCODED_WAVES - 1){
+            if (this.currentWaveIndex < GameConstants.NUMBER_OF_EASY_WAVES + GameConstants.NUMBER_OF_MEDIUM_WAVES - 1){
                 this.currentWaveIndex++;
                 this.spawnTimer = 0;
                 loadWave(this.currentWaveIndex);
+            }else{
+                this.spawnTimer = 0;
+                loadHardWave();
             }
             return;
         }
+//        if (this.spawnQueue.isEmpty() && spawnTimer >= currentWave.getWaveDuration()){
+//            if (this.currentWaveIndex < 25 - 1){
+//                this.currentWaveIndex++;
+//                this.spawnTimer = 0;
+//                loadWave(this.currentWaveIndex);
+//            }else{
+//                this.spawnTimer = 0;
+//                loadHardWave();
+//            }
+//            return;
+//        }
 
         this.spawnTimer += Gdx.graphics.getDeltaTime();
 
@@ -86,6 +100,14 @@ public class CreatureSpawner {
     // Instantiate all the creatures in the given wave and add them to the spawning queue
     private void loadWave(int waveIndex){
         this.currentWave = WaveRegistry.getWave(waveIndex);
+        for (CreatureSpawnData<?> spawnData : this.currentWave.getCreaturesToSpawn()) {
+            this.spawnQueue.add(spawnData.createInstance());
+        }
+    }
+    private void loadHardWave(){
+        int waveIndex = com.badlogic.gdx.math.MathUtils.random(GameConstants.NUMBER_OF_EASY_WAVES + GameConstants.NUMBER_OF_MEDIUM_WAVES,
+                                                               GameConstants.NUMBER_OF_EASY_WAVES + GameConstants.NUMBER_OF_MEDIUM_WAVES + GameConstants.NUMBER_OF_HARD_WAVES);
+        this.currentWave = WaveRegistry.getWave(waveIndex); //randomly get a hard level
         for (CreatureSpawnData<?> spawnData : this.currentWave.getCreaturesToSpawn()) {
             this.spawnQueue.add(spawnData.createInstance());
         }

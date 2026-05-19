@@ -10,13 +10,11 @@ import com.bouncefish.entities.*;
 import com.bouncefish.leaderboard.LeaderboardService;
 import com.bouncefish.utils.GameConstants;
 
-import javax.swing.Timer;
 import java.util.ArrayList;
 
 public class BounceGame implements GestureDetector.GestureListener {
 
     private BounceFish _bounceFish;
-    Timer _timer;
     private boolean _leftPressed;
     private boolean _rightPressed;
     private boolean _isActive;

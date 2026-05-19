@@ -45,7 +45,7 @@ public class WaveRegistry {
     public static void prepareInitialWaves(){
         // Generate all waves??
         // TODO: consider batching them
-        for (int i = 0; i < GameConstants.NUMBER_OF_EASY_WAVES + GameConstants.NUMBER_OF_MEDIUM_WAVES + GameConstants.NUMBER_OF_HARD_WAVES; i++){
+        for (int i = 0; i < GameConstants.MAXIMUM_HARDCODED_WAVES; i++){
             activeWaveList.put(i, getRandomWaveForRound(i));
         }
     }
@@ -179,16 +179,16 @@ public class WaveRegistry {
 public static void generateWaves() {
 //TODO: make every coordinate value explicit floats? Or use offsets only?
 
-/*    ArrayList<Wave> easyWaves = loadWavesFromFile("waves_easy_ver2.json");*/
-    ArrayList<Wave> easyWaves = loadWavesFromFile("waves_easy_test.json"); //this is only a small test file
+    ArrayList<Wave> easyWaves = loadWavesFromFile("waves_easy_ver2.json");
+    //ArrayList<Wave> easyWaves = loadWavesFromFile("waves_easy_test.json"); //this is only a small test file
     waveData.put(0, easyWaves);
 
-    //ArrayList<Wave> mediumWaves = loadWavesFromFile("waves_medium.json");
-    ArrayList<Wave> mediumWaves = loadWavesFromFile("waves_medium_test.json"); //this is only a small test file
+    ArrayList<Wave> mediumWaves = loadWavesFromFile("waves_medium.json");
+    //ArrayList<Wave> mediumWaves = loadWavesFromFile("waves_medium.json"); //this is only a small test file
     waveData.put(1, mediumWaves);
 
-    //ArrayList<Wave> hardWaves = loadWavesFromFile("waves_hard.json");
-    ArrayList<Wave> hardWaves = loadWavesFromFile("waves_hard_test.json"); //this is a test file filled with sharks and jellyfish
+    ArrayList<Wave> hardWaves = loadWavesFromFile("waves_hard.json");
+    //ArrayList<Wave> hardWaves = loadWavesFromFile("waves_hard_test.json"); //this is a test file filled with sharks and jellyfish
     waveData.put(2, hardWaves);
 
     }
@@ -332,7 +332,7 @@ public static void generateWaves() {
 //        }
         if (currentWave < GameConstants.NUMBER_OF_EASY_WAVES){
             return 0;
-        }else if (currentWave < GameConstants.NUMBER_OF_EASY_WAVES + GameConstants.NUMBER_OF_MEDIUM_WAVES ){
+        }else if (currentWave < GameConstants.NUMBER_OF_EASY_WAVES + GameConstants.NUMBER_OF_MEDIUM_WAVES){
             return 1;
         }
         return 2;

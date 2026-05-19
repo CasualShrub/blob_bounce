@@ -1,0 +1,510 @@
+[
+  {
+    "duration": 7.3,
+    "spawns": [
+      {
+        "type": "Crab",
+        "time": 0.0,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Mackerel",
+        "time": 0.32,
+        "startX": "RIGHT_SPAWN_X",
+        "startXOffset": -33,
+        "targetX": 0,
+        "targetXDivide": 1,
+        "targetXOffset": 67,
+        "speedMultiplier": 1.11
+      },
+      {
+        "type": "Crab",
+        "time": 0.84,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Crab",
+        "time": 1.35,
+        "x": "LEFT_SPAWN_X",
+        "speedMultiplier": 1.04
+      },
+      {
+        "type": "Mackerel",
+        "time": 2.09,
+        "startX": "LEFT_SPAWN_X",
+        "startXOffset": 35,
+        "targetX": "GAME_WIDTH",
+        "targetXDivide": 1,
+        "targetXOffset": -57,
+        "speedMultiplier": 1.22
+      },
+      {
+        "type": "Jellyfish",
+        "time": 2.79,
+        "x": "RIGHT_SPAWN_X",
+        "y": 309,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Mackerel",
+        "time": 3.26,
+        "startX": "RIGHT_SPAWN_X",
+        "startXOffset": -49,
+        "targetX": 0,
+        "targetXDivide": 1,
+        "targetXOffset": 33,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Crab",
+        "time": 3.84,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Mackerel",
+        "time": 4.35,
+        "startX": "GAME_WIDTH",
+        "startXOffset": -22,
+        "targetX": 0,
+        "targetXDivide": 1,
+        "targetXOffset": 10,
+        "speedMultiplier": 1.13
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 5.09,
+        "x": "LEFT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 3,
+        "speedMultiplier": 0.99
+      },
+      {
+        "type": "Crab",
+        "time": 5.77,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Crab",
+        "time": 6.48,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.3
+      }
+    ]
+  },
+  {
+    "duration": 7.6,
+    "spawns": [
+      {
+        "type": "Mackerel",
+        "time": 0.09,
+        "startX": "RIGHT_SPAWN_X",
+        "startXOffset": -67,
+        "targetX": 0,
+        "targetXDivide": 1,
+        "targetXOffset": -7,
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 0.83,
+        "x": "LEFT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 2,
+        "speedMultiplier": 0.82
+      },
+      {
+        "type": "Mackerel",
+        "time": 1.37,
+        "startX": "LEFT_SPAWN_X",
+        "startXOffset": 60,
+        "targetX": "GAME_WIDTH",
+        "targetXDivide": 1,
+        "targetXOffset": 45,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Crab",
+        "time": 1.87,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.29
+      },
+      {
+        "type": "Mackerel",
+        "time": 2.39,
+        "startX": "RIGHT_SPAWN_X",
+        "startXOffset": -42,
+        "targetX": 0,
+        "targetXDivide": 1,
+        "targetXOffset": -25,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Crab",
+        "time": 3.06,
+        "x": "LEFT_SPAWN_X",
+        "speedMultiplier": 1.14
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 3.93,
+        "x": "RIGHT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 3,
+        "speedMultiplier": 0.97
+      },
+      {
+        "type": "Mackerel",
+        "time": 4.5,
+        "startX": "LEFT_SPAWN_X",
+        "startXOffset": 62,
+        "targetX": "GAME_WIDTH",
+        "targetXDivide": 1.6,
+        "targetXOffset": 50,
+        "speedMultiplier": 1.12
+      },
+      {
+        "type": "Mackerel",
+        "time": 5.12,
+        "startX": "GAME_WIDTH",
+        "startXOffset": -48,
+        "targetX": 0,
+        "targetXDivide": 1,
+        "targetXOffset": -29,
+        "speedMultiplier": 1.14
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 6.03,
+        "x": "LEFT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 3,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Mackerel",
+        "time": 6.69,
+        "startX": "GAME_WIDTH",
+        "startXOffset": -64,
+        "targetX": 0,
+        "targetXDivide": 1.6,
+        "targetXOffset": -54,
+        "speedMultiplier": 1.18
+      }
+    ]
+  },
+  {
+    "duration": 6.8,
+    "spawns": [
+      {
+        "type": "Shark",
+        "time": 0.0,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.21
+      },
+      {
+        "type": "Crab",
+        "time": 0.1,
+        "x": "LEFT_SPAWN_X",
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Crab",
+        "time": 0.83,
+        "x": "LEFT_SPAWN_X",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Crab",
+        "time": 1.25,
+        "x": "LEFT_SPAWN_X",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Crab",
+        "time": 1.6,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.25
+      },
+      {
+        "type": "Mackerel",
+        "time": 2.33,
+        "startX": 0,
+        "startXOffset": 26,
+        "targetX": "GAME_WIDTH",
+        "targetXDivide": 2,
+        "targetXOffset": 133,
+        "speedMultiplier": 0.95
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 2.82,
+        "x": "LEFT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 3,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.12,
+        "x": "RIGHT_SPAWN_X",
+        "y": 272,
+        "speedMultiplier": 1.03
+      },
+      {
+        "type": "Crab",
+        "time": 3.88,
+        "x": "LEFT_SPAWN_X",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Mackerel",
+        "time": 4.5,
+        "startX": "GAME_WIDTH",
+        "startXOffset": -64,
+        "targetX": 0,
+        "targetXDivide": 1,
+        "targetXOffset": 8,
+        "speedMultiplier": 1.05
+      },
+      {
+        "type": "Crab",
+        "time": 5.12,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.24
+      },
+      {
+        "type": "Crab",
+        "time": 5.69,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 0.96
+      }
+    ]
+  },
+  {
+    "duration": 7.3,
+    "spawns": [
+      {
+        "type": "Crab",
+        "time": 0.28,
+        "x": "LEFT_SPAWN_X",
+        "speedMultiplier": 1.23
+      },
+      {
+        "type": "Mackerel",
+        "time": 0.91,
+        "startX": 0,
+        "startXOffset": 33,
+        "targetX": "GAME_WIDTH",
+        "targetXDivide": 1,
+        "targetXOffset": -53,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 1.61,
+        "x": "RIGHT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 2,
+        "speedMultiplier": 0.91
+      },
+      {
+        "type": "Crab",
+        "time": 2.05,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.14
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 2.45,
+        "x": "RIGHT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 3,
+        "speedMultiplier": 0.93
+      },
+      {
+        "type": "Crab",
+        "time": 2.86,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Mackerel",
+        "time": 3.13,
+        "startX": "GAME_WIDTH",
+        "startXOffset": -42,
+        "targetX": 0,
+        "targetXDivide": 1,
+        "targetXOffset": -4,
+        "speedMultiplier": 0.98
+      },
+      {
+        "type": "Crab",
+        "time": 3.72,
+        "x": "LEFT_SPAWN_X",
+        "speedMultiplier": 1.19
+      },
+      {
+        "type": "Shark",
+        "time": 4.16,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "Shark",
+        "time": 4.9,
+        "x": "LEFT_SPAWN_X",
+        "movingLeft": "true",
+        "speedMultiplier": 1.11
+      },
+      {
+        "type": "Mackerel",
+        "time": 5.67,
+        "startX": "GAME_WIDTH",
+        "startXOffset": -73,
+        "targetX": 0,
+        "targetXDivide": 1.6,
+        "targetXOffset": -120,
+        "speedMultiplier": 1.09
+      },
+      {
+        "type": "Shark",
+        "time": 6.03,
+        "x": "RIGHT_SPAWN_X",
+        "movingLeft": "false",
+        "speedMultiplier": 1.31
+      },
+      {
+        "type": "Mackerel",
+        "time": 6.67,
+        "startX": 0,
+        "startXOffset": 24,
+        "targetX": "GAME_WIDTH",
+        "targetXDivide": 1,
+        "targetXOffset": -75,
+        "speedMultiplier": 1.29
+      }
+    ]
+  },
+  {
+    "duration": 7.5,
+    "spawns": [
+      {
+        "type": "OceanSunfish",
+        "time": 0.0,
+        "x": "RIGHT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 3,
+        "speedMultiplier": 0.83
+      },
+      {
+        "type": "Jellyfish",
+        "time": 0.45,
+        "x": "LEFT_SPAWN_X",
+        "y": 349,
+        "speedMultiplier": 1.01
+      },
+      {
+        "type": "Crab",
+        "time": 0.83,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.2
+      },
+      {
+        "type": "Mackerel",
+        "time": 1.51,
+        "startX": "GAME_WIDTH",
+        "startXOffset": -21,
+        "targetX": 0,
+        "targetXDivide": 1.6,
+        "targetXOffset": -125,
+        "speedMultiplier": 1.08
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 2.19,
+        "x": "LEFT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 3,
+        "speedMultiplier": 0.88
+      },
+      {
+        "type": "Mackerel",
+        "time": 2.57,
+        "startX": "RIGHT_SPAWN_X",
+        "startXOffset": -35,
+        "targetX": 0,
+        "targetXDivide": 1,
+        "targetXOffset": 62,
+        "speedMultiplier": 1.16
+      },
+      {
+        "type": "Mackerel",
+        "time": 3.08,
+        "startX": 0,
+        "startXOffset": 30,
+        "targetX": "GAME_WIDTH",
+        "targetXDivide": 1,
+        "targetXOffset": 37,
+        "speedMultiplier": 1.0
+      },
+      {
+        "type": "Jellyfish",
+        "time": 3.34,
+        "x": "RIGHT_SPAWN_X",
+        "y": 264,
+        "speedMultiplier": 0.96
+      },
+      {
+        "type": "Mackerel",
+        "time": 3.72,
+        "startX": "RIGHT_SPAWN_X",
+        "startXOffset": -62,
+        "targetX": 0,
+        "targetXDivide": 1.6,
+        "targetXOffset": -106,
+        "speedMultiplier": 1.17
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 4.48,
+        "x": "LEFT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 3,
+        "speedMultiplier": 0.92
+      },
+      {
+        "type": "Crab",
+        "time": 5.17,
+        "x": "RIGHT_SPAWN_X",
+        "speedMultiplier": 1.06
+      },
+      {
+        "type": "Crab",
+        "time": 5.63,
+        "x": "LEFT_SPAWN_X",
+        "speedMultiplier": 1.07
+      },
+      {
+        "type": "OceanSunfish",
+        "time": 6.15,
+        "x": "RIGHT_SPAWN_X",
+        "y": "SCREEN_HEIGHT",
+        "yDivide": 3,
+        "speedMultiplier": 1.02
+      },
+      {
+        "type": "Jellyfish",
+        "time": 6.52,
+        "x": "LEFT_SPAWN_X",
+        "y": 503,
+        "speedMultiplier": 1.0
+      }
+    ]
+  }
+]

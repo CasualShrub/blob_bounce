@@ -7,10 +7,6 @@ import com.bouncefish.utils.GameConstants;
 import java.util.function.Consumer;
 
 public class MarlinSpawnData extends CreatureSpawnData<Marlin>{
-    public MarlinSpawnData(float spawnTime, float spawnX, Consumer<Creature> movementFunction){
-        super(spawnTime, spawnX, GameConstants.WATER_LEVEL, 1, movementFunction);
-    }
-
     public MarlinSpawnData(float spawnTime, float spawnX, float spawnY, float speedMultiplier, Consumer<Creature> movementFunction) {
         super(spawnTime, spawnX, spawnY, speedMultiplier, movementFunction);
     }

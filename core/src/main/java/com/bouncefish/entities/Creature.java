@@ -129,13 +129,16 @@ public abstract class Creature {
     public void setBoundScale(float xScale, float yScale){
         boundScaleX = xScale;
         boundScaleY = yScale;
-        boundOffsetX = (1 - boundOffsetX) * width / 2;
-        boundOffsetY = (1 - boundOffsetY) * height / 2;
+
+    }
+    public void setBoundOffset(float xOffset, float yOffest){
+        boundOffsetX = xOffset;
+        boundOffsetY = yOffest;
     }
     //Created collision box
     protected void setBounds(){
         //seems to work well without recentering
-        bounds = new Rectangle(getX(), getY(),
+        bounds = new Rectangle(getX() + boundOffsetX, getY() + boundOffsetY,
             getWidth()*boundScaleX, getHeight()*boundScaleY);
     }
 

@@ -11,6 +11,8 @@ dependencies {
   api "com.github.tommyettinger:libgdx-utils-box2d:$utilsBox2dVersion"
   api "com.github.tommyettinger:libgdx-utils:$utilsVersion"
 
+  implementation 'com.google.code.gson:gson:2.10.1'
+
   if(enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
   }

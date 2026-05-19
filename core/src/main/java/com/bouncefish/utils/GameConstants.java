@@ -19,8 +19,27 @@ public final class GameConstants {
     public static final int LEFT_CONTROL_BORDER = 400;
     public static boolean IS_DEBUG = true;
     public static boolean IS_IMMORTAL = true; // Cheatcode: Use this if you want to be able to bounce on the ground just for testing purposes.
+    public static final int ENDLESS_START_WAVE = 25;  // Wave index at which the endless hard-wave phase begins
+    public static final int ENDLESS_BATCH_SIZE  = 5;  // How many hard waves to generate at a time in endless mode
 
-    public static final int MAXIMUM_HARDCODED_WAVES = 8; // Maximum value of waves to do before reaching the endless phase of the game.
+    public static final int MAX_ACTIVE_SUNFISH = 1;
+    public static final int MAX_ACTIVE_SHARKS  = 3;
+
+/// /////////////////////////////////////////////////////////////////////
+/// //            the 3 constants below are for actual use
+    public static int NUMBER_OF_EASY_WAVES = 10;
+//
+    public static int NUMBER_OF_MEDIUM_WAVES = 10;
+//
+    public static int NUMBER_OF_HARD_WAVES = 10;
+
+/// /////////////////////////////////////////////////////////////////////
+/// //            the 3 constants below are for testing
+//public static int NUMBER_OF_EASY_WAVES = 5;
+
+//    public static int NUMBER_OF_MEDIUM_WAVES = 5;
+//// public static int NUMBER_OF_HARD_WAVES = 52;
+/// //////////////////////////////////////////////////////////////////////////
 
     // These are just some wrappers because Gdx.graphics.getWidth feels too long
     public static float Game_Width = Gdx.graphics.getWidth();

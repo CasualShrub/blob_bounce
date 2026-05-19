@@ -57,11 +57,16 @@ public class CreatureSpawner {
 
         // If the queue is empty and the wave is over, load the next wave
         if (this.spawnQueue.isEmpty() && spawnTimer >= currentWave.getWaveDuration()){
-            if (this.currentWaveIndex < GameConstants.MAXIMUM_HARDCODED_WAVES - 1){
-                this.currentWaveIndex++;
-                this.spawnTimer = 0;
-                loadWave(this.currentWaveIndex);
+            this.currentWaveIndex++;
+            this.spawnTimer = 0;
+
+            boolean isEndless = this.currentWaveIndex >= GameConstants.ENDLESS_START_WAVE;
+            boolean isBatchBoundary = (this.currentWaveIndex - GameConstants.ENDLESS_START_WAVE) % GameConstants.ENDLESS_BATCH_SIZE == 0;
+            if (isEndless && isBatchBoundary){
+                WaveRegistry.generateEndlessWaves(this.currentWaveIndex, GameConstants.ENDLESS_BATCH_SIZE);
             }
+
+            loadWave(this.currentWaveIndex);
             return;
         }
 
@@ -69,8 +74,36 @@ public class CreatureSpawner {
 
         // Spawn any creatures whose spawn times have passed
         if (!this.spawnQueue.isEmpty() && this.spawnTimer >= this.spawnQueue.peek().getSpawnTime()){
-            this.creatureList.add(this.spawnQueue.poll());
+            Creature next = this.spawnQueue.poll();
+            if (!isAtSpawnLimit(next)){
+                this.creatureList.add(next);
+            }
+            // basically just discard the creature if we already have enough
         }
+    }
+
+    private boolean isAtSpawnLimit(Creature creature){
+        int id = creature.getCreatureId();
+        boolean isAtLimit = false;
+        if (id == 3){ // OceanSunfish!
+            isAtLimit = countActiveForId(3) >= GameConstants.MAX_ACTIVE_SUNFISH;
+        }
+
+        if (id == 5){ // Shark
+            isAtLimit = countActiveForId(5) >= GameConstants.MAX_ACTIVE_SHARKS;
+        }
+
+        return isAtLimit;
+    }
+
+    private int countActiveForId(int creatureId){
+        int count = 0;
+        for (Creature creature : creatureList){
+            if (creature.getCreatureId() == creatureId){
+                count++;
+            }
+        }
+        return count;
     }
 
     // Clear any creatures that have left the screen
@@ -84,7 +117,7 @@ public class CreatureSpawner {
     }
 
     // Instantiate all the creatures in the given wave and add them to the spawning queue
-    private void loadWave(int waveIndex){
+    private void loadWave(int waveIndex) {
         this.currentWave = WaveRegistry.getWave(waveIndex);
         for (CreatureSpawnData<?> spawnData : this.currentWave.getCreaturesToSpawn()) {
             this.spawnQueue.add(spawnData.createInstance());

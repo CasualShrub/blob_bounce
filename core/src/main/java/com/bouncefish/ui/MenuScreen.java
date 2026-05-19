@@ -16,13 +16,13 @@ public class MenuScreen {
     private Texture playButton;
     private Texture leaderboardButton;
     private Texture title;
-    private Texture settingsButton;
+    //private Texture settingsButton;
     private Texture defaultImagePixmap;
     private BitmapFont font;
 
     private Rectangle playBounds;
     private Rectangle leaderboardBounds;
-    private Rectangle settingsBounds;
+    //private Rectangle settingsBounds;
     private Rectangle nameFieldBounds;
     private Rectangle saveBounds;
 
@@ -34,7 +34,7 @@ public class MenuScreen {
         playButton = new Texture("Menuscreen/Play_button (3).png");
         leaderboardButton = new Texture("Menuscreen/Leaderboard_button.png");
         title = new Texture("Menuscreen/Bouncefish_title.png");
-        settingsButton = new Texture("Menuscreen/setting_button.png");
+        //settingsButton = new Texture("Menuscreen/setting_button.png");
 
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(1, 1, 1, 1);
@@ -46,7 +46,7 @@ public class MenuScreen {
 
         playBounds = new Rectangle();
         leaderboardBounds = new Rectangle();
-        settingsBounds = new Rectangle();
+        //settingsBounds = new Rectangle();
         nameFieldBounds = new Rectangle();
         saveBounds = new Rectangle();
 
@@ -78,7 +78,7 @@ public class MenuScreen {
         // 2. Calculating Vertical Stack (Title + Buttons + Name Row)
         float titleSpacing = btnHeight * 0.10f;
         float nameRowSpacing = btnHeight * 0.18f;
-        float totalHeight = titleHeight + (btnHeight * 3) + titleSpacing + nameRowSpacing + rowHeight;
+        float totalHeight = titleHeight + (btnHeight * 2) + titleSpacing + nameRowSpacing + rowHeight;
         float startY = (screenHeight + totalHeight) / 2f;
 
         batch.begin();
@@ -142,9 +142,9 @@ public class MenuScreen {
         batch.draw(leaderboardButton, btnX, currentY, btnWidth, btnHeight);
         leaderboardBounds.set(btnX, currentY, btnWidth, btnHeight);
 
-        currentY -= (btnHeight);
-        batch.draw(settingsButton, btnX, currentY, btnWidth, btnHeight);
-        settingsBounds.set(btnX, currentY, btnWidth, btnHeight);
+        //currentY -= (btnHeight);
+        //batch.draw(settingsButton, btnX, currentY, btnWidth, btnHeight);
+        //settingsBounds.set(btnX, currentY, btnWidth, btnHeight);
 
         batch.end();
     }
@@ -156,7 +156,7 @@ public class MenuScreen {
 
             if (playBounds.contains(x, y)) return 1;
             if (leaderboardBounds.contains(x, y)) return 2;
-            if (settingsBounds.contains(x, y)) return 3;
+            //if (settingsBounds.contains(x, y)) return 3;
 
             if (nameFieldBounds.contains(x, y)) {
                 Gdx.input.getTextInput(new Input.TextInputListener() {
@@ -188,7 +188,7 @@ public class MenuScreen {
         playButton.dispose();
         leaderboardButton.dispose();
         title.dispose();
-        settingsButton.dispose();
+        //settingsButton.dispose();
         defaultImagePixmap.dispose();
         font.dispose();
     }

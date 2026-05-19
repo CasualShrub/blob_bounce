@@ -19,8 +19,8 @@ public final class GameConstants {
     public static final int LEFT_CONTROL_BORDER = 400;
     public static boolean IS_DEBUG = true;
     public static boolean IS_IMMORTAL = true; // Cheatcode: Use this if you want to be able to bounce on the ground just for testing purposes.
-
-    public static int MAXIMUM_HARDCODED_WAVES = 30; // Maximum value of waves to do before reaching the endless phase of the game. This value is overwritten by WaveRegistry
+    public static final int ENDLESS_START_WAVE = 25;  // Wave index at which the endless hard-wave waves begins
+    public static final int ENDLESS_BATCH_SIZE  = 5;  // Every x waves, we load another 5 from the pool
 
 /// /////////////////////////////////////////////////////////////////////
 /// //            the 3 constants below are for actual use

@@ -43,9 +43,8 @@ public class WaveRegistry {
 //        }
 //    }
     public static void prepareInitialWaves(){
-        // Generate all waves??
-        // TODO: consider batching them
-        for (int i = 0; i < GameConstants.MAXIMUM_HARDCODED_WAVES; i++){
+        // We preload 30 waves first
+        for (int i = 0; i < GameConstants.ENDLESS_START_WAVE; i++){
             activeWaveList.put(i, getRandomWaveForRound(i));
         }
     }
@@ -338,9 +337,17 @@ public static void generateWaves() {
         return 2;
     }
 
-    // Generate 5 endless waves at a time once the player reaches difficulty cap
-    private void generateEndlessWaves(){
-
+    // If the hard pool gets exhausted we just reload from file. might cause lag spike but not likely
+    public static void generateEndlessWaves(int startIndex, int count){
+        ArrayList<Wave> hardPool = waveData.get(2);
+        if (hardPool == null || hardPool.size() < count){
+            hardPool = loadWavesFromFile("waves_hard.json");
+            waveData.put(2, hardPool);
+        }
+        for (int i = 0; i < count; i++){
+            int waveIndex = MathUtils.random(hardPool.size() - 1);
+            activeWaveList.put(startIndex + i, hardPool.remove(waveIndex));
+        }
     }
 
     // Used exclusively by the CreatureSpawner to generate the current wave

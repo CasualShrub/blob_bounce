@@ -57,12 +57,16 @@ public class CreatureSpawner {
 
         // If the queue is empty and the wave is over, load the next wave
         if (this.spawnQueue.isEmpty() && spawnTimer >= currentWave.getWaveDuration()){
-            if (this.currentWaveIndex < GameConstants.MAXIMUM_HARDCODED_WAVES){
-                this.currentWaveIndex++;
-                this.spawnTimer = 0;
-                System.out.printf("ALEX: Current wave is %d", currentWaveIndex);
-                loadWave(this.currentWaveIndex);
+            this.currentWaveIndex++;
+            this.spawnTimer = 0;
+
+            boolean isEndless = this.currentWaveIndex >= GameConstants.ENDLESS_START_WAVE;
+            boolean isBatchBoundary = (this.currentWaveIndex - GameConstants.ENDLESS_START_WAVE) % GameConstants.ENDLESS_BATCH_SIZE == 0;
+            if (isEndless && isBatchBoundary){
+                WaveRegistry.generateEndlessWaves(this.currentWaveIndex, GameConstants.ENDLESS_BATCH_SIZE);
             }
+
+            loadWave(this.currentWaveIndex);
             return;
         }
 

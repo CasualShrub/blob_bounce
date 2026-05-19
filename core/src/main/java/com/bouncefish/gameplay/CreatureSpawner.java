@@ -74,8 +74,36 @@ public class CreatureSpawner {
 
         // Spawn any creatures whose spawn times have passed
         if (!this.spawnQueue.isEmpty() && this.spawnTimer >= this.spawnQueue.peek().getSpawnTime()){
-            this.creatureList.add(this.spawnQueue.poll());
+            Creature next = this.spawnQueue.poll();
+            if (!isAtSpawnLimit(next)){
+                this.creatureList.add(next);
+            }
+            // basically just discard the creature if we already have enough
         }
+    }
+
+    private boolean isAtSpawnLimit(Creature creature){
+        int id = creature.getCreatureId();
+        boolean isAtLimit = false;
+        if (id == 3){ // OceanSunfish!
+            isAtLimit = countActiveForId(3) >= GameConstants.MAX_ACTIVE_SUNFISH;
+        }
+
+        if (id == 5){ // Shark
+            isAtLimit = countActiveForId(5) >= GameConstants.MAX_ACTIVE_SHARKS;
+        }
+
+        return isAtLimit;
+    }
+
+    private int countActiveForId(int creatureId){
+        int count = 0;
+        for (Creature creature : creatureList){
+            if (creature.getCreatureId() == creatureId){
+                count++;
+            }
+        }
+        return count;
     }
 
     // Clear any creatures that have left the screen

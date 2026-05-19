@@ -1,6 +1,7 @@
 package com.bouncefish.gameplay;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
@@ -53,6 +54,15 @@ public class BounceGame implements GestureDetector.GestureListener {
                 _leftPressed = false;
                 _rightPressed = false;
                 _bounceFish.setXVelocity(0);
+            }
+
+            // optional support for keyboard
+            if (!_bounceFish.isParalyzed()) {
+                if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                    _leftPressed = true;
+                } else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                    _rightPressed = true;
+                }
             }
 
             // Handle user input

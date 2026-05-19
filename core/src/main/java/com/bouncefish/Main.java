@@ -252,6 +252,9 @@ public class Main extends ApplicationAdapter {
                     _currentFish.activatePowerUp();
                 }
             }
+            if (Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.SPACE)) {
+                _currentFish.activatePowerUp();
+            }
         }
 
         if (currentState == GameState.MENU){

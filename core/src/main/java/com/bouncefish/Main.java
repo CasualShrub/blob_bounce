@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -66,6 +68,11 @@ public class Main extends ApplicationAdapter {
     private BitmapFont _powerUpFont;
     private Rectangle _powerUpBounds;
 
+    private int lastScore = 0;
+    private float _scoreBounceTimer = 0f;
+    private static final float SCORE_POP_DURATION = 0.3f;
+    private static final float SCORE_POP_MAX_SCALE = 1.5f;
+
     private LeaderboardService leaderboardService;
 
     public Main(LeaderboardService service){
@@ -87,9 +94,15 @@ public class Main extends ApplicationAdapter {
         gameOverScreen = new GameOverScreen();
         GameStateHandler.setCurrentState(GameState.MENU);
 
-        _scoreFont = new BitmapFont();
-        _scoreFont.getData().setScale(4f);
-        _scoreFont.setColor(Color.WHITE);
+        FreeTypeFontGenerator scoreFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Medium.ttf"));
+        FreeTypeFontParameter scoreFontParams = new FreeTypeFontParameter();
+        scoreFontParams.size = 72;
+        scoreFontParams.color = Color.WHITE;
+        scoreFontParams.minFilter = Texture.TextureFilter.Linear;
+        scoreFontParams.magFilter = Texture.TextureFilter.Linear;
+        _scoreFont = scoreFontGenerator.generateFont(scoreFontParams);
+        _scoreFont.setUseIntegerPositions(false);
+        scoreFontGenerator.dispose();
 
         Pixmap pixmap = new Pixmap(1, 1, com.badlogic.gdx.graphics.Pixmap.Format.RGBA8888);
         pixmap.setColor(1, 1, 1, 1);
@@ -213,7 +226,26 @@ public class Main extends ApplicationAdapter {
             _batch.draw(waterFrame, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
             if (currentState == GameState.PLAYING) {
-                _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), Gdx.graphics.getWidth() / 2f - 20, Gdx.graphics.getHeight() - 100);
+                int currentScore = ProgressTracker.getScore();
+                if (currentScore != lastScore) {
+                    // added a little pulsing animation when the user's score goes to 10
+                    if (currentScore > 0 && currentScore % 10 == 0) {
+                        _scoreBounceTimer = SCORE_POP_DURATION;
+                    }
+                    lastScore = currentScore;
+                }
+
+                // when we reach a multiple of 10 set the bounce animation timer and use sine to make it go big then go small
+                if (_scoreBounceTimer > 0) {
+                    _scoreBounceTimer -= Gdx.graphics.getDeltaTime();
+                    float t = Math.max(0, _scoreBounceTimer) / SCORE_POP_DURATION;
+                    float scale = 1f + (SCORE_POP_MAX_SCALE - 1f) * (float)Math.sin(t * Math.PI);
+                    _scoreFont.getData().setScale(scale);
+                } else {
+                    _scoreFont.getData().setScale(1f);
+                }
+
+                _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), (Gdx.graphics.getWidth() / 2f) - 10, Gdx.graphics.getHeight() - 100);
 
                 float powerUpWidth = GameConstants.RIGHT_CONTROL_BORDER;
                 float powerUpHeight = Gdx.graphics.getHeight() * 0.16f;

@@ -243,7 +243,7 @@ public class BounceFish extends Creature {
     }
 
     private void bounce(Creature creature){
-        setY(creature.getHeight() + creature.getY());
+        setY(creature.getBounds().getY() + creature.getBounds().getHeight());
         updateBounds();
         reverseVelocityForBounce();
         ProgressTracker.increaseScore();

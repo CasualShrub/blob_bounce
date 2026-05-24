@@ -96,12 +96,18 @@ public class Main extends ApplicationAdapter {
 
         FreeTypeFontGenerator scoreFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Medium.ttf"));
         FreeTypeFontParameter scoreFontParams = new FreeTypeFontParameter();
-        scoreFontParams.size = 72;
-        scoreFontParams.color = Color.WHITE;
         scoreFontParams.minFilter = Texture.TextureFilter.Linear;
         scoreFontParams.magFilter = Texture.TextureFilter.Linear;
+        scoreFontParams.color = Color.WHITE;
+
+        scoreFontParams.size = 72;
         _scoreFont = scoreFontGenerator.generateFont(scoreFontParams);
         _scoreFont.setUseIntegerPositions(false);
+
+        scoreFontParams.size = Math.max(14, (int)(Gdx.graphics.getHeight() * 0.035f));
+        _powerUpFont = scoreFontGenerator.generateFont(scoreFontParams);
+        _powerUpFont.setUseIntegerPositions(false);
+
         scoreFontGenerator.dispose();
 
         Pixmap pixmap = new Pixmap(1, 1, com.badlogic.gdx.graphics.Pixmap.Format.RGBA8888);
@@ -110,7 +116,6 @@ public class Main extends ApplicationAdapter {
         _pixel = new Texture(pixmap);
         pixmap.dispose();
 
-        _powerUpFont = new BitmapFont();
         _powerUpBounds = new Rectangle();
 
         JellyFish.initAnime();
@@ -270,7 +275,6 @@ public class Main extends ApplicationAdapter {
                 }
 
                 _batch.setColor(1f, 1f, 1f, 1f);
-                _powerUpFont.getData().setScale(powerUpHeight / 55f);
                 _powerUpFont.draw(_batch, _currentFish.getPowerUpLabel(), powerUPX, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f, powerUpWidth, Align.center, false);
             }
         }

@@ -3,7 +3,9 @@ package com.bouncefish.ui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -35,8 +37,20 @@ public class LeaderboardScreen {
         this.defaultPixmapTexture = new Texture(pixmap);
         pixmap.dispose(); // we can dispose the pixmap now that it's been loaded into a texture
 
-        this.titleFont = new BitmapFont();
-        this.rowFont = new BitmapFont();
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Medium.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        params.minFilter = Texture.TextureFilter.Linear;
+        params.magFilter = Texture.TextureFilter.Linear;
+
+        params.size = Math.max(20, (int)(Gdx.graphics.getHeight() / 25f));
+        this.titleFont = generator.generateFont(params);
+        this.titleFont.setUseIntegerPositions(false);
+
+        params.size = Math.max(12, (int)(Gdx.graphics.getHeight() / 40f));
+        this.rowFont = generator.generateFont(params);
+        this.rowFont.setUseIntegerPositions(false);
+
+        generator.dispose();
         this.glyphLayout = new GlyphLayout();
         this.backButtonBounds = new Rectangle();
         this.leaderboardScoreList = new ArrayList<>();
@@ -82,9 +96,6 @@ public class LeaderboardScreen {
         float panelHeight = padding + titleAreaHeight + (rowHeight * MAX_ROWS) + padding + backBtnHeight + padding;
         float panelX = (screenWidth - panelWidth) / 2f;
         float panelY = (screenHeight - panelHeight) / 2f;
-
-        this.titleFont.getData().setScale(titleAreaHeight * 0.6f / 15f);
-        this.rowFont.getData().setScale(rowHeight * 0.55f / 15f);
 
         batch.begin();
 

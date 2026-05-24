@@ -27,6 +27,7 @@ public class MenuScreen {
     private Rectangle saveBounds;
 
     private String playerName;
+    private boolean nameSaved;
     private float saveButtonFlashDuration;
 
     public MenuScreen() {
@@ -52,6 +53,7 @@ public class MenuScreen {
 
         Preferences prefs = Gdx.app.getPreferences(GameConstants.PREFS_NAME);
         playerName = prefs.getString(GameConstants.PREF_PLAYER_NAME, "");
+        nameSaved = !playerName.isEmpty();
     }
 
     public void render(SpriteBatch batch) {
@@ -122,7 +124,7 @@ public class MenuScreen {
 
         boolean empty = playerName.isEmpty();
         font.setColor(empty ? 0.55f : 1f, empty ? 0.55f : 1f, empty ? 0.55f : 1f, 1f);
-        font.draw(batch, empty ? "Tap to enter name..." : playerName, rowX + rowHeight * 0.2f, textY);
+        font.draw(batch, empty ? "Enter a name to play..." : playerName, rowX + rowHeight * 0.2f, textY);
 
         font.setColor(1f, 1f, 1f, 1f);
         font.draw(batch, "SAVE", saveBtnX + saveBtnWidth * 0.15f, textY);
@@ -135,7 +137,9 @@ public class MenuScreen {
 
         // Draw Buttons below Name Row
         currentY -= (nameRowSpacing + btnHeight);
+        if (!nameSaved) batch.setColor(0.45f, 0.45f, 0.45f, 0.6f);
         batch.draw(playButton, btnX, currentY, btnWidth, btnHeight);
+        batch.setColor(1f, 1f, 1f, 1f);
         playBounds.set(btnX, currentY, btnWidth, btnHeight);
 
         currentY -= (btnHeight);
@@ -154,7 +158,7 @@ public class MenuScreen {
             float x = Gdx.input.getX();
             float y = Gdx.graphics.getHeight() - Gdx.input.getY();
 
-            if (playBounds.contains(x, y)) return 1;
+            if (nameSaved && playBounds.contains(x, y)) return 1;
             if (leaderboardBounds.contains(x, y)) return 2;
             //if (settingsBounds.contains(x, y)) return 3;
 
@@ -174,6 +178,7 @@ public class MenuScreen {
                 prefs.putString(GameConstants.PREF_PLAYER_NAME, playerName);
                 prefs.flush();
                 saveButtonFlashDuration = 0.35f;
+                nameSaved = !playerName.isEmpty();
             }
         }
         return 0;

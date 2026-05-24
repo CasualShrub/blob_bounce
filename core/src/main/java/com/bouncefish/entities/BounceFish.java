@@ -320,6 +320,13 @@ public class BounceFish extends Creature {
         return powerUpCooldown;
     }
 
+    public boolean isInStasis() {
+        return spawnStasisTimer < GameConstants.SPAWN_STASIS_SECONDS;
+    }
+    public float getStasisTimeRemaining() {
+        return Math.max(0f, GameConstants.SPAWN_STASIS_SECONDS - spawnStasisTimer);
+    }
+
     public boolean isParalyzed(){
         return isParalyzed;
     }

@@ -255,7 +255,15 @@ public class Main extends ApplicationAdapter {
                     _scoreFont.getData().setScale(1f);
                 }
 
-                _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), (Gdx.graphics.getWidth() / 2f) - 10, Gdx.graphics.getHeight() - 100);
+                if (_currentFish.isInStasis()) {
+                    int secsLeft = (int) Math.ceil(_currentFish.getStasisTimeRemaining());
+                    String countdownText = "Begin bouncing in " + secsLeft + "...";
+                    _scoreFont.getData().setScale(0.5f);
+                    _scoreFont.draw(_batch, countdownText, (Gdx.graphics.getWidth() / 2f) - 10, Gdx.graphics.getHeight() - 100, 0, Align.center, false);
+                    _scoreFont.getData().setScale(1f);
+                } else {
+                    _scoreFont.draw(_batch, String.valueOf(ProgressTracker.getScore()), (Gdx.graphics.getWidth() / 2f) - 10, Gdx.graphics.getHeight() - 100);
+                }
 
                 float powerUpWidth = GameConstants.RIGHT_CONTROL_BORDER;
                 float powerUpHeight = Gdx.graphics.getHeight() * 0.16f;

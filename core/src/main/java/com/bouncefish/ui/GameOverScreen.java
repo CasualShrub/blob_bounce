@@ -7,20 +7,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
 import com.bouncefish.gameplay.ProgressTracker;
 
 public class GameOverScreen {
 
-    private Texture background;
+    // Only one texture asset: the "GAME OVER" title that bounces in
     private Texture title;
-    private Texture playAgainButton;
-    private Texture menuButton;
+    // 1x1 white pixel used to draw all coloured rectangles
+    private Texture pixel;
 
-    private Texture overlay;
-
-    private BitmapFont font;
+    private BitmapFont labelFont;  // category labels (YOUR SCORE etc.)
+    private BitmapFont buttonFont; // button text — slightly smaller than labels
+    private BitmapFont numberFont; // large score values
     private GlyphLayout layout;
 
     private Rectangle playAgainBounds;
@@ -30,18 +31,33 @@ public class GameOverScreen {
     private float stateTime = 0f;
 
     public GameOverScreen() {
-        background = new Texture("GameoverScreen/Gameoverscreenbackground.png");
         title = new Texture("GameoverScreen/gameovertitle.png");
-        playAgainButton = new Texture("GameoverScreen/playagain_button.png");
-        menuButton = new Texture("GameoverScreen/Gameover_Menu button.png");
 
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
-        overlay = new Texture(pixmap);
+        pixel = new Texture(pixmap);
         pixmap.dispose();
 
-        font = new BitmapFont();
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Medium.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter params = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        params.minFilter = Texture.TextureFilter.Linear;
+        params.magFilter = Texture.TextureFilter.Linear;
+
+        int labelPx = Math.max(12, (int)(Gdx.graphics.getWidth() / 62f));
+        params.size = labelPx;
+        labelFont = generator.generateFont(params);
+        labelFont.setUseIntegerPositions(false);
+
+        params.size = Math.max(10, (int)(labelPx * 0.65f));
+        buttonFont = generator.generateFont(params);
+        buttonFont.setUseIntegerPositions(false);
+
+        params.size = Math.max(28, (int)(Gdx.graphics.getWidth() / 32f));
+        numberFont = generator.generateFont(params);
+        numberFont.setUseIntegerPositions(false);
+
+        generator.dispose();
         layout = new GlyphLayout();
 
         playAgainBounds = new Rectangle();
@@ -51,136 +67,121 @@ public class GameOverScreen {
     public void render(SpriteBatch batch, int score, int creaturesHit) {
         stateTime += Gdx.graphics.getDeltaTime();
 
-        float screenWidth = Gdx.graphics.getWidth();
-        float screenHeight = Gdx.graphics.getHeight();
+        float sw = Gdx.graphics.getWidth();
+        float sh = Gdx.graphics.getHeight();
 
-        // 0. Draw Dimmer Overlay
-        batch.setColor(0, 0, 0, 0.65f);
-        batch.draw(overlay, 0, 0, screenWidth, screenHeight);
+        batch.setColor(0f, 0f, 0f, 0.32f);
+        batch.draw(pixel, 0, 0, sw, sh);
         batch.setColor(1, 1, 1, 1);
 
-        // 1. Panel sizes relative to screen
-        float panelHeight = screenHeight * 0.5f;
-        float panelWidth = panelHeight * (background.getWidth() / (float) background.getHeight());
+        float panelH = sh * 0.50f;
+        float panelW = Math.min(panelH * 1.4f, sw * 0.88f);
+        if (panelW < panelH * 1.4f) panelH = panelW / 1.4f;
+        float panelX  = (sw - panelW) / 2f;
+        float panelY  = (sh - panelH) / 2f - sh * 0.10f;
+        float panelTopY = panelY + panelH;
 
-        if (panelWidth > screenWidth * 0.95f) {
-            panelWidth = screenWidth * 0.95f;
-            panelHeight = panelWidth * (background.getHeight() / (float) background.getWidth());
-        }
-
-        float panelX = (screenWidth - panelWidth) / 2f;
-        float panelY = (screenHeight - panelHeight) / 2f;
-
-        // 2. Draw Title
-        float titleWidth = screenWidth * 0.25f;
-        float titleHeight = titleWidth * (title.getHeight() / (float) title.getWidth());
-        float titleX = (screenWidth - titleWidth) / 2f;
-
-        float panelTopY = panelY + panelHeight;
-        float availableSpaceAtTop = screenHeight - panelTopY;
-
-        // --- MODIFIED HERE ---
-        // Instead of dividing by 2 (centering it high up), we multiply by 0.15f
-        // to make it sit much lower, hovering just right above the background panel.
-        // If you want it even closer, change 0.15f to 0.05f. If you want it touching, change to 0.0f.
-        float targetTitleY = panelTopY + (availableSpaceAtTop - titleHeight) * 0.75f;
-
-        float startTitleY = screenHeight * 1.2f;
+        float titleW  = sw * 0.32f;
+        float titleH  = titleW * (title.getHeight() / (float) title.getWidth() * 0.7f);
+        float spaceAbove  = sh - panelTopY;
+        float targetTitleY = panelTopY + (spaceAbove - titleH) * 0.5f;
+        float startTitleY  = sh * 1.2f;
         float animProgress = Math.min(1f, stateTime / 1.2f);
-        float bounceEased = Interpolation.bounceOut.apply(animProgress);
-        float currentTitleY = startTitleY + (targetTitleY - startTitleY) * bounceEased;
+        float titleY = startTitleY + (targetTitleY - startTitleY) * Interpolation.bounceOut.apply(animProgress);
+        batch.draw(title, (sw - titleW) / 2f, titleY, titleW, titleH);
 
-        batch.draw(title, titleX, currentTitleY, titleWidth, titleHeight);
+        float border = 1.5f;
+        batch.setColor(0.22f, 0.52f, 0.82f, 0.45f);
+        batch.draw(pixel, panelX - border, panelY - border, panelW + border * 2f, panelH + border * 2f);
 
-        // 3. Draw Background Panel
-        batch.draw(background, panelX, panelY, panelWidth, panelHeight);
+        batch.setColor(0.05f, 0.08f, 0.17f, 0.97f);
+        batch.draw(pixel, panelX, panelY, panelW, panelH);
 
-        // 4. Draw Flappy Bird Style Text & Scores
-        float centerX = panelX + panelWidth / 2f;
-        float leftX = panelX + panelWidth * 0.25f;
-        float rightX = panelX + panelWidth * 0.80f;
+        float accentH = Math.max(3f, panelH * 0.024f);
+        batch.setColor(0.0f, 0.78f, 0.96f, 1.0f);
+        batch.draw(pixel, panelX, panelTopY - accentH, panelW, accentH);
 
-        // Y-Coordinates for Labels and Numbers
-        float topLabelY = panelY + panelHeight * 0.85f;
-        float topNumY   = panelY + panelHeight * 0.72f;
+        float hPad = panelW * 0.04f;
+        float btnH = panelH * 0.17f;
+        float btnGap = panelW * 0.03f;
+        float btnW = (panelW - hPad * 2f - btnGap) / 2f;
+        float btnY = panelY + panelH * 0.05f;
+        float btnLX = panelX + hPad;
+        float btnRX = btnLX + btnW + btnGap;
 
-        float bottomLabelY = panelY + panelHeight * 0.52f;
-        float bottomNumY   = panelY + panelHeight * 0.39f;
+        float botSecH = panelH * 0.26f;
+        float botSecY = btnY + btnH + panelH * 0.03f;
 
-        float labelScale = screenWidth / 1400f;
-        float numberScale = screenWidth / 850f;
+        float dividerY = botSecY + botSecH;
 
-        // TOP CENTER: Current score
-        drawTextWithShadow(batch, "YOUR SCORE", centerX, topLabelY, labelScale);
-        drawTextWithShadow(batch, String.valueOf(score), centerX, topNumY, numberScale);
+        float topSecY  = dividerY + 2f;
+        float topSecH  = (panelTopY - accentH) - topSecY;
 
-        // BOTTOM LEFT: High score
-        drawTextWithShadow(batch, "HIGH SCORE", leftX, bottomLabelY, labelScale);
-        drawTextWithShadow(batch, String.valueOf(ProgressTracker.getHighScore()), leftX, bottomNumY, numberScale);
+        // Divider
+        batch.setColor(0.25f, 0.45f, 0.65f, 0.35f);
+        batch.draw(pixel, panelX + hPad, dividerY, panelW - hPad * 2f, 1.5f);
 
-        // BOTTOM RIGHT: Creatures Hit
-        drawTextWithShadow(batch, "CREATURES HIT", rightX, bottomLabelY, labelScale);
-        drawTextWithShadow(batch, String.valueOf(creaturesHit), rightX, bottomNumY, numberScale);
 
-        // 5. Draw Buttons
-        float btnWidth = panelWidth * 0.95f;
-        float btnHeight = btnWidth * (playAgainButton.getHeight() / (float) playAgainButton.getWidth());
+        batch.setColor(0.0f, 0.55f, 0.75f, 1.0f);
+        batch.draw(pixel, btnLX, btnY, btnW, btnH);
+        batch.setColor(1f, 1f, 1f, 0.10f);
+        batch.draw(pixel, btnLX, btnY + btnH * 0.75f, btnW, btnH * 0.25f);
 
-        float btnSpacing = panelWidth * 0.02f;
+        batch.setColor(0.12f, 0.20f, 0.38f, 1.0f);
+        batch.draw(pixel, btnRX, btnY, btnW, btnH);
+        batch.setColor(1f, 1f, 1f, 0.08f);
+        batch.draw(pixel, btnRX, btnY + btnH * 0.75f, btnW, btnH * 0.25f);
 
-        float btnY = panelY - (btnHeight * 0.35f);
+        playAgainBounds.set(btnLX, btnY, btnW, btnH);
+        menuBounds.set(btnRX, btnY, btnW, btnH);
 
-        // Play Again button
-        float paX = centerX - btnWidth - btnSpacing / 2f;
-        batch.draw(playAgainButton, paX, btnY, btnWidth, btnHeight);
-        playAgainBounds.set(paX, btnY, btnWidth, btnHeight);
+        float btnTextY = btnY + (btnH + labelFont.getCapHeight()) / 2f;
+        drawCentered(batch, "PLAY AGAIN",btnLX + btnW / 2f, btnTextY, buttonFont, 1f, 1f, 1f, 1f);
+        drawCentered(batch, "MENU",btnRX + btnW / 2f, btnTextY, buttonFont, 1f, 1f, 1f, 1f);
 
-        // Menu button
-        float mX = centerX + btnSpacing / 2f;
-        batch.draw(menuButton, mX, btnY, btnWidth, btnHeight);
-        menuBounds.set(mX, btnY, btnWidth, btnHeight);
+        float topCX    = panelX + panelW / 2f;
+        float topLblY  = topSecY + topSecH * 0.82f;
+        float topValY  = topSecY + topSecH * 0.44f;
+        drawCentered(batch, "YOUR SCORE", topCX, topLblY, labelFont,  0.55f, 0.80f, 1.00f, 1f);
+        drawCentered(batch, String.valueOf(score), topCX, topValY, numberFont, 1f, 1f, 1f, 1f);
+
+        float colL  = panelX + panelW * 0.26f;
+        float colR  = panelX + panelW * 0.74f;
+        float bLblY = botSecY + botSecH * 0.92f;
+        float bValY = botSecY + botSecH * 0.55f;
+        drawCentered(batch, "HIGH SCORE",                              colL, bLblY, labelFont,  0.55f, 0.80f, 1.00f, 1f);
+        drawCentered(batch, String.valueOf(ProgressTracker.getHighScore()), colL, bValY, numberFont, 1f, 1f, 1f, 1f);
+        drawCentered(batch, "CREATURES HIT",                           colR, bLblY, labelFont,  0.55f, 0.80f, 1.00f, 1f);
+        drawCentered(batch, String.valueOf(creaturesHit),              colR, bValY, numberFont, 1f, 1f, 1f, 1f);
 
         handleInput();
     }
 
-    /**
-     * Helper method to centralize text scaling, centering, and drawing drop-shadows.
-     */
-    private void drawTextWithShadow(SpriteBatch batch, String text, float xCenter, float y, float scale) {
-        font.getData().setScale(scale);
-        layout.setText(font, text);
+    private void drawCentered(SpriteBatch batch, String text, float cx, float y,
+                               BitmapFont f, float r, float g, float b, float a) {
+        layout.setText(f, text);
+        float x = cx - layout.width / 2f;
 
-        // Draw Shadow
-        font.setColor(0, 0, 0, 0.5f);
-        font.draw(batch, text, (xCenter - layout.width / 2f) + 2, y - 2);
+        f.setColor(0f, 0f, 0f, a * 0.45f);
+        f.draw(batch, text, x + 2f, y - 2f);
 
-        // Draw White Text
-        font.setColor(1, 1, 1, 1);
-        font.draw(batch, text, xCenter - layout.width / 2f, y);
+        f.setColor(r, g, b, a);
+        f.draw(batch, text, x, y);
     }
 
     private void handleInput() {
         if (Gdx.input.justTouched()) {
             float x = Gdx.input.getX();
             float y = Gdx.graphics.getHeight() - Gdx.input.getY();
-
-            if (playAgainBounds.contains(x, y)) {
-                actionPressed = 1;
-            } else if (menuBounds.contains(x, y)) {
-                actionPressed = 2;
-            }
+            if (playAgainBounds.contains(x, y)) actionPressed = 1;
+            else if (menuBounds.contains(x, y))  actionPressed = 2;
         }
     }
 
     public int getActionPressed() {
         int action = actionPressed;
         actionPressed = 0;
-
-        // Automatically reset the animation timer when the user leaves the game over screen!
-        if (action != 0) {
-            resetAnimation();
-        }
-
+        if (action != 0) resetAnimation();
         return action;
     }
 
@@ -189,11 +190,10 @@ public class GameOverScreen {
     }
 
     public void dispose() {
-        if (background != null) background.dispose();
         if (title != null) title.dispose();
-        if (playAgainButton != null) playAgainButton.dispose();
-        if (menuButton != null) menuButton.dispose();
-        if (font != null) font.dispose();
-        if (overlay != null) overlay.dispose();
+        if (pixel != null) pixel.dispose();
+        if (labelFont != null)  labelFont.dispose();
+        if (buttonFont != null) buttonFont.dispose();
+        if (numberFont != null) numberFont.dispose();
     }
 }

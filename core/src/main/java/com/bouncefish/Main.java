@@ -70,6 +70,7 @@ public class Main extends ApplicationAdapter {
 
     private int lastScore = 0;
     private float _scoreBounceTimer = 0f;
+    private float _tutorialTimer = 0f;
     private static final float SCORE_POP_DURATION = 0.3f;
     private static final float SCORE_POP_MAX_SCALE = 1.5f;
 
@@ -161,6 +162,7 @@ public class Main extends ApplicationAdapter {
 
     private void resetGame(){
         ProgressTracker.reset();
+        _tutorialTimer = 0f;
         _bounceGame.onMainMenu();
         _currentFish = _bounceGame.getBounceFish();
 
@@ -291,6 +293,33 @@ public class Main extends ApplicationAdapter {
                     _powerUpFont.draw(_batch, secsLeft + "s", powerUPX, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f, powerUpWidth, Align.center, false);
                 } else {
                     _powerUpFont.draw(_batch, _currentFish.getPowerUpLabel(), powerUPX, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f, powerUpWidth, Align.center, false);
+                }
+
+                // A quick little tutorial! Show for a few seconds then fade out
+                float tutorialSeconds = 4f;
+                if (_tutorialTimer < tutorialSeconds) {
+                    _tutorialTimer += Gdx.graphics.getDeltaTime();
+                    float alpha = _tutorialTimer < 2f
+                            ? 0.30f
+                            : 0.30f * (1f - (_tutorialTimer - 2f));
+
+                    float zoneW = GameConstants.LEFT_CONTROL_BORDER;
+
+                    // Left zone
+                    _batch.setColor(0.35f, 0.75f, 1f, alpha);
+                    _batch.draw(_pixel, 0, 0, zoneW, Gdx.graphics.getHeight());
+
+                    // Right zone
+                    _batch.setColor(0.35f, 0.75f, 1f, alpha);
+                    _batch.draw(_pixel, Gdx.graphics.getWidth() - zoneW, 0, zoneW, Gdx.graphics.getHeight());
+
+                    // Labels
+                    _batch.setColor(1f, 1f, 1f, Math.min(alpha * 4f, 0.85f));
+                    _powerUpFont.setColor(1f, 1f, 1f, Math.min(alpha * 4f, 0.85f));
+                    _powerUpFont.draw(_batch, "HOLD LEFT\nTO MOVE LEFT",  0,Gdx.graphics.getHeight() * 0.5f + _powerUpFont.getCapHeight(), zoneW, Align.center, false);
+                    _powerUpFont.draw(_batch, "HOLD RIGHT\nTO MOVE RIGHT", Gdx.graphics.getWidth() - zoneW, Gdx.graphics.getHeight() * 0.5f + _powerUpFont.getCapHeight(), zoneW, Align.center, false);
+                    _powerUpFont.setColor(1f, 1f, 1f, 1f);
+                    _batch.setColor(1f, 1f, 1f, 1f);
                 }
             }
         }

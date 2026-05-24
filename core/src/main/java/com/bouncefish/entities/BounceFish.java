@@ -23,6 +23,7 @@ public class BounceFish extends Creature {
     private PowerUpType powerUpType = PowerUpType.NONE;
     private boolean isFloating = false;
     private float floatTimer = 0;
+    private float powerUpCooldown = 0f;
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
     private static Animation<TextureRegion> downAnimation;
     private static Animation<TextureRegion> upAnimation;
@@ -64,6 +65,7 @@ public class BounceFish extends Creature {
         this.powerUpType = PowerUpType.NONE;
         this.isFloating = false;
         this.floatTimer = 0;
+        this.powerUpCooldown = 0f;
     }
 
     @Override
@@ -120,6 +122,12 @@ public class BounceFish extends Creature {
         if (spawnStasisTimer < GameConstants.SPAWN_STASIS_SECONDS){
             spawnStasisTimer += Gdx.graphics.getDeltaTime();
             return;
+        }
+
+        // Tick down cooldown
+        if (powerUpCooldown > 0) {
+            powerUpCooldown -= Gdx.graphics.getDeltaTime();
+            if (powerUpCooldown < 0) powerUpCooldown = 0;
         }
 
         // Force of gravity - skipped while power-up float is active
@@ -180,12 +188,14 @@ public class BounceFish extends Creature {
                 else if (creature.isBouncable() && this.yVelocity < 0) {
                     bounce(creature);
                     creature.handleBouncedOn();
-                    if (creature.getCreatureId() == 1) { // Crab = float power up!
-                        hasPowerUp = true;
-                        powerUpType = PowerUpType.GROUND_POUND;
-                    } else if (creature.getCreatureId() == 4) { // Mackerel = ground pound!
-                        hasPowerUp = true;
-                        powerUpType = PowerUpType.FLOAT;
+                    if (powerUpCooldown <= 0) {
+                        if (creature.getCreatureId() == 1) { // Crab = ground pound power up!
+                            hasPowerUp = true;
+                            powerUpType = PowerUpType.GROUND_POUND;
+                        } else if (creature.getCreatureId() == 4) { // Mackerel = float power up!
+                            hasPowerUp = true;
+                            powerUpType = PowerUpType.FLOAT;
+                        }
                     }
                     break;
                 }
@@ -260,6 +270,7 @@ public class BounceFish extends Creature {
     public void activatePowerUp() {
         if (!hasPowerUp) return;
         hasPowerUp = false;
+        powerUpCooldown = GameConstants.POWER_UP_COOLDOWN_DURATION;
         if (powerUpType == PowerUpType.FLOAT) {
             isFloating = true;
             floatTimer = 0;
@@ -297,6 +308,16 @@ public class BounceFish extends Creature {
     // Returns 1 when float just started, 0 when it has expired
     public float getFloatProgress() {
         return 1f - (floatTimer / GameConstants.FLOAT_DURATION);
+    }
+
+    public boolean isOnCooldown() {
+        return powerUpCooldown > 0;
+    }
+    public float getCooldownProgress() {
+        return powerUpCooldown / GameConstants.POWER_UP_COOLDOWN_DURATION;
+    }
+    public float getPowerUpCooldownRemaining() {
+        return powerUpCooldown;
     }
 
     public boolean isParalyzed(){

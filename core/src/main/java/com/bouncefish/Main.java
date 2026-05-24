@@ -265,20 +265,33 @@ public class Main extends ApplicationAdapter {
                 _batch.setColor(ColorHelper.POWERUP_GRAY);
                 _batch.draw(_pixel, powerUPX, powerUpY, powerUpWidth, powerUpHeight);
 
-                if (_currentFish.hasPowerUp()) {
+                if (_currentFish.isFloating()) {
+                    // Float active — show draining gold bar (takes priority over cooldown)
+                    float fillWidth = powerUpWidth * _currentFish.getFloatProgress();
+                    _batch.setColor(ColorHelper.RANK_GOLD);
+                    _batch.draw(_pixel, powerUPX, powerUpY, fillWidth, powerUpHeight);
+                } else if (_currentFish.isOnCooldown()) {
+                    // Cooldown — draining red bar
+                    float fillFrac = _currentFish.getCooldownProgress();
+                    _batch.setColor(0.55f, 0.15f, 0.15f, 0.85f);
+                    _batch.draw(_pixel, powerUPX, powerUpY, powerUpWidth, powerUpHeight * fillFrac);
+                } else if (_currentFish.hasPowerUp()) {
                     Color chargedColor = _currentFish.getPowerUpType() == PowerUpType.GROUND_POUND
                             ? ColorHelper.POWERUP_GROUND_POUND
                             : ColorHelper.RANK_GOLD;
                     _batch.setColor(chargedColor);
                     _batch.draw(_pixel, powerUPX, powerUpY, powerUpWidth, powerUpHeight);
-                } else if (_currentFish.isFloating()) {
-                    float fillWidth = powerUpWidth * _currentFish.getFloatProgress();
-                    _batch.setColor(ColorHelper.RANK_GOLD);
-                    _batch.draw(_pixel, powerUPX, powerUpY, fillWidth, powerUpHeight);
                 }
 
                 _batch.setColor(1f, 1f, 1f, 1f);
-                _powerUpFont.draw(_batch, _currentFish.getPowerUpLabel(), powerUPX, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f, powerUpWidth, Align.center, false);
+                if (_currentFish.isFloating()) {
+                    _powerUpFont.draw(_batch, _currentFish.getPowerUpLabel(), powerUPX, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f, powerUpWidth, Align.center, false);
+                } else if (_currentFish.isOnCooldown()) {
+                    int secsLeft = (int) Math.ceil(_currentFish.getPowerUpCooldownRemaining());
+                    _powerUpFont.draw(_batch, secsLeft + "s", powerUPX, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f, powerUpWidth, Align.center, false);
+                } else {
+                    _powerUpFont.draw(_batch, _currentFish.getPowerUpLabel(), powerUPX, powerUpY + (powerUpHeight + _powerUpFont.getCapHeight()) / 2f, powerUpWidth, Align.center, false);
+                }
             }
         }
         _batch.end();

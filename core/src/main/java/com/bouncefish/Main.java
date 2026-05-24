@@ -130,25 +130,28 @@ public class Main extends ApplicationAdapter {
         _stage = new Stage();
         Gdx.input.setInputProcessor(_stage);
         Skin skin = new Skin(Gdx.files.internal("clean-crispy-ui.json"));
-        TextButton debugToggleButton = new TextButton("DEBUG", skin);
-        debugToggleButton.setBounds(100, Gdx.graphics.getHeight() * 0.5f, 100, 100);
-        _stage.addActor(debugToggleButton);
-        debugToggleButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                toggleDebug();
-            }
-        });
 
-        TextButton godModeToggle = new TextButton("Immortality", skin);
-        godModeToggle.setBounds(100, (Gdx.graphics.getHeight() * 0.5f) - 150, 100, 100);
-        _stage.addActor(godModeToggle);
-        godModeToggle.addListener(new ChangeListener(){
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                toggleImmortality();
-            }
-        });
+        if (GameConstants.IS_DEBUG){
+            TextButton debugToggleButton = new TextButton("DEBUG", skin);
+            debugToggleButton.setBounds(100, Gdx.graphics.getHeight() * 0.5f, 100, 100);
+            _stage.addActor(debugToggleButton);
+            debugToggleButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    toggleDebug();
+                }
+            });
+
+            TextButton godModeToggle = new TextButton("Immortality", skin);
+            godModeToggle.setBounds(100, (Gdx.graphics.getHeight() * 0.5f) - 150, 100, 100);
+            _stage.addActor(godModeToggle);
+            godModeToggle.addListener(new ChangeListener(){
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    toggleImmortality();
+                }
+            });
+        }
 
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(_stage);

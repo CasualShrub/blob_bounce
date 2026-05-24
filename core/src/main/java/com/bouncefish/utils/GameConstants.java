@@ -17,8 +17,8 @@ public final class GameConstants {
     public static final float WATER_LEVEL = 50; // Y position of ground level
     public static final int RIGHT_CONTROL_BORDER = 400;
     public static final int LEFT_CONTROL_BORDER = 400;
-    public static boolean IS_DEBUG = true;
-    public static boolean IS_IMMORTAL = true; // Cheatcode: Use this if you want to be able to bounce on the ground just for testing purposes.
+    public static boolean IS_DEBUG = false;
+    public static boolean IS_IMMORTAL = false; // Cheatcode: Use this if you want to be able to bounce on the ground just for testing purposes.
     public static final int ENDLESS_START_WAVE = 25;  // Wave index at which the endless hard-wave phase begins
     public static final int ENDLESS_BATCH_SIZE  = 5;  // How many hard waves to generate at a time in endless mode
 

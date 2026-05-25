@@ -50,3 +50,14 @@
 # These two lines are used with mapping files; see https://developer.android.com/build/shrink-code#retracing
 -keepattributes LineNumberTable,SourceFile
 -renamesourcefileattribute SourceFile
+
+-keep class com.bouncefish.leaderboard.LeaderboardData { *; }
+-keepclassmembers class com.bouncefish.leaderboard.** {
+    <init>(...);
+    <fields>;
+}
+
+-keepclassmembers class * {
+    @com.google.firebase.firestore.PropertyName <fields>;
+    @com.google.firebase.firestore.PropertyName <methods>;
+}

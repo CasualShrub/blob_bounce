@@ -64,20 +64,24 @@ public class LeaderboardScreen {
         this.leaderboardScoreList.clear();
         service.fetchTopScores(new LeaderboardService.Callback() {
             @Override
-            public void onDataRetrieved(List<LeaderboardData> scores) {
-                if (scores != null){
-                    leaderboardScoreList = scores;
-                }
-                else {
-                    leaderboardScoreList = new ArrayList<>();
-                }
-
-                isLoading = false;
+            public void onDataRetrieved(final List<LeaderboardData> scores) {
+                Gdx.app.postRunnable(new Runnable() {
+                    @Override
+                    public void run() {
+                        leaderboardScoreList = (scores != null) ? scores : new ArrayList<LeaderboardData>();
+                        isLoading = false;
+                    }
+                });
             }
 
             @Override
             public void onError(Exception e) {
-                isLoading = false;
+                Gdx.app.postRunnable(new Runnable() {
+                    @Override
+                    public void run() {
+                        isLoading = false;
+                    }
+                });
             }
         });
     }
@@ -160,8 +164,14 @@ public class LeaderboardScreen {
                 name = i == 0 ? "Loading..." : "";
                 score = "";
             } else if (i < leaderboardScoreList.size()) {
-                name = leaderboardScoreList.get(i).name;
-                score = String.valueOf(leaderboardScoreList.get(i).score);
+                LeaderboardData entry = leaderboardScoreList.get(i);
+                if (entry == null) {
+                    name = "Missing Name";
+                    score = "0";
+                } else {
+                    name  = entry.name != null ? entry.name : "Missing Name";
+                    score = String.valueOf(entry.score);
+                }
             } else {
                 name = "---";
                 score = "---";

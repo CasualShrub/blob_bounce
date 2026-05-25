@@ -39,6 +39,7 @@ public class FirebaseLeaderboardService implements LeaderboardService {
                                 }
                             });
                     } else {
+                        database.collection("leaderboard").add(new LeaderboardData(name, score));
                         Log.d("Leaderboard", "Score not updated! Existing score is higher");
                     }
                 }

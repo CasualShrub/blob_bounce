@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
 import com.bouncefish.entities.BounceFish;
 import com.bouncefish.entities.*;
 import com.bouncefish.leaderboard.LeaderboardService;
@@ -133,11 +134,15 @@ public class BounceGame implements GestureDetector.GestureListener {
 
     // Game Event Handlers
     public void onPlayerDeath(){
-        // We no longer stop the spawner here so background keeps moving
-        GameStateHandler.setCurrentState(GameState.GAME_OVER);
-        Preferences prefs = Gdx.app.getPreferences(GameConstants.PREFS_NAME); // TODO: maybe make a helper function for this?
-        String name = prefs.getString(GameConstants.PREF_PLAYER_NAME, "");
-        this.leaderboardService.submitScore(name, ProgressTracker.getScore());
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                GameStateHandler.setCurrentState(GameState.GAME_OVER);
+                Preferences prefs = Gdx.app.getPreferences(GameConstants.PREFS_NAME);
+                String name = prefs.getString(GameConstants.PREF_PLAYER_NAME, "");
+                leaderboardService.submitScore(name, ProgressTracker.getScore());
+            }
+        }, 1f);
     }
 
     public void onMainMenu(){

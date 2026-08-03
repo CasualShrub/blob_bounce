@@ -382,12 +382,10 @@ public class BounceFish extends Creature {
         Texture down1 = new Texture("player/blob/down1.PNG");
         Texture down2 = new Texture("player/blob/down2.PNG");
         Texture down3 = new Texture("player/blob/down3.PNG");
-        Texture down4 = new Texture("player/blob/down4.PNG");
         TextureRegion[] downFrames = new TextureRegion[4];
         downFrames[0] = new TextureRegion(down1);
         downFrames[1] = new TextureRegion(down2);
         downFrames[2] = new TextureRegion(down3);
-        downFrames[3] = new TextureRegion(down4);
         downAnimation = new Animation<>(1F,downFrames);
 
         Texture up1 = new Texture("player/blob/up1.PNG");
@@ -402,12 +400,10 @@ public class BounceFish extends Creature {
         down1 = new Texture("player/blob/down1_.PNG");
         down2 = new Texture("player/blob/down2_.PNG");
         down3 = new Texture("player/blob/down3_.PNG");
-        down4 = new Texture("player/blob/down4_.PNG");
         downFrames = new TextureRegion[4];
         downFrames[0] = new TextureRegion(down1);
         downFrames[1] = new TextureRegion(down2);
         downFrames[2] = new TextureRegion(down3);
-        downFrames[3] = new TextureRegion(down4);
         downAnimation_paralyzed = new Animation<>(1F,downFrames);
 
         up1 = new Texture("player/blob/up1_.PNG");

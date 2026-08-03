@@ -24,6 +24,9 @@ public class BounceFish extends Creature {
     private boolean isFloating = false;
     private float floatTimer = 0;
     private float powerUpCooldown = 0f;
+    private float deathTime = 0f;
+    private static final float GHOST_RISE_SPEED = 120f;
+    private static final float DEATH_FRAME_DURATION = 0.18f;
     private ArrayList<Creature> creatureList; //Fish now knows what other objects exist in the game
     private static Animation<TextureRegion> downAnimation;
     private static Animation<TextureRegion> upAnimation;
@@ -66,6 +69,7 @@ public class BounceFish extends Creature {
         this.isFloating = false;
         this.floatTimer = 0;
         this.powerUpCooldown = 0f;
+        this.deathTime = 0f;
     }
 
     @Override
@@ -124,6 +128,16 @@ public class BounceFish extends Creature {
             return;
         }
 
+        // Dead — play hurt-to-ghost animation while rising slowly upward
+        if (isBouncedOn) {
+            deathTime += Gdx.graphics.getDeltaTime();
+            yVelocity = GHOST_RISE_SPEED;
+            xVelocity = 0;
+            updatePosition();
+            updateBounds();
+            return;
+        }
+
         // Tick down cooldown
         if (powerUpCooldown > 0) {
             powerUpCooldown -= Gdx.graphics.getDeltaTime();
@@ -152,9 +166,6 @@ public class BounceFish extends Creature {
 
         stateTime += Gdx.graphics.getDeltaTime();
 
-        if (isBouncedOn){
-            return;
-        }
         if(isParalyzed){
             paralyzedTime += Gdx.graphics.getDeltaTime();
             if(paralyzedTime > GameConstants.MAX_PARALYZED_TIME){
@@ -235,8 +246,9 @@ public class BounceFish extends Creature {
     private void die(float heightOfDeath) {
         isBouncedOn = true;
         setY(heightOfDeath);
-        applyDeathVelocity();
-        xVelocity *= -1.2;
+        xVelocity = 0;
+        yVelocity = GHOST_RISE_SPEED;
+        deathTime = 0f;
 
         deathEvent.run();
     }
@@ -333,7 +345,7 @@ public class BounceFish extends Creature {
     @Override
     public TextureRegion getAnimeFrame(){
         if (this.isDead()){
-            return deathAnimation.getKeyFrame(0);
+            return deathAnimation.getKeyFrame(deathTime, false);
         }
         // going up
         if (yVelocity >= 0){
@@ -415,10 +427,20 @@ public class BounceFish extends Creature {
         upFrames[2] = new TextureRegion(up3);
         upAnimation_paralyzed = new Animation<>(1F,upFrames);
 
-        Texture ko = new Texture("player/blob/ko.PNG");
-        TextureRegion[] frame = new TextureRegion[1];
-        frame[0] = new TextureRegion(ko);
-        deathAnimation = new Animation<>(1F,frame);
+        Texture hurt1  = new Texture("player/blob/blobhurt1.png");
+        Texture hurt2  = new Texture("player/blob/blobhurt2.png");
+        Texture ghost1 = new Texture("player/blob/blobghost1.png");
+        Texture ghost2 = new Texture("player/blob/blobghost2.png");
+        Texture ghost3 = new Texture("player/blob/blobghost3.png");
+        Texture ghost4 = new Texture("player/blob/blobghost4.png");
+        TextureRegion[] deathFrames = new TextureRegion[6];
+        deathFrames[0] = new TextureRegion(hurt1);
+        deathFrames[1] = new TextureRegion(hurt2);
+        deathFrames[2] = new TextureRegion(ghost1);
+        deathFrames[3] = new TextureRegion(ghost2);
+        deathFrames[4] = new TextureRegion(ghost3);
+        deathFrames[5] = new TextureRegion(ghost4);
+        deathAnimation = new Animation<>(DEATH_FRAME_DURATION, deathFrames);
     }
 
 }

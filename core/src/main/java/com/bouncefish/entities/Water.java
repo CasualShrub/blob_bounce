@@ -26,12 +26,12 @@ public class Water {
 
         waterRegion = new TextureRegion(waterTexture);
 
-        TextureRegion[] frames = new TextureRegion[6];
-        for(int i=0;i<6;i++){
+        TextureRegion[] frames = new TextureRegion[3];
+        for(int i=0;i<3;i++){
             frames[i] = new TextureRegion(new Texture("splash/splash"+i+".png"));
         }
 
-        splashAnimation = new Animation<>(0.1f, frames);
+        splashAnimation = new Animation<>(0.15f, frames);
         splashAnimation.setPlayMode(Animation.PlayMode.NORMAL);
     }
 

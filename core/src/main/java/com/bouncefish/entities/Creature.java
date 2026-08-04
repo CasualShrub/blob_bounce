@@ -111,6 +111,18 @@ public abstract class Creature {
     public float getHeight() {
         return height;
     }
+
+    public float getRenderWidth() {
+        return getWidth();
+    }
+
+    public float getRenderHeight() {
+        return getHeight();
+    }
+
+    public float getRenderXOffset() {
+        return 0f;
+    }
     public int getCreatureId() {
         return creatureId;
     }

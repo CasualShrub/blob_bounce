@@ -49,6 +49,18 @@ public class Mackerel extends OrdinaryFish{
     }
 
     @Override
+    public float getRenderWidth() {
+        TextureRegion frame = getAnimeFrame();
+        float aspect = frame.getRegionWidth() / (float) frame.getRegionHeight();
+        return getHeight() * aspect;
+    }
+
+    @Override
+    public float getRenderXOffset() {
+        return (getWidth() - getRenderWidth()) / 2f;
+    }
+
+    @Override
     public TextureRegion getAnimeFrame() {
         switch (getFishState()) {
             case SWIMMING: return swimmingFrame;

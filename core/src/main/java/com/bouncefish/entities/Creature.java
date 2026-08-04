@@ -45,6 +45,10 @@ public abstract class Creature {
         return movingLeft;
     }
 
+    public boolean shouldFlipHorizontally(){
+        return movingLeft;
+    }
+
     public float getX() {
         return xPosition;
     }

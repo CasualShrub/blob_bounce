@@ -9,7 +9,9 @@ import com.bouncefish.utils.GameConstants;
 import java.util.function.Consumer;
 
 public class Mackerel extends OrdinaryFish{
-    private static Animation<TextureRegion> mackerelAnimation;
+    private static TextureRegion exitingFrame;
+    private static TextureRegion swimmingFrame;
+    private static Animation<TextureRegion> enteringAnimation;
     private final int BASE_SPEED = 700;
     public Mackerel(float spawnTime, float startX, float endX, float speedMultiplier, Consumer<Creature> movementFunction) {
         super(startX,endX);
@@ -33,16 +35,26 @@ public class Mackerel extends OrdinaryFish{
         this.bounds = new Rectangle(getX(), getY() + this.boundOffsetY, getWidth(), getHeight() * 0.5f);
     }
     public static void initAnime(){
-        TextureRegion[] frames = new TextureRegion[6];
-        for(int i=0;i<6;i++){
-            frames[i] = new TextureRegion(new Texture("creatures/fish/f"+i+".png"));
-        }
-        mackerelAnimation = new Animation<>(0.15F,frames); // my God, it looks so ugly
-
-        //TODO: add dead animation animation
+        exitingFrame  = new TextureRegion(new Texture("creatures/fish/f0.png"));
+        swimmingFrame = new TextureRegion(new Texture("creatures/fish/f1.png"));
+        TextureRegion[] enterFrames = new TextureRegion[]{
+            new TextureRegion(new Texture("creatures/fish/f2.png")),
+            new TextureRegion(new Texture("creatures/fish/f3.png"))
+        };
+        enteringAnimation = new Animation<>(0.12F, enterFrames);
     }
     @Override
+    public boolean shouldFlipHorizontally() {
+        return !isMovingLeft();
+    }
+
+    @Override
     public TextureRegion getAnimeFrame() {
-        return mackerelAnimation.getKeyFrame(stateTime,true);
+        switch (getFishState()) {
+            case SWIMMING: return swimmingFrame;
+            case ENTERING: return enteringAnimation.getKeyFrame(getEnteringStateTime(), false);
+            case EXITING:
+            default:       return exitingFrame;
+        }
     }
 }

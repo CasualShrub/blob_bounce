@@ -220,7 +220,7 @@ public class Main extends ApplicationAdapter {
 
             for (Creature creature:creatureList) {
                 TextureRegion currentFrame = creature.getAnimeFrame();
-                if(!creature.isMovingLeft()){
+                if(!creature.shouldFlipHorizontally()){
                     _batch.draw(currentFrame, creature.getX(), creature.getY(), creature.getWidth(), creature.getHeight());
                 }else{
                     _batch.draw(currentFrame, creature.getX() + creature.getWidth(), creature.getY(), -creature.getWidth(), creature.getHeight());

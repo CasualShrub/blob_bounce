@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 public class Mackerel extends OrdinaryFish{
     private static TextureRegion exitingFrame;
     private static TextureRegion swimmingFrame;
+    private static TextureRegion deadFrame;
     private static Animation<TextureRegion> enteringAnimation;
     private final int BASE_SPEED = 700;
     public Mackerel(float spawnTime, float startX, float endX, float speedMultiplier, Consumer<Creature> movementFunction) {
@@ -37,6 +38,7 @@ public class Mackerel extends OrdinaryFish{
     public static void initAnime(){
         exitingFrame  = new TextureRegion(new Texture("creatures/fish/f0.png"));
         swimmingFrame = new TextureRegion(new Texture("creatures/fish/f1.png"));
+        deadFrame     = new TextureRegion(new Texture("creatures/fish/dead.png"));
         TextureRegion[] enterFrames = new TextureRegion[]{
             new TextureRegion(new Texture("creatures/fish/f2.png")),
             new TextureRegion(new Texture("creatures/fish/f3.png"))
@@ -62,6 +64,7 @@ public class Mackerel extends OrdinaryFish{
 
     @Override
     public TextureRegion getAnimeFrame() {
+        if (isBouncedOn) return deadFrame;
         switch (getFishState()) {
             case SWIMMING: return swimmingFrame;
             case ENTERING: return enteringAnimation.getKeyFrame(getEnteringStateTime(), false);

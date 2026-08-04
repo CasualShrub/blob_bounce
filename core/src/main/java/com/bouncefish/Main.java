@@ -223,10 +223,19 @@ public class Main extends ApplicationAdapter {
                 float rw = creature.getRenderWidth();
                 float rh = creature.getRenderHeight();
                 float xOff = creature.getRenderXOffset();
+                float scale = creature.getBounceReactionScale();
+                float scaledW = rw * scale;
+                float scaledH = rh * scale;
+                float centerX = creature.getX() + xOff + rw / 2f;
+                float centerY = creature.getY() + rh / 2f;
+                float shakeX = creature.getBounceReactionShakeX();
+                float shakeY = creature.getBounceReactionShakeY();
+                float drawX = centerX - scaledW / 2f + shakeX;
+                float drawY = centerY - scaledH / 2f + shakeY;
                 if(!creature.shouldFlipHorizontally()){
-                    _batch.draw(currentFrame, creature.getX() + xOff, creature.getY(), rw, rh);
+                    _batch.draw(currentFrame, drawX, drawY, scaledW, scaledH);
                 }else{
-                    _batch.draw(currentFrame, creature.getX() + xOff + rw, creature.getY(), -rw, rh);
+                    _batch.draw(currentFrame, drawX + scaledW, drawY, -scaledW, scaledH);
                 }
             }
 

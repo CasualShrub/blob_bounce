@@ -41,8 +41,8 @@ public class BounceFish extends Creature {
         this.width = 190;
         this.height = 190;
         this.xPosition = Gdx.graphics.getWidth() * 0.5f - (this.getWidth() * 0.5f);
-        this.boundOffsetX = getWidth() * 0.15f;
-        this.boundOffsetY = getHeight() * 0.15f;
+        this.boundOffsetX = getWidth() * 0.225f;
+        this.boundOffsetY = getHeight() * 0.225f;
 
         this.xVelocity = 0;
         this.yVelocity = 0;
@@ -74,7 +74,7 @@ public class BounceFish extends Creature {
 
     @Override
     protected void setBounds(){
-        this.bounds = new Rectangle(getX() + this.boundOffsetY, getY() + this.boundOffsetY, getWidth() * 0.7f, getHeight() * 0.7f);
+        this.bounds = new Rectangle(getX() + this.boundOffsetX, getY() + this.boundOffsetY, getWidth() * 0.55f, getHeight() * 0.55f);
     }
 
     public void reverseVelocityForBounce(){

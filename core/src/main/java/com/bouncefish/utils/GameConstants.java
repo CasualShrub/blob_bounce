@@ -63,4 +63,5 @@ public final class GameConstants {
     public static final String PREFS_NAME = "BlobFishPrefs";
     public static final String PREF_PLAYER_NAME = "defaultName";
     public static final float POWER_UP_COOLDOWN_DURATION = 4f;
+    public static boolean STAR_PARTICLES_ENABLED = false;
 }

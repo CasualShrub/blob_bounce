@@ -272,6 +272,9 @@ public class BounceFish extends Creature {
 
         //TODO: call the getBouncedOn method of creature
         SoundManager.playBounceSound();
+        float burstX = creature.getBounds().getX() + creature.getBounds().getWidth() / 2f;
+        float burstY = creature.getBounds().getY() + creature.getBounds().getHeight();
+        StarParticles.spawn(burstX, burstY);
     }
 
     @Override

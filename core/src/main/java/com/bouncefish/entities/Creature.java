@@ -28,6 +28,10 @@ public abstract class Creature {
 
     // Runtime flags
     protected boolean isBouncedOn = false; //bouncefish doesn't kill
+    protected float bouncedOnTime = 0f;
+    protected static final float BOUNCE_REACTION_DURATION = 0.35f;
+    protected static final float BOUNCE_REACTION_MAX_SCALE = 0.35f;
+    protected static final float BOUNCE_REACTION_SHAKE_AMP = 8f;
     protected double spawnTime = 0;
     protected float rotationAngle;//used to implement the curvilinear motion of ordinary fish
     protected float stateTime;
@@ -173,8 +177,31 @@ public abstract class Creature {
 
     public void handleTimeStep(){
         stateTime += Gdx.graphics.getDeltaTime();
+        if (isBouncedOn && bouncedOnTime < BOUNCE_REACTION_DURATION) {
+            bouncedOnTime += Gdx.graphics.getDeltaTime();
+        }
         applyMovement();
         updateBounds();
+    }
+
+    public float getBounceReactionScale(){
+        if (!isBouncedOn || bouncedOnTime >= BOUNCE_REACTION_DURATION) return 1f;
+        float t = bouncedOnTime / BOUNCE_REACTION_DURATION;
+        return 1f + BOUNCE_REACTION_MAX_SCALE * (float)Math.sin(Math.PI * t);
+    }
+
+    public float getBounceReactionShakeX(){
+        if (!isBouncedOn || bouncedOnTime >= BOUNCE_REACTION_DURATION) return 0f;
+        float t = bouncedOnTime / BOUNCE_REACTION_DURATION;
+        float amp = BOUNCE_REACTION_SHAKE_AMP * (1f - t);
+        return amp * (float)Math.sin(bouncedOnTime * 60f);
+    }
+
+    public float getBounceReactionShakeY(){
+        if (!isBouncedOn || bouncedOnTime >= BOUNCE_REACTION_DURATION) return 0f;
+        float t = bouncedOnTime / BOUNCE_REACTION_DURATION;
+        float amp = BOUNCE_REACTION_SHAKE_AMP * (1f - t);
+        return amp * (float)Math.cos(bouncedOnTime * 70f);
     }
     public boolean isBouncable(){
         return isBouncable;

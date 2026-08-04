@@ -31,6 +31,7 @@ import com.bouncefish.entities.Mackerel;
 import com.bouncefish.entities.Marlin;
 import com.bouncefish.entities.OceanSunfish;
 import com.bouncefish.entities.Shark;
+import com.bouncefish.entities.StarParticles;
 import com.bouncefish.entities.Water;
 import com.bouncefish.gameplay.BounceGame;
 import com.bouncefish.gameplay.GameState;
@@ -123,6 +124,7 @@ public class Main extends ApplicationAdapter {
         Crab.initAnime();
         Mackerel.initAnime();
         Water.initAnime();
+        StarParticles.init();
         OceanSunfish.initAnime();
         Shark.initAnime();
         Marlin.initAnime();
@@ -246,6 +248,9 @@ public class Main extends ApplicationAdapter {
 
             TextureRegion waterFrame = Water.getAnimeFrame();
             _batch.draw(waterFrame, 0, -50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+            StarParticles.update(Gdx.graphics.getDeltaTime());
+            StarParticles.render(_batch);
 
             if (currentState == GameState.PLAYING) {
                 int currentScore = ProgressTracker.getScore();
@@ -407,6 +412,7 @@ public class Main extends ApplicationAdapter {
         _powerUpFont.dispose();
         _scoreFont.dispose();
         gameOverScreen.dispose();
+        StarParticles.dispose();
     }
 
     private void toggleDebug(){
